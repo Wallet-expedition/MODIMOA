@@ -1,0 +1,13 @@
+// mixin
+
+@mixin desktop {
+    @media (min-width: #{$desktop}) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: #{$mobile}) {
+        @content;
+    }
+}
