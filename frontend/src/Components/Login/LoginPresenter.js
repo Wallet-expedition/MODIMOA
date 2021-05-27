@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import '../../SCSS/Login.scss';
+import "../../SCSS/Login.scss";
 
 const LoginPresenter = () => {
   return <h2> Login Presenter </h2>;
