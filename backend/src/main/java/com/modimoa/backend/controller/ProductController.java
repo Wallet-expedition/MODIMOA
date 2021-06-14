@@ -1,17 +1,30 @@
 package com.modimoa.backend.controller;
 
-import com.modimoa.backend.service.ProductService;
+import com.modimoa.backend.domain.Product;
+import com.modimoa.backend.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@RequestMapping("/products")
 public class ProductController {
 
-    private final ProductService productService;
+    private final ProductRepository repository;
 
     @Autowired
-    public ProductController(ProductService productService){
-        this.productService = productService;
+    public ProductController(ProductRepository repository){
+        this.repository = repository;
+    }
+
+    @GetMapping("/convenience-store")
+    @ResponseBody
+    public String findAll(){
+
+        String result = "";
+
+        for(Product pr: repository.findAll()){
+            result += pr + "</br>";
+        }
+        return result;
     }
 }
-

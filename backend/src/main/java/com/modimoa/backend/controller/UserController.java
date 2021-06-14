@@ -1,7 +1,7 @@
 package com.modimoa.backend.controller;
 
-import com.modimoa.backend.model.User;
-import com.modimoa.backend.repo.UserRepository;
+import com.modimoa.backend.domain.User;
+import com.modimoa.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

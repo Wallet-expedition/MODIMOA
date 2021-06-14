@@ -1,4 +1,4 @@
-package com.modimoa.backend.model;
+package com.modimoa.backend.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
