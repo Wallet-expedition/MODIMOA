@@ -1,10 +1,9 @@
-package com.modimoa.backend.model;
+package com.modimoa.backend.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="user")
 public class User implements Serializable {
 
     public static final long serialVersionUID = -6184044926029805156L;
