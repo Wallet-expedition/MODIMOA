@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="product")
 public class Product implements Serializable {
 
     public static final long serialVersionUID = -6184044926029805156L;
@@ -12,7 +11,7 @@ public class Product implements Serializable {
     @Id//primary key
     @Column(name="product_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long product_id;
+    public long product_id;
 
     @Column(name="product_name")
     private String product_name;
@@ -30,5 +29,9 @@ public class Product implements Serializable {
     @Override
     public String toString(){
         return String.format("Product[product_id=%d, product_name='%s', original_price='%d']", product_id, product_name, original_price);
+    }
+
+    public String getProductId() {
+        return product_id+"";
     }
 }

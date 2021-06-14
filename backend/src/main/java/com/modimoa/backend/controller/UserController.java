@@ -1,13 +1,79 @@
 package com.modimoa.backend.controller;
 
 import com.modimoa.backend.domain.User;
-import com.modimoa.backend.repository.UserRepository;
+import com.modimoa.backend.service.UserService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api/users")
 public class UserController {
 
+
+    @Autowired
+    private UserService userService = new UserService();
+
+    // 테스트용 사용자 모두 가져오는 api
+    @GetMapping("")
+    public String getAllUsers(){
+
+        String result = "";
+
+        for(User u: userService.getAllUsers()){
+            result += u + "</br>";
+        }
+        return result;
+    }
+
+    // 회원가입 기능, 사용자 정보 토큰으로 받을지 정해야함
+    @PostMapping("/{social}/new")
+    public String addUserByToken(@PathVariable String social){
+        //추후 구현
+        return null;
+    }
+
+    // 회원탈퇴 기능, 사용자 정보 토큰으로 받을지 정해야함
+    @DeleteMapping("/{social}/removal")
+    public String removeUserByToken(@PathVariable String social){
+        //추후 구현
+        return null;
+    }
+
+    // 로그인 기능, 사용자 정보 넘기는 방식에 따라 수정 필요
+    @PostMapping("/{social}")
+    public String loginUserByToken(@PathVariable String social){
+        //추후 구현
+        return null;
+    }
+
+    // 로그아웃 기능, 사용자 정보 넘기는 방식에 따라 수정 필요
+    // http method delete 아닐 수 있음, 수정 필요
+    @DeleteMapping("/{social}")
+    public String logoutUserByToken(@PathVariable String social){
+        //추후 구현
+        return null;
+    }
+
+    // 중복확인 기능, 사용자 정보 넘기는 방식에 따라 수정 꼭꼭꼭 필요..!
+    @GetMapping("/{token}")
+    public Bool duplicateCheckByToken(@PathVariable String token){
+        //추후 구현
+        return null;
+    }
+
+    // 마이페이지에 사용하기 위한 자기 정보를 가져오는 기능
+    // 수정필요
+    @GetMapping("/myinfo/{token}")
+    public String getMyinfoByToken(@PathVariable String token){
+        //추후 구현
+        return null;
+    }
+
+
+
+    //옛날코드, insert시 참고
+   /*
     private final UserRepository repository;
 
     @Autowired
@@ -33,4 +99,5 @@ public class UserController {
         }
         return result;
     }
+    */
 }
