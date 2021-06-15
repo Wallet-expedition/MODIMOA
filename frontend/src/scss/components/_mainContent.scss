@@ -16,12 +16,27 @@
     background-color: #e7e7e7;
   }
 
-  .content-beer {
+  .content-modal-btn {
+    width: 60px;
+    height: 60px;
+    background-color: #f0f1f3;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    /* temp */
+    line-height: 60px;
+    font-size: 3rem;
+    text-align: center;
+    cursor: pointer;
+
     @include desktop {
-      background-image: url(https://www.icegif.com/wp-content/uploads/beer-icegif-3.gif);
-      background-size: cover;
-      min-height: 33vh;
+      display: none;
     }
+  }
+
+  .content-beer {
+    background-image: url(https://www.icegif.com/wp-content/uploads/beer-icegif-3.gif);
+    background-size: cover;
+    min-height: 33vh;
     color: snow;
     display: flex;
     margin-top: 70px;
@@ -53,25 +68,29 @@
     }
 
     @include mobile {
-      margin-top: 10rem;
+      margin-top: 4rem;
       text-align: center;
       font-size: 3rem;
     }
   }
 
   .content-search {
-    height: 50px;
-    line-height: 50px;
-    color: snow;
+    margin: 1rem auto;
+    @include desktop {
+      height: 50px;
+      line-height: 50px;
+    }
 
     @include mobile {
       height: 30px;
       line-height: 30px;
+      margin: 2rem auto;
     }
 
     p {
       font-size: 15px;
       padding-left: 20px;
+      margin: 0px 0px;
       float: left;
     }
 
@@ -84,53 +103,56 @@
       background-color: snow;
       cursor: pointer;
       transition: 0.6s;
+      border-radius: 0 3px 3px 0;
 
       &:hover {
         background-color: rgba(0, 0, 0, 0.5);
         color: snow;
-        border-radius: 0 5px 5px 0;
       }
     }
   }
 
   .content-search,
   .mart {
+    border-radius: 5px;
+
     @include desktop {
+      color: snow;
+      border: 2px solid snow;
       width: 727px;
+      .logo {
+        color: black;
+      }
     }
 
     @include mobile {
+      color: black;
+      border: 2px solid gray;
       width: 360px;
     }
-    border: 2px solid snow;
-    border-radius: 5px;
-    margin: 1.5rem auto;
   }
 
   .mart {
-    margin-top: 2rem;
     text-align: center;
-    padding-bottom: 2rem;
-
-    @include desktop {
-      height: 150px;
-    }
+    margin: 1rem auto;
 
     @include mobile {
-      height: 100px;
+      &:first-child {
+        margin-top: 4rem;
+      }
     }
 
     p {
       margin-top: 0.5rem;
       font-weight: 700;
       font-size: 19px;
-      color: snow;
     }
 
     .logo-container {
       display: flex;
       flex-grow: inherit;
       justify-content: space-around;
+      padding-bottom: 1em;
 
       .logo {
         width: 75px;
