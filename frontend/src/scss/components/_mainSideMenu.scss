@@ -1,0 +1,39 @@
+.sidemenu-container {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  padding-left: 2rem;
+  box-shadow: 5px 0px 4px rgba(0, 0, 0, 0.25);
+
+  @include mobile {
+    display: none;
+  }
+
+  .logo {
+    font-size: 2.4em;
+    flex: 1;
+    padding-top: 2rem;
+  }
+
+  .sidemenu-nav {
+    flex: 6;
+    p {
+      font-size: 30px;
+    }
+  }
+
+  .sidemenu-foot {
+    flex: 1;
+    p {
+      font-size: 20px;
+    }
+  }
+
+  .sidemenu-nav,
+  .sidemenu-foot {
+    p {
+      font-weight: 700;
+      padding: 1rem 0px;
+    }
+  }
+}
