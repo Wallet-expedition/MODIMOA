@@ -1,14 +1,16 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 const SideMenuPresenter = () => {
-  return(
+  return (
     <div className="sidemenu-container">
       <div className="logo"> MODIMOA </div>
       <div className="sidemenu-nav">
-        <p> 홈 </p>
-        <p> 로그인 </p>
-        <p> 장바구니 </p>
-        <p> 마이페이지 </p>
+        <Link to="/main"> 홈 </Link>
+        <Link to="/login"> 로그인 </Link>
+        <Link to="/login"> 장바구니 </Link>
+        <Link to="/login"> 마이페이지 </Link>
       </div>
 
       <div className="sidemenu-foot">

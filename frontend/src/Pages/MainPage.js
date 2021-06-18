@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
-import MainBox from '../Components/Main/MainContent';
-import SideMenu from '../Components/Main/SideMenu';
+import MainContent from "../Components/Main/MainContent";
+import SideMenu from "../Components/Main/SideMenu";
+import SideMenuBtn from "../Components/Main/SideMenuBtn";
 
-import '../scss/MainPage.scss';
+import "../scss/MainPage.scss";
 
 const MainPage = () => {
-  return(
+  const [showSideMenu, setShowSideMenu] = useState(true);
+
+  return (
     <div className="main-container">
-      <SideMenu />
-      <MainBox />
+      <SideMenuBtn
+        showSideMenu={showSideMenu}
+        setShowSideMenu={setShowSideMenu}
+      />
+      {showSideMenu ? <SideMenu /> : null}
+      <MainContent />
     </div>
   );
 };

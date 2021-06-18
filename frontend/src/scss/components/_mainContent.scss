@@ -1,36 +1,25 @@
 .main-container {
   display: flex;
+  width: 100vw;
   height: 100vh;
+  overflow: hidden;
+
+  @include mobile {
+    background-color: #e7e7e7;
+  }
 }
 
 .content-container {
   flex: 5;
   box-sizing: border-box;
-  margin: 0 auto;
 
   @include desktop {
     background-color: rgba(0, 0, 0, 0.46);
   }
 
   @include mobile {
-    background-color: #e7e7e7;
-  }
-
-  .content-modal-btn {
-    width: 60px;
-    height: 60px;
-    background-color: #f0f1f3;
-    border-radius: 5px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    /* temp */
-    line-height: 60px;
-    font-size: 3rem;
-    text-align: center;
-    cursor: pointer;
-
-    @include desktop {
-      display: none;
-    }
+    display: flex;
+    flex-direction: column;
   }
 
   .content-beer {
@@ -68,15 +57,15 @@
     }
 
     @include mobile {
-      margin-top: 4rem;
+      margin: auto;
       text-align: center;
       font-size: 3rem;
     }
   }
 
   .content-search {
-    margin: 1rem auto;
     @include desktop {
+      margin: 1rem auto;
       height: 50px;
       line-height: 50px;
     }
@@ -84,7 +73,7 @@
     @include mobile {
       height: 30px;
       line-height: 30px;
-      margin: 2rem auto;
+      margin: 3em auto;
     }
 
     p {
@@ -128,19 +117,13 @@
     @include mobile {
       color: black;
       border: 2px solid gray;
-      width: 360px;
+      width: 300px;
     }
   }
 
   .mart {
     text-align: center;
     margin: 1rem auto;
-
-    @include mobile {
-      &:first-child {
-        margin-top: 4rem;
-      }
-    }
 
     p {
       margin-top: 0.5rem;
@@ -150,7 +133,6 @@
 
     .logo-container {
       display: flex;
-      flex-grow: inherit;
       justify-content: space-around;
       padding-bottom: 1em;
 
@@ -160,6 +142,11 @@
         background-color: snow;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
         border-radius: 10px;
+
+        @include mobile {
+          width: 60px;
+          height: 60px;
+        }
       }
 
       .lottemart {

@@ -7,7 +7,9 @@ const IntroPage = () => {
     <>
       <h1>Intro Page</h1>
       <ul>
-        <li><Link to="/main">Main</Link></li>
+        <li>
+          <Link to="/main">Main</Link>
+        </li>
       </ul>
     </>
   );

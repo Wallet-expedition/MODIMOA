@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import MainContentPresenter from "./MainContentPresenter";
 
-const MainContentContainer = () => {
-  const [showModal, setShowModal] = useState(false);
-
+const MainContentContainer = ({ showSideMenu, setShowSideMenu }) => {
   const handleModalClick = (event) => {
     event.preventDefault();
-    setShowModal(!showModal);
-    console.log(showModal);
-  }
+    setShowSideMenu(!showSideMenu);
+    console.log(showSideMenu);
+  };
 
-  return <MainContentPresenter handleModalClick={handleModalClick} />;
+  return (
+    <MainContentPresenter
+      showSideMenu={showSideMenu}
+      handleModalClick={handleModalClick}
+    />
+  );
 };
 
 export default MainContentContainer;

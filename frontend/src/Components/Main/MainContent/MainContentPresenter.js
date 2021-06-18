@@ -1,12 +1,8 @@
 import React from "react";
 
-const MainContentPresenter = ({ handleModalClick }) => {
-  return(
+const MainContentPresenter = ({ showSideMenu, handleModalClick }) => {
+  return (
     <div className="content-container">
-      <div className="content-modal-btn" onClick={handleModalClick}>
-        =
-      </div>
-
       <div className="content-beer">
         <div className="content-description">
           <p> 맥주 마시기 좋은 시간 </p>
