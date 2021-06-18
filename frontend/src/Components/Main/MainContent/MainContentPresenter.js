@@ -1,6 +1,6 @@
 import React from "react";
 
-const MainContentPresenter = ({ showSideMenu, handleModalClick }) => {
+const MainContentPresenter = () => {
   return (
     <div className="content-container">
       <div className="content-beer">
