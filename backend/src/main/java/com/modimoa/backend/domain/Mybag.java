@@ -12,28 +12,26 @@ public class Mybag {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long mybag_id;
 
-    /*
-    @Column(name="product_name")
-    private String product_name;
+    @Column(name="user_id")
+    private long user_id;
 
-    @Column(name="original_price")
-    private long original_price;
+    @Column(name="product_id")
+    private long product_id;
 
-    protected Product(){}
+    protected Mybag(){}
 
-    public Product(String product_name, long original_price){
-        this.product_name = product_name;
-        this.original_price = original_price;
+    public Mybag(long user_id, long product_id){
+        this.user_id = user_id;
+        this.product_id = product_id;
     }
 
     @Override
     public String toString(){
-        return String.format("Product[product_id=%d, product_name='%s', original_price='%d']", product_id, product_name, original_price);
+        return String.format("Mybag[mybag_id=%d, user_id='%d', product_id='%d']", mybag_id, user_id, product_id);
     }
 
-    public String getProductId() {
-        return product_id+"";
+    public String getMybagId() {
+        return mybag_id+"";
     }
 
-     */
 }

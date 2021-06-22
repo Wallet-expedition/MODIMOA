@@ -1,6 +1,6 @@
 package com.modimoa.backend.controller;
 
-import com.modimoa.backend.domain.Product;
+import com.modimoa.backend.domain.Mybag;
 import com.modimoa.backend.service.MybagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +18,8 @@ public class MybagController {
 
         String result = "";
 
-        for(Product pr: mybagService.getAllMybagProducts()){
-            result += pr + "</br>";
+        for(Mybag mb: mybagService.getAllMybagProducts()){
+            result += mb + "</br>";
         }
         return result;
     }
