@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      working-Directory: ./frontend
+      working-directory: ./frontend
     strategy:
           matrix:
             node-version: [ 12.x ]
