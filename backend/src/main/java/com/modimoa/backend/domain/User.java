@@ -1,8 +1,16 @@
 package com.modimoa.backend.domain;
 
+//import com.modimoa.backend.domain.BaseTimeEntity;
+
+import lombok.Builder;
+
+import lombok.Getter;
+
+
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Getter
 @Entity
 public class User implements Serializable {
 
@@ -21,9 +29,17 @@ public class User implements Serializable {
 
     protected User(){}
 
+    @Builder
     public User(String user_email, String user_image){
         this.user_email = user_email;
         this.user_image = user_image;
+    }
+
+    public User update(String user_email, String user_image){
+        this.user_email = user_email;
+        this.user_image = user_image;
+
+        return this;
     }
 
     @Override
