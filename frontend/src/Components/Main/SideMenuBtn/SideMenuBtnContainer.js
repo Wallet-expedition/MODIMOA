@@ -32,7 +32,7 @@ const SideMenuBtnContainer = ({ showSideMenu, setShowSideMenu }) => {
     if (isMobile) {
       setShowSideMenu(false);
     }
-  }, []);
+  }, [setShowSideMenu]);
 
   return (
     <SideMenuBtnPresenter handleSideMenuBtnClick={handleSideMenuBtnClick} />
