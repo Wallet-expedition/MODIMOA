@@ -1,0 +1,71 @@
+.sidemenu-container {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  padding-left: 1rem;
+  box-shadow: 5px 0px 4px rgba(0, 0, 0, 0.25);
+  width: inherit;
+  min-width: 300px;
+
+  @include mobile {
+    position: absolute;
+    z-index: 3;
+    background-color: black;
+    height: 100%;
+    opacity: 0.8;
+    color: snow;
+
+    .logo {
+      display: none;
+    }
+
+    .sidemenu-nav {
+      text-align: right;
+      margin-right: 10vw;
+    }
+
+    .sidemenu-foot {
+      padding-left: 0rem;
+    }
+  }
+
+  .logo {
+    font-size: 2.4em;
+    flex: 1;
+    padding-top: 2rem;
+  }
+
+  .sidemenu-nav {
+    flex: 6;
+    a {
+      font-size: 30px;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      margin-top: 1.5rem;
+
+      @include mobile {
+        color: snow;
+      }
+
+      @include desktop {
+        color: black;
+      }
+    }
+  }
+
+  .sidemenu-foot {
+    flex: 1;
+    p {
+      font-size: 20px;
+    }
+  }
+
+  .sidemenu-nav,
+  .sidemenu-foot {
+    a,
+    p {
+      font-weight: 700;
+    }
+  }
+}

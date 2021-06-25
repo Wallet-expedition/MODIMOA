@@ -1,0 +1,156 @@
+.main-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  @include mobile {
+    background-color: #e7e7e7;
+  }
+}
+
+.content-container {
+  flex: 5;
+  box-sizing: border-box;
+
+  @include desktop {
+    background-color: rgba(0, 0, 0, 0.46);
+  }
+
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content-beer {
+    background-image: url(https://www.icegif.com/wp-content/uploads/beer-icegif-3.gif);
+    background-size: cover;
+    min-height: 33vh;
+    color: snow;
+    display: flex;
+    margin-top: 70px;
+    justify-content: center;
+
+    @include mobile {
+      display: none;
+    }
+
+    .content-description {
+      p {
+        margin-top: 3rem;
+        font-size: 25px;
+        margin-bottom: 0px;
+      }
+
+      p:last-child {
+        font-size: 120px;
+        font-weight: 500;
+        margin: 0px 0px;
+        line-height: 1;
+      }
+    }
+  }
+
+  .content-logo {
+    @include desktop {
+      display: none;
+    }
+
+    @include mobile {
+      margin: auto;
+      text-align: center;
+      font-size: 3rem;
+    }
+  }
+
+  .content-search {
+    @include desktop {
+      margin: 1rem auto;
+      height: 50px;
+      line-height: 50px;
+    }
+
+    @include mobile {
+      height: 30px;
+      line-height: 30px;
+      margin: 3em auto;
+    }
+
+    p {
+      font-size: 15px;
+      padding-left: 20px;
+      margin: 0px 0px;
+      float: left;
+    }
+
+    .search-btn {
+      float: right;
+      color: black;
+      text-align: center;
+      width: 3rem;
+      height: auto;
+      background-color: snow;
+      cursor: pointer;
+      transition: 0.6s;
+      border-radius: 0 3px 3px 0;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: snow;
+      }
+    }
+  }
+
+  .content-search,
+  .mart {
+    border-radius: 5px;
+
+    @include desktop {
+      color: snow;
+      border: 2px solid snow;
+      width: 727px;
+      .logo {
+        color: black;
+      }
+    }
+
+    @include mobile {
+      color: black;
+      border: 2px solid gray;
+      width: 300px;
+    }
+  }
+
+  .mart {
+    text-align: center;
+    margin: 1rem auto;
+
+    p {
+      margin-top: 0.5rem;
+      font-weight: 700;
+      font-size: 19px;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: space-around;
+      padding-bottom: 1em;
+
+      .logo {
+        width: 75px;
+        height: 75px;
+        background-color: snow;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
+        border-radius: 10px;
+
+        @include mobile {
+          width: 60px;
+          height: 60px;
+        }
+      }
+
+      .lottemart {
+      }
+    }
+  }
+}
