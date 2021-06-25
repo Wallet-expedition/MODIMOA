@@ -43,5 +43,5 @@ jobs:
         
       - name: Build App
         run: |
-          npm run build
+          CI='' npm run build
         working-directory: ${{ env.working-directory }}
