@@ -1,9 +1,5 @@
 package com.modimoa.backend.domain;
 
-import com.modimoa.backend.domain.BaseTimeEntity;
-import lombok.Builder;
-import lombok.Getter;
-import 
 import javax.persistence.*;
 import java.io.Serializable;
 
