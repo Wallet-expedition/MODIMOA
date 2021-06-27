@@ -1,16 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Intro from "../Components/Intro";
 import "../scss/Intro.scss";
 
 const IntroPage = () => {
   return (
     <>
-      <h1>Intro Page</h1>
-      <ul>
-        <li>
-          <Link to="/main">Main</Link>
-        </li>
-      </ul>
+      <Intro />
     </>
   );
 };
