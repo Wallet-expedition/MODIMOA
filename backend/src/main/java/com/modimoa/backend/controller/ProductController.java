@@ -13,6 +13,8 @@ public class ProductController {
     @Autowired
     private ProductService productService = new ProductService();
 
+
+    // 장바구니 모든 물건 가져오는 기능
     @GetMapping("")
     public String getAllProducts(){
 
@@ -24,6 +26,7 @@ public class ProductController {
         return result;
     }
 
+    // 장바구니 특정 id 물건 가져오는 기능
     @GetMapping("/{productId}")
     public String getProductByProductId(@PathVariable Long productId){
 

@@ -19,7 +19,7 @@ public class Product implements Serializable {
     @Column(name="original_price")
     private long original_price;
 
-    protected Product(){}
+    public Product(){}
 
     public Product(String product_name, long original_price){
         this.product_name = product_name;
@@ -31,7 +31,7 @@ public class Product implements Serializable {
         return String.format("Product[product_id=%d, product_name='%s', original_price='%d']", product_id, product_name, original_price);
     }
 
-    public String getProductId() {
-        return product_id+"";
+    public long getProductId() {
+        return product_id;
     }
 }
