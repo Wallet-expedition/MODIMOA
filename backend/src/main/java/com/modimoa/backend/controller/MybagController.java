@@ -2,6 +2,7 @@ package com.modimoa.backend.controller;
 
 import com.modimoa.backend.domain.Mybag;
 import com.modimoa.backend.domain.Product;
+import com.modimoa.backend.dto.MybagSaveReqDto;
 import com.modimoa.backend.service.MybagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,15 +14,15 @@ import javax.servlet.http.HttpSession;
 public class MybagController {
 
     @Autowired
-    private MybagService mybagService = new MybagService();
+    private MybagService mybagService;
 
     // 장바구니에서 모든 물건 조회하는 기능
     @GetMapping("")
-    public String getAllMybagProducts(){
+    public String findAll(){
         Long userId = 4L;
         String result = "";
-        int sumMoney = MybagService.sumMoney(userId);
-        for(Mybag mb: mybagService.getAllMybagProducts()){
+        int expectedPrice = MybagService.expectedPrice(userId);
+        for(Mybag mb: mybagService.findAll()){
             result += mb + "</br>";
         }
         return result;
@@ -29,16 +30,15 @@ public class MybagController {
 
     // 장바구니에 새 물건 추가하는 기능, 기존에 물건이 있으면 개수 증가
     @PostMapping("/{productId}")
-    public String addMybagProductByProductId(Long productId, Long userId){
+    public String addItem(@PathVariable Long productId, Long userId){
 
         //String userId = (String) session.getAttribute("user_id");
-        long mybagId = mybagService.findByTwoId(productId, userId);
-        int count = mybagService.countMybag(mybagId);
+        long mybagId = mybagService.findItemId(productId, userId);
 
-        if (count == 0) {
-            mybagService.create(productId, userId);
+        if (mybagService.findCount(mybagId) == 0) {
+            mybagService.save(productId, userId);
         } else {
-            mybagService.changeProductNum(mybagId, 1);
+            mybagService.updateCount(mybagId, 1);
         }
 
         return "redirect:/api/mybag";
@@ -46,17 +46,17 @@ public class MybagController {
 
     // 장바구니에서 물건 삭제하는 기능
     @DeleteMapping("/{productId}")
-    public String removeMybagProductByProductId(Long productId, Long userId){
-        long mybagId = mybagService.findByTwoId(productId, userId);
+    public String delete(@PathVariable Long productId, Long userId){
+        long mybagId = mybagService.findItemId(productId, userId);
         MybagService.delete(mybagId);
         return "redirect:/api/mybag";
     }
 
     // 장바구니에서 구매 여부 변경하는 기능
     @PatchMapping("/{productId}")
-    public String updateMybagProductByProductId(Long productId, Long userId, int status){
-        long mybagId = mybagService.findByTwoId(productId, userId);
-        MybagService.changePurchaseStatus(mybagId, status);
+    public String updateStatus(@PathVariable Long productId, Long userId, int status){
+        long mybagId = mybagService.findItemId(productId, userId);
+        MybagService.updateStatus(mybagId, status);
         return "redirect:/api/mybag";
     }
 }

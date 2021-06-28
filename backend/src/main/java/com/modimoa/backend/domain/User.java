@@ -17,7 +17,11 @@ public class User implements Serializable {
 
     @Column(name="user_image")
     private String user_image;
-
+/*
+    @OneToOne
+    @JoinColumn(name="mybag_id")
+    private Mybag mybag;
+*/
 
     protected User(){}
 

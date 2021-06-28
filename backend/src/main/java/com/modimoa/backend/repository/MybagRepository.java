@@ -10,7 +10,4 @@ import java.util.Optional;
 @Repository
 public interface MybagRepository extends JpaRepository<Mybag, Long> {
 
-    long findByTwoId(Long productId, Long userId);
-    void save(Optional<Mybag> mybag);
-    void delete(Optional<Mybag> mybag);
 }
