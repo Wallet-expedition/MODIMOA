@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+
+import Login from "../Components/Login";
+import SideMenu from "../Components/Main/SideMenu";
+import SideMenuBtn from "../Components/Main/SideMenuBtn";
 import "../scss/Login.scss";
 
 const LoginPage = () => {
-  return <h1>Login Page</h1>;
+  const [showSideMenu, setShowSideMenu] = useState(true);
+
+  return (
+    <>
+      <SideMenuBtn
+        showSideMenu={showSideMenu}
+        setShowSideMenu={setShowSideMenu}
+      />
+      {showSideMenu ? <SideMenu /> : null}
+      <Login />
+    </>
+  );
 };
 
 export default LoginPage;
