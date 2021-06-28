@@ -11,6 +11,7 @@
 
 .content-container {
   @include desktop {
+    flex: 5;
     background-color: rgba(0, 0, 0, 0.46);
   }
 
@@ -64,60 +65,72 @@
   .content-search,
   .mart {
     width: 90%;
-    margin: 0.3rem auto;
-    border: 2px solid snow;
+    margin: 1.4rem auto;
     border-radius: 5px;
   }
 
   .content-search {
-    width: 91.5%;
+    width: 90%;
+    display: flex;
     .MuiFormControl-root {
+      height: 40px;
       width: 100%;
+      padding: 0.3rem;
 
-      label {
-        padding-left: 0.5rem;
+      .MuiInputBase-root {
+        height: 100%;
+        border: none;
       }
     }
 
-    img {
-      max-height: 55px;
-      cursor: pointer;
+    .MuiOutlinedInput-root,
+    .MuiOutlinedInput-notchedOutline {
+      border: 2px solid gray;
+    }
+
+    label {
+      padding-left: 0.4rem;
+    }
+
+    .search-btn {
+      margin-top: 2px;
+      height: 40px;
+
+      img {
+        height: 35px;
+        cursor: pointer;
+        position: relative;
+        top: 11%;
+      }
     }
   }
 
   .mart {
     text-align: center;
-    padding: 0.5rem;
-
-    @include mobile {
-    }
-
     p {
       @include font-default(700, 1rem);
+      margin: 1rem 0 1rem 0;
+      text-align: left;
+      padding-left: 0.5rem;
       @include desktop {
         color: snow;
-        margin: 0 0;
       }
     }
 
     .logo-container {
       display: flex;
-      justify-content: space-around;
-      padding: 0.5rem;
+      justify-content: space-between;
 
       img {
         background-color: snow;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
         border-radius: 10px;
-
-        @include desktop {
-          max-width: 30%;
-        }
-
-        @include mobile {
-          max-width: 60%;
-        }
+        max-width: 100%;
       }
+    }
+
+    &:last-child {
+      margin-bottom: 4rem;
     }
   }
 }
