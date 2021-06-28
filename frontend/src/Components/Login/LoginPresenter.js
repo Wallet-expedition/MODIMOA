@@ -4,11 +4,7 @@ const LoginPresenter = () => {
   const Logo = () => {
     return (
       <div className="logo-container">
-        <img
-          className="logo-image"
-          src="https://user-images.githubusercontent.com/42960217/123408733-4fa0cf80-d5e8-11eb-9956-8250d7599bed.png"
-          alt="logo"
-        />
+        <img className="logo-image" src={`/img/logo_long_512.png`} alt="logo" />
         <span>CAN BEER CAN !</span>
       </div>
     );
