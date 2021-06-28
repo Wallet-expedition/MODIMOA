@@ -1,6 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const MainContentPresenter = () => {
+import InputAdornment from "@material-ui/core/InputAdornment";
+import FormControl from "@material-ui/core/FormControl";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import InputLabel from "@material-ui/core/InputLabel";
+
+const LogoIcon = ({ name }) => {
+  return (
+    <Link className="mart-container" to={`./main`}>
+      <img
+        className={`mart ${name}`}
+        src="https://user-images.githubusercontent.com/42960217/123408733-4fa0cf80-d5e8-11eb-9956-8250d7599bed.png"
+        alt="mart"
+      />
+    </Link>
+  );
+};
+
+const MainContentPresenter = ({ searchKeyword, handleChange }) => {
   return (
     <div className="content-container">
       <div className="content-beer">
@@ -11,31 +29,52 @@ const MainContentPresenter = () => {
       </div>
 
       <div className="content-logo">
-        <div className="modimoa-logo">MODIMOA</div>
+        <img
+          className="modimoa-logo"
+          src="https://user-images.githubusercontent.com/42960217/123408733-4fa0cf80-d5e8-11eb-9956-8250d7599bed.png"
+          alt="modimoa-logo"
+        ></img>
       </div>
 
       <div className="content-search">
-        <p> 검색어를 입력하세요.</p>
-        <div className="search-btn"> 검색 </div>
+        <FormControl>
+          <InputLabel htmlFor="outlined-weight-helper-text">
+            검색어를 입력해주세요
+          </InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-weight"
+            value={searchKeyword}
+            onChange={handleChange}
+            endAdornment={
+              <InputAdornment position="end">
+                <img
+                  className="modimoa-logo"
+                  src="https://user-images.githubusercontent.com/42960217/123408733-4fa0cf80-d5e8-11eb-9956-8250d7599bed.png"
+                  alt="modimoa-logo"
+                ></img>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
       </div>
 
       <div className="mart">
         <p> 대형 마트</p>
         <div className="logo-container">
-          <div className="logo emart"> icon </div>
-          <div className="logo homeplus"> icon </div>
-          <div className="logo costco"> icon </div>
-          <div className="logo lottemart"> icon </div>
+          <LogoIcon name="emart" />
+          <LogoIcon name="homeplus" />
+          <LogoIcon name="costco" />
+          <LogoIcon name="lottemart" />
         </div>
       </div>
 
       <div className="mart">
         <p> 편의점</p>
         <div className="logo-container">
-          <div className="logo cu"> icon </div>
-          <div className="logo seven"> icon </div>
-          <div className="logo gs"> icon </div>
-          <div className="logo emart"> icon </div>
+          <LogoIcon name="cu" />
+          <LogoIcon name="seven" />
+          <LogoIcon name="gs" />
+          <LogoIcon name="emart" />
         </div>
       </div>
     </div>
