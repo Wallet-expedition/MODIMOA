@@ -23,7 +23,7 @@ const Router = () => {
       {detectMobile() && <Route exact path="/" component={Intro} />}
       {!detectMobile() && <Route exact path="/" component={Main} />}
       <Route path="/main" component={Main} />
-      <Route path="/auth" component={Login} />
+      <Route path="/login" component={Login} />
     </Switch>
   );
 };

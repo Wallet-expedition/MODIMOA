@@ -4,7 +4,8 @@
   flex: 2;
   padding-left: 1rem;
   box-shadow: 5px 0px 4px rgba(0, 0, 0, 0.25);
-  width: inherit;
+  width: 100vw;
+  height: 100vh;
   min-width: 300px;
 
   @include mobile {

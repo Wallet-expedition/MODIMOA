@@ -13,11 +13,7 @@ const IntroPresenter = () => {
   const Logo = () => {
     return (
       <div className="logo-container">
-        <img
-          className="logo-image"
-          src="https://user-images.githubusercontent.com/42960217/123408733-4fa0cf80-d5e8-11eb-9956-8250d7599bed.png"
-          alt="logo"
-        />
+        <img className="logo-image" src={"/img/logo_beer_512.png"} alt="logo" />
         <span>CAN BEER CAN !</span>
       </div>
     );
@@ -27,7 +23,7 @@ const IntroPresenter = () => {
       <Link className="enter-container" to="./main">
         <img
           className="enter-image"
-          src="https://user-images.githubusercontent.com/42960217/123426721-b8934200-d5fe-11eb-9250-752427639266.png"
+          src={"/img/enter_icon_512.png"}
           alt="enter"
         />
       </Link>

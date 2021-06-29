@@ -10,147 +10,127 @@
 }
 
 .content-container {
-  flex: 5;
-  box-sizing: border-box;
-
   @include desktop {
+    flex: 5;
     background-color: rgba(0, 0, 0, 0.46);
   }
 
   @include mobile {
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
   }
 
   .content-beer {
-    background-image: url(https://www.icegif.com/wp-content/uploads/beer-icegif-3.gif);
-    background-size: cover;
-    min-height: 33vh;
-    color: snow;
-    display: flex;
-    margin-top: 70px;
-    justify-content: center;
+    @include desktop {
+      background-image: url(https://www.icegif.com/wp-content/uploads/beer-icegif-3.gif);
+      background-size: cover;
+      text-align: center;
+      min-height: 33vh;
+      color: snow;
+
+      .content-description {
+        margin-top: 70px;
+        padding-top: 30px;
+        p {
+          font-size: 25px;
+          margin-bottom: 0px;
+        }
+        p:last-child {
+          font-size: 120px;
+          font-weight: 500;
+          margin: 0px 0px;
+          line-height: 1;
+        }
+      }
+    }
 
     @include mobile {
       display: none;
     }
-
-    .content-description {
-      p {
-        margin-top: 3rem;
-        font-size: 25px;
-        margin-bottom: 0px;
-      }
-
-      p:last-child {
-        font-size: 120px;
-        font-weight: 500;
-        margin: 0px 0px;
-        line-height: 1;
-      }
-    }
   }
-
   .content-logo {
     @include desktop {
       display: none;
     }
 
     @include mobile {
-      margin: auto;
       text-align: center;
-      font-size: 3rem;
-    }
-  }
-
-  .content-search {
-    @include desktop {
-      margin: 1rem auto;
-      height: 50px;
-      line-height: 50px;
-    }
-
-    @include mobile {
-      height: 30px;
-      line-height: 30px;
-      margin: 3em auto;
-    }
-
-    p {
-      font-size: 15px;
-      padding-left: 20px;
-      margin: 0px 0px;
-      float: left;
-    }
-
-    .search-btn {
-      float: right;
-      color: black;
-      text-align: center;
-      width: 3rem;
-      height: auto;
-      background-color: snow;
-      cursor: pointer;
-      transition: 0.6s;
-      border-radius: 0 3px 3px 0;
-
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.5);
-        color: snow;
+      img {
+        max-width: 50%;
       }
     }
   }
 
   .content-search,
   .mart {
+    width: 90%;
+    margin: 1.4rem auto;
     border-radius: 5px;
+  }
 
-    @include desktop {
-      color: snow;
-      border: 2px solid snow;
-      width: 727px;
-      .logo {
-        color: black;
+  .content-search {
+    width: 90%;
+    display: flex;
+    .MuiFormControl-root {
+      height: 40px;
+      width: 100%;
+      padding: 0.3rem;
+
+      .MuiInputBase-root {
+        height: 100%;
+        border: none;
       }
     }
 
-    @include mobile {
-      color: black;
+    .MuiOutlinedInput-root,
+    .MuiOutlinedInput-notchedOutline {
       border: 2px solid gray;
-      width: 300px;
+    }
+
+    label {
+      padding-left: 0.4rem;
+    }
+
+    .search-btn {
+      margin-top: 2px;
+      height: 40px;
+
+      img {
+        height: 35px;
+        cursor: pointer;
+        position: relative;
+        top: 11%;
+      }
     }
   }
 
   .mart {
     text-align: center;
-    margin: 1rem auto;
-
     p {
-      margin-top: 0.5rem;
-      font-weight: 700;
-      font-size: 19px;
+      @include font-default(700, 1rem);
+      margin: 1rem 0 1rem 0;
+      text-align: left;
+      padding-left: 0.5rem;
+      @include desktop {
+        color: snow;
+      }
     }
 
     .logo-container {
       display: flex;
-      justify-content: space-around;
-      padding-bottom: 1em;
+      justify-content: space-between;
 
-      .logo {
-        width: 75px;
-        height: 75px;
+      img {
         background-color: snow;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
         border-radius: 10px;
-
-        @include mobile {
-          width: 60px;
-          height: 60px;
-        }
+        max-width: 100%;
       }
+    }
 
-      .lottemart {
-      }
+    &:last-child {
+      margin-bottom: 4rem;
     }
   }
 }

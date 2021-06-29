@@ -1,6 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const MainContentPresenter = () => {
+import { TextField } from "@material-ui/core";
+
+const LogoIcon = ({ name }) => {
+  return (
+    <Link className="mart-container" to={`./main`}>
+      <img
+        className={`mart-${name}`}
+        src={`/img/mart_${name}.jpg`}
+        alt="mart"
+        width="70"
+        height="70"
+      />
+    </Link>
+  );
+};
+
+const MainContentPresenter = ({ searchKeyword, handleChange }) => {
   return (
     <div className="content-container">
       <div className="content-beer">
@@ -11,31 +28,49 @@ const MainContentPresenter = () => {
       </div>
 
       <div className="content-logo">
-        <div className="modimoa-logo">MODIMOA</div>
+        <img
+          className="modimoa-logo"
+          src={`/img/logo_512.png`}
+          alt="modimoa-logo"
+        ></img>
       </div>
 
       <div className="content-search">
-        <p> 검색어를 입력하세요.</p>
-        <div className="search-btn"> 검색 </div>
+        <TextField
+          value={searchKeyword}
+          onChange={handleChange}
+          label="검색어를 입력하세요"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+        />
+        <span className="search-btn">
+          <img
+            className="search-icon"
+            src={`/img/search_icon.png`}
+            alt="search-icon"
+          ></img>
+        </span>
       </div>
 
       <div className="mart">
         <p> 대형 마트</p>
         <div className="logo-container">
-          <div className="logo emart"> icon </div>
-          <div className="logo homeplus"> icon </div>
-          <div className="logo costco"> icon </div>
-          <div className="logo lottemart"> icon </div>
+          <LogoIcon name="emart" />
+          <LogoIcon name="homeplus" />
+          <LogoIcon name="costco" />
+          <LogoIcon name="lottemart" />
         </div>
       </div>
 
       <div className="mart">
         <p> 편의점</p>
         <div className="logo-container">
-          <div className="logo cu"> icon </div>
-          <div className="logo seven"> icon </div>
-          <div className="logo gs"> icon </div>
-          <div className="logo emart"> icon </div>
+          <LogoIcon name="cu" />
+          <LogoIcon name="7eleven" />
+          <LogoIcon name="gs25" />
+          <LogoIcon name="emart24" />
         </div>
       </div>
     </div>
