@@ -6,11 +6,12 @@ import com.modimoa.backend.domain.User;
 import com.modimoa.backend.repository.MybagRepository;
 import com.modimoa.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.IllegalFormatCodePointException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -29,6 +30,7 @@ public class MybagService {
 
     }
 
+    // 새 물품 추가
     public void plusOrCreateCount(Long userId, Long productId) {
         User user = userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
         Mybag mybag = mybagRepository.findByUserAndProductId(user, productId)
@@ -37,45 +39,27 @@ public class MybagService {
         mybag.updateCount(1);
     }
 
-
-/*
-    // 장바구니 물품 삭제
-    public static void delete(long mybagId) {
-        Mybag mybag = mybagRepository.findById(mybagId)
-                .orElseThrow(() -> new IllegalArgumentException("장바구니에서 삭제할 물품이 없습니다."));
-        mybagRepository.delete(mybag);
+    // 물품 삭제
+    public void deleteItem(Long userId, Long productId) {
+        User user = userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
+        mybagRepository.deleteByUserAndProductId(user, productId);
     }
 
-    // 장바구니 물품 구매 상태 변경
-    public static void updateStatus(long mybagId, int i) {
-        Mybag mybag = mybagRepository.findById(mybagId)
-                .orElseThrow(() -> new IllegalArgumentException("구매상태를 변경할 물품이 없습니다."));
-        mybag.updateStatus(i);
-        mybagRepository.save(mybag);
+    // 물품 개수 변경
+    public void changeItemCount(Long userId, Long productId, int count) {
+        
+        User user = userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
+        Mybag mybag = mybagRepository.findByUserAndProductId(user, productId).get();
+        mybag.updateCount(count);
+        if(mybag.getCount()==0) mybagRepository.deleteByUserAndProductId(user, productId);
+
     }
 
-    //앞으로 절약할 가격 계산
-    public static int expectedPrice(Long userId) {
-        int expectedPrice = 0;
-        for(Mybag mb: mybagRepository.findAll()){
-            //money로 바꿔야함
-            if(mb.getStatus()==1){
-                expectedPrice += mb.getCount();
-            }
-        }
-        return expectedPrice;
+    // 물품 상태 변경
+    public void changeItemStatus(Long userId, Long productId, int status) {
+        User user = userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
+        Mybag mybag = mybagRepository.findByUserAndProductId(user, productId).get();
+        mybag.updateStatus(status);
     }
 
-    //이미 절약한 가격 계산
-    public static int savedPrice(Long userId) {
-        int savedPrice = 0;
-        for(Mybag mb: mybagRepository.findAll()){
-            //money로 바꿔야함
-            if(mb.getStatus()==2){
-                savedPrice += mb.getCount();
-            }
-        }
-        return savedPrice;
-    }
- */
 }

@@ -6,9 +6,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Getter
+
 @NoArgsConstructor
 @Entity
+@Getter
 public class Mybag {
 
     public static final long serialVersionUID = -6184044926029805156L;
@@ -43,13 +44,17 @@ public class Mybag {
         this.status = status;
     }
 
+    public int getCount() {
+        return count;
+    }
+
     public void updateCount(int count){
         this.count += count;
     }
 
     //구매전 1, 구매후 2, 기간만료 3으로 임시 설정
     public void updateStatus(int i) {
-        this.status = status;
+        this.status = i;
     }
 
     @Override
