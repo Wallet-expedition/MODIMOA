@@ -3,11 +3,8 @@ package com.modimoa.backend.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -21,25 +18,27 @@ public class Mybag {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long mybagId;
 
-    @Column(name="user_id")
-    private long userId;
-
     @Column(name="product_id")
     private long productId;
 
     @Column(name="count")
     private int count;
 
-    @Column(name="status")
+    @Column(name="mart_id")
+    private int martId;
+
+    @Column(name="product_state")
     private int status;
-/*
-    @OneToOne(mappedBy="mybag")
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
-*/
+
     @Builder
-    public Mybag(long userId, long productId, int count, int status){
-        this.userId = userId;
+    public Mybag(User user, long productId, int martId, int count, int status){
+        this.user = user;
         this.productId = productId;
+        this.martId = martId;
         this.count = count;
         this.status = status;
     }
@@ -52,15 +51,9 @@ public class Mybag {
     public void updateStatus(int i) {
         this.status = status;
     }
-/*
+
     @Override
     public String toString(){
-        return String.format("Mybag[mybag_id=%d, user_id='%d', product_id='%d', count='%d']", mybagId, userId, productId, count);
+        return String.format("Mybag[mybag_id=%d, product_id='%d', count='%d']", mybagId, productId, count);
     }
-*/
-    public long getMybagId() {
-        return mybagId;
-    }
-
-
 }
