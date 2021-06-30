@@ -12,7 +12,7 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     // Dao를 통해 모든 물품을 가져와서 반환하는 list형 함수
     public List<User> getAllUsers(){

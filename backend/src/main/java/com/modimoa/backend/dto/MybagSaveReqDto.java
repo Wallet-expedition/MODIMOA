@@ -9,22 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MybagSaveReqDto {
 
-    private long userId;
-    private long productId;
-    private int count;
 
-    @Builder
-    public MybagSaveReqDto(long userId, long productId, int count){
-        this.userId = userId;
-        this.productId = productId;
-        this.count = count;
-    }
-
-    public Mybag toEntity(){
-        return Mybag.builder()
-                .userId(userId)
-                .productId(productId)
-                .count(count)
-                .build();
-    }
 }
