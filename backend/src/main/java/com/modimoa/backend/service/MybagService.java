@@ -31,7 +31,7 @@ public class MybagService {
     }
 
     // 새 물품 추가
-    public void plusOrCreateCount(Long userId, Long productId) {
+    public void plusItemOrCreateCount(Long userId, Long productId) {
         User user = userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
         Mybag mybag = mybagRepository.findByUserAndProductId(user, productId)
                 .orElseGet(()->mybagRepository
@@ -62,4 +62,31 @@ public class MybagService {
         mybag.updateStatus(status);
     }
 
+/*
+
+
+    //앞으로 절약할 가격 계산
+    public static int expectedPrice(Long userId) {
+        int expectedPrice = 0;
+        for(Mybag mb: mybagRepository.findAll()){
+            //money로 바꿔야함
+            if(mb.getStatus()==1){
+                expectedPrice += mb.getCount();
+            }
+        }
+        return expectedPrice;
+    }
+
+    //이미 절약한 가격 계산
+    public static int savedPrice(Long userId) {
+        int savedPrice = 0;
+        for(Mybag mb: mybagRepository.findAll()){
+            //money로 바꿔야함
+            if(mb.getStatus()==2){
+                savedPrice += mb.getCount();
+            }
+        }
+        return savedPrice;
+    }
+ */
 }

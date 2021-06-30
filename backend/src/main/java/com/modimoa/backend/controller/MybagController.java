@@ -28,7 +28,7 @@ public class MybagController {
     @PostMapping("/{productId}")
     public String addItem(@PathVariable Long productId){
         Long userId = 2L;
-        mybagService.plusOrCreateCount(userId, productId);
+        mybagService.plusItemOrCreateCount(userId, productId);
 
         return "장바구니에 상품 추가됨";
     }
