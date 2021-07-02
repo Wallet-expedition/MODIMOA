@@ -11,6 +11,8 @@
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-facebook-login": "^4.1.1",
+    "react-google-login": "^5.2.2",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
@@ -41,7 +43,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8080",
   "devDependencies": {
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
