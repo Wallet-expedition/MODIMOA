@@ -1,5 +1,8 @@
 import React from "react";
 
+import LoginButton from "./LoginButton";
+import { GOOGLE, KAKAO } from "./LoginButton/constant";
+
 const LoginPresenter = () => {
   const Logo = () => {
     return (
@@ -10,29 +13,12 @@ const LoginPresenter = () => {
     );
   };
 
-  /**
-   *
-   * @param {string} name if sdk load, update this Button.
-   * Will Make with switch case grammer
-   * name="google" return <GoogleLoginButton />
-   * name="naver" return <NaverLoginButton />
-   * @returns LoginButtonComponent
-   */
-  const LoginButton = ({ name }) => {
-    return (
-      <div className={`login-btn-container ${name}`}>
-        <p className={`login-btn-icon`}>{name[0]}</p>
-        <p>{name}</p>
-      </div>
-    );
-  };
-
   return (
     <div className="login-container">
       <Logo />
-      <LoginButton name="google" />
-      <LoginButton name="kakao" />
-      <LoginButton name="naver" />
+      <LoginButton name={GOOGLE} />
+      <LoginButton name={KAKAO} />
+      {/* <LoginButton name={FACEBOOK} /> */}
     </div>
   );
 };

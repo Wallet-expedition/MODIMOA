@@ -4,22 +4,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   background-color: #ffed99;
 
-  .logo-container,
-  .login-btn-container {
+  .logo-container {
     display: flex;
     margin: 1rem;
-  }
-
-  .logo-container {
     flex-direction: column;
     align-items: center;
     width: 100%;
 
     img {
-      max-width: 50%;
+      max-width: 80%;
     }
 
     span {
@@ -27,31 +23,43 @@
       color: #38558d;
       line-height: 3rem;
       text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      margin-bottom: 2rem;
     }
   }
 
-  .login-btn-container {
-    width: 80%;
-    /* temp */
-    background-color: snow;
-    min-height: 10vh;
-    padding: 0.2rem;
-    @include font-default(700, 1.3rem);
-    p {
-      flex: 1;
-    }
-    /* temp end */
+  button,
+  #kakao-login-btn,
+  .fb-login-button {
+    width: 240px;
+    height: 50px;
+    margin: 0.3rem;
   }
 
-  /* temp */
-  .kakao {
-    background-color: #f5dd00;
+  .g-sign2 {
+    background-color: rgb(255, 255, 255);
+    display: inline-flex;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px,
+      rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    @include font-default(500, 1rem);
+
+    .g-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-left: 1.3rem;
+      .g-text {
+        margin: 0;
+        padding-left: 1rem;
+      }
+    }
   }
-  .naver {
-    background-color: #09e91f;
+
+  span {
+    .fa {
+      padding-right: 3rem;
+    }
   }
-  .google {
-    background-color: #25a4ff;
-  }
-  /* temp end */
 }
