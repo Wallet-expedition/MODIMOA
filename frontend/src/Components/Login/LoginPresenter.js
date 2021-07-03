@@ -1,7 +1,7 @@
 import React from "react";
 
 import LoginButton from "./LoginButton";
-import { GOOGLE, KAKAO } from "./LoginButton/constant";
+import { FACEBOOK, GOOGLE, KAKAO } from "./LoginButton/constant";
 
 const LoginPresenter = () => {
   const Logo = () => {
@@ -18,7 +18,7 @@ const LoginPresenter = () => {
       <Logo />
       <LoginButton name={GOOGLE} />
       <LoginButton name={KAKAO} />
-      {/* <LoginButton name={FACEBOOK} /> */}
+      <LoginButton name={FACEBOOK} />
     </div>
   );
 };

@@ -16,12 +16,29 @@ import { facebookApiKey } from "../../../api/key";
  * @returns FacebookLoginButton
  */
 const FacebookLoginButton = ({ history }) => {
+  const facebookLoginSuccess = async (response) => {
+    const tokenId = response.accessToken;
+    const body = {
+      email: response.email,
+      name: response.name,
+      image: response.picture.data.url,
+    };
+    /* temp */
+    window.sessionStorage.setItem("token", JSON.stringify(tokenId));
+
+    // const res = await dispatch(loginUser(tokenId, body));
+
+    if (tokenId) {
+      history.push("./main");
+    }
+  };
+
   return (
     <FacebookLogin
       appId={facebookApiKey}
-      autoLoad={true}
+      autoLoad={false}
       fields="name,email,picture"
-      callback={() => console.log("hi")}
+      callback={facebookLoginSuccess}
       icon="fa-facebook-square"
       textButton={"페이스북으로 로그인"}
     />
