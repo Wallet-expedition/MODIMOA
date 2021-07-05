@@ -2,6 +2,7 @@ package com.modimoa.backend.service;
 
 import com.modimoa.backend.domain.Mart;
 import com.modimoa.backend.domain.Product;
+import com.modimoa.backend.domain.SaleCategory;
 import com.modimoa.backend.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,6 @@ public class ProductService {
     public Product getProductByProductId(Long productId) {
         return productRepository
                 .findById(productId)
-                .orElse(new Product(Mart.CU, "newthing", 100));
+                .orElse(new Product(Mart.CU, "newthing", 100, SaleCategory.FlatPrice));
     }
 }
