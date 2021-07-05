@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class User implements Serializable {
+public class User extends BaseTimeEntity implements Serializable {
 
     public static final long serialVersionUID = -6184044926029805156L;
 

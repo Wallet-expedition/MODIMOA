@@ -4,34 +4,39 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class Product implements Serializable {
+public class Product extends BaseTimeEntity implements Serializable {
 
     public static final long serialVersionUID = -6184044926029805156L;
 
     @Id//primary key
     @Column(name="product_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public long product_id;
+    public long productId;
+
+    @Column(name="mart_name")
+    @Enumerated(EnumType.STRING)
+    private Mart martName;
 
     @Column(name="product_name")
-    private String product_name;
+    private String productName;
 
     @Column(name="original_price")
-    private long original_price;
+    private long originalPrice;
 
     public Product(){}
 
-    public Product(String product_name, long original_price){
-        this.product_name = product_name;
-        this.original_price = original_price;
+    public Product(Mart martName, String productName, long originalPrice){
+        this.martName = martName;
+        this.productName = productName;
+        this.originalPrice = originalPrice;
     }
 
     @Override
     public String toString(){
-        return String.format("Product[product_id=%d, product_name='%s', original_price='%d']", product_id, product_name, original_price);
+        return String.format("%d: %s에서 %s을 %d원에 팝니다", productId, martName, productName, originalPrice);
     }
 
     public long getProductId() {
-        return product_id;
+        return productId;
     }
 }

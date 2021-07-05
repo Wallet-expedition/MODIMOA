@@ -1,5 +1,6 @@
 package com.modimoa.backend.domain;
 
-enum marts{
-    EMART, SEVEN11, GS25, CU;
+public enum Mart {
+    EMART, HOMEPLUS, COSTCO, LOTTEMART
+    , CU, SEVEN11, GS25, EMART24;
 }

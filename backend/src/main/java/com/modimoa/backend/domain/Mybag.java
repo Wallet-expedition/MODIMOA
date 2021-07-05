@@ -1,5 +1,6 @@
 package com.modimoa.backend.domain;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Getter
-public class Mybag {
+public class Mybag extends BaseTimeEntity {
 
     public static final long serialVersionUID = -6184044926029805156L;
 
@@ -25,9 +26,6 @@ public class Mybag {
     @Column(name="count")
     private int count;
 
-    @Column(name="mart_id")
-    private int martId;
-
     @Column(name="product_state")
     private int status;
 
@@ -36,10 +34,9 @@ public class Mybag {
     private User user;
 
     @Builder
-    public Mybag(User user, long productId, int martId, int count, int status){
+    public Mybag(User user, long productId, int count, int status){
         this.user = user;
         this.productId = productId;
-        this.martId = martId;
         this.count = count;
         this.status = status;
     }
