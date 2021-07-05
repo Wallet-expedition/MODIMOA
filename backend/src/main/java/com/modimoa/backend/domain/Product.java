@@ -1,11 +1,8 @@
 package com.modimoa.backend.domain;
 
-import org.apache.tomcat.jni.Local;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 public class Product extends BaseTimeEntity implements Serializable {
@@ -63,7 +60,7 @@ public class Product extends BaseTimeEntity implements Serializable {
 
     @Override
     public String toString(){
-        return String.format("%d번 %s 할인: %s에서 %s을 %d원에 팝니다", productId, saleCategory, martName, productName, originalPrice);
+        return String.format("%d번 %s 할인: %s에서 %s을 %d원에 팝니다", productId, saleCategory.getKrname(), martName, productName, originalPrice);
     }
 
     public long getProductId() {

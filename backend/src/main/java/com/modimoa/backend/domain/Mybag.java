@@ -46,7 +46,7 @@ public class Mybag extends BaseTimeEntity {
     }
 
     public void updateCount(int count){
-        this.count += count;
+        this.count = count;
     }
 
     //구매전 1, 구매후 2, 기간만료 3으로 임시 설정
