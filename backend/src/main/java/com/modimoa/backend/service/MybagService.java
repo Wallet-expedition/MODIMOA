@@ -30,12 +30,13 @@ public class MybagService {
 
     }
 
+
     // 새 물품 추가
     public void plusItemOrCreateCount(Long userId, Long productId) {
         User user = userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
         Mybag mybag = mybagRepository.findByUserAndProductId(user, productId)
                 .orElseGet(()->mybagRepository
-                        .save(new Mybag(user, productId,1, 0, 1)));
+                        .save(new Mybag(user, productId, 0, 1)));
         mybag.updateCount(1);
     }
 
