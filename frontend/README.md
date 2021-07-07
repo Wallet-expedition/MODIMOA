@@ -15,7 +15,7 @@
 ## Route
 
 ```markdown
-"/"     : 시작 페이지
+"/" : 시작 페이지
 "/main" : 메인 페이지
 "/login" : 로그인 페이지
 ```
@@ -38,3 +38,29 @@
 
 ### Prettier Setting
 
+### API KEY
+
+하위 폴더 및 파일 생성
+
+```markdown
+src
+ - api
+   - key.js
+   - address.js
+```
+
+##### key.js
+
+```javascript
+export const googleApiKey = "~";
+export const kakaoApiKey = "~";
+export const facebookApiKey = "~";
+```
+
+##### Address.js
+
+```javascript
+export const server = "http://localhost:8080";
+```
+
+##### 

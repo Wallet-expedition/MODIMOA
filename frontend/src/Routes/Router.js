@@ -2,6 +2,7 @@ import React from "react";
 
 import { Route, Switch } from "react-router-dom";
 import { Intro, Main, Login } from "../Pages";
+import Auth from "../Components/Util/Auth";
 
 const Router = () => {
   const detectMobile = () => {
@@ -20,10 +21,10 @@ const Router = () => {
   };
   return (
     <Switch>
-      {detectMobile() && <Route exact path="/" component={Intro} />}
-      {!detectMobile() && <Route exact path="/" component={Main} />}
-      <Route path="/main" component={Main} />
-      <Route path="/login" component={Login} />
+      {detectMobile() && <Route exact path="/" component={Auth(Intro, null)} />}
+      {!detectMobile() && <Route exact path="/" component={Auth(Main, null)} />}
+      <Route path="/main" component={Auth(Main, null)} />
+      <Route path="/login" component={Auth(Login, false)} />
     </Switch>
   );
 };
