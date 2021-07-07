@@ -2,7 +2,7 @@ import React from "react";
 
 import { withRouter } from "react-router-dom";
 import GoogleLogin from "react-google-login";
-import { googleApiKey } from "../../../api/key";
+// import { googleApiKey } from "../../../api/key";
 
 const GoogleICON = () => {
   return (
@@ -67,7 +67,7 @@ const GoogleLoginButton = ({ history }) => {
 
   return (
     <GoogleLogin
-      clientId={googleApiKey}
+      // clientId={googleApiKey}
       render={(renderProps) => (
         <button
           className="g-sign2"
