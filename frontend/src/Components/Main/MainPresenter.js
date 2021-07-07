@@ -17,7 +17,7 @@ const LogoIcon = ({ name }) => {
   );
 };
 
-const MainContentPresenter = ({ searchKeyword, handleChange }) => {
+const MainPresenter = ({ searchKeyword, handleChange }) => {
   return (
     <div className="content-container">
       <div className="content-beer">
@@ -77,4 +77,4 @@ const MainContentPresenter = ({ searchKeyword, handleChange }) => {
   );
 };
 
-export default MainContentPresenter;
+export default MainPresenter;

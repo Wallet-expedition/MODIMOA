@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import SideMenuBtnPresenter from "./SideMenuPresenter";
+import SideMenuBtnPresenter from "./SideMenuBtnPresenter";
 
 const SideMenuBtnContainer = ({ showSideMenu, setShowSideMenu }) => {
   const detectMobile = () => {

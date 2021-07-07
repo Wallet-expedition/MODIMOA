@@ -1,17 +1,16 @@
 .sidemenu-container {
   display: flex;
   flex-direction: column;
-  flex: 2;
+  flex-grow: 1;
   padding-left: 1rem;
   box-shadow: 5px 0px 4px rgba(0, 0, 0, 0.25);
-  width: 100vw;
-  height: 100vh;
   min-width: 300px;
 
   @include mobile {
     position: absolute;
     z-index: 3;
     background-color: black;
+    width: 100%;
     height: 100%;
     opacity: 0.8;
     color: snow;
