@@ -5,6 +5,8 @@ import com.modimoa.backend.service.MybagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 
 @RestController
 @RequestMapping(value="/api/mybag", method={RequestMethod.GET, RequestMethod.POST})
@@ -21,6 +23,15 @@ public class MybagController {
         for(Mybag mb: mybagService.findAll(userId)){
             result += mb + "</br>";
         }
+        return result;
+    }
+
+    // 장바구니에서 user의 물건 가격 알려주는 기능
+    @GetMapping("")
+    public Map getPrice(){
+        Long userId = 2L;
+        Map result = mybagService.getPrice(userId);
+
         return result;
     }
 
