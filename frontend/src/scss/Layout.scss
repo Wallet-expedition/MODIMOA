@@ -1,0 +1,25 @@
+// Layout scss
+
+// default scss
+@import './base/base';
+@import "./base/variable";
+@import "./base/mixin";
+
+// components scss
+@import "./components/sideMenu";
+@import "./components/sideMenuBtn";
+
+#wrap {
+    display: flex;
+    flex-grow: 3.5;
+}
+
+.layout-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    @include mobile {
+        background-color: #e7e7e7;
+    }
+}

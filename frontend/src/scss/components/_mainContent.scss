@@ -1,14 +1,3 @@
-.main-container {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-
-  @include mobile {
-    background-color: #e7e7e7;
-  }
-}
-
 .content-container {
   @include desktop {
     flex: 5;
