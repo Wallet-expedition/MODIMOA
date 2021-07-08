@@ -1,10 +1,11 @@
 // Login page scss
 
 // default scss
-@import './base/base';
+@import "./base/base";
 @import "./base/variable";
 @import "./base/mixin";
 
 // components scss
 @import "./components/mainContent";
+@import "./components/search";
 @import "./Layout";
