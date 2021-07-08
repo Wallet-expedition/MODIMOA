@@ -1,0 +1,36 @@
+.content-search {
+  width: 90%;
+  display: flex;
+  margin: 0 auto;
+  .MuiFormControl-root {
+    height: 40px;
+    width: 100%;
+    padding: 0.3rem;
+
+    .MuiInputBase-root {
+      height: 100%;
+      border: none;
+    }
+  }
+
+  .MuiOutlinedInput-root,
+  .MuiOutlinedInput-notchedOutline {
+    border: 2px solid gray;
+  }
+
+  label {
+    padding-left: 0.4rem;
+  }
+
+  .search-btn {
+    margin-top: 2px;
+    height: 40px;
+
+    img {
+      height: 35px;
+      cursor: pointer;
+      position: relative;
+      top: 11%;
+    }
+  }
+}
