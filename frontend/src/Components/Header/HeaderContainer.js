@@ -1,15 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
 import HeaderPresenter from "./HeaderPresenter";
 
-const HeaderContainer = ({ children }) => {
-  const [searchKeyword, setSearchKeyword] = useState("");
-
-  const handleChange = (event) => {
-    setSearchKeyword(event.target.value);
-  };
+const HeaderContainer = ({ children, setFinalSearchKeyword }) => {
   return (
-    <HeaderPresenter searchKeyword={searchKeyword} handleChange={handleChange}>
+    <HeaderPresenter setFinalSearchKeyword={setFinalSearchKeyword}>
       {children}
     </HeaderPresenter>
   );

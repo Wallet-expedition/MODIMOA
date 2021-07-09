@@ -5,7 +5,7 @@ import { TextField } from "@material-ui/core";
 
 const LogoIcon = ({ name }) => {
   return (
-    <Link className="mart-container" to={`./main`}>
+    <Link className="mart-container" to={`./list`}>
       <img
         className={`mart-${name}`}
         src={`/img/mart_${name}.jpg`}
