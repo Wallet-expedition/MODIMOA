@@ -1,0 +1,17 @@
+// Login page scss
+
+// default scss
+@import './base/base';
+@import "./base/variable";
+@import "./base/mixin";
+
+// components scss
+@import "./components/product";
+@import "./components/headerLogo";
+
+.product-list-container {
+    display: flex;
+    overflow: scroll;
+    width: 100%;
+    flex-direction: column;
+}
