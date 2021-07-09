@@ -11,6 +11,7 @@
 
 #wrap {
     display: flex;
+    flex-direction: column;
     flex-grow: 3.5;
 }
 
@@ -18,7 +19,6 @@
     display: flex;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
     @include mobile {
         background-color: #e7e7e7;
     }
