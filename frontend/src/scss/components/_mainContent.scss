@@ -1,4 +1,5 @@
 .content-container {
+  height: 100%;
   @include desktop {
     flex: 5;
     background-color: rgba(0, 0, 0, 0.46);
