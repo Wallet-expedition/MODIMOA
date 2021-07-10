@@ -2,6 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { TextField } from "@material-ui/core";
+import {
+  EMART,
+  HOMEPLUS,
+  COSTCO,
+  LOTTE_MART,
+  CU,
+  SEVEN_ELEVEN,
+  GS25,
+  EMART24,
+} from "../Util/Constant";
 
 const LogoIcon = ({ name }) => {
   return (
@@ -57,20 +67,20 @@ const MainPresenter = ({ searchKeyword, handleChange }) => {
       <div className="mart">
         <p> 대형 마트</p>
         <div className="logo-container">
-          <LogoIcon name="emart" />
-          <LogoIcon name="homeplus" />
-          <LogoIcon name="costco" />
-          <LogoIcon name="lottemart" />
+          <LogoIcon name={EMART} />
+          <LogoIcon name={HOMEPLUS} />
+          <LogoIcon name={COSTCO} />
+          <LogoIcon name={LOTTE_MART} />
         </div>
       </div>
 
       <div className="mart">
         <p> 편의점</p>
         <div className="logo-container">
-          <LogoIcon name="cu" />
-          <LogoIcon name="7eleven" />
-          <LogoIcon name="gs25" />
-          <LogoIcon name="emart24" />
+          <LogoIcon name={CU} />
+          <LogoIcon name={SEVEN_ELEVEN} />
+          <LogoIcon name={GS25} />
+          <LogoIcon name={EMART24} />
         </div>
       </div>
     </div>

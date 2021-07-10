@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, Button } from "@material-ui/core";
+import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
 
 const ProductPresenter = ({
   id,
@@ -12,16 +13,16 @@ const ProductPresenter = ({
   var martClass = "product-info-mart";
   switch (mart_name) {
     case "CU":
-      martClass = `${martClass} product-info-mart-cu`;
+      martClass = `${martClass} product-info-mart-${CU}`;
       break;
     case "SEVEN11":
-      martClass = `${martClass} product-info-mart-seven11`;
+      martClass = `${martClass} product-info-mart-${SEVEN_ELEVEN}`;
       break;
     case "GS25":
-      martClass = `${martClass} product-info-mart-gs25`;
+      martClass = `${martClass} product-info-mart-${GS25}`;
       break;
     case "EMART24":
-      martClass = `${martClass} product-info-mart-emart24`;
+      martClass = `${martClass} product-info-mart-${EMART24}`;
       break;
     default:
       break;
