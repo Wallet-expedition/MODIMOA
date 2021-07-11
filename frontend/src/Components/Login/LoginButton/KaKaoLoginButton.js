@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
 import { withRouter } from "react-router-dom";
-// import { kakaoApiKey } from "../../../api/key";
 
 /**
  *
@@ -72,7 +71,8 @@ const KakaoLoginButton = ({ history }) => {
   useEffect(() => {
     const loadKakaoSDK = async () => {
       await loadScript();
-      // window?.Kakao.init(kakaoApiKey);
+      console.log(process.env);
+      window?.Kakao.init(process.env.REACT_APP_KAKAO_API_KEY);
     };
     loadKakaoSDK();
   }, []);
