@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Route, Switch } from "react-router-dom";
-import { Intro, Main, Login, ProductList } from "../Pages";
+import { Intro, Main, Login, ProductList, ProductDetail } from "../Pages";
 import Auth from "../Components/Util/Auth";
 
 const Router = () => {
@@ -26,6 +26,7 @@ const Router = () => {
       <Route path="/main" component={Auth(Main, null)} />
       <Route path="/list" component={Auth(ProductList, null)} />
       <Route path="/login" component={Auth(Login, false)} />
+      <Route paht="/:id" component={Auth(ProductDetail, null)} />
     </Switch>
   );
 };

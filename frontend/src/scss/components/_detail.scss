@@ -1,0 +1,73 @@
+.item-container {
+  margin: 0 auto;
+  width: 85%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  .item-image {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    height: 40%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 28px;
+    }
+  }
+
+  .item-content {
+    height: 30%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 19px;
+    background-color: snow;
+    text-align: center;
+
+    .item-label {
+      margin: 0.5rem;
+    }
+
+    .item-title {
+      @include font-default(700, 1.3rem);
+    }
+
+    .item-sale-percent {
+      @include font-default(600, 1.2rem);
+    }
+
+    .item-sale-price,
+    .item-sale-percent {
+      color: #f5626c;
+    }
+
+    .item-info {
+      height: 50%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+
+      .item-price {
+        @include font-default(600, 1rem);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+      }
+    }
+  }
+}
+
+.bag-button-container {
+  height: 8%;
+  border-top: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  button {
+    background-color: #3973e6;
+    color: snow;
+    height: 80%;
+    width: 70%;
+    @include font-default(500, 1.2rem);
+  }
+}
