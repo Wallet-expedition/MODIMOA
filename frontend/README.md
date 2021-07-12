@@ -18,6 +18,8 @@
 "/" : 시작 페이지
 "/main" : 메인 페이지
 "/login" : 로그인 페이지
+"/list" : 상품 목록 페이지
+"/:id" : 상품 상세 페이지
 ```
 
 ## Lint
@@ -38,29 +40,21 @@
 
 ### Prettier Setting
 
-### API KEY
-
-하위 폴더 및 파일 생성
+### .env 파일 생성 경로
 
 ```markdown
+frontend
+.node_modules
+public
 src
- - api
-   - key.js
-   - address.js
+.env
 ```
 
-##### key.js
+### ".env" 내부
 
-```javascript
-export const googleApiKey = "~";
-export const kakaoApiKey = "~";
-export const facebookApiKey = "~";
+```tex
+REACT_APP_SERVER = "~"
+REACT_APP_GOOGLE_API_KEY = "~"
+REACT_APP_KAKAO_API_KEY = "~"
+REACT_APP_FACEBOOK_API_KEY = "~"
 ```
-
-##### Address.js
-
-```javascript
-export const server = "http://localhost:8080";
-```
-
-##### 

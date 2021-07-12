@@ -2,7 +2,6 @@ import React from "react";
 
 import { withRouter } from "react-router-dom";
 import FacebookLogin from "react-facebook-login";
-// import { facebookApiKey } from "../../../api/key";
 
 /**
  *
@@ -35,7 +34,7 @@ const FacebookLoginButton = ({ history }) => {
 
   return (
     <FacebookLogin
-      // appId={facebookApiKey}
+      appId={process.env.REACT_APP_FACEBOOK_API_KEY}
       autoLoad={false}
       fields="name,email,picture"
       callback={facebookLoginSuccess}

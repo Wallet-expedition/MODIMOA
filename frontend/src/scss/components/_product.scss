@@ -1,105 +1,82 @@
 .product-container {
-    display: flex;
-    flex-direction: row;
-    height: 5rem;
-    @include desktop {
-        height: 10vh;
-    }
-    border-bottom: 2px solid #cdcdcd;
+  display: flex;
+  flex-direction: row;
+  height: 5rem;
+  @include desktop {
+    height: 10vh;
+  }
+  border-bottom: 2px solid #cdcdcd;
 }
 .product-image-container {
-    display: flex;
-    width:20%;
-    height: 100%;
-    overflow: hidden;
-    img {
-        width: 100%;
-        height: 5rem;
-    }
+  display: flex;
+  width: 20%;
+  height: 100%;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 5rem;
+  }
 }
 .product-info-container {
-    display: flex;
-    justify-content: space-evenly;
-    width:60%;
-    flex-direction: column;
-    padding-left: 0.5rem;
-    .product-info-text {
-        height: 1rem;
-        overflow: hidden;
-        line-height: 1;
-    }
+  display: flex;
+  justify-content: space-evenly;
+  width: 60%;
+  flex-direction: column;
+  padding-left: 0.5rem;
+  .product-info-text {
+    height: 1rem;
+    overflow: hidden;
+    line-height: 1;
+  }
 }
 .product-info-price-container {
-    display: flex;
-    flex-direction: row;
-    span {
-        @include font-default(400, 1rem);
-        del {
-            @include font-default(400, 0.8rem);
-        }
+  display: flex;
+  flex-direction: row;
+  span {
+    @include font-default(400, 1rem);
+    del {
+      @include font-default(400, 0.8rem);
     }
+  }
 }
 .product-button {
-    display: flex;
-    width:20%;
-    .MuiButton-label {
-        font-size: 0.8rem;
-    }
+  display: flex;
+  width: 20%;
+  .MuiButton-label {
+    font-size: 0.8rem;
+  }
 }
 .product-search-result-container {
-    display: flex;
-    width: 100%;
-    height: 3rem;
-    align-items: center;
-    margin-top: 0.75rem;
+  display: flex;
+  width: 100%;
+  height: 3rem;
+  align-items: center;
+  margin-top: 0.75rem;
 }
 .product-search-result {
-    margin: 0 0 0 1rem;
-    @include font-default(400, 1.2rem);
+  margin: 0 0 0 1rem;
+  @include font-default(400, 1.2rem);
 }
 .MuiGrid-root {
-    .MuiPaper-root {
-        box-shadow: 0 -4px 0 0 #B0B0B0 inset;
-    }
-    .MuiAppBar-colorPrimary {
-        background-color: #e7e7e7;
-        color: #000;
-    }
-    .PrivateTabIndicator-colorSecondary-7 {
-        height: 4px;
-        background-color: #000;
-    }
-    .MuiTabs-root {
-        min-height: 2.5rem;
-    }
-    .MuiTab-root {
-        min-width: 3rem;
-        min-height: 2.5rem;
-        line-height: 0;
-        padding: 0 0.5rem 0 0.5rem;
-        @include font-default(400);
-    }
-}
-.product-info-mart {
-    @include font-default(400,0.7rem);
-    padding: 0.1rem 0.4rem 0.1rem 0.4rem;
-    width: 3rem;
-    text-align: center;
-    border-radius: 1rem;
+  .MuiPaper-root {
+    box-shadow: 0 -4px 0 0 #b0b0b0 inset;
+  }
+  .MuiAppBar-colorPrimary {
+    background-color: #e7e7e7;
     color: #000;
-}
-.product-info-mart-cu {
-    background-color: #782B90;
-    color: #8CC63F;
-}
-.product-info-mart-seven11 {
-    background-color: #009944;
-    color: #ffffff;
-}
-.product-info-mart-gs25 {
-    background-color: #0070BB;
-    color: #ffffff;
-}
-.product-info-mart-emart24 {
-    background-color: #F4AD25;
+  }
+  .PrivateTabIndicator-colorSecondary-7 {
+    height: 4px;
+    background-color: #000;
+  }
+  .MuiTabs-root {
+    min-height: 2.5rem;
+  }
+  .MuiTab-root {
+    min-width: 3rem;
+    min-height: 2.5rem;
+    line-height: 0;
+    padding: 0 0.5rem 0 0.5rem;
+    @include font-default(400);
+  }
 }

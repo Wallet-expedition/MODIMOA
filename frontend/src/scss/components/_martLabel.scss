@@ -1,0 +1,23 @@
+.product-info-mart {
+  @include font-default(400, 0.7rem);
+  padding: 0.1rem 0.4rem 0.1rem 0.4rem;
+  width: 3rem;
+  text-align: center;
+  border-radius: 1rem;
+  color: #000;
+}
+.product-info-mart-cu {
+  background-color: #782b90;
+  color: #8cc63f;
+}
+.product-info-mart-seven11 {
+  background-color: #009944;
+  color: #ffffff;
+}
+.product-info-mart-gs25 {
+  background-color: #0070bb;
+  color: #ffffff;
+}
+.product-info-mart-emart24 {
+  background-color: #f4ad25;
+}
