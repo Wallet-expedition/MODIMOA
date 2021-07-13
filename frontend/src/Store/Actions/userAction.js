@@ -1,6 +1,5 @@
 import axios from "axios";
-import { server } from "../../api/address";
-import { AUTH_USER, LOGIN_USER, LOGOUT_USER } from "./type";
+import { AUTH_USER, LOGIN_USER, LOGOUT_USER, WITHDRAW_USER } from "./type";
 
 /**
  *
@@ -10,7 +9,7 @@ import { AUTH_USER, LOGIN_USER, LOGOUT_USER } from "./type";
  * @return user.response.data
  */
 export const loginUser = async (tokenId, body) => {
-  const res = await axios.post(`${server}/api/auth/login`, body, {
+  const res = await axios.post(`${process.env.SERVER}/api/auth/login`, body, {
     headers: {
       authorization: tokenId,
     },
@@ -23,7 +22,7 @@ export const loginUser = async (tokenId, body) => {
 };
 
 export const logoutUser = async (tokenId) => {
-  const res = await axios.delete(`${server}/api/user/logout`, {
+  const res = await axios.delete(`${process.env.SERVER}/api/user/logout`, {
     headers: {
       authorization: tokenId,
     },
@@ -42,7 +41,7 @@ export const logoutUser = async (tokenId) => {
  * isLogin method
  */
 export const auth = async (tokenId) => {
-  const res = await axios.get(`${server}/api/user/auth`, {
+  const res = await axios.get(`${process.env.SERVER}}/api/user/auth`, {
     headers: {
       authorization: tokenId,
     },
@@ -50,6 +49,19 @@ export const auth = async (tokenId) => {
   console.log(res.data);
   return {
     type: AUTH_USER,
+    payload: res.data,
+  };
+};
+
+export const withDrawUser = async (tokenId) => {
+  const res = await axios.delete(`${process.env.SERVER}/api/user`, {
+    headers: {
+      authorization: tokenId,
+    },
+  });
+
+  return {
+    type: WITHDRAW_USER,
     payload: res.data,
   };
 };
