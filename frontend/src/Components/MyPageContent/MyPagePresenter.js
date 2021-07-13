@@ -8,20 +8,13 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 
-const UserProfile = ({ handleLogout }) => {
+const UserProfile = ({ handleLogout, User }) => {
   return (
     <Card>
-      <CardHeader
-        avatar={
-          <Avatar
-            alt="user-image"
-            src="https://avatars.githubusercontent.com/u/43488305?v=4"
-          />
-        }
-      />
+      <CardHeader avatar={<Avatar alt="user-image" src={User.image} />} />
       <CardContent>
         <Typography variant="body1" color="textPrimary" component="p">
-          poiu694@naver.com
+          {User.email}
         </Typography>
         <Typography variant="body1" color="textPrimary" component="p">
           얼마를 아꼈는가? <b>32,405원</b>
@@ -51,10 +44,10 @@ const WithDrawButton = ({ handleWithDraw }) => {
   );
 };
 
-const MyPagePresenter = ({ handleLogout, handleWithDraw }) => {
+const MyPagePresenter = ({ handleLogout, handleWithDraw, User }) => {
   return (
     <div className="my-info-container">
-      <UserProfile handleLogout={handleLogout} />
+      <UserProfile handleLogout={handleLogout} User={User} />
       <WithDrawButton handleWithDraw={handleWithDraw} />
     </div>
   );
