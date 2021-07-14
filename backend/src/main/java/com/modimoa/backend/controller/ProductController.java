@@ -1,9 +1,12 @@
 package com.modimoa.backend.controller;
 
+import com.modimoa.backend.domain.Mart;
 import com.modimoa.backend.domain.Product;
 import com.modimoa.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -21,6 +24,17 @@ public class ProductController {
         String result = "";
 
         for(Product pr: productService.getAllProducts()){
+            result += pr + "</br>";
+        }
+        return result;
+    }
+
+    // 특정 마트 물건 가져오는 기능
+    @GetMapping("mart/{mart}")
+    public String getProductByMartId(@PathVariable Mart mart){
+
+        String result = "";
+        for(Product pr: productService.getProductByMartName(mart)){
             result += pr + "</br>";
         }
         return result;
