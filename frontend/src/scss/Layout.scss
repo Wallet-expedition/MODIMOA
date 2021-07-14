@@ -6,8 +6,13 @@
 @import "./base/mixin";
 
 // components scss
+@import "./components/headerLogo";
 @import "./components/sideMenu";
 @import "./components/sideMenuBtn";
+
+body {
+    font-family: "Noto Sans KR", sans-serif;
+}
 
 #wrap {
     display: flex;
