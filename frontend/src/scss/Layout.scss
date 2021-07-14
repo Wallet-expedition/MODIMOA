@@ -28,3 +28,9 @@ body {
         background-color: #e7e7e7;
     }
 }
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
