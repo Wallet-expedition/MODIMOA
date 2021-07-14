@@ -1,6 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { Grid, Button } from "@material-ui/core";
 import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
+import { selectProduct } from "../../Store/Actions/productAction";
 
 const ProductPresenter = ({
   id,
@@ -11,6 +14,15 @@ const ProductPresenter = ({
   sale_price,
 }) => {
   var martClass = "product-info-mart";
+  const productInfo = {
+    id: id,
+    mart_name: mart_name,
+    product_name: product_name,
+    product_image: product_image,
+    original_price: original_price,
+    sale_price: sale_price,
+  };
+  const dispatch = useDispatch();
   switch (mart_name) {
     case "CU":
       martClass = `${martClass} product-info-mart-${CU}`;
@@ -27,6 +39,9 @@ const ProductPresenter = ({
     default:
       break;
   }
+  const onClick = () => {
+    dispatch(selectProduct(productInfo));
+  };
   return (
     <Grid className="product-container">
       <Grid className="product-image-container">
@@ -42,13 +57,11 @@ const ProductPresenter = ({
         <span className="product-info-text"> {product_name} </span>
         <span className={martClass}> {mart_name} </span>
       </Grid>
-      <Button
-        className="product-button"
-        variant="contained"
-        href={`/list/${id}`}
-      >
-        자세히
-      </Button>
+      <Link className="product-button" to={`/list/${id}`}>
+        <Button onClick={onClick} variant="contained">
+          자세히
+        </Button>
+      </Link>
     </Grid>
   );
 };
