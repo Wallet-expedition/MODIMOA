@@ -14,7 +14,14 @@ const ProductPresenter = ({
   sale_price,
 }) => {
   var martClass = "product-info-mart";
-  const productInfo = { id: id, mart_name: mart_name, product_name: product_name, product_image: product_image, original_price: original_price, sale_price: sale_price };
+  const productInfo = {
+    id: id,
+    mart_name: mart_name,
+    product_name: product_name,
+    product_image: product_image,
+    original_price: original_price,
+    sale_price: sale_price,
+  };
   const dispatch = useDispatch();
   switch (mart_name) {
     case "CU":
@@ -34,7 +41,7 @@ const ProductPresenter = ({
   }
   const onClick = () => {
     dispatch(selectProduct(productInfo));
-  }
+  };
   return (
     <Grid className="product-container">
       <Grid className="product-image-container">
@@ -51,10 +58,7 @@ const ProductPresenter = ({
         <span className={martClass}> {mart_name} </span>
       </Grid>
       <Link className="product-button" to={`/list/${id}`}>
-        <Button
-          onClick={onClick}
-          variant="contained"
-        >
+        <Button onClick={onClick} variant="contained">
           자세히
         </Button>
       </Link>
