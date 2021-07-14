@@ -7,7 +7,7 @@ import { Grid } from "@material-ui/core";
 const HeaderPresenter = ({ setFinalSearchKeyword, children }) => {
   const LogoLong = () => {
     return (
-      <Link to="./main">
+      <Link to="/main">
         <div className="logo-long-text-container">
           <img
             className="logo-image"

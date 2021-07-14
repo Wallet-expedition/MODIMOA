@@ -71,7 +71,6 @@ const KakaoLoginButton = ({ history }) => {
   useEffect(() => {
     const loadKakaoSDK = async () => {
       await loadScript();
-      console.log(process.env);
       window?.Kakao.init(process.env.REACT_APP_KAKAO_API_KEY);
     };
     loadKakaoSDK();

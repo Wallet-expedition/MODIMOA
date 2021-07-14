@@ -42,7 +42,11 @@ const ProductPresenter = ({
         <span className="product-info-text"> {product_name} </span>
         <span className={martClass}> {mart_name} </span>
       </Grid>
-      <Button className="product-button" variant="contained" href={`./${id}`}>
+      <Button
+        className="product-button"
+        variant="contained"
+        href={`/list/${id}`}
+      >
         자세히
       </Button>
     </Grid>
