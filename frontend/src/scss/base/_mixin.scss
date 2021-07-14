@@ -1,0 +1,28 @@
+// mixin
+
+@mixin desktop {
+    @media (min-width: #{$desktop}) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: #{$mobile}) {
+        @content;
+    }
+}
+
+/*
+  font-weight
+  Thin : 100
+  Light : 300
+  Regular : 400
+  Medium : 500
+  Bold : 700
+  Black : 900
+*/
+@mixin font-default($weight:300, $size:1rem) {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: $size;
+    font-weight: $weight;
+}

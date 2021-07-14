@@ -1,0 +1,36 @@
+// Layout scss
+
+// default scss
+@import './base/base';
+@import "./base/variable";
+@import "./base/mixin";
+
+// components scss
+@import "./components/headerLogo";
+@import "./components/sideMenu";
+@import "./components/sideMenuBtn";
+
+body {
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+#wrap {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 3.5;
+}
+
+.layout-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    @include mobile {
+        background-color: #e7e7e7;
+    }
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

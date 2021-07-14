@@ -1,60 +1,39 @@
 package com.modimoa.backend.domain;
 
-//import com.modimoa.backend.domain.BaseTimeEntity;
-
-import lombok.Builder;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-@Getter
-@NoArgsConstructor
 @Entity
-public class User implements Serializable {
+public class User extends BaseTimeEntity implements Serializable {
+
+    public static final long serialVersionUID = -6184044926029805156L;
 
     @Id //primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long user_id;
+    @Column(name="user_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    @Column(nullable = false)
-    private String user_name;
+    @Column(name="user_email")
+    private String userEmail;
 
-    @Column(nullable = false)
-    private String user_email;
+    @Column(name="user_image")
+    private String userImage;
 
-    @Column
-    private String user_image;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role;
+    @OneToMany(mappedBy = "user")
+    private List<Mybag> mybags = new ArrayList<>();
 
 
-    @Builder
-    public User(String user_name,String user_email, String user_image,Role role){
-        this.user_name=user_name;
-        this.user_email = user_email;
-        this.user_image = user_image;
-        this.role=role;
-    }
+    protected User(){}
 
-    public User update(String user_name, String user_image){
-        this.user_name = user_name;
-        this.user_image = user_image;
-
-        return this;
-    }
-
-    public String getRoleKey(){
-        return this.role.getKey();
+    public User(String userEmail, String userImage){
+        this.userEmail = userEmail;
+        this.userImage = userImage;
     }
 
     @Override
     public String toString(){
-        return String.format("User[user_id=%d, user_email='%s', user_image='%s']", user_id, user_email, user_image);
+        return String.format("User[user_id=%d, user_email='%s', user_image='%s']", id, userEmail, userImage);
     }
 }
