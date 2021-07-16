@@ -56,6 +56,6 @@ public class Mybag extends BaseTimeEntity {
 
     @Override
     public String toString(){
-        return String.format("Mybag[mybag_id=%d, product_id='%d', count='%d']", mybagId, productId, count);
+        return String.format("Mybag[mybag_id=%d, product_id='%d', count='%d']\n", mybagId, productId, count);
     }
 }
