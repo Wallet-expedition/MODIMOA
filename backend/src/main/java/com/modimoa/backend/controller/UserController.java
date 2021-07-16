@@ -38,16 +38,18 @@ public class UserController {
 
     // 회원가입 기능, 사용자 정보 토큰으로 받을지 정해야함
     @PostMapping("/new")
-    public void addUserByToken(HttpServletRequest request, @RequestBody HashMap<String, String> map){
+    public String addUserByToken(HttpServletRequest request, @RequestBody HashMap<String, String> map){
          String userImage =map.get("user_image");
          String userEmail= map.get("user_email");
 
 
         Cookie[] oauthCookie = request.getCookies();
 
-        userService.signUp(userImage,userEmail,oauthCookie);
+        String result = userService.signUp(userImage,userEmail,oauthCookie);
         System.out.println("쿠키 :" + oauthCookie[0].getName()+" "+oauthCookie[0].getValue()+"userId"+userImage+"User_email"+userEmail);
         //추후 구현
+
+        return result;
     }
 
     // 회원탈퇴 기능, 사용자 정보 토큰으로 받을지 정해야함
