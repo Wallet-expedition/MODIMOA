@@ -52,7 +52,7 @@ public class UserController {
         return result;
     }
     // 로그인 기능, 사용자 정보 넘기는 방식에 따라 수정 필요
-    @PostMapping("/signin")
+    @PostMapping("/login")
     public String loginUserByToken(HttpServletRequest request){
 
         // 쿠기 받기
@@ -65,20 +65,28 @@ public class UserController {
     }
 
     // 회원탈퇴 기능, 사용자 정보 토큰으로 받을지 정해야함
-    @DeleteMapping("/{social}/removal")
-    public String removeUserByToken(@PathVariable String social){
+    @DeleteMapping("/withdrawal")
+    public String withdrawal(HttpServletRequest request){
+
+        Cookie[] withdrawal = request.getCookies();
+
+        String result = userService.withdrawal(withdrawal[0].getValue());
         //추후 구현
-        return null;
+        return result;
     }
 
 
 
     // 로그아웃 기능, 사용자 정보 넘기는 방식에 따라 수정 필요
     // http method delete 아닐 수 있음, 수정 필요
-    @DeleteMapping("/{social}")
-    public String logoutUserByToken(@PathVariable String social){
+    @PostMapping("/logout")
+    public String logoutUserByToken(HttpServletRequest request){
+
+        Cookie[] logoutCookie = request.getCookies();
+
+        String result = userService.logout(logoutCookie[0].getValue());
         //추후 구현
-        return null;
+        return result;
     }
 
     // 중복확인 기능, 사용자 정보 넘기는 방식에 따라 수정 꼭꼭꼭 필요..!

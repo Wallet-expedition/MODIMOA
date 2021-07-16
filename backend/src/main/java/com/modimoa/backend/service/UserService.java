@@ -28,7 +28,6 @@ public class UserService {
             user.orElseGet(() ->userRepository.save(new User(userEmail,userImage,oauthCookie[0].getValue(),"new","new")));
             result = userEmail+"로 회원가입 되었습니다.";
         }
-
         return  result;
     }
 
@@ -55,4 +54,30 @@ public class UserService {
         return userRepository.findAll();
     };
 
+    public String logout(String token) {
+        String result ="";
+
+        Optional <User> user = Optional.of(userRepository.findByOauthToken(token).get());
+
+        if(user.isPresent()){
+            String accessToken="";
+            String refreshToken="";
+            user.get().updateTokens(accessToken,refreshToken);
+            result = user.get().getUserEmail()+"이 로그아웃 되었습니다.";
+        }else{
+            result = "로그아웃에 실패하셨습니다.";
+        }
+
+        return result;
+    }
+
+    public String withdrawal(String token) {
+
+        User user = userRepository.findByAccessToken(token).get();
+
+        userRepository.deleteByAccessToken(token);
+
+        return "탈퇴에 성공했습니다.";
+
+    }
 }
