@@ -24,16 +24,26 @@ public class User extends BaseTimeEntity implements Serializable {
     @OneToMany(mappedBy = "user")
     private List<Mybag> mybags = new ArrayList<>();
 
+    @Column(name = "oauth_token")
+    private String oauthToken;
+
+    @Column(name = "access_token")
+    private String accessToken;
+
+    @Column(name = "refresh_token")
+    private String refreshtoken;
 
     protected User(){}
 
-    public User(String userEmail, String userImage){
+    public User(String userEmail, String userImage,String  oauthToken){
         this.userEmail = userEmail;
         this.userImage = userImage;
+        this.oauthToken=  oauthToken;
     }
 
     @Override
     public String toString(){
-        return String.format("User[user_id=%d, user_email='%s', user_image='%s']", id, userEmail, userImage);
+        return String.format("User[user_id=%d, user_email='%s', user_image='%s',oauth_token = '%s',access_token ='%s'," +
+                "refresh_token ='%s']", id, userEmail, userImage,oauthToken,accessToken,refreshtoken);
     }
 }
