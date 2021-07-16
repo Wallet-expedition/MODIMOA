@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
 import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Transactional
@@ -78,6 +80,20 @@ public class UserService {
         userRepository.deleteByAccessToken(token);
 
         return "탈퇴에 성공했습니다.";
+
+    }
+
+
+    public Map getUserInfo(String token) {
+        Map result= new HashMap<String,String>();
+
+        User user = userRepository.findByAccessToken(token).get();
+
+        result.put("user_email", user.getUserEmail());
+        result.put("user_image", user.getUserImage());
+
+
+        return result;
 
     }
 }
