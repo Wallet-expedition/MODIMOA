@@ -1,12 +1,18 @@
 package com.modimoa.backend.domain;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
 @Entity
-public class User extends BaseTimeEntity implements Serializable {
+@Getter
+public class User extends BaseTimeEntity{
 
     public static final long serialVersionUID = -6184044926029805156L;
 
@@ -31,19 +37,28 @@ public class User extends BaseTimeEntity implements Serializable {
     private String accessToken;
 
     @Column(name = "refresh_token")
-    private String refreshtoken;
+    private String refreshToken;
 
-    protected User(){}
 
-    public User(String userEmail, String userImage,String  oauthToken){
+
+    @Builder
+    public User(String userEmail, String userImage,String  oauthToken,String accessToken,String refreshToken){
         this.userEmail = userEmail;
         this.userImage = userImage;
         this.oauthToken=  oauthToken;
+        this.accessToken=accessToken;
+        this.refreshToken=refreshToken;
+    }
+
+    public void updateTokens(String accessToken, String refreshToken){
+
+        this.accessToken=accessToken;
+        this.refreshToken=refreshToken;
     }
 
     @Override
     public String toString(){
         return String.format("User[user_id=%d, user_email='%s', user_image='%s',oauth_token = '%s',access_token ='%s'," +
-                "refresh_token ='%s']", id, userEmail, userImage,oauthToken,accessToken,refreshtoken);
+                "refresh_token ='%s']", id, userEmail, userImage,oauthToken,accessToken,refreshToken);
     }
 }

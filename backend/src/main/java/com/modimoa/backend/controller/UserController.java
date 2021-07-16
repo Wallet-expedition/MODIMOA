@@ -51,6 +51,18 @@ public class UserController {
 
         return result;
     }
+    // 로그인 기능, 사용자 정보 넘기는 방식에 따라 수정 필요
+    @PostMapping("/signin")
+    public String loginUserByToken(HttpServletRequest request){
+
+        // 쿠기 받기
+        Cookie[] loginCookie = request.getCookies();
+
+        //쿠키 유저내 검색 있으면 토큰 만들어서 반환, 없으면 실패 반환
+        String result = userService.login(loginCookie[0].getValue());
+
+        return result;
+    }
 
     // 회원탈퇴 기능, 사용자 정보 토큰으로 받을지 정해야함
     @DeleteMapping("/{social}/removal")
@@ -59,12 +71,7 @@ public class UserController {
         return null;
     }
 
-    // 로그인 기능, 사용자 정보 넘기는 방식에 따라 수정 필요
-    @PostMapping("/{social}")
-    public String loginUserByToken(@PathVariable String social){
-        //추후 구현
-        return null;
-    }
+
 
     // 로그아웃 기능, 사용자 정보 넘기는 방식에 따라 수정 필요
     // http method delete 아닐 수 있음, 수정 필요
