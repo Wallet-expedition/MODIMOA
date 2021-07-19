@@ -1,5 +1,6 @@
 package com.modimoa.backend.domain;
 
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,10 +10,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @NoArgsConstructor
 @Entity
 @Getter
 public class User extends BaseTimeEntity{
+
 
     public static final long serialVersionUID = -6184044926029805156L;
 
@@ -54,11 +57,14 @@ public class User extends BaseTimeEntity{
 
         this.accessToken=accessToken;
         this.refreshToken=refreshToken;
+
     }
 
     @Override
     public String toString(){
+
         return String.format("User[user_id=%d, user_email='%s', user_image='%s',oauth_token = '%s',access_token ='%s'," +
                 "refresh_token ='%s']", id, userEmail, userImage,oauthToken,accessToken,refreshToken);
+
     }
 }

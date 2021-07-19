@@ -1,6 +1,8 @@
 package com.modimoa.backend.service;
 
+
 import com.modimoa.backend.domain.Mybag;
+
 import com.modimoa.backend.domain.User;
 import com.modimoa.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,10 +53,12 @@ public class UserService {
         return result;
     }
 
+
     // Dao를 통해 모든 물품을 가져와서 반환하는 list형 함수
     public List<User> getAllUsers(){
         return userRepository.findAll();
     };
+
 
     public String logout(String token) {
         String result ="";
@@ -96,4 +100,5 @@ public class UserService {
         return result;
 
     }
+
 }

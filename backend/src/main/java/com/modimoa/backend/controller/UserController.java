@@ -1,14 +1,17 @@
 package com.modimoa.backend.controller;
 
+
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
 import com.modimoa.backend.domain.User;
 import com.modimoa.backend.service.UserService;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import springfox.documentation.spring.web.json.Json;
 
 import javax.servlet.http.Cookie;
@@ -16,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
+
 
 @RestController
 @RequestMapping("/api/users")
@@ -32,12 +36,14 @@ public class UserController {
         String result = "";
 
         for (User u : userService.getAllUsers()) {
+
             result += u + "</br>";
         }
         return result;
     }
 
     // 회원가입 기능, 사용자 정보 토큰으로 받을지 정해야함
+
     @PostMapping("/new")
     public String addUserByToken(HttpServletRequest request, @RequestBody HashMap<String, String> map) {
         String userImage = map.get("user_image");
@@ -100,5 +106,6 @@ public class UserController {
 
         return result;
     }
+
 
 }
