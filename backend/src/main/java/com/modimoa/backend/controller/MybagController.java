@@ -55,8 +55,10 @@ public class MybagController {
     // 장바구니 물건 수량 변경하는 기능, 단 0이면 삭제
     @PostMapping("/changecnt/{productId}")
     public String changeItemCount(@PathVariable Long productId){
-        Long userId = 4L;
-        int count = 1;
+
+        Long userId = 2L;
+        int count = 4;
+
         mybagService.changeItemCount(userId, productId, count);
 
         return "장바구니 상품 개수가 변경됨";
