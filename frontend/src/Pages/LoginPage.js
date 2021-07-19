@@ -1,15 +1,7 @@
 import React from "react";
 
-import Login from "../Components/Login";
-import Layout from "../Components/Layout";
-import "../scss/Login.scss";
-
 const LoginPage = () => {
-  return (
-    <Layout>
-      <Login />
-    </Layout>
-  );
+  return <h1>Login Page</h1>;
 };
 
 export default LoginPage;

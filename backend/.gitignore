@@ -35,8 +35,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-###
-/src/main/.ds_store
-/src/.ds_store
-.ds_store

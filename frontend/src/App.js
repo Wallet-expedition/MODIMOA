@@ -1,9 +1,10 @@
 import { BrowserRouter } from "react-router-dom";
+
 import Router from "./Routes/Router";
-import dotenv from "dotenv";
+
+import "./App.css";
 
 const App = () => {
-  dotenv.config();
   return (
     <BrowserRouter>
       <Router />

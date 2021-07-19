@@ -1,16 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import MainPresenter from "./MainPresenter";
 
 const MainContainer = () => {
-  const [searchKeyword, setSearchKeyword] = useState("");
-
-  const handleChange = (event) => {
-    setSearchKeyword(event.target.value);
-  };
-
-  return (
-    <MainPresenter searchKeyword={searchKeyword} handleChange={handleChange} />
-  );
+  return <MainPresenter />;
 };
 
 export default MainContainer;

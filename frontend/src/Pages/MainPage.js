@@ -1,16 +1,7 @@
 import React from "react";
 
-import Main from "../Components/Main";
-import Layout from "../Components/Layout";
-
-import "../scss/MainPage.scss";
-
 const MainPage = () => {
-  return (
-    <Layout className="main-container">
-      <Main />
-    </Layout>
-  );
+  return <h1>Main Page</h1>;
 };
 
 export default MainPage;
