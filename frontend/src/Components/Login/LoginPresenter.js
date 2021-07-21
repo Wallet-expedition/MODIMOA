@@ -19,6 +19,9 @@ const LoginPresenter = () => {
       <LoginButton name={GOOGLE} />
       <LoginButton name={KAKAO} />
       <LoginButton name={FACEBOOK} />
+      <div className="login-footer-descreption">
+        최초 로그인시 회원가입이 진행됩니다.
+      </div>
     </div>
   );
 };
