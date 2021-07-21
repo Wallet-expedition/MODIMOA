@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LayoutPresenter from "./LayoutPresenter";
 
 const LayoutContainer = ({ children }) => {
-  const [showSideMenu, setShowSideMenu] = useState(true);
+  const [showSideMenu, setShowSideMenu] = useState(false);
   return (
     <LayoutPresenter
       showSideMenu={showSideMenu}
