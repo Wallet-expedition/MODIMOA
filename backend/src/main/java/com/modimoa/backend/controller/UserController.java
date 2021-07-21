@@ -1,18 +1,14 @@
 package com.modimoa.backend.controller;
 
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import com.modimoa.backend.domain.User;
 import com.modimoa.backend.service.UserService;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
-import springfox.documentation.spring.web.json.Json;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +27,11 @@ public class UserController {
 
     // 테스트용 사용자 모두 가져오는 api
     @GetMapping("")
-    public String getAllUsers() {
+    public String getAllUsers(@RequestHeader HttpHeaders requestHeader) {
+
+
+        String cookie = requestHeader.toSingleValueMap().get("authorization");
+
 
         String result = "";
 
@@ -39,7 +39,7 @@ public class UserController {
 
             result += u + "</br>";
         }
-        return result;
+        return result+cookie;
     }
 
     // 회원가입 기능, 사용자 정보 토큰으로 받을지 정해야함
