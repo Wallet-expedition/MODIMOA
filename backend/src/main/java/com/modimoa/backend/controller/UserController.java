@@ -44,8 +44,7 @@ public class UserController {
         return result+cookie;
     }
 
-    // 회원가입 기능, 사용자 정보 토큰으로 받을지 정해야함
-
+    // 회원가입 기능
     @PostMapping("/new")
     public String addUserByToken(@RequestHeader HttpHeaders requestHeader, @RequestBody HashMap<String, String> map) {
         String userImage = map.get("user_image");
@@ -60,10 +59,10 @@ public class UserController {
         return result;
     }
 
-    // 로그인 기능, 사용자 정보 넘기는 방식에 따라 수정 필요
+    // 로그인 기능, HttpHeaders로 사용자 토큰 받음
     @PostMapping("/login")
     public Cookie loginUserByToken(@RequestHeader HttpHeaders requestHeader, HttpServletResponse response) throws NoSuchAlgorithmException {
-        // 쿠기 받기
+        // 쿠키 받기
         String loginCookie = requestHeader.toSingleValueMap().get("authorization");
 
         //쿠키 유저내 검색 있으면 토큰 만들어서 반환, 없으면 실패 반환
