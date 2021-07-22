@@ -1,15 +1,16 @@
 package com.modimoa.backend.service;
 
-
-import com.modimoa.backend.domain.Mybag;
-
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import com.modimoa.backend.domain.User;
 import com.modimoa.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.Cookie;
 import javax.transaction.Transactional;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,35 +23,42 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public String signUp(String userImage, String userEmail, Cookie[] oauthCookie) {
+    public String signUp(String userImage, String userEmail, String oauthCookie) {
         String result = "";
 
         Optional <User> user = userRepository.findByUserEmail(userEmail);
          if(user.isPresent()){
             result = userEmail+"은 이미 존재합니다.";
         }else{
-            user.orElseGet(() ->userRepository.save(new User(userEmail,userImage,oauthCookie[0].getValue(),"new","new")));
+            user.orElseGet(() ->userRepository.save(new User(userEmail,userImage,oauthCookie,"new","new")));
             result = userEmail+"로 회원가입 되었습니다.";
         }
         return  result;
     }
 
 
-    public String login(String token) {
+    public String[] login(String token) throws NoSuchAlgorithmException {
         String result ="";
 
         Optional <User> user = Optional.of(userRepository.findByOauthToken(token).get());
 
+        String userId=user.get().getUserEmail();
+
+        String accessCrypt = EncryptionUtils.encryptSHA256(token+userId+"access");
+        String refreshCrypt= EncryptionUtils.encryptSHA256(token+userId+"refresh");
+
+
+        String[] tokenAry ={accessCrypt,refreshCrypt};
+
         if(user.isPresent()){
-            String accessToken=token+"access";
-            String refreshToken=token+"refresh";
-            user.get().updateTokens(accessToken,refreshToken);
-            result = user.get().getUserEmail()+"로 로그인 되었습니다."+" access: "+accessToken+" refresh: "+refreshToken;
+
+            user.get().updateTokens(accessCrypt,refreshCrypt);
+            result = user.get().getUserEmail()+"로 로그인 되었습니다."+" access: "+accessCrypt+" refresh: "+refreshCrypt;
         }else{
             result = "로그인에 실패하셨습니다.";
         }
 
-        return result;
+        return tokenAry;
     }
 
 
