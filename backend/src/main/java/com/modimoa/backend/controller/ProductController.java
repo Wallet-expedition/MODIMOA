@@ -4,6 +4,8 @@ import com.modimoa.backend.domain.Mart;
 import com.modimoa.backend.domain.Product;
 import com.modimoa.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,34 +21,23 @@ public class ProductController {
 
     // 모든 물건 가져오는 기능
     @GetMapping("")
-    public String getAllProducts(){
-
-        String result = "";
-
-        for(Product pr: productService.getAllProducts()){
-            result += pr + "</br>";
-        }
-        return result;
+    public Page<Product> getAllProducts(Pageable pageable){
+        return productService.getAllProducts(pageable);
     }
+
 
     // 특정 마트 물건 가져오는 기능
-    @GetMapping("mart/{mart}")
-    public String getProductByMartId(@PathVariable Mart mart){
-
-        String result = "";
-        for(Product pr: productService.getProductByMartName(mart)){
-            result += pr + "</br>";
-        }
-        return result;
+    @GetMapping("{mart}/{q}")
+    public Page<Product> getFilteredProduct(@PathVariable Mart mart, @PathVariable String q, Pageable pageable){
+        return productService.getFilteredProduct(mart, q, pageable);
     }
 
-    // 특정 id 물건 가져오는 기능
-    @GetMapping("/{productId}")
-    public String getProductByProductId(@PathVariable Long productId){
+    // 정렬기준
+        // 할인된가격순(salePrice)
+        // 이름순(productName)
+        // 할인률
+    // 필터링
+        // 이름(q)
+        // 마트(mart)
 
-        String result = "";
-        Product pr = productService.getProductByProductId(productId);
-        result += pr;
-        return result;
-    }
 }

@@ -37,28 +37,28 @@ public class UserService {
     }
 
 
-    public String[] login(String token) throws NoSuchAlgorithmException {
+    public String login(String userEmail) throws NoSuchAlgorithmException {
         String result ="";
 
-        Optional <User> user = Optional.of(userRepository.findByOauthToken(token).get());
+        Optional <User> user = Optional.of(userRepository.findByUserEmail(userEmail).get());
 
         String userId=user.get().getUserEmail();
 
-        String accessCrypt = EncryptionUtils.encryptSHA256(token+userId+"access");
-        String refreshCrypt= EncryptionUtils.encryptSHA256(token+userId+"refresh");
+        String accessToken = EncryptionUtils.encryptSHA256(userEmail+userId+"access");
+        String refreshToken= EncryptionUtils.encryptSHA256(userEmail+userId+"refresh");
 
 
-        String[] tokenAry ={accessCrypt,refreshCrypt};
+//        String tokenAry ={accessCrypt,refreshCrypt};
 
         if(user.isPresent()){
 
-            user.get().updateTokens(accessCrypt,refreshCrypt);
-            result = user.get().getUserEmail()+"로 로그인 되었습니다."+" access: "+accessCrypt+" refresh: "+refreshCrypt;
+            user.get().updateTokens(accessToken,refreshToken);
+            result = user.get().getUserEmail()+"로 로그인 되었습니다."+" access: "+accessToken+" refresh: "+refreshToken;
         }else{
             result = "로그인에 실패하셨습니다.";
         }
 
-        return tokenAry;
+        return accessToken;
     }
 
 

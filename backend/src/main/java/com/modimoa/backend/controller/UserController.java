@@ -62,14 +62,15 @@ public class UserController {
 
     // 로그인 기능, 사용자 정보 넘기는 방식에 따라 수정 필요
     @PostMapping("/login")
-    public Cookie loginUserByToken(@RequestHeader HttpHeaders requestHeader, HttpServletResponse response) throws NoSuchAlgorithmException {
+    public Cookie loginUserByToken(@RequestHeader HttpHeaders requestHeader, HttpServletResponse response,@RequestBody HashMap<String, String> map) throws NoSuchAlgorithmException {
+        String userEmail = map.get("user_email");
         // 쿠기 받기
         String loginCookie = requestHeader.toSingleValueMap().get("authorization");
 
         //쿠키 유저내 검색 있으면 토큰 만들어서 반환, 없으면 실패 반환
-        String[] result = userService.login(loginCookie);
+        String result = userService.login(userEmail);
 
-        Cookie rCookie = new Cookie("accessToken",result[0]);
+        Cookie rCookie = new Cookie("accessToken",result);
         rCookie.setPath("/");
 
         rCookie.setMaxAge(60*60*24*15);
