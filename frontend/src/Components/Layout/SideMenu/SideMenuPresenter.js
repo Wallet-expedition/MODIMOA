@@ -18,7 +18,7 @@ const SideMenuPresenter = ({ isLogin, handleLogout, isToastActive }) => {
                 로그아웃
               </div>
             )}
-            <Link to="/main"> 장바구니 </Link>
+            <Link to="/mybag"> 장바구니 </Link>
             <Link to="/mypage"> 마이페이지 </Link>
           </div>
 

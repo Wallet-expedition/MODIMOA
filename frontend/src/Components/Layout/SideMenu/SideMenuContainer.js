@@ -13,7 +13,7 @@ const SideMenuContainer = ({ setShowSideMenu }) => {
     window.sessionStorage.removeItem("token");
     setIsToastActive(true);
 
-    if (path === "mypage") {
+    if (path === "mypage" || path === "mybag") {
       history.push("/main");
     }
   };
