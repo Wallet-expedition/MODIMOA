@@ -3,6 +3,8 @@ package com.modimoa.backend.service;
 import com.modimoa.backend.domain.*;
 import com.modimoa.backend.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,20 +14,16 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    // Dao를 통해 모든 물품을 가져와서 반환하는 list형 함수
-    public List<Product> getAllProducts(){
-        return productRepository.findAll();
+    // Dao를 통해 모든 물품을 가져와서 반환하는 page형 함수
+    public Page<Product> getAllProducts(Pageable pageable){
+        return productRepository.findAll(pageable);
     }
 
-    // Dao를 통해 특정 id 물품을 가져와서 반환하는 Product형 함수
-    public Product getProductByProductId(Long productId) {
+    // 검색 쿼리 q에 따라 물품을 페이지네이션해서 반환하는 page형 함수
+    public Page<Product> getFilteredProduct(Mart mart, String q, Pageable pageable) {
         return productRepository
-                .findById(productId)
-                .orElse(new Product(Mart.CU, "newthing", 100, SaleCategory.FlatPrice));
+                .findByMartNameAndProductNameContaining(mart, q, pageable);
     }
 
-    public List<Product> getProductByMartName(Mart mart) {
-        return productRepository
-                .findByMartName(mart);
-    }
+
 }
