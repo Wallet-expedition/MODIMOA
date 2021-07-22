@@ -29,14 +29,14 @@ public class MybagService {
     private ProductRepository productRepository;
 
     // 모든 물품을 가져와서 반환
-    public List<Mybag> findAll(Long userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("무슨일이야..?"));
+    public List<Mybag> findAll(String userId) {
+        User user = userRepository.findByAccessToken(userId).orElseThrow(() -> new IllegalArgumentException("무슨일이야..?"));
         return mybagRepository.findByUser(user);
     }
 
     // 새 물품 추가
-    public void plusItemOrCreateCount(Long userId, Long productId) {
-        User user = userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
+    public void plusItemOrCreateCount(String accessToken, Long productId) {
+        User user = userRepository.findByAccessToken(accessToken).orElseThrow(IllegalArgumentException::new);
         Mybag mybag = mybagRepository.findByUserAndProductId(user, productId)
                 .orElseGet(() -> mybagRepository
                         .save(new Mybag(user, productId, 0, 1)));
@@ -44,34 +44,34 @@ public class MybagService {
     }
 
     // 물품 삭제
-    public void deleteItem(Long userId, Long productId) {
-        User user = userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
+    public void deleteItem(String accessToken, Long productId) {
+        User user = userRepository.findByAccessToken(accessToken).orElseThrow(IllegalArgumentException::new);
         mybagRepository.deleteByUserAndProductId(user, productId);
     }
 
     // 물품 개수 변경
-    public void changeItemCount(Long userId, Long productId, int count) {
+    public void changeItemCount(String accessToken, Long productId, int count) {
 
-        User user = userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
+        User user = userRepository.findByAccessToken(accessToken).orElseThrow(IllegalArgumentException::new);
         Mybag mybag = mybagRepository.findByUserAndProductId(user, productId).get();
         mybag.updateCount(count);
         if (mybag.getCount() == 0) mybagRepository.deleteByUserAndProductId(user, productId);
     }
 
     // 물품 상태 변경
-    public void changeItemStatus(Long userId, Long productId, int status) {
-        User user = userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
+    public void changeItemStatus(String accessToken, Long productId, int status) {
+        User user = userRepository.findByAccessToken(accessToken).orElseThrow(IllegalArgumentException::new);
         Mybag mybag = mybagRepository.findByUserAndProductId(user, productId).get();
         mybag.updateStatus(status);
     }
 
 
     //앞으로 절약할 가격 계산
-    public Map getPrice(Long userId) {
+    public Map getPrice(String accessToken) {
 
         Map result = new HashMap<String, Integer>();
 
-        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("무슨일이야..?"));
+        User user = userRepository.findByAccessToken(accessToken).orElseThrow(() -> new IllegalArgumentException("무슨일이야..?"));
 
         int originalPriceBeforeBuy = 0;
         int salePriceBeforeBuy = 0;
