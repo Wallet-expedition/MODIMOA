@@ -56,24 +56,10 @@ const ProductListPage = () => {
     );
   };
 
-  const BagDescription = () => {
-    return (
-      <div className="bag-description">
-        <img className="gear-image" src={`/img/gear.png`} alt="gear" />
-        <span> 각 상품을 누르면 상품의 수량을 변경하실 수 있습니다. </span>
-      </div>
-    );
-  };
-
   return (
     <Layout>
       <LogoLong />
       <SortBar />
-      {filterOption === 0 ? (
-        <BagDescription />
-      ) : (
-        <div style={{ whiteSpace: "nowrap" }} />
-      )}
       <MyBag filterOption={filterOption} />
     </Layout>
   );
