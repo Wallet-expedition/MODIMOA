@@ -1,8 +1,12 @@
 import React, { useLayoutEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import { openedSideMenu } from "../../../Store/Actions/sideMenuAction";
 
 import SideMenuBtnPresenter from "./SideMenuBtnPresenter";
 
 const SideMenuBtnContainer = ({ showSideMenu, setShowSideMenu }) => {
+  const dispatch = useDispatch();
   const detectMobile = () => {
     const toMatch = [
       /Android/i,
@@ -21,6 +25,7 @@ const SideMenuBtnContainer = ({ showSideMenu, setShowSideMenu }) => {
   const handleSideMenuBtnClick = (event) => {
     event.preventDefault();
     setShowSideMenu(!showSideMenu);
+    dispatch(openedSideMenu(!showSideMenu));
   };
 
   /**
