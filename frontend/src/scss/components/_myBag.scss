@@ -30,6 +30,11 @@
   }
 }
 
-.MuiGrid-root .MuiAppBar-root {
+.MuiGrid-root,
+.MuiAppBar-root {
   z-index: 1;
+}
+
+.MuiTabs-scroller .PrivateTabIndicator-root-1 {
+  height: 4px;
 }
