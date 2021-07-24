@@ -62,12 +62,20 @@
   border-top: 1px solid black;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   button {
     background-color: #3973e6;
     color: snow;
     height: 80%;
     width: 70%;
     @include font-default(500, 1.2rem);
+  }
+
+  .cart-icon {
+    width: 12%;
+
+    img {
+      max-width: 100%;
+    }
   }
 }

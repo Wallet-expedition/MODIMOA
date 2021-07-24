@@ -1,0 +1,40 @@
+.my-bag-container {
+  display: flex;
+  overflow: scroll;
+  width: 100%;
+  flex-direction: column;
+
+  .product-info-container {
+    width: 55%;
+  }
+
+  button {
+    width: 23%;
+  }
+
+  .product-state-info-container {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .product-state-info {
+      color: #3973e6;
+    }
+  }
+
+  &,
+  span,
+  .product-state-info-container {
+    @include font-default(400, 0.8rem);
+  }
+}
+
+.MuiGrid-root,
+.MuiAppBar-root {
+  z-index: 1;
+}
+
+.MuiTabs-scroller .PrivateTabIndicator-root-1 {
+  height: 4px;
+}

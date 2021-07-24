@@ -1,9 +1,9 @@
 import React from "react";
 
-const SideMenuBtnPresenter = ({ handleSideMenuBtnClick }) => {
+const SideMenuBtnPresenter = ({ handleSideMenuBtnClick, showSideMenu }) => {
   return (
     <div className="side-modal-btn" onClick={handleSideMenuBtnClick}>
-      〒
+      {!showSideMenu ? "≡" : "X"}
     </div>
   );
 };

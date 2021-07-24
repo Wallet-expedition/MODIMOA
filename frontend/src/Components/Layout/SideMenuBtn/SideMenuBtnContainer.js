@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useLayoutEffect } from "react";
 
 import SideMenuBtnPresenter from "./SideMenuBtnPresenter";
 
@@ -26,16 +26,19 @@ const SideMenuBtnContainer = ({ showSideMenu, setShowSideMenu }) => {
   /**
    *  if User uses mobile, side menu is toggle with default no showing.
    */
-  useEffect(() => {
+  useLayoutEffect(() => {
     const isMobile = detectMobile();
 
-    if (isMobile) {
-      setShowSideMenu(false);
+    if (!isMobile) {
+      setShowSideMenu(true);
     }
   }, [setShowSideMenu]);
 
   return (
-    <SideMenuBtnPresenter handleSideMenuBtnClick={handleSideMenuBtnClick} />
+    <SideMenuBtnPresenter
+      handleSideMenuBtnClick={handleSideMenuBtnClick}
+      showSideMenu={showSideMenu}
+    />
   );
 };
 

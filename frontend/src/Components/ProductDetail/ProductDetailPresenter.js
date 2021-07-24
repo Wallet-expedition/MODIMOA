@@ -57,6 +57,9 @@ const ProductDetailPresenter = ({ item, sale_percent }) => {
   const BagButton = () => {
     return (
       <div className="bag-button-container">
+        <span className="cart-icon">
+          <img src={`/img/cart.png`} alt="modimoa-bag-cart-icon"></img>
+        </span>
         <Button
           variant="contained"
           size="large"
