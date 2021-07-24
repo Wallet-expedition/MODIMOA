@@ -4,3 +4,5 @@ export const AUTH_USER = "Auth_user";
 export const WITHDRAW_USER = "Withdraw_user";
 export const GET_USER_INFO = "Get_user_info";
 export const SELECT_PRODUCT = "Select_product";
+export const SELECT_MART = "Select_mart";
+export const OPENED_SIDE_MENU = "Opened_side_menu";

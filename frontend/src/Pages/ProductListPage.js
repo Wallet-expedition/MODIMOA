@@ -7,8 +7,10 @@ import Tab from "@material-ui/core/Tab";
 import ProductList from "../Components/ProductList";
 import Layout from "../Components/Layout";
 import Header from "../Components/Header";
+import MartList from "../Components/MartList";
 
 import "../scss/ProductList.scss";
+import "../scss/MartList.scss";
 
 const ResultField = ({ searchKeyword }) => {
   let resultText = "";
@@ -46,6 +48,7 @@ const ProductListPage = () => {
   return (
     <Layout>
       <Header setFinalSearchKeyword={setFinalSearchKeyword}>
+        <MartList />
         <ResultField searchKeyword={finalSearchKeyword} />
         <SortBar />
       </Header>
