@@ -29,3 +29,7 @@
     @include font-default(400, 0.8rem);
   }
 }
+
+.MuiGrid-root .MuiAppBar-root {
+  z-index: 1;
+}
