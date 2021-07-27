@@ -29,9 +29,26 @@
 
   button,
   #kakao-login-btn {
-    width: 240px;
+    width: 260px;
     height: 50px;
     margin: 0.3rem;
+  }
+
+  #kakao-login-btn {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #feea0d;
+    align-self: center;
+    vertical-align: middle;
+    img {
+      align-self: center;
+    }
+    span {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      @include font-default(500, 1.1rem);
+    }
   }
 
   .g-sign2 {

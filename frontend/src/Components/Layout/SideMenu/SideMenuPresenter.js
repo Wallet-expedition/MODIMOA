@@ -12,7 +12,10 @@ const SideMenuPresenter = ({ isLogin, handleLogout, isToastActive }) => {
           <div className="sidemenu-nav">
             <Link to="/main"> 홈 </Link>
             {!isLogin ? (
-              <Link to="/login">로그인</Link>
+              <>
+                <Link to="/login">로그인</Link>
+                <Link to="/register">회원가입</Link>
+              </>
             ) : (
               <div className="side-logout-btn" onClick={handleLogout}>
                 로그아웃

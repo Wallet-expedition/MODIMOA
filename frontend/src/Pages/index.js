@@ -5,3 +5,4 @@ export { default as ProductList } from "./ProductListPage";
 export { default as ProductDetail } from "./ProductDetailPage";
 export { default as MyPage } from "./MyPage";
 export { default as MyBag } from "./MyBagPage";
+export { default as Register } from "./RegisterPage";
