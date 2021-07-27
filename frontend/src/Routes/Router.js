@@ -9,7 +9,7 @@ import {
   ProductDetail,
   MyPage,
   MyBag,
-  Register
+  Register,
 } from "../Pages";
 import Auth from "../Components/Util/Auth";
 
