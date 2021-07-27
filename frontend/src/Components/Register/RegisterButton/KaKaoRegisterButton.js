@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 
 import { withRouter } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../../Store/Actions/userAction";
 
 /**
  *
@@ -11,25 +13,23 @@ import { withRouter } from "react-router-dom";
  * @returns KakaoLogin Button
  */
 const KaKaoRegisterButton = ({ history }) => {
-  let token = ""; // not useState
+  const dispatch = useDispatch();
 
   const kakaoLoginSuccess = async (response) => {
     console.log(response);
     const account = response?.kakao_account;
-    const tokenId = token;
     const body = {
       user_email: account.email,
       user_image: account.profile.profile_image_url,
     };
 
-    /* temp */
-    window.sessionStorage.setItem("token", JSON.stringify(tokenId));
-
-    // const res = await dispatch(loginUser(tokenId, body));
+    const res = await dispatch(registerUser(body));
     console.log(body);
 
-    if (tokenId) {
-      history.push("./main");
+    if (res.payload.success) {
+      history.push("/login");
+    } else {
+      alert("회원가입에 실패하였습니다.");
     }
   };
 
@@ -53,7 +53,6 @@ const KaKaoRegisterButton = ({ history }) => {
     window?.Kakao.Auth.login(
       {
         success: (authObj) => {
-          token = authObj.access_token;
           window?.Kakao.API.request({
             url: "/v2/user/me",
             success: kakaoLoginSuccess,
@@ -80,7 +79,6 @@ const KaKaoRegisterButton = ({ history }) => {
       <img
         id="kakao-register"
         alt="kakao-register"
-        // src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
         src="img/kakao_btn.png"
         width="35px"
         height="35px"
