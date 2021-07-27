@@ -1,18 +1,7 @@
 import React, { useCallback, useLayoutEffect } from "react";
 import { useDispatch } from "react-redux";
 import { auth } from "../../Store/Actions/userAction";
-
-const getCookie = (key) => {
-  let value = "";
-  const cookies = document.cookie.split(";");
-
-  for (let i in cookies) {
-    if (cookies[i].search(key) !== -1) {
-      value = cookies[i].split("=")[1];
-    }
-  }
-  return value;
-};
+import { getCookie } from "./Cookie";
 
 /**
  *
