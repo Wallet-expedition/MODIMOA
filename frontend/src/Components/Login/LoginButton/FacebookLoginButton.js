@@ -2,6 +2,8 @@ import React from "react";
 
 import { withRouter } from "react-router-dom";
 import FacebookLogin from "react-facebook-login";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../../Store/Actions/userAction";
 
 /**
  *
@@ -15,20 +17,20 @@ import FacebookLogin from "react-facebook-login";
  * @returns FacebookLoginButton
  */
 const FacebookLoginButton = ({ history }) => {
+  const dispatch = useDispatch();
   const facebookLoginSuccess = async (response) => {
     const tokenId = response.accessToken;
     const body = {
-      email: response.email,
-      name: response.name,
-      image: response.picture.data.url,
+      user_email: response.email,
+      user_image: response.picture.data.url,
     };
-    /* temp */
-    window.sessionStorage.setItem("token", JSON.stringify(tokenId));
 
-    // const res = await dispatch(loginUser(tokenId, body));
+    const res = await dispatch(loginUser(tokenId, body));
 
-    if (tokenId) {
-      history.push("./main");
+    if (res.payload.success) {
+      history.push("/main");
+    } else {
+      alert("로그인에 실패하였습니다.");
     }
   };
 

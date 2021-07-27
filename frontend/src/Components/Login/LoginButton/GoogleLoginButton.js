@@ -2,6 +2,8 @@ import React from "react";
 
 import { withRouter } from "react-router-dom";
 import GoogleLogin from "react-google-login";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../../Store/Actions/userAction";
 
 const GoogleICON = () => {
   return (
@@ -39,24 +41,23 @@ const GoogleICON = () => {
  * @returns GoogleLoginButton
  */
 const GoogleLoginButton = ({ history }) => {
+  const dispatch = useDispatch();
   const googleLoginSuccess = async (response) => {
     console.log(response);
     const profile = response.profileObj;
     const tokenId = response.tokenId;
     const body = {
-      email: profile.email,
-      name: profile.name,
-      image: profile.imageUrl,
+      user_email: profile.email,
+      user_image: profile.imageUrl,
     };
 
-    /* temp */
-    window.sessionStorage.setItem("token", JSON.stringify(tokenId));
+    const res = await dispatch(loginUser(tokenId, body));
+    console.log(res);
 
-    // const res = await dispatch(loginUser(tokenId, body));
-    console.log(body);
-
-    if (tokenId) {
-      history.push("./main");
+    if (res.payload.success) {
+      history.push("/main");
+    } else {
+      alert("로그인에 실패하였습니다.");
     }
   };
 
@@ -75,7 +76,7 @@ const GoogleLoginButton = ({ history }) => {
         >
           <div className="g-container">
             <GoogleICON />
-            <div className="g-text">GOOGLE로 로그인하기</div>
+            <div className="g-text">GOOGLE로 로그인</div>
           </div>
         </button>
       )}

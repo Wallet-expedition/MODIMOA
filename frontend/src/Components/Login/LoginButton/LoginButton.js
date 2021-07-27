@@ -2,7 +2,7 @@ import React from "react";
 
 import GoogleLoginButton from "./GoogleLoginButton";
 import KaKaoLoginButton from "./KaKaoLoginButton";
-import FacebookLoginButton from "./FacebookLoginButtonLoginButton";
+import FacebookLoginButton from "./FacebookLoginButton";
 import { GOOGLE, FACEBOOK, KAKAO } from "./constant";
 
 const LoginButton = ({ name }) => {
