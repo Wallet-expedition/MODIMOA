@@ -1,6 +1,18 @@
 import React, { useCallback, useLayoutEffect } from "react";
-// import { useDispatch } from "react-redux";
-// import { auth } from "../../Store/Actions/userAction";
+import { useDispatch } from "react-redux";
+import { auth } from "../../Store/Actions/userAction";
+
+const getCookie = (key) => {
+  let value = "";
+  const cookies = document.cookie.split(";");
+
+  for (let i in cookies) {
+    if (cookies[i].search(key) !== -1) {
+      value = cookies[i].split("=")[1];
+    }
+  }
+  return value;
+};
 
 /**
  *
@@ -10,36 +22,27 @@ import React, { useCallback, useLayoutEffect } from "react";
  */
 const Auth = (SpecificPage, authority) => {
   const AuthenticationCheck = (props) => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // const tokenId = getTokenId();
-
-    const tokenId = window.sessionStorage.getItem("token") || "A";
+    const tokenId = getCookie("token");
 
     const loginCheck = useCallback(async () => {
-      //   const response = await dispatch(auth(tokenId));
-      //   if (!response.payload.isLogin) {
-      //     if (authority) {
-      //       props.history.push("/");
-      //     }
-      //   } else {
-      //     if (authority === false) {
-      //       props.history.push("/main");
-      //     }
-      //   }
-
-      // login X
-      if (tokenId === "A") {
+      const response = await dispatch(auth(tokenId));
+      // Login Check Fail
+      if (!response.payload.success) {
+        // can go with login
         if (authority) {
-          props.history.push("./login");
-        }
-      } else {
-        // login O
-        if (authority === false) {
-          props.history.push("./main");
+          props.history.push("/login");
         }
       }
-    }, [props.history, tokenId]);
+      // Login Check Success
+      else {
+        // can go with no login
+        if (authority === false) {
+          props.history.push("/main");
+        }
+      }
+    }, [dispatch, props.history, tokenId]);
 
     useLayoutEffect(() => {
       loginCheck();
