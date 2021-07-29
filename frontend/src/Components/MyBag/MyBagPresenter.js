@@ -1,14 +1,23 @@
 import React from "react";
-import { Grid, Button } from "@material-ui/core";
+import BuyModal from "../BuyModal";
+import { Grid } from "@material-ui/core";
 
-const MyBagPresenter = ({ list, filterOption }) => {
+const MyBagPresenter = ({
+  list,
+  filterOption,
+  handleBuyClick,
+  isOpenModal,
+  setIsOpenModal,
+  selectedId,
+}) => {
   const BagProduct = ({
     id,
-    mart_name,
+    martname,
     product_name,
     product_image,
     original_price,
     sale_price,
+    handleBuyClick,
   }) => {
     return (
       <Grid className="product-container">
@@ -24,11 +33,20 @@ const MyBagPresenter = ({ list, filterOption }) => {
           </Grid>
         </Grid>
         {filterOption === 0 ? (
-          <Button variant="contained">구매</Button>
+          <button
+            id={id}
+            variant="contained"
+            onClick={handleBuyClick}
+            className="buy-btn"
+          >
+            구매
+          </button>
         ) : (
           <Grid className="product-state-info-container">
             <Grid className="product-state-info"> 구매 완료 </Grid>
-            <Grid className="product-state-price"> 4,488원 이득 </Grid>
+            <Grid className="product-state-price">
+              {original_price - sale_price}원 이득
+            </Grid>
           </Grid>
         )}
       </Grid>
@@ -50,15 +68,22 @@ const MyBagPresenter = ({ list, filterOption }) => {
       {list.map((item) => {
         return (
           <BagProduct
-            id={item.product_id}
-            mart_name={item.mart_name}
-            product_name={item.product_name}
-            product_image={item.product_image}
-            original_price={item.original_price}
-            sale_price={item.sale_price}
+            key={item.productId}
+            id={item.productId}
+            mart_name={item.martName}
+            product_name={item.productName}
+            product_image={item.productImage}
+            original_price={item.originalPrice}
+            sale_price={item.salePrice}
+            handleBuyClick={handleBuyClick}
           />
         );
       })}
+      {isOpenModal ? (
+        <BuyModal setIsOpenModal={setIsOpenModal} selectedId={selectedId} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
