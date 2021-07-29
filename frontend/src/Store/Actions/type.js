@@ -5,3 +5,5 @@ export const WITHDRAW_USER = "Withdraw_user";
 export const GET_USER_INFO = "Get_user_info";
 export const REGITER_USER = "Register_user";
 export const SELECT_PRODUCT = "Select_product";
+export const SELECT_MART = "Select_mart";
+export const OPENED_SIDE_MENU = "Opened_side_menu";

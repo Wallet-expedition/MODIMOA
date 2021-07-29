@@ -7,6 +7,7 @@ const ProductListPresenter = ({ list }) => {
       {list.map((item) => {
         return (
           <Product
+            key={item.product_id}
             id={item.product_id}
             mart_name={item.mart_name}
             product_name={item.product_name}
