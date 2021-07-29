@@ -17,4 +17,13 @@ export const wishProduct = async (body, id) => {
   };
 };
 
+export const getProductList = async (mart, searchKeyword, page, sortFilter) => {
+  const res = await axios.get(
+    `${process.env.SERVER}/api/products/${mart}/${searchKeyword}?page=${page}&sort=${sortFilter}`
+  );
 
+  return {
+    type: GET_PRODUT_LIST,
+    payload: res.data,
+  };
+};

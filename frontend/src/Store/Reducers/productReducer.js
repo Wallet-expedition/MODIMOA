@@ -1,4 +1,4 @@
-import { SELECT_PRODUCT, WISH_PRODUCT } from "../Actions/type";
+import { GET_PRODUT_LIST, SELECT_PRODUCT, WISH_PRODUCT } from "../Actions/type";
 
 const productReducer = (state = {}, action) => {
   switch (action.type) {
@@ -7,7 +7,10 @@ const productReducer = (state = {}, action) => {
       return { ...state, product: action.payload };
     case WISH_PRODUCT:
       console.log(action.payload);
-      return { ...state, product: action.payload };
+      return { ...state, success: action.payload };
+    case GET_PRODUT_LIST:
+      console.log(action.payload);
+      return { ...state, productList: action.payload };
     default:
       return state;
   }
