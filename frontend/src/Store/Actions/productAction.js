@@ -27,3 +27,14 @@ export const getProductList = async (mart, searchKeyword, page, sortFilter) => {
     payload: res.data,
   };
 };
+
+export const changeMyBagState = async (productId) => {
+  const res = await axios.patch(
+    `${process.env.SERVER}/api/mybag/changestat/${productId}`
+  );
+
+  return {
+    type: GET_PRODUT_LIST,
+    payload: res.data,
+  };
+};
