@@ -12,7 +12,6 @@ const MyBagPresenter = ({
 }) => {
   const BagProduct = ({
     id,
-    martname,
     product_name,
     product_image,
     original_price,
@@ -70,7 +69,6 @@ const MyBagPresenter = ({
           <BagProduct
             key={item.productId}
             id={item.productId}
-            mart_name={item.martName}
             product_name={item.productName}
             product_image={item.productImage}
             original_price={item.originalPrice}

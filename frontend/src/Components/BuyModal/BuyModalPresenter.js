@@ -27,7 +27,7 @@ const BuyModalPresenter = ({
           <div className="buy-modal-cancel" onClick={handleCancelClick}>
             취소
           </div>
-          <div className="buy-modal-OK" onClick={handleConfirmClick}>
+          <div className="buy-modal-confirm" onClick={handleConfirmClick}>
             확인 
           </div>
         </div>
