@@ -33,7 +33,6 @@ const BuyModalContainer = ({ setIsOpenModal, selectedId, buyProductName }) => {
 
   useEffect(() => {
     setProductName(buyProductName);
-    console.log(buyProductName);
   }, [buyProductName]);
 
   return (

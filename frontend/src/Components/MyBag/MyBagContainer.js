@@ -14,8 +14,6 @@ const MyBagContainer = ({ filterOption }) => {
     setIsOpenModal(true);
     setSelectedId(productId);
     setBuyProductName(productName);
-    console.log(productId);
-    console.log(buyProductName);
   };
 
   return (
