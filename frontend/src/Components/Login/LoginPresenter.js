@@ -16,9 +16,11 @@ const LoginPresenter = () => {
   return (
     <div className="login-container">
       <Logo />
-      <LoginButton name={GOOGLE} />
-      <LoginButton name={KAKAO} />
-      <LoginButton name={FACEBOOK} />
+      <div className="login-btn-container">
+        <LoginButton name={GOOGLE} />
+        <LoginButton name={KAKAO} />
+        <LoginButton name={FACEBOOK} />
+      </div>
     </div>
   );
 };

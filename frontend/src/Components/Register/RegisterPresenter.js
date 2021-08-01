@@ -16,9 +16,11 @@ const RegisterPresenter = () => {
   return (
     <div className="login-container">
       <Logo />
-      <RegisterButton name={GOOGLE} />
-      <RegisterButton name={KAKAO} />
-      <RegisterButton name={FACEBOOK} />
+      <div className="login-btn-container">
+        <RegisterButton name={GOOGLE} />
+        <RegisterButton name={KAKAO} />
+        <RegisterButton name={FACEBOOK} />
+      </div>
     </div>
   );
 };

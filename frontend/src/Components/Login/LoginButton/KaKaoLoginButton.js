@@ -83,7 +83,6 @@ const KakaoLoginButton = ({ history }) => {
         id="kakao-login"
         alt="kakao-login"
         src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
-        width="260px"
       ></img>
     </div>
   );

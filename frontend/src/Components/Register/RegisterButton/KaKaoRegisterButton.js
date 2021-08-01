@@ -80,8 +80,6 @@ const KaKaoRegisterButton = ({ history }) => {
         id="kakao-register"
         alt="kakao-register"
         src="img/kakao_btn.png"
-        width="35px"
-        height="35px"
       ></img>
       <span> 카카오계정으로 회원가입 </span>
     </div>
