@@ -5,11 +5,13 @@ const BuyModalPresenter = ({
   handleUpClick,
   handleDownClick,
   handleConfirmClick,
+  productName,
   number,
 }) => {
-  const BuyModal = () => {
+  const BuyModal = ({ productName }) => {
     return (
       <div className="buy-modal-container">
+        <div className="buy-modal-product-name">{productName}</div>
         <div className="buy-modal-title"> 수량 변경 및 삭제 </div>
         <div className="buy-modal-state">
           <div className="buy-modal-down" onClick={handleDownClick}>
@@ -34,7 +36,7 @@ const BuyModalPresenter = ({
       </div>
     );
   };
-  return <BuyModal />;
+  return <BuyModal productName={productName} />;
 };
 
 export default BuyModalPresenter;

@@ -56,7 +56,12 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+
+  .buy-modal-product-name {
+    @include font-default(500, 1rem);
+    color: #175be4;
+  }
 
   .buy-modal-title {
     padding: 0.5rem;
@@ -96,7 +101,7 @@
     .buy-modal-cancel {
       background-color: #f5626c;
     }
-    .buy-modal-OK {
+    .buy-modal-confirm {
       background-color: #5083e8;
     }
   }

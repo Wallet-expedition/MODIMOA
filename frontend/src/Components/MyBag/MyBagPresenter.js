@@ -9,6 +9,7 @@ const MyBagPresenter = ({
   isOpenModal,
   setIsOpenModal,
   selectedId,
+  buyProductName,
 }) => {
   const BagProduct = ({
     id,
@@ -33,7 +34,7 @@ const MyBagPresenter = ({
         </Grid>
         {filterOption === 0 ? (
           <button
-            id={id}
+            id={"id=" + id + "&name=" + product_name}
             variant="contained"
             onClick={handleBuyClick}
             className="buy-btn"
@@ -74,11 +75,16 @@ const MyBagPresenter = ({
             original_price={item.originalPrice}
             sale_price={item.salePrice}
             handleBuyClick={handleBuyClick}
+            buyProductName={buyProductName}
           />
         );
       })}
       {isOpenModal ? (
-        <BuyModal setIsOpenModal={setIsOpenModal} selectedId={selectedId} />
+        <BuyModal
+          setIsOpenModal={setIsOpenModal}
+          selectedId={selectedId}
+          buyProductName={buyProductName}
+        />
       ) : (
         ""
       )}

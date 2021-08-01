@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { changeMyBagState } from "../../Store/Actions/productAction";
 import BuyModalPresenter from "./BuyModalPresenter";
 
-const BuyModalContainer = ({ setIsOpenModal, selectedId }) => {
-  const [pastId, setPastId] = useState(selectedId);
+const BuyModalContainer = ({ setIsOpenModal, selectedId, buyProductName }) => {
+  const [productName, setProductName] = useState("");
   const [number, setNumber] = useState(1);
   const dispatch = useDispatch();
 
@@ -31,16 +31,10 @@ const BuyModalContainer = ({ setIsOpenModal, selectedId }) => {
     setIsOpenModal(false);
   };
 
-  // 다른 상품의 구매를 눌렀을 경우 300ms정도 꺼졌다가 다시 켜짐으로써, Refresh됨을 명시.
   useEffect(() => {
-    if (selectedId !== pastId) {
-      setIsOpenModal(false);
-      setTimeout(() => {
-        setIsOpenModal(true);
-        setPastId(selectedId);
-      }, 300);
-    }
-  }, [pastId, selectedId, setIsOpenModal]);
+    setProductName(buyProductName);
+    console.log(buyProductName);
+  }, [buyProductName]);
 
   return (
     <BuyModalPresenter
@@ -49,6 +43,7 @@ const BuyModalContainer = ({ setIsOpenModal, selectedId }) => {
       handleDownClick={handleDownClick}
       handleConfirmClick={handleConfirmClick}
       number={number}
+      productName={productName}
     />
   );
 };
