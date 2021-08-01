@@ -1,7 +1,7 @@
 import React from "react";
 
 import RegisterButton from "./RegisterButton";
-import { FACEBOOK, GOOGLE, KAKAO } from "./RegisterButton/constant";
+import { FACEBOOK, GOOGLE, KAKAO } from "../Util/Constant";
 
 const RegisterPresenter = () => {
   const Logo = () => {

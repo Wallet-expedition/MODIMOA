@@ -9,3 +9,7 @@ export const CU = "cu";
 export const SEVEN_ELEVEN = "seven11";
 export const GS25 = "gs25";
 export const EMART24 = "emart24";
+
+export const KAKAO = "kakao";
+export const GOOGLE = "google";
+export const FACEBOOK = "facebook";

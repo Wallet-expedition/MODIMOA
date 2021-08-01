@@ -1,7 +1,7 @@
 import React from "react";
 
 import LoginButton from "./LoginButton";
-import { FACEBOOK, GOOGLE, KAKAO } from "./LoginButton/constant";
+import { FACEBOOK, GOOGLE, KAKAO } from "../Util/Constant";
 
 const LoginPresenter = () => {
   const Logo = () => {

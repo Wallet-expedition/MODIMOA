@@ -3,7 +3,7 @@ import React from "react";
 import GoogleRegisterButton from "./GoogleRegisterButton";
 import KaKaoRegisterButton from "./KaKaoRegisterButton";
 import FacebookRegisterButton from "./FacebookRegisterButton";
-import { GOOGLE, FACEBOOK, KAKAO } from "./constant";
+import { GOOGLE, FACEBOOK, KAKAO } from "../../Util/Constant";
 
 const RegisterButton = ({ name }) => {
   switch (name) {
