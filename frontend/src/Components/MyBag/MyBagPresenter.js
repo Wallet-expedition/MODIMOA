@@ -56,7 +56,12 @@ const BagDescription = ({ filterOption }) => {
   );
 };
 
-const BagProductList = ({ list, handleBuyClick, buyProductName }) => {
+const BagProductList = ({
+  list,
+  handleBuyClick,
+  buyProductName,
+  filterOption,
+}) => {
   return list.map((item) => {
     return (
       <BagProduct
@@ -68,6 +73,7 @@ const BagProductList = ({ list, handleBuyClick, buyProductName }) => {
         sale_price={item.salePrice}
         handleBuyClick={handleBuyClick}
         buyProductName={buyProductName}
+        filterOption={filterOption}
       />
     );
   });
@@ -89,6 +95,7 @@ const MyBagPresenter = ({
         list={list}
         handleBuyClick={handleBuyClick}
         buyProductName={buyProductName}
+        filterOption={filterOption}
       />
 
       {isOpenModal ? (
