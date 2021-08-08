@@ -12,5 +12,5 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    Page<Product> findByMartNameAndProductNameContaining(Mart mart, String q, Pageable pageable);
+    List<Product> findByMartNameAndProductNameContaining(Mart mart, String q);
 }
