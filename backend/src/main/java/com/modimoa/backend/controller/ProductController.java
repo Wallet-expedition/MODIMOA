@@ -6,6 +6,8 @@ import com.modimoa.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,14 +30,13 @@ public class ProductController {
 
     // 특정 마트 물건 가져오는 기능
     @GetMapping("{mart}/{q}")
-    public Page<Product> getFilteredProduct(@PathVariable Mart mart, @PathVariable String q, Pageable pageable){
+    public Page<Product> getFilteredProduct(@PathVariable String mart, @PathVariable String q, Pageable pageable){
         return productService.getFilteredProduct(mart, q, pageable);
     }
 
     // 정렬기준
         // 할인된가격순(salePrice)
         // 이름순(productName)
-        // 할인률
     // 필터링
         // 이름(q)
         // 마트(mart)
