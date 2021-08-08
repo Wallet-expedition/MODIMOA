@@ -59,7 +59,7 @@ public class MybagController {
     public String changeItemCount(@PathVariable Long productId, @RequestHeader HttpHeaders requestHeader){
 
         String accessCookie = requestHeader.toSingleValueMap().get("authorization");
-        int count = 4;
+        int count = 0;
 
         mybagService.changeItemCount(accessCookie, productId, count);
 

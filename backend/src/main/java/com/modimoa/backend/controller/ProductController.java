@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -27,6 +28,11 @@ public class ProductController {
         return productService.getAllProducts(pageable);
     }
 
+    // 특정 마트 물건 가져오는 기능
+    @GetMapping("/{id}")
+    public Optional<Product> getFilteredProduct(@PathVariable Long id){
+        return productService.getProductById(id);
+    }
 
     // 특정 마트 물건 가져오는 기능
     @GetMapping("{mart}/{q}")

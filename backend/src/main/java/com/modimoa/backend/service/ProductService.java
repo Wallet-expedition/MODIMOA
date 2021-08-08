@@ -56,6 +56,12 @@ public class ProductService {
         return pageList;
     }
 
+    public Optional<Product> getProductById(Long id) {
+        Optional<Product> pr = productRepository.findById(id);
+        return pr;
+    }
+
+
     private static class ProductNameComparator implements Comparator<Product>{
         @Override
         public int compare(Product p1, Product p2){
