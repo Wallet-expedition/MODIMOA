@@ -3,7 +3,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import GoogleLogin from "react-google-login";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../../Store/Actions/userAction";
+import { registerUser } from "../../../Store/Actions/userAction";
 
 const GoogleICON = () => {
   return (
@@ -40,24 +40,21 @@ const GoogleICON = () => {
  *
  * @returns GoogleLoginButton
  */
-const GoogleLoginButton = ({ history }) => {
+const GoogleRegisterButton = ({ history }) => {
   const dispatch = useDispatch();
   const googleLoginSuccess = async (response) => {
-    console.log(response);
     const profile = response.profileObj;
-    const tokenId = response.tokenId;
     const body = {
       user_email: profile.email,
       user_image: profile.imageUrl,
     };
 
-    const res = await dispatch(loginUser(tokenId, body));
-    console.log(res);
+    const res = await dispatch(registerUser(body));
 
     if (res.payload.success) {
-      history.push("/main");
+      history.push("/login");
     } else {
-      alert("로그인에 실패하였습니다.");
+      alert("회원가입에 실패하였습니다.");
     }
   };
 
@@ -76,16 +73,16 @@ const GoogleLoginButton = ({ history }) => {
         >
           <div className="g-container">
             <GoogleICON />
-            <div className="g-text">GOOGLE로 로그인</div>
+            <div className="g-text">GOOGLE로 회원가입</div>
           </div>
         </button>
       )}
       onSuccess={googleLoginSuccess}
       onFailure={googleLoginError}
-      buttonText="GOOGLE계정으로 로그인"
+      buttonText="GOOGLE계정으로 회원가입"
       cookiePolicy={"single_host_origin"}
     />
   );
 };
 
-export default withRouter(GoogleLoginButton);
+export default withRouter(GoogleRegisterButton);

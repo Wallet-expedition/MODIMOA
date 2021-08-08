@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import SideMenuPresenter from "./SideMenuPresenter";
 import { useHistory } from "react-router-dom";
+import { getCookie } from "../../Util/Cookie";
 
 const SideMenuContainer = ({ setShowSideMenu }) => {
   const [isToastActive, setIsToastActive] = useState(false);
@@ -20,9 +21,9 @@ const SideMenuContainer = ({ setShowSideMenu }) => {
 
   // 로그인 되어있는지 파악.
   useLayoutEffect(() => {
-    let token = window.sessionStorage.getItem("token") || "A";
+    let token = getCookie("token");
 
-    if (token !== "A") {
+    if (token !== "NO_HAVE") {
       setIsLogin(true);
     }
   }, [path]);

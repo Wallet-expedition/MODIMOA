@@ -27,6 +27,13 @@ const ResultField = ({ searchKeyword }) => {
 const ProductListPage = () => {
   const [finalSearchKeyword, setFinalSearchKeyword] = useState("");
   const [sortOption, setSortOption] = useState(0);
+  const [martList, setMartList] = useState({
+    CU: false,
+    SEVEN_ELEVEN: false,
+    GS25: false,
+    EMART24: false,
+  });
+
   const SortBar = () => {
     const handleChange = (event, newOption) => {
       setSortOption(newOption);
@@ -48,11 +55,15 @@ const ProductListPage = () => {
   return (
     <Layout>
       <Header setFinalSearchKeyword={setFinalSearchKeyword}>
-        <MartList />
+        <MartList martList={martList} setMartList={setMartList} />
         <ResultField searchKeyword={finalSearchKeyword} />
         <SortBar />
       </Header>
-      <ProductList searchKeyword={finalSearchKeyword} />
+      <ProductList
+        searchKeyword={finalSearchKeyword}
+        martList={martList}
+        sortOption={sortOption}
+      />
     </Layout>
   );
 };

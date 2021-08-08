@@ -4,6 +4,7 @@ import {
   AUTH_USER,
   WITHDRAW_USER,
   GET_USER_INFO,
+  REGITER_USER,
 } from "../Actions/type";
 
 const userReducer = (state = {}, action) => {
@@ -15,9 +16,11 @@ const userReducer = (state = {}, action) => {
     case AUTH_USER:
       return { ...state, auth: action.payload };
     case WITHDRAW_USER:
-      return { ...state, success: action.payload };
+      return { ...state, withdraw: action.payload };
     case GET_USER_INFO:
       return { ...state, userInfo: action.payload };
+    case REGITER_USER:
+      return { ...state, register: action.payload };
     default:
       return state;
   }

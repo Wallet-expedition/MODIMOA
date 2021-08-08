@@ -1,9 +1,9 @@
 import React from "react";
 
-import LoginButton from "./LoginButton";
+import RegisterButton from "./RegisterButton";
 import { FACEBOOK, GOOGLE, KAKAO } from "../Util/Constant";
 
-const LoginPresenter = () => {
+const RegisterPresenter = () => {
   const Logo = () => {
     return (
       <div className="logo-container">
@@ -17,12 +17,12 @@ const LoginPresenter = () => {
     <div className="login-container">
       <Logo />
       <div className="login-btn-container">
-        <LoginButton name={GOOGLE} />
-        <LoginButton name={KAKAO} />
-        <LoginButton name={FACEBOOK} />
+        <RegisterButton name={GOOGLE} />
+        <RegisterButton name={KAKAO} />
+        <RegisterButton name={FACEBOOK} />
       </div>
     </div>
   );
 };
 
-export default LoginPresenter;
+export default RegisterPresenter;
