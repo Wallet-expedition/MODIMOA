@@ -81,11 +81,11 @@ public class MybagService {
         for (Mybag mb : mybagRepository.findByUser(user)) {
             Product product = productRepository.findById(mb.getProductId()).orElseThrow(() -> new IllegalArgumentException("무슨일이야..?"));
             if (mb.getStatus() == 1) {
-                originalPriceBeforeBuy += product.getOriginalPrice();
-                salePriceBeforeBuy += product.getSalePrice();
+                originalPriceBeforeBuy += product.getOriginalPrice()*mb.getCount();
+                salePriceBeforeBuy += product.getSalePrice()*mb.getCount();
             } else if (mb.getStatus() == 2) {
-                originalPriceAfterBuy += product.getOriginalPrice();
-                salePriceAfterBuy += product.getSalePrice();
+                originalPriceAfterBuy += product.getOriginalPrice()*mb.getCount();
+                salePriceAfterBuy += product.getSalePrice()*mb.getCount();
             }
         }
 
