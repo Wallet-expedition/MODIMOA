@@ -22,6 +22,11 @@ public class ProductService {
 
     // 검색 쿼리 q에 따라 물품을 페이지네이션해서 반환하는 page형 함수
     public Page<Product> getFilteredProduct(String mart, String q, Pageable pageable) {
+
+        if(mart.length()!=4||q!="salePrice"||q!="productName"){
+            //400: 쿼리 잘못됨
+        }
+
         boolean [] martList = new boolean[4];
         Arrays.fill(martList, false);
 
@@ -57,8 +62,14 @@ public class ProductService {
     }
 
     public Optional<Product> getProductById(Long id) {
-        Optional<Product> pr = productRepository.findById(id);
-        return pr;
+
+        Optional<Product> product = Optional.of(productRepository.findById(id).get());
+
+        if(!product.isPresent()){
+            // 403 그 물품 없음
+        }
+
+        return product;
     }
 
 

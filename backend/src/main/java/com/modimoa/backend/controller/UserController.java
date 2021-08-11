@@ -51,31 +51,29 @@ public class UserController {
         String userEmail = map.get("user_email");
 
 
-        String oauthCookie = requestHeader.toSingleValueMap().get("authorization");
+        String oauthCookie = requestHeader.toSingleValueMap().get("authorization");;
 
         String result = userService.signUp(userImage, userEmail, oauthCookie);
-        System.out.println("쿠키 :" + oauthCookie  + " userId" + userImage + " User_email" + userEmail);
-
         return result;
     }
 
     // 로그인 기능, HttpHeaders로 사용자 토큰 받음
     @PostMapping("/login")
-    public Cookie loginUserByToken(@RequestHeader HttpHeaders requestHeader, HttpServletResponse response) throws NoSuchAlgorithmException {
-        // 쿠키 받기
+    public void loginUserByToken(@RequestHeader HttpHeaders requestHeader, HttpServletResponse response,@RequestBody HashMap<String, String> map) throws NoSuchAlgorithmException {
+        String userEmail = map.get("user_email");
+        // 쿠기 받기
+
         String loginCookie = requestHeader.toSingleValueMap().get("authorization");
 
         //쿠키 유저내 검색 있으면 토큰 만들어서 반환, 없으면 실패 반환
-        String[] result = userService.login(loginCookie);
+        String accessToken = userService.login(userEmail);
 
-        Cookie rCookie = new Cookie("accessToken",result[0]);
+        Cookie rCookie = new Cookie("accessToken",accessToken);
         rCookie.setPath("/");
 
         rCookie.setMaxAge(60*60*24*15);
 
         response.addCookie(rCookie);
-
-        return rCookie;
     }
 
     // 회원탈퇴 기능, 사용자 정보 토큰으로 받을지 정해야함6
@@ -84,9 +82,9 @@ public class UserController {
 
         String withdrawal = requestHeader.toSingleValueMap().get("authorizaion");
 
-        String result = userService.withdrawal(withdrawal);
+        userService.withdrawal(withdrawal);
         //추후 구현
-        return result;
+        return "탈퇴";
     }
 
 
@@ -96,9 +94,9 @@ public class UserController {
 
         String logoutCookie = requestHeader.toSingleValueMap().get("authorizaion");
 
-        String result = userService.logout(logoutCookie);
+        userService.logout(logoutCookie);
 
-        return result;
+        return "로그아웃";
     }
 
     // 로그인 상태인지 확인 및 유저 정보 반환
