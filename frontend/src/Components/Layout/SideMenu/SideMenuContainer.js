@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { getCookie } from "../../Util/Cookie";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../../Store/Actions/userAction";
+import { closedSideMenu } from "../../../Store/Actions/sideMenuAction";
 
 const SideMenuContainer = ({ setShowSideMenu }) => {
   const [isToastActive, setIsToastActive] = useState(false);
@@ -23,9 +24,14 @@ const SideMenuContainer = ({ setShowSideMenu }) => {
     }
   };
 
+  const handleLink = () => {
+    // history.push(nextPage);
+    dispatch(closedSideMenu(false));
+  };
+
   // 로그인 되어있는지 파악.
   useLayoutEffect(() => {
-    let token = getCookie("token");
+    let token = getCookie("accessToken");
 
     if (token !== "NO_HAVE") {
       setIsLogin(true);
@@ -52,6 +58,7 @@ const SideMenuContainer = ({ setShowSideMenu }) => {
       isLogin={isLogin}
       handleLogout={handleLogout}
       isToastActive={isToastActive}
+      handleLink={handleLink}
     />
   );
 };
