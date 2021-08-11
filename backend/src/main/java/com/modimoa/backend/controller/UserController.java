@@ -51,7 +51,7 @@ public class UserController {
         String userEmail = map.get("user_email");
 
 
-        String oauthCookie = requestHeader.toSingleValueMap().get("authorization");;
+        String oauthCookie = requestHeader.toSingleValueMap().get("authorization");
 
         String result = userService.signUp(userImage, userEmail, oauthCookie);
         System.out.println("쿠키 :" + oauthCookie  + " userId" + userImage + " User_email" + userEmail);
