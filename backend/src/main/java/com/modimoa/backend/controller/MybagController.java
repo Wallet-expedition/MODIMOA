@@ -59,7 +59,7 @@ public class MybagController {
     public String changeItemCount(@PathVariable Long productId, @RequestHeader HttpHeaders requestHeader){
 
         String accessToken = requestHeader.toSingleValueMap().get("authorization");
-        int count = 0;
+        int count = 4;
 
         mybagService.changeItemCount(accessToken, productId, count);
 

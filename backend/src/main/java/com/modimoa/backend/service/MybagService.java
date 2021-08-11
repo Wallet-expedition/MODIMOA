@@ -4,6 +4,8 @@ package com.modimoa.backend.service;
 import com.modimoa.backend.domain.Mybag;
 import com.modimoa.backend.domain.Product;
 import com.modimoa.backend.domain.User;
+import com.modimoa.backend.errorhandling.ErrorCode;
+import com.modimoa.backend.errorhandling.ObjectNotFoundException;
 import com.modimoa.backend.repository.MybagRepository;
 import com.modimoa.backend.repository.ProductRepository;
 import com.modimoa.backend.repository.UserRepository;
@@ -33,7 +35,7 @@ public class MybagService {
     public List<Mybag> findAll(String accessToken) {
         Optional<User> user = Optional.of(userRepository.findByAccessToken(accessToken)).get();
         if(!user.isPresent()){
-            // 403 유저 없음!
+            throw new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR);
         }
         return mybagRepository.findByUser(user.get());
     }
@@ -42,7 +44,7 @@ public class MybagService {
     public void plusItemOrCreateCount(String accessToken, Long productId) {
         Optional <User> user = Optional.of(userRepository.findByAccessToken(accessToken).get());
         if(!user.isPresent()){
-            //403
+            throw new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR);
         }
         Mybag mybag = mybagRepository.findByUserAndProductId(user.get(), productId)
                 .orElseGet(() -> mybagRepository
@@ -54,7 +56,7 @@ public class MybagService {
     public void deleteItem(String accessToken, Long productId) {
         Optional <User> user = Optional.of(userRepository.findByAccessToken(accessToken).get());
         if(!user.isPresent()){
-            //403
+            throw new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR);
         }
         mybagRepository.deleteByUserAndProductId(user.get(), productId);
     }
@@ -64,7 +66,7 @@ public class MybagService {
 
         Optional <User> user = Optional.of(userRepository.findByAccessToken(accessToken).get());
         if(!user.isPresent()){
-            //403
+            throw new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR);
         }
         Mybag mybag = mybagRepository.findByUserAndProductId(user.get(), productId).get();
         mybag.updateCount(count);
@@ -75,7 +77,7 @@ public class MybagService {
     public void changeItemStatus(String accessToken, Long productId, int status) {
         Optional <User> user = Optional.of(userRepository.findByAccessToken(accessToken).get());
         if(!user.isPresent()){
-            //403
+            throw new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR);
         }
         Mybag mybag = mybagRepository.findByUserAndProductId(user.get(), productId).get();
         mybag.updateStatus(status);
@@ -89,7 +91,7 @@ public class MybagService {
 
         Optional<User> user = Optional.of(userRepository.findByAccessToken(accessToken)).get();
         if(!user.isPresent()){
-            //403 사람없음 에러
+            throw new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR);
         }
 
         int originalPriceBeforeBuy = 0;
