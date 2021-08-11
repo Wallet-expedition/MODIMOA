@@ -10,7 +10,7 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping(value="/api/mybag", method={RequestMethod.GET, RequestMethod.POST})
+@RequestMapping(value="/api/mybag")
 public class MybagController {
 
     @Autowired

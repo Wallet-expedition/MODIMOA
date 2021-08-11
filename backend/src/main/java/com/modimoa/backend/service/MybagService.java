@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -29,39 +30,54 @@ public class MybagService {
     private ProductRepository productRepository;
 
     // 모든 물품을 가져와서 반환
-    public List<Mybag> findAll(String userId) {
-        User user = userRepository.findByAccessToken(userId).orElseThrow(() -> new IllegalArgumentException("무슨일이야..?"));
-        return mybagRepository.findByUser(user);
+    public List<Mybag> findAll(String accessToken) {
+        Optional<User> user = Optional.of(userRepository.findByAccessToken(accessToken)).get();
+        if(!user.isPresent()){
+            // 403 유저 없음!
+        }
+        return mybagRepository.findByUser(user.get());
     }
 
     // 새 물품 추가
     public void plusItemOrCreateCount(String accessToken, Long productId) {
-        User user = userRepository.findByAccessToken(accessToken).orElseThrow(IllegalArgumentException::new);
-        Mybag mybag = mybagRepository.findByUserAndProductId(user, productId)
+        Optional <User> user = Optional.of(userRepository.findByAccessToken(accessToken).get());
+        if(!user.isPresent()){
+            //403
+        }
+        Mybag mybag = mybagRepository.findByUserAndProductId(user.get(), productId)
                 .orElseGet(() -> mybagRepository
-                        .save(new Mybag(user, productId, 0, 1)));
+                        .save(new Mybag(user.get(), productId, 0, 1)));
         mybag.updateCount(1);
     }
 
     // 물품 삭제
     public void deleteItem(String accessToken, Long productId) {
-        User user = userRepository.findByAccessToken(accessToken).orElseThrow(IllegalArgumentException::new);
-        mybagRepository.deleteByUserAndProductId(user, productId);
+        Optional <User> user = Optional.of(userRepository.findByAccessToken(accessToken).get());
+        if(!user.isPresent()){
+            //403
+        }
+        mybagRepository.deleteByUserAndProductId(user.get(), productId);
     }
 
     // 물품 개수 변경
     public void changeItemCount(String accessToken, Long productId, int count) {
 
-        User user = userRepository.findByAccessToken(accessToken).orElseThrow(IllegalArgumentException::new);
-        Mybag mybag = mybagRepository.findByUserAndProductId(user, productId).get();
+        Optional <User> user = Optional.of(userRepository.findByAccessToken(accessToken).get());
+        if(!user.isPresent()){
+            //403
+        }
+        Mybag mybag = mybagRepository.findByUserAndProductId(user.get(), productId).get();
         mybag.updateCount(count);
-        if (mybag.getCount() == 0) mybagRepository.deleteByUserAndProductId(user, productId);
+        if (mybag.getCount() == 0) mybagRepository.deleteByUserAndProductId(user.get(), productId);
     }
 
     // 물품 상태 변경
     public void changeItemStatus(String accessToken, Long productId, int status) {
-        User user = userRepository.findByAccessToken(accessToken).orElseThrow(IllegalArgumentException::new);
-        Mybag mybag = mybagRepository.findByUserAndProductId(user, productId).get();
+        Optional <User> user = Optional.of(userRepository.findByAccessToken(accessToken).get());
+        if(!user.isPresent()){
+            //403
+        }
+        Mybag mybag = mybagRepository.findByUserAndProductId(user.get(), productId).get();
         mybag.updateStatus(status);
     }
 
@@ -71,15 +87,18 @@ public class MybagService {
 
         Map result = new HashMap<String, Integer>();
 
-        User user = userRepository.findByAccessToken(accessToken).orElseThrow(() -> new IllegalArgumentException("무슨일이야..?"));
+        Optional<User> user = Optional.of(userRepository.findByAccessToken(accessToken)).get();
+        if(!user.isPresent()){
+            //403 사람없음 에러
+        }
 
         int originalPriceBeforeBuy = 0;
         int salePriceBeforeBuy = 0;
         int originalPriceAfterBuy = 0;
         int salePriceAfterBuy = 0;
 
-        for (Mybag mb : mybagRepository.findByUser(user)) {
-            Product product = productRepository.findById(mb.getProductId()).orElseThrow(() -> new IllegalArgumentException("무슨일이야..?"));
+        for (Mybag mb : mybagRepository.findByUser(user.get())) {
+            Product product = productRepository.findById(mb.getProductId()).get();
             if (mb.getStatus() == 1) {
                 originalPriceBeforeBuy += product.getOriginalPrice()*mb.getCount();
                 salePriceBeforeBuy += product.getSalePrice()*mb.getCount();
