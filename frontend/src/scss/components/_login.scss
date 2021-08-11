@@ -27,11 +27,34 @@
     }
   }
 
-  button,
-  #kakao-login-btn {
-    width: 240px;
+  .login-btn-container {
+    width: 260px;
+  }
+
+  .g-sign2,
+  #kakao-login-btn,
+  .kep-login-facebook {
+    width: 100%;
     height: 50px;
-    margin: 0.3rem;
+    margin: 0.2rem;
+  }
+
+  #kakao-login-btn {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #feea0d;
+    align-self: center;
+    vertical-align: middle;
+    img {
+      max-width: 100%;
+      align-self: center;
+    }
+    span {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      @include font-default(500, 1.1rem);
+    }
   }
 
   .g-sign2 {
@@ -66,5 +89,9 @@
         font-size: 1.2rem;
       }
     }
+  }
+
+  .login-footer-descreption {
+    margin-top: 3rem;
   }
 }

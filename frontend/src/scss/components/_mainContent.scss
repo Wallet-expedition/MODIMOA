@@ -39,12 +39,14 @@
       display: none;
     }
   }
+
   .content-logo {
     @include desktop {
       display: none;
     }
 
     @include mobile {
+      height: 30%;
       text-align: center;
       img {
         max-width: 50%;
@@ -52,11 +54,21 @@
     }
   }
 
+  .content-search {
+    height: 10%;
+  }
+
+  .content-footer {
+    width: 90%;
+    height: 80%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
   .content-search,
   .mart {
     width: 90%;
-    margin: 1.4rem auto;
-    border-radius: 5px;
+    margin: 0 auto;
   }
 
   .mart {

@@ -13,7 +13,7 @@ const LayoutPresenter = ({ children, showSideMenu, setShowSideMenu }) => {
         showSideMenu={showSideMenu}
         setShowSideMenu={setShowSideMenu}
       />
-      {showSideMenu ? <SideMenu /> : null}
+      {showSideMenu ? <SideMenu setShowSideMenu={setShowSideMenu} /> : null}
       <Grid id="wrap"> {children} </Grid>
     </div>
   );

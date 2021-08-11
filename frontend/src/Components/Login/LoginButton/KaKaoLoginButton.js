@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 
 import { withRouter } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../../Store/Actions/userAction";
 
 /**
  *
@@ -11,6 +13,7 @@ import { withRouter } from "react-router-dom";
  * @returns KakaoLogin Button
  */
 const KakaoLoginButton = ({ history }) => {
+  const dispatch = useDispatch();
   let token = ""; // not useState
 
   const kakaoLoginSuccess = async (response) => {
@@ -18,19 +21,17 @@ const KakaoLoginButton = ({ history }) => {
     const account = response?.kakao_account;
     const tokenId = token;
     const body = {
-      email: account.email,
-      name: account.profile.nickname,
-      image: account.profile.profile_image_url,
+      user_email: account.email,
+      user_image: account.profile.profile_image_url,
     };
 
-    /* temp */
-    window.sessionStorage.setItem("token", JSON.stringify(tokenId));
+    const res = await dispatch(loginUser(tokenId, body));
+    console.log(res);
 
-    // const res = await dispatch(loginUser(tokenId, body));
-    console.log(body);
-
-    if (tokenId) {
-      history.push("./main");
+    if (res.payload.success) {
+      history.push("/main");
+    } else {
+      alert("로그인에 실패하였습니다.");
     }
   };
 
@@ -82,7 +83,6 @@ const KakaoLoginButton = ({ history }) => {
         id="kakao-login"
         alt="kakao-login"
         src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
-        width="240px"
       ></img>
     </div>
   );

@@ -9,7 +9,12 @@ import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
 // product_image={product_image}
 // original_price={original_price}
 // sale_price={sale_price}
-const ProductDetailPresenter = ({ item, sale_percent }) => {
+const ProductDetailPresenter = ({
+  item,
+  sale_percent,
+  isToastActive,
+  handleClick,
+}) => {
   var martClass = "product-info-mart";
   switch (item.mart_name) {
     case "CU":
@@ -57,9 +62,13 @@ const ProductDetailPresenter = ({ item, sale_percent }) => {
   const BagButton = () => {
     return (
       <div className="bag-button-container">
+        <span className="cart-icon">
+          <img src={`/img/cart.png`} alt="modimoa-bag-cart-icon"></img>
+        </span>
         <Button
           variant="contained"
           size="large"
+          onClick={handleClick}
           // startIcon={}
         >
           장바구니에 담기
@@ -68,10 +77,17 @@ const ProductDetailPresenter = ({ item, sale_percent }) => {
     );
   };
 
+  const MyBagToastMessage = () => {
+    return (
+      <div className="mybag-toast"> 장바구니에 성공적으로 담겼습니다. </div>
+    );
+  };
+
   return (
     <div className="product-detail-container">
       <ItemBox item={item} sale_percent={sale_percent} />
-      <BagButton />
+      <BagButton handleClick={handleClick} />
+      {isToastActive ? <MyBagToastMessage /> : ""}
     </div>
   );
 };

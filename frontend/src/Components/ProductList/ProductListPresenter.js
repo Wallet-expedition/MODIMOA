@@ -7,12 +7,13 @@ const ProductListPresenter = ({ list }) => {
       {list.map((item) => {
         return (
           <Product
-            id={item.product_id}
-            mart_name={item.mart_name}
-            product_name={item.product_name}
-            product_image={item.product_image}
-            original_price={item.original_price}
-            sale_price={item.sale_price}
+            key={item.productId}
+            id={item.productId}
+            mart_name={item.martName}
+            product_name={item.productName}
+            product_image={item.productImage}
+            original_price={item.originalPrice}
+            sale_price={item.salePrice}
           />
         );
       })}
