@@ -2,8 +2,8 @@ import React from "react";
 
 import GoogleLoginButton from "./GoogleLoginButton";
 import KaKaoLoginButton from "./KaKaoLoginButton";
-import FacebookLoginButton from "./FacebookLoginButtonLoginButton";
-import { GOOGLE, FACEBOOK, KAKAO } from "./constant";
+import FacebookLoginButton from "./FacebookLoginButton";
+import { GOOGLE, FACEBOOK, KAKAO } from "../../Util/Constant";
 
 const LoginButton = ({ name }) => {
   switch (name) {

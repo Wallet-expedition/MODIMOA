@@ -64,23 +64,25 @@ const MainPresenter = ({ searchKeyword, handleChange }) => {
         </span>
       </div>
 
-      <div className="mart">
-        <p> 대형 마트</p>
-        <div className="logo-container">
-          <LogoIcon name={EMART} />
-          <LogoIcon name={HOMEPLUS} />
-          <LogoIcon name={COSTCO} />
-          <LogoIcon name={LOTTE_MART} />
+      <div className="content-foot">
+        <div className="mart">
+          <p> 대형 마트</p>
+          <div className="logo-container">
+            <LogoIcon name={EMART} />
+            <LogoIcon name={HOMEPLUS} />
+            <LogoIcon name={COSTCO} />
+            <LogoIcon name={LOTTE_MART} />
+          </div>
         </div>
-      </div>
 
-      <div className="mart">
-        <p> 편의점</p>
-        <div className="logo-container">
-          <LogoIcon name={CU} />
-          <LogoIcon name={SEVEN_ELEVEN} />
-          <LogoIcon name={GS25} />
-          <LogoIcon name={EMART24} />
+        <div className="mart">
+          <p> 편의점</p>
+          <div className="logo-container">
+            <LogoIcon name={CU} />
+            <LogoIcon name={SEVEN_ELEVEN} />
+            <LogoIcon name={GS25} />
+            <LogoIcon name={EMART24} />
+          </div>
         </div>
       </div>
     </div>

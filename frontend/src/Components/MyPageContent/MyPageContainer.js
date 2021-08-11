@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { useHistory } from "react-router";
 import { withDrawUser } from "../../Store/Actions/userAction";
 import MyPagePresenter from "./MyPagePresenter";
@@ -12,9 +12,6 @@ const User = {
 const MyPageContainer = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-
-  const [email, setEmail] = useState("");
-  const [image, setImage] = useState("");
 
   /**
    * TODO : session ? cookie ?, delete Token
@@ -31,17 +28,6 @@ const MyPageContainer = () => {
 
     if (res.success) {
       history.push("/main");
-    }
-  };
-
-  const getUserInfo = async () => {
-    const tokenId = window.sessionStorage.getItem("token") || "A";
-
-    const res = await dispatch(getUserInfo(tokenId));
-
-    if (res.info) {
-      setEmail(res.info.email);
-      setImage(res.info.image);
     }
   };
 

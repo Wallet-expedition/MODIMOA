@@ -10,7 +10,7 @@
     position: absolute;
     z-index: 3;
     background-color: black;
-    width: 100%;
+    width: calc(100% - 1rem); // 1rem: padding
     height: 100%;
     opacity: 0.8;
     color: snow;
@@ -21,7 +21,7 @@
 
     .sidemenu-nav {
       text-align: right;
-      margin-right: 10vw;
+      margin-right: 5vw;
     }
 
     .sidemenu-foot {
@@ -37,7 +37,8 @@
 
   .sidemenu-nav {
     flex: 6;
-    a {
+    a,
+    div {
       font-size: 30px;
       display: flex;
       flex-direction: column;
@@ -64,7 +65,8 @@
   .sidemenu-nav,
   .sidemenu-foot {
     a,
-    p {
+    p,
+    div {
       font-weight: 700;
     }
   }

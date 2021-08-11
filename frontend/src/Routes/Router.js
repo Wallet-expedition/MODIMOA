@@ -8,6 +8,8 @@ import {
   ProductList,
   ProductDetail,
   MyPage,
+  MyBag,
+  Register,
 } from "../Pages";
 import Auth from "../Components/Util/Auth";
 
@@ -35,6 +37,8 @@ const Router = () => {
       <Route path="/login" component={Auth(Login, false)} />
       <Route path="/list/:id" component={Auth(ProductDetail, null)} />
       <Route path="/mypage" component={Auth(MyPage, true)} />
+      <Route path="/mybag" component={Auth(MyBag, true)} />
+      <Route path="/register" component={Auth(Register, false)} />
     </Switch>
   );
 };

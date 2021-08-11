@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
 import userReducer from "./userReducer";
 import productReducer from "./productReducer";
+import sideMenuReducer from "./sideMenuReducer";
+import martReducer from "./martReducer";
 
 /**
  * if other Reducer exist, add reducer
@@ -8,6 +10,8 @@ import productReducer from "./productReducer";
 const rootReducer = combineReducers({
   userReducer,
   productReducer,
+  sideMenuReducer,
+  martReducer,
 });
 
 export default rootReducer;

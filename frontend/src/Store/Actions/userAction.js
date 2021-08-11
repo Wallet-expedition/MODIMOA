@@ -10,7 +10,7 @@ import {
 /**
  *
  * @params tokenId : string
- * @params body : request we need (nickname, image, email)
+ * @params body : request we received (image, email)
  *
  * @return user.response.data
  */
@@ -20,6 +20,15 @@ export const loginUser = async (tokenId, body) => {
       authorization: tokenId,
     },
   });
+
+  return {
+    type: LOGIN_USER,
+    payload: res.data,
+  };
+};
+
+export const registerUser = async (body) => {
+  const res = await axios.post(`${process.env.SERVER}/api/auth/login`, body);
 
   return {
     type: LOGIN_USER,
