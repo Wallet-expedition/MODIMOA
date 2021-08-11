@@ -2,19 +2,23 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import SideMenuPresenter from "./SideMenuPresenter";
 import { useHistory } from "react-router-dom";
 import { getCookie } from "../../Util/Cookie";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../../Store/Actions/userAction";
 
 const SideMenuContainer = ({ setShowSideMenu }) => {
   const [isToastActive, setIsToastActive] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [path, setPath] = useState("main");
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const handleLogout = (event) => {
-    event.preventDefault();
-    window.sessionStorage.removeItem("token");
+  const handleLogout = async () => {
+    const tokenId = getCookie("accessToken");
+    const res = await dispatch(logoutUser(tokenId));
+
     setIsToastActive(true);
 
-    if (path === "mypage" || path === "mybag") {
+    if (res.payload && (path === "mypage" || path === "mybag")) {
       history.push("/main");
     }
   };
