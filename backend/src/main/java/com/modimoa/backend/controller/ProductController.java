@@ -28,7 +28,7 @@ public class ProductController {
         return productService.getAllProducts(pageable);
     }
 
-    // 특정 마트 물건 가져오는 기능
+    // 특정 id 물건 가져오는 기능
     @GetMapping("/{id}")
     public Optional<Product> getFilteredProduct(@PathVariable Long id){
         return productService.getProductById(id);
