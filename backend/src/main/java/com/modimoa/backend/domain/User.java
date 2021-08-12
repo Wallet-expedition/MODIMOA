@@ -1,6 +1,7 @@
 package com.modimoa.backend.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,7 @@ public class User extends BaseTimeEntity{
     @Column(name="user_image")
     private String userImage;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Mybag> mybags = new ArrayList<>();
 

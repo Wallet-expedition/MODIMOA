@@ -39,12 +39,4 @@ public class ProductController {
     public Page<Product> getFilteredProduct(@PathVariable String mart, @PathVariable String q, Pageable pageable){
         return productService.getFilteredProduct(mart, q, pageable);
     }
-
-    // 정렬기준
-        // 할인된가격순(salePrice)
-        // 이름순(productName)
-    // 필터링
-        // 이름(q)
-        // 마트(mart)
-
 }
