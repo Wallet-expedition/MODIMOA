@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import MartListPresenter from "./MartListPresenter";
 
-const MartListContainer = ({ martList, setMartList }) => {
+const MartListContainer = ({ martList }) => {
   const [showMartList, setShowMartList] = useState(false);
+  const [tempMartList, setTempMartList] = useState(martList);
 
   return (
     <MartListPresenter
       showMartList={showMartList}
       setShowMartList={setShowMartList}
       martList={martList}
-      setMartList={setMartList}
+      tempMartList={tempMartList}
+      setTempMartList={setTempMartList}
     />
   );
 };
