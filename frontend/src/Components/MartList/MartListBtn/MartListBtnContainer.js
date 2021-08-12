@@ -35,7 +35,7 @@ const MartListBtnContainer = ({
       // 모두 active : false이면 버튼이 눌리지 않게 하자.
       if (isAllDeactivation) {
         alert("적어도 한 개의 마트를 선택해주세요.");
-        setShowMartList(!showMartList); // 마트리스트가 꺼지지 않게
+        setShowMartList(true); // 마트리스트가 꺼지지 않게
       } else {
         dispatch(selectMart(tempMartList));
       }
