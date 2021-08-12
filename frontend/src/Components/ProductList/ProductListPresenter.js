@@ -1,9 +1,9 @@
 import React from "react";
 import Product from "../Product";
 
-const ProductListPresenter = ({ list }) => {
+const ProductListPresenter = ({ list, listComponent }) => {
   return (
-    <div className="product-list-container">
+    <div className="product-list-container" ref={listComponent}>
       {list.map((item) => {
         return (
           <Product

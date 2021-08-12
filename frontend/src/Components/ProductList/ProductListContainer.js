@@ -1,34 +1,72 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useLayoutEffect, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import ProductListPresenter from "./ProductListPresenter";
 import { SampleList } from "../Util/SampleList";
-// import { getProductList } from "../../Store/Actions/productAction";
+import { getProductList } from "../../Store/Actions/productAction";
+import { throttle } from "../Util/Throttle";
 
 const ProductListContainer = ({ martList, searchKeyword, sortOption }) => {
   const [list, setList] = useState([]);
   const [isLoadFinish, setIsLoadFinish] = useState(false);
   const currentPage = useRef(0);
+  const listComponent = useRef(0);
+  const martCode = useRef("");
   const dispatch = useDispatch();
 
-  const getProductList = async () => {
-    if (isLoadFinish) return;
-    const filter = sortOption === 0 ? "salePrice" : "productName";
+  const getList = async () => {
+    if (isLoadFinish) return; // 상품 마지막 페이지에 도착했을 경우
+    const filter = sortOption === 1 ? "salePrice" : "productName";
     const res = await dispatch(
-      getProductList(martList, searchKeyword, currentPage.current, filter)
+      getProductList(
+        martCode.current,
+        searchKeyword,
+        currentPage.current,
+        filter
+      )
     );
-    console.log(res.data);
+    setList([...list, res.a]);
     currentPage.current++;
-    if (res.data.last === true) {
+
+    // 페이지의 끝에 도달했을 경우 더이상 물품을 받을 수 없다.
+    if (res.payload.last) {
       setIsLoadFinish(true);
     }
-    setList([...list, res.data.content]);
   };
 
-  // useEffect(() => {
-  //   getProductList();
-  // }, []);
+  const checkScroll = () => {
+    const scrollHeight = listComponent.current.scrollHeight;
+    const scrollTop = listComponent.current.scrollTop;
+    const clientHeight = listComponent.current.clientHeight;
 
-  return <ProductListPresenter list={SampleList} />;
+    if (scrollTop + clientHeight >= scrollHeight) {
+      console.log("more data");
+      getList();
+    }
+  };
+
+  const handleScroll = throttle(checkScroll, 500);
+
+  useEffect(() => {
+    listComponent.current.addEventListener("scroll", handleScroll);
+    return () => {
+      listComponent?.current?.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  // setMartCode before render
+  useEffect(() => {
+    const tempMartCode = Object.values(martList)
+      .map((flag) => {
+        return flag === true ? "1" : "0";
+      })
+      .join("");
+    martCode.current = tempMartCode;
+    currentPage.current = 0;
+  }, [martCode, martList]);
+
+  return (
+    <ProductListPresenter list={SampleList} listComponent={listComponent} />
+  );
 };
 
 export default ProductListContainer;
