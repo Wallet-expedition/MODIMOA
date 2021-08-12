@@ -1,5 +1,6 @@
 package com.modimoa.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public class Mybag extends BaseTimeEntity {
     private int status;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -53,9 +55,11 @@ public class Mybag extends BaseTimeEntity {
     public void updateStatus(int i) {
         this.status = i;
     }
-
+/*
     @Override
     public String toString(){
         return String.format("Mybag[mybag_id=%d, product_id='%d', count='%d']\n", mybagId, productId, count);
     }
+
+ */
 }

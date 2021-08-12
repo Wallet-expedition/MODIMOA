@@ -3,6 +3,7 @@ package com.modimoa.backend.service;
 import com.modimoa.backend.domain.*;
 import com.modimoa.backend.errorhandling.ErrorCode;
 import com.modimoa.backend.errorhandling.InvalidQueryException;
+import com.modimoa.backend.errorhandling.ObjectNotFoundException;
 import com.modimoa.backend.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -71,7 +72,7 @@ public class ProductService {
         Optional<Product> product = Optional.of(productRepository.findById(id).get());
 
         if(!product.isPresent()){
-            // 403 그 물품 없음
+            throw new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR);
         }
 
         return product;
