@@ -18,7 +18,7 @@ const SideMenuContainer = ({ setShowSideMenu }) => {
     const res = await dispatch(logoutUser(tokenId));
 
     setIsToastActive(true);
-
+    dispatch(closedSideMenu(false));
     if (res.payload && (path === "mypage" || path === "mybag")) {
       history.push("/main");
     }
