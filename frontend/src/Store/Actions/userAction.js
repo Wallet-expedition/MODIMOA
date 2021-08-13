@@ -47,15 +47,6 @@ export const registerUser = async (body, tokenId) => {
   };
 };
 
-export const registerUser = async (body) => {
-  const res = await axios.post(`${process.env.SERVER}/api/auth/login`, body);
-
-  return {
-    type: LOGIN_USER,
-    payload: res.data,
-  };
-};
-
 export const logoutUser = async (tokenId) => {
   console.log(tokenId);
   const res = await axios.post(
