@@ -18,7 +18,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -31,10 +31,7 @@ public class UserController {
     @GetMapping("")
     public String getAllUsers(@RequestHeader HttpHeaders requestHeader) {
 
-
         String cookie = requestHeader.toSingleValueMap().get("authorization");
-
-
         String result = "";
 
         for (User u : userService.getAllUsers()) {
@@ -46,22 +43,19 @@ public class UserController {
 
     // 회원가입 기능
     @PostMapping("/new")
-    public String addUserByToken(@RequestHeader HttpHeaders requestHeader, @RequestBody HashMap<String, String> map) {
+    public void addUserByToken(@RequestHeader HttpHeaders requestHeader, @RequestBody HashMap<String, String> map) {
         String userImage = map.get("user_image");
         String userEmail = map.get("user_email");
 
-
         String oauthCookie = requestHeader.toSingleValueMap().get("authorization");;
 
-        String result = userService.signUp(userImage, userEmail, oauthCookie);
-        return result;
+        userService.signUp(userImage, userEmail, oauthCookie);
     }
 
     // 로그인 기능, HttpHeaders로 사용자 토큰 받음
     @PostMapping("/login")
     public void loginUserByToken(@RequestHeader HttpHeaders requestHeader, HttpServletResponse response,@RequestBody HashMap<String, String> map) throws NoSuchAlgorithmException {
         String userEmail = map.get("user_email");
-        // 쿠기 받기
 
         String loginCookie = requestHeader.toSingleValueMap().get("authorization");
 
@@ -70,33 +64,28 @@ public class UserController {
 
         Cookie rCookie = new Cookie("accessToken",accessToken);
         rCookie.setPath("/");
-
         rCookie.setMaxAge(60*60*24*15);
-
         response.addCookie(rCookie);
     }
 
     // 회원탈퇴 기능, 사용자 정보 토큰으로 받을지 정해야함6
     @DeleteMapping("/withdrawal")
-    public String withdrawal(@RequestHeader HttpHeaders requestHeader) {
+    public void withdrawal(@RequestHeader HttpHeaders requestHeader) {
 
         String withdrawal = requestHeader.toSingleValueMap().get("authorizaion");
 
         userService.withdrawal(withdrawal);
-        //추후 구현
-        return "탈퇴";
     }
 
 
     // 로그아웃 기능, 사용자 정보 넘기는 방식에 따라 수정 필요
     @PostMapping("/logout")
-    public String logoutUserByToken(@RequestHeader HttpHeaders requestHeader) {
+    public void logoutUserByToken(@RequestHeader HttpHeaders requestHeader) {
 
         String logoutCookie = requestHeader.toSingleValueMap().get("authorizaion");
 
         userService.logout(logoutCookie);
 
-        return "로그아웃";
     }
 
     // 로그인 상태인지 확인 및 유저 정보 반환

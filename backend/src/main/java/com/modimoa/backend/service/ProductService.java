@@ -1,6 +1,9 @@
 package com.modimoa.backend.service;
 
 import com.modimoa.backend.domain.*;
+import com.modimoa.backend.errorhandling.ErrorCode;
+import com.modimoa.backend.errorhandling.InvalidQueryException;
+import com.modimoa.backend.errorhandling.ObjectNotFoundException;
 import com.modimoa.backend.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +25,14 @@ public class ProductService {
 
     // 검색 쿼리 q에 따라 물품을 페이지네이션해서 반환하는 page형 함수
     public Page<Product> getFilteredProduct(String mart, String q, Pageable pageable) {
+
+        if(mart.length()!=4){
+            throw new InvalidQueryException("Invalid Query", ErrorCode.INVALID_QUERY_ERROR);
+        }
+        if(!pageable.getSort().toString().equals("salePrice: ASC") && !pageable.getSort().toString().equals("productName: ASC")){
+            throw new InvalidQueryException("Invalid Query", ErrorCode.INVALID_QUERY_ERROR);
+        }
+
         boolean [] martList = new boolean[4];
         Arrays.fill(martList, false);
 
@@ -57,8 +68,14 @@ public class ProductService {
     }
 
     public Optional<Product> getProductById(Long id) {
-        Optional<Product> pr = productRepository.findById(id);
-        return pr;
+
+        Optional<Product> product = Optional.of(productRepository.findById(id).get());
+
+        if(!product.isPresent()){
+            throw new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR);
+        }
+
+        return product;
     }
 
 

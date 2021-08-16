@@ -2,39 +2,36 @@ package com.modimoa.backend.controller;
 
 import com.modimoa.backend.domain.Mybag;
 import com.modimoa.backend.service.MybagService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping(value="/api/mybag", method={RequestMethod.GET, RequestMethod.POST})
+@RequestMapping(value="/api/mybag")
 public class MybagController {
 
-    @Autowired
-    private MybagService mybagService = new MybagService();
+    private final MybagService mybagService;
+
+    public MybagController(MybagService mybagService) {
+        this.mybagService = mybagService;
+    }
 
     // 장바구니에서 user의 물건 조회하는 기능
     @GetMapping("")
-    public String findAll(@RequestHeader HttpHeaders requestHeader){
+    public List<Mybag> findAll(@RequestHeader HttpHeaders requestHeader){
         String accessToken = requestHeader.toSingleValueMap().get("authorization");
-
-        String result = "";
-        for(Mybag mb: mybagService.findAll(accessToken)){
-            result += mb + "</br>";
-        }
-        return result;
+        return mybagService.findAll(accessToken);
     }
 
     // 장바구니에서 user의 물건 가격 알려주는 기능
     @GetMapping("/prices")
-    public Map getPrice(@RequestHeader HttpHeaders requestHeader){
+    public Map<String, Integer> getPrice(@RequestHeader HttpHeaders requestHeader){
         String accessToken = requestHeader.toSingleValueMap().get("authorization");
-        Map result = mybagService.getPrice(accessToken);
 
-        return result;
+        return mybagService.getPrice(accessToken);
     }
 
     // 장바구니에 새 물건 추가하는 기능, 기존에 물건이 있으면 개수 증가
@@ -59,8 +56,7 @@ public class MybagController {
     public String changeItemCount(@PathVariable Long productId, @RequestHeader HttpHeaders requestHeader){
 
         String accessToken = requestHeader.toSingleValueMap().get("authorization");
-        int count = 0;
-
+        int count = Integer.parseInt(requestHeader.toSingleValueMap().get("count"));
         mybagService.changeItemCount(accessToken, productId, count);
 
         return "장바구니 상품 개수가 변경됨";
@@ -70,7 +66,7 @@ public class MybagController {
     @PatchMapping("/changestat/{productId}")
     public String changeItemStatus(@PathVariable Long productId, @RequestHeader HttpHeaders requestHeader){
         String accessToken = requestHeader.toSingleValueMap().get("authorization");
-        int status = 1;
+        int status = Integer.parseInt(requestHeader.toSingleValueMap().get("status"));
         mybagService.changeItemStatus(accessToken, productId, status);
 
         return "장바구니 상품 구매 상태가 변경됨";

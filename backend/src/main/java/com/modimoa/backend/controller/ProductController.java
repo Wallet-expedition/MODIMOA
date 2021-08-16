@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
@@ -28,7 +28,7 @@ public class ProductController {
         return productService.getAllProducts(pageable);
     }
 
-    // 특정 마트 물건 가져오는 기능
+    // 특정 id 물건 가져오는 기능
     @GetMapping("/{id}")
     public Optional<Product> getFilteredProduct(@PathVariable Long id){
         return productService.getProductById(id);
@@ -39,12 +39,4 @@ public class ProductController {
     public Page<Product> getFilteredProduct(@PathVariable String mart, @PathVariable String q, Pageable pageable){
         return productService.getFilteredProduct(mart, q, pageable);
     }
-
-    // 정렬기준
-        // 할인된가격순(salePrice)
-        // 이름순(productName)
-    // 필터링
-        // 이름(q)
-        // 마트(mart)
-
 }
