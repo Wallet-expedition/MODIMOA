@@ -6,8 +6,4 @@ import org.junit.jupiter.api.Test;
 
 class ProductServiceTest {
 
-    @Test
-    void 상품추가(){
-
-    }
 }
