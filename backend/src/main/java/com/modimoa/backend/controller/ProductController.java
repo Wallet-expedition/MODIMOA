@@ -35,8 +35,16 @@ public class ProductController {
     }
 
     // 특정 마트 물건 가져오는 기능
+    @GetMapping("{mart}")
+    public Page<Product> getFilteredProduct(@PathVariable String mart, Pageable pageable){
+        return productService.getFilteredProduct(mart, pageable);
+    }
+
+    // 특정 마트 검색어 맞추어 물건 가져오는 기능
     @GetMapping("{mart}/{q}")
     public Page<Product> getFilteredProduct(@PathVariable String mart, @PathVariable String q, Pageable pageable){
-        return productService.getFilteredProduct(mart, q, pageable);
+        return productService.getFilteredProductWithName(mart, q, pageable);
     }
+
+
 }

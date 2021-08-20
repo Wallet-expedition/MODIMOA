@@ -24,7 +24,7 @@ public class ProductService {
     }
 
     // 검색 쿼리 q에 따라 물품을 페이지네이션해서 반환하는 page형 함수
-    public Page<Product> getFilteredProduct(String mart, String q, Pageable pageable) {
+    public Page<Product> getFilteredProductWithName(String mart, String q, Pageable pageable) {
 
         if(mart.length()!=4){
             throw new InvalidQueryException("Invalid Query", ErrorCode.INVALID_QUERY_ERROR);
@@ -32,6 +32,7 @@ public class ProductService {
         if(!pageable.getSort().toString().equals("salePrice: ASC") && !pageable.getSort().toString().equals("productName: ASC")){
             throw new InvalidQueryException("Invalid Query", ErrorCode.INVALID_QUERY_ERROR);
         }
+
 
         boolean [] martList = new boolean[4];
         Arrays.fill(martList, false);
@@ -66,6 +67,52 @@ public class ProductService {
 
         return pageList;
     }
+
+    // 검색 쿼리 q없이 물품을 페이지네이션해서 반환하는 page형 함수
+    public Page<Product> getFilteredProduct(String mart, Pageable pageable) {
+
+        if(mart.length()!=4){
+            throw new InvalidQueryException("Invalid Query", ErrorCode.INVALID_QUERY_ERROR);
+        }
+        if(!pageable.getSort().toString().equals("salePrice: ASC") && !pageable.getSort().toString().equals("productName: ASC")){
+            throw new InvalidQueryException("Invalid Query", ErrorCode.INVALID_QUERY_ERROR);
+        }
+
+
+        boolean [] martList = new boolean[4];
+        Arrays.fill(martList, false);
+
+        for(int i=0; i<mart.length();i++){
+            if(mart.charAt(i)=='1') martList[i] = true;
+        }
+
+        List<Product> cuList = new ArrayList<>();
+        List<Product> sevenList = new ArrayList<>();
+        List<Product> gsList = new ArrayList<>();
+        List<Product> emartList = new ArrayList<>();
+
+        if(martList[0]) cuList = productRepository.findByMartName(Mart.CU);
+        if(martList[1]) sevenList = productRepository.findByMartName(Mart.SEVEN11);
+        if(martList[2]) gsList = productRepository.findByMartName(Mart.GS25);
+        if(martList[3]) emartList = productRepository.findByMartName(Mart.EMART24);
+
+        List<Product> resultList = new ArrayList<>();
+        resultList.addAll(cuList);
+        resultList.addAll(sevenList);
+        resultList.addAll(gsList);
+        resultList.addAll(emartList);
+
+        if(pageable.getSort().toString().equals("productName: ASC")) resultList.sort(new ProductNameComparator());
+        else if(pageable.getSort().toString().equals("salePrice: ASC")) resultList.sort(new ProductPriceComparator());
+
+        int start = (int)pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), resultList.size());
+
+        Page<Product> pageList = new PageImpl<>(resultList.subList(start, end), pageable, resultList.size());
+
+        return pageList;
+    }
+
 
     public Optional<Product> getProductById(Long id) {
 
