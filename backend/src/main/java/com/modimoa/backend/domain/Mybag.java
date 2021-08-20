@@ -47,6 +47,10 @@ public class Mybag extends BaseTimeEntity {
         return count;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
     public void updateCount(int count){
         this.count = count;
     }

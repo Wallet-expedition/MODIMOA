@@ -41,10 +41,17 @@ public class MybagService {
     public void plusItemOrCreateCount(String accessToken, Long productId) {
         Optional <User> user = userRepository.findByAccessToken(accessToken);
         user.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
-        Mybag mybag = mybagRepository.findByUserAndProductId(user.get(), productId)
-                .orElseGet(() -> mybagRepository
-                        .save(new Mybag(user.get(), productId, 0, 1)));
-        mybag.updateCount(1);
+
+        Optional<Mybag> mybag = mybagRepository.findByUserAndProductIdAndStatus(user.get(), productId, 1);
+
+        //status가 1인 상품을 찾은 경우
+        if(mybag.isPresent()){
+            mybag.get().updateCount(mybag.get().getCount()+1);
+        }
+        //상품을 찾지 못한 경우
+        else{
+            mybagRepository.save(new Mybag(user.get(), productId, 1, 1));
+        }
     }
 
     // 물품 삭제
