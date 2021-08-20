@@ -39,7 +39,11 @@ const ProductListPage = () => {
     useSelector((state) => state.martReducer.martList) || initialState;
 
   const location = useLocation();
-  const keyword = (location.search) ? decodeURI(location.search.match(/\?keyword\=(?<keyword>.+)/).groups.keyword) : '';
+  const keyword = location.search
+    ? decodeURI(
+        location.search.match(/\?keyword=(?<keyword>.+)/).groups.keyword
+      )
+    : "";
 
   const SortBar = () => {
     const handleChange = (event, newOption) => {

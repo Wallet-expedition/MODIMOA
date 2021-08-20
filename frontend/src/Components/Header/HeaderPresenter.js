@@ -27,9 +27,11 @@ const HeaderPresenter = ({ children }) => {
     };
     const onClickSearch = () => {
       if (searchKeyword)
-        history.push({pathname: "/list", search: `?keyword=${searchKeyword}`});
-      else
-        alert("검색어를 입력해주세요");
+        history.push({
+          pathname: "/list",
+          search: `?keyword=${searchKeyword}`,
+        });
+      else alert("검색어를 입력해주세요");
     };
     const onEnterPress = (e) => {
       if (e.key === "Enter") {
