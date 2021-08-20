@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -11,7 +13,6 @@ import MartList from "../Components/MartList";
 
 import "../scss/ProductList.scss";
 import "../scss/MartList.scss";
-import { useSelector } from "react-redux";
 
 const ResultField = ({ searchKeyword }) => {
   let resultText = "";
@@ -33,10 +34,12 @@ const initialState = {
 };
 
 const ProductListPage = () => {
-  const [finalSearchKeyword, setFinalSearchKeyword] = useState("");
   const [sortOption, setSortOption] = useState(0);
   const martList =
     useSelector((state) => state.martReducer.martList) || initialState;
+
+  const location = useLocation();
+  const keyword = (location.search) ? decodeURI(location.search.match(/\?keyword\=(?<keyword>.+)/).groups.keyword) : '';
 
   const SortBar = () => {
     const handleChange = (event, newOption) => {
@@ -58,13 +61,13 @@ const ProductListPage = () => {
   };
   return (
     <Layout>
-      <Header setFinalSearchKeyword={setFinalSearchKeyword}>
+      <Header>
         <MartList martList={martList} />
-        <ResultField searchKeyword={finalSearchKeyword} />
+        <ResultField searchKeyword={keyword} />
         <SortBar />
       </Header>
       <ProductList
-        searchKeyword={finalSearchKeyword}
+        searchKeyword={keyword}
         martList={martList}
         sortOption={sortOption}
       />

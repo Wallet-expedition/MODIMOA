@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 
-const HeaderPresenter = ({ setFinalSearchKeyword, children }) => {
+const HeaderPresenter = ({ children }) => {
   const LogoLong = () => {
     return (
       <Link to="/main">
@@ -21,11 +21,15 @@ const HeaderPresenter = ({ setFinalSearchKeyword, children }) => {
 
   const SearchBar = () => {
     const [searchKeyword, setSearchKeyword] = useState("");
+    const history = useHistory();
     const handleChange = (e) => {
       setSearchKeyword(e.target.value);
     };
     const onClickSearch = () => {
-      setFinalSearchKeyword(searchKeyword);
+      if (searchKeyword)
+        history.push({pathname: "/list", search: `?keyword=${searchKeyword}`});
+      else
+        alert("검색어를 입력해주세요");
     };
     const onEnterPress = (e) => {
       if (e.key === "Enter") {
