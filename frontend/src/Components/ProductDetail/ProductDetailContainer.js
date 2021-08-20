@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneProduct, wishProduct } from "../../Store/Actions/productAction";
@@ -26,7 +26,7 @@ const ProductDetailContainer = () => {
     dispatch(wishProduct(body, item.id));
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // toast 활성화
     if (isToastActive === true) {
       setTimeout(() => {
@@ -35,7 +35,7 @@ const ProductDetailContainer = () => {
     }
   }, [isToastActive]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const setNewProduct = async () => {
       const res = await dispatch(getOneProduct(Number(params.id)));
 
@@ -59,7 +59,7 @@ const ProductDetailContainer = () => {
   }, [dispatch, itemFromRedux, params.id]);
 
   // for SalePercent
-  useEffect(() => {
+  useLayoutEffect(() => {
     const newSalePercent = Math.round(
       (item.sale_price * 100) / item.original_price
     );
