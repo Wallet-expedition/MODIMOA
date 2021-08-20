@@ -26,7 +26,7 @@ const FacebookRegisterButton = ({ history }) => {
 
     const res = await dispatch(registerUser(body));
 
-    if (res.payload) {
+    if (res.payload.status === 200) {
       history.push("/login");
     } else {
       alert("회원가입에 실패하였습니다.");

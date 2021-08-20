@@ -1,12 +1,9 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-import { selectMart } from "../../Store/Actions/martAction";
 import MartListBtn from "./MartListBtn";
 import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
-import { useDispatch } from "react-redux";
 
 const LogoIcon = ({ name, martList, setTempMartList }) => {
-  const dispatch = useDispatch();
   var martClass = "martlist-mart-icon";
   var active;
   if (martList === undefined) return "1";
