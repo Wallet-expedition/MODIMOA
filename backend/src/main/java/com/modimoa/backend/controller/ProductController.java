@@ -29,7 +29,7 @@ public class ProductController {
     }
 
     // 특정 id 물건 가져오는 기능
-    @GetMapping("/{id}")
+    @GetMapping("pid/{id}")
     public Optional<Product> getFilteredProduct(@PathVariable Long id){
         return productService.getProductById(id);
     }
