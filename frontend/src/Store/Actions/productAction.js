@@ -1,5 +1,10 @@
 import axios from "axios";
-import { GET_PRODUT_LIST, SELECT_PRODUCT, WISH_PRODUCT } from "./type";
+import {
+  GET_PRODUT_LIST,
+  SELECT_PRODUCT,
+  WISH_PRODUCT,
+  GET_ONE_PRODUCT,
+} from "./type";
 
 export const selectProduct = (product_info) => {
   return {
@@ -16,30 +21,33 @@ export const wishProduct = async (body, id) => {
 
   return {
     type: WISH_PRODUCT,
-    payload: res.data,
+    payload: res,
   };
 };
 
 export const getProductList = async (mart, searchKeyword, page, sortFilter) => {
   console.log(mart, searchKeyword, page, sortFilter);
-  let res = {};
   // 검색어가 없을 경우
   if (searchKeyword === "") {
-    res = await axios.get(
+    const res = await axios.get(
       `${process.env.REACT_APP_SERVER}/api/products/${mart}?page=${page}&sort=${sortFilter}`
     );
+
+    return {
+      type: GET_PRODUT_LIST,
+      payload: res,
+    };
   }
   // 검색어가 있을 경우
   else {
-    res = await axios.get(
+    const res = await axios.get(
       `${process.env.REACT_APP_SERVER}/api/products/${mart}/${searchKeyword}?page=${page}&sort=${sortFilter}`
     );
+    return {
+      type: GET_PRODUT_LIST,
+      payload: res,
+    };
   }
-
-  return {
-    type: GET_PRODUT_LIST,
-    payload: res.data,
-  };
 };
 
 export const changeMyBagState = async (productId) => {
@@ -49,6 +57,17 @@ export const changeMyBagState = async (productId) => {
 
   return {
     type: GET_PRODUT_LIST,
-    payload: res.data,
+    payload: res,
+  };
+};
+
+export const getOneProduct = async (productId) => {
+  const res = await axios.get(
+    `${process.env.REACT_APP_SERVER}/api/products/pid/${productId}`
+  );
+
+  return {
+    type: GET_ONE_PRODUCT,
+    payload: res,
   };
 };

@@ -52,9 +52,7 @@ const GoogleLoginButton = ({ history }) => {
     };
 
     const res = await dispatch(loginUser(tokenId, body));
-    console.log(res);
-
-    if (res.payload) {
+    if (res.payload.status === 200) {
       history.push("/main");
     } else {
       alert("로그인에 실패하였습니다.");
