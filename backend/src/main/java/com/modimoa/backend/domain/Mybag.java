@@ -18,7 +18,7 @@ public class Mybag extends BaseTimeEntity {
 
     @Id//primary key
     @Column(name="mybag_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long mybagId;
 
     @Column(name="product_id")

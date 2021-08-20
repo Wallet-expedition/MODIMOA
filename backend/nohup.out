@@ -1,0 +1,48 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.5.0)
+
+2021-08-19 07:26:33.662  INFO 17857 --- [           main] com.modimoa.backend.BackendApplication   : Starting BackendApplication using Java 1.8.0_302 on ip-172-31-33-117.ap-northeast-2.compute.internal with PID 17857 (/home/ec2-user/app/git/MODIMOA/backend/newdeploy-backend.jar started by ec2-user in /home/ec2-user/app/git/MODIMOA/backend)
+2021-08-19 07:26:33.674  INFO 17857 --- [           main] com.modimoa.backend.BackendApplication   : No active profile set, falling back to default profiles: default
+2021-08-19 07:26:36.359  INFO 17857 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-08-19 07:26:36.362  INFO 17857 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2021-08-19 07:26:36.457  INFO 17857 --- [           main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.modimoa.backend.repository.MybagRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-08-19 07:26:36.460  INFO 17857 --- [           main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.modimoa.backend.repository.UserRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-08-19 07:26:36.461  INFO 17857 --- [           main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.modimoa.backend.repository.ProductRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2021-08-19 07:26:36.462  INFO 17857 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 88 ms. Found 0 JDBC repository interfaces.
+2021-08-19 07:26:36.495  INFO 17857 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-08-19 07:26:36.497  INFO 17857 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-08-19 07:26:36.607  INFO 17857 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 98 ms. Found 3 JPA repository interfaces.
+2021-08-19 07:26:36.932  WARN 17857 --- [           main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.modimoa.backend]' package. Please check your configuration.
+2021-08-19 07:26:38.466  INFO 17857 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-08-19 07:26:38.509  INFO 17857 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-08-19 07:26:38.509  INFO 17857 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2021-08-19 07:26:38.688  INFO 17857 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-08-19 07:26:38.688  INFO 17857 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4870 ms
+2021-08-19 07:26:39.954  INFO 17857 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-08-19 07:26:40.085  INFO 17857 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.31.Final
+2021-08-19 07:26:40.448  INFO 17857 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-08-19 07:26:40.660  INFO 17857 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-08-19 07:26:40.799  INFO 17857 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-08-19 07:26:40.849  INFO 17857 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MariaDB53Dialect
+2021-08-19 07:26:42.547  INFO 17857 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-08-19 07:26:42.565  INFO 17857 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-08-19 07:26:44.295  WARN 17857 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-08-19 07:26:44.711  INFO 17857 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-08-19 07:26:45.236  INFO 17857 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2021-08-19 07:26:46.225  INFO 17857 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-19 07:26:46.228  INFO 17857 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2021-08-19 07:26:46.294  INFO 17857 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2021-08-19 07:26:46.385  INFO 17857 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2021-08-19 07:26:46.842  INFO 17857 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getFilteredProductUsingGET_1
+2021-08-19 07:26:46.927  INFO 17857 --- [           main] com.modimoa.backend.BackendApplication   : Started BackendApplication in 14.43 seconds (JVM running for 15.71)
+2021-08-19 07:26:46.929  INFO 17857 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2021-08-19 07:26:46.937  INFO 17857 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2021-08-19 07:27:30.200  INFO 17857 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-19 07:27:30.203  INFO 17857 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-08-19 07:27:30.205  INFO 17857 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
