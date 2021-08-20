@@ -14,7 +14,7 @@ public class Product extends BaseTimeEntity implements Serializable{
 
     @Id//primary key
     @Column(name="product_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long productId;
 
     @Column(name="mart_name")
