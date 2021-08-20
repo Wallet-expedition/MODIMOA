@@ -1,12 +1,15 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-
+import { selectMart } from "../../Store/Actions/martAction";
 import MartListBtn from "./MartListBtn";
 import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
+import { useDispatch } from "react-redux";
 
-const LogoIcon = ({ name, martList, setMartList }) => {
+const LogoIcon = ({ name, martList, setTempMartList }) => {
+  const dispatch = useDispatch();
   var martClass = "martlist-mart-icon";
   var active;
+  if (martList === undefined) return "1";
   switch (name) {
     case CU:
       active = martList.CU;
@@ -37,16 +40,16 @@ const LogoIcon = ({ name, martList, setMartList }) => {
   const onClick = () => {
     switch (name) {
       case CU:
-        setMartList({ ...martList, CU: !active });
+        setTempMartList({ ...martList, CU: !active });
         break;
       case SEVEN_ELEVEN:
-        setMartList({ ...martList, SEVEN_ELEVEN: !active });
+        setTempMartList({ ...martList, SEVEN_ELEVEN: !active });
         break;
       case GS25:
-        setMartList({ ...martList, GS25: !active });
+        setTempMartList({ ...martList, GS25: !active });
         break;
       case EMART24:
-        setMartList({ ...martList, EMART24: !active });
+        setTempMartList({ ...martList, EMART24: !active });
         break;
       default:
         break;
@@ -65,22 +68,30 @@ const LogoIcon = ({ name, martList, setMartList }) => {
   );
 };
 
-const MartListModal = ({ martList, setMartList }) => {
+const MartListModal = ({ martList, setTempMartList }) => {
   return (
     <div className="martlist-container">
       <span> 보고 싶은 편의점의 제품만 골라서 보실 수 있습니다. </span>
       <div className="martlist-mart-container">
-        <LogoIcon name={CU} martList={martList} setMartList={setMartList} />
+        <LogoIcon
+          name={CU}
+          martList={martList}
+          setTempMartList={setTempMartList}
+        />
         <LogoIcon
           name={SEVEN_ELEVEN}
           martList={martList}
-          setMartList={setMartList}
+          setTempMartList={setTempMartList}
         />
-        <LogoIcon name={GS25} martList={martList} setMartList={setMartList} />
+        <LogoIcon
+          name={GS25}
+          martList={martList}
+          setTempMartList={setTempMartList}
+        />
         <LogoIcon
           name={EMART24}
           martList={martList}
-          setMartList={setMartList}
+          setTempMartList={setTempMartList}
         />
       </div>
     </div>
@@ -90,18 +101,22 @@ const MartListModal = ({ martList, setMartList }) => {
 const MartListPresenter = ({
   showMartList,
   setShowMartList,
-  martList,
-  setMartList,
+  tempMartList,
+  setTempMartList,
 }) => {
   return (
     <>
       <MartListBtn
-        martList={martList}
+        tempMartList={tempMartList}
         showMartList={showMartList}
         setShowMartList={setShowMartList}
+        setTempMartList={setTempMartList}
       />
       {showMartList ? (
-        <MartListModal martList={martList} setMartList={setMartList} />
+        <MartListModal
+          martList={tempMartList}
+          setTempMartList={setTempMartList}
+        />
       ) : null}
     </>
   );

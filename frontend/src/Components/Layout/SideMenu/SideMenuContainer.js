@@ -2,26 +2,36 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import SideMenuPresenter from "./SideMenuPresenter";
 import { useHistory } from "react-router-dom";
 import { getCookie } from "../../Util/Cookie";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../../Store/Actions/userAction";
+import { closedSideMenu } from "../../../Store/Actions/sideMenuAction";
 
 const SideMenuContainer = ({ setShowSideMenu }) => {
   const [isToastActive, setIsToastActive] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [path, setPath] = useState("main");
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const handleLogout = (event) => {
-    event.preventDefault();
-    window.sessionStorage.removeItem("token");
+  const handleLogout = async () => {
+    const tokenId = getCookie("accessToken");
+    const res = await dispatch(logoutUser(tokenId));
+
     setIsToastActive(true);
-
-    if (path === "mypage" || path === "mybag") {
+    dispatch(closedSideMenu(false));
+    if (res.payload && (path === "mypage" || path === "mybag")) {
       history.push("/main");
     }
   };
 
+  const handleLink = () => {
+    // history.push(nextPage);
+    dispatch(closedSideMenu(false));
+  };
+
   // 로그인 되어있는지 파악.
   useLayoutEffect(() => {
-    let token = getCookie("token");
+    let token = getCookie("accessToken");
 
     if (token !== "NO_HAVE") {
       setIsLogin(true);
@@ -48,6 +58,7 @@ const SideMenuContainer = ({ setShowSideMenu }) => {
       isLogin={isLogin}
       handleLogout={handleLogout}
       isToastActive={isToastActive}
+      handleLink={handleLink}
     />
   );
 };

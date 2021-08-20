@@ -9,7 +9,10 @@ export const selectProduct = (product_info) => {
 };
 
 export const wishProduct = async (body, id) => {
-  const res = await axios.post(`${process.env.SERVER}/api/mybag/${id}`, body);
+  const res = await axios.post(
+    `${process.env.REACT_APP_SERVER}/api/mybag/${id}`,
+    body
+  );
 
   return {
     type: WISH_PRODUCT,
@@ -18,9 +21,20 @@ export const wishProduct = async (body, id) => {
 };
 
 export const getProductList = async (mart, searchKeyword, page, sortFilter) => {
-  const res = await axios.get(
-    `${process.env.SERVER}/api/products/${mart}/${searchKeyword}?page=${page}&sort=${sortFilter}`
-  );
+  console.log(mart, searchKeyword, page, sortFilter);
+  let res = {};
+  // 검색어가 없을 경우
+  if (searchKeyword === "") {
+    res = await axios.get(
+      `${process.env.REACT_APP_SERVER}/api/products/${mart}?page=${page}&sort=${sortFilter}`
+    );
+  }
+  // 검색어가 있을 경우
+  else {
+    res = await axios.get(
+      `${process.env.REACT_APP_SERVER}/api/products/${mart}/${searchKeyword}?page=${page}&sort=${sortFilter}`
+    );
+  }
 
   return {
     type: GET_PRODUT_LIST,
@@ -30,7 +44,7 @@ export const getProductList = async (mart, searchKeyword, page, sortFilter) => {
 
 export const changeMyBagState = async (productId) => {
   const res = await axios.patch(
-    `${process.env.SERVER}/api/mybag/changestat/${productId}`
+    `${process.env.REACT_APP_SERVER}/api/mybag/changestat/${productId}`
   );
 
   return {

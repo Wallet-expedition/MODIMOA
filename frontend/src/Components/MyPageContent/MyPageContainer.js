@@ -3,6 +3,8 @@ import { useHistory } from "react-router";
 import { withDrawUser } from "../../Store/Actions/userAction";
 import MyPagePresenter from "./MyPagePresenter";
 import { useDispatch } from "react-redux";
+import { getCookie } from "../Util/Cookie";
+import { logoutUser } from "../../Store/Actions/userAction";
 
 const User = {
   email: "hongildong@naver.com",
@@ -13,20 +15,20 @@ const MyPageContainer = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  /**
-   * TODO : session ? cookie ?, delete Token
-   */
-  const handleLogout = () => {
-    window.sessionStorage.removeItem("token");
-    history.push("/main");
+  const handleLogout = async () => {
+    const tokenId = getCookie("accessToken");
+    const res = await dispatch(logoutUser(tokenId));
+
+    if (res.payload) {
+      history.push("/main");
+    }
   };
 
   const handleWithDraw = async () => {
-    const tokenId = window.sessionStorage.getItem("token") || "A";
-
+    const tokenId = getCookie("accessToken");
     const res = await dispatch(withDrawUser(tokenId));
 
-    if (res.success) {
+    if (res.payload) {
       history.push("/main");
     }
   };

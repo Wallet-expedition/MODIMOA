@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { Button } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import {
   EMART,
@@ -13,21 +12,28 @@ import {
   EMART24,
 } from "../Util/Constant";
 
-const LogoIcon = ({ name }) => {
+const LogoIcon = ({ name, handleLogoClick }) => {
   return (
-    <Link className="mart-container" to={`./list`}>
+    <Button className="mart-container" onClick={handleLogoClick}>
       <img
+        id={name}
         className={`mart-${name}`}
         src={`/img/mart_${name}.jpg`}
         alt="mart"
         width="70"
         height="70"
       />
-    </Link>
+    </Button>
   );
 };
 
-const MainPresenter = ({ searchKeyword, handleChange }) => {
+const MainPresenter = ({
+  searchKeyword,
+  handleChange,
+  martList,
+  setMartList,
+  handleLogoClick,
+}) => {
   return (
     <div className="content-container">
       <div className="content-beer">
@@ -68,20 +74,20 @@ const MainPresenter = ({ searchKeyword, handleChange }) => {
         <div className="mart">
           <p> 대형 마트</p>
           <div className="logo-container">
-            <LogoIcon name={EMART} />
-            <LogoIcon name={HOMEPLUS} />
-            <LogoIcon name={COSTCO} />
-            <LogoIcon name={LOTTE_MART} />
+            <LogoIcon name={EMART} handleLogoClick={handleLogoClick} />
+            <LogoIcon name={HOMEPLUS} handleLogoClick={handleLogoClick} />
+            <LogoIcon name={COSTCO} handleLogoClick={handleLogoClick} />
+            <LogoIcon name={LOTTE_MART} handleLogoClick={handleLogoClick} />
           </div>
         </div>
 
         <div className="mart">
           <p> 편의점</p>
           <div className="logo-container">
-            <LogoIcon name={CU} />
-            <LogoIcon name={SEVEN_ELEVEN} />
-            <LogoIcon name={GS25} />
-            <LogoIcon name={EMART24} />
+            <LogoIcon name={CU} handleLogoClick={handleLogoClick} />
+            <LogoIcon name={SEVEN_ELEVEN} handleLogoClick={handleLogoClick} />
+            <LogoIcon name={GS25} handleLogoClick={handleLogoClick} />
+            <LogoIcon name={EMART24} handleLogoClick={handleLogoClick} />
           </div>
         </div>
       </div>

@@ -11,6 +11,7 @@ import MartList from "../Components/MartList";
 
 import "../scss/ProductList.scss";
 import "../scss/MartList.scss";
+import { useSelector } from "react-redux";
 
 const ResultField = ({ searchKeyword }) => {
   let resultText = "";
@@ -24,15 +25,18 @@ const ResultField = ({ searchKeyword }) => {
   );
 };
 
+const initialState = {
+  CU: true,
+  SEVEN_ELEVEN: false,
+  GS25: false,
+  EMART24: false,
+};
+
 const ProductListPage = () => {
   const [finalSearchKeyword, setFinalSearchKeyword] = useState("");
   const [sortOption, setSortOption] = useState(0);
-  const [martList, setMartList] = useState({
-    CU: false,
-    SEVEN_ELEVEN: false,
-    GS25: false,
-    EMART24: false,
-  });
+  const martList =
+    useSelector((state) => state.martReducer.martList) || initialState;
 
   const SortBar = () => {
     const handleChange = (event, newOption) => {
@@ -55,7 +59,7 @@ const ProductListPage = () => {
   return (
     <Layout>
       <Header setFinalSearchKeyword={setFinalSearchKeyword}>
-        <MartList martList={martList} setMartList={setMartList} />
+        <MartList martList={martList} />
         <ResultField searchKeyword={finalSearchKeyword} />
         <SortBar />
       </Header>
