@@ -11,3 +11,4 @@ export const CHANGE_STATE_PRODUCT = "Change_state_product";
 export const SELECT_MART = "Select_mart";
 export const OPENED_SIDE_MENU = "Opened_side_menu";
 export const CLOSED_SIDE_MENU = "Close_side_menu";
+export const GET_ONE_PRODUCT = "Get_One_Product";
