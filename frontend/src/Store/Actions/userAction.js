@@ -49,7 +49,6 @@ export const registerUser = async (body, tokenId) => {
 };
 
 export const logoutUser = async (tokenId) => {
-  console.log(tokenId);
   const res = await axios.post(
     `${process.env.REACT_APP_SERVER}/api/users/logout`,
     {},
