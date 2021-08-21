@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
 import { useDispatch } from "react-redux";
 import ProductListPresenter from "./ProductListPresenter";
-import { SampleList } from "../Util/SampleList";
 import { getProductList } from "../../Store/Actions/productAction";
 import { throttle } from "../Util/Throttle";
 
@@ -14,6 +13,7 @@ const ProductListContainer = ({ martList, searchKeyword, sortOption }) => {
   const martCode = useRef("");
   const dispatch = useDispatch();
 
+  // Infinite Scroll
   useEffect(() => {
     const getList = async () => {
       if (currentPage.current >= lastPage) return;
@@ -40,9 +40,9 @@ const ProductListContainer = ({ martList, searchKeyword, sortOption }) => {
     };
 
     const checkScroll = () => {
-      const scrollHeight = listComponent.current.scrollHeight;
-      const scrollTop = listComponent.current.scrollTop;
-      const clientHeight = listComponent.current.clientHeight;
+      const scrollHeight = listComponent?.current.scrollHeight;
+      const scrollTop = listComponent?.current.scrollTop;
+      const clientHeight = listComponent?.current.clientHeight;
 
       if (scrollTop + clientHeight >= scrollHeight) {
         if (!isLoadFinish) {
@@ -57,7 +57,7 @@ const ProductListContainer = ({ martList, searchKeyword, sortOption }) => {
 
     return () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      listComponent.current.removeEventListener("scroll", handleScroll);
+      listComponent?.current?.removeEventListener("scroll", handleScroll);
     };
   }, [dispatch, isLoadFinish, lastPage, list, searchKeyword, sortOption]);
 
@@ -72,8 +72,30 @@ const ProductListContainer = ({ martList, searchKeyword, sortOption }) => {
     currentPage.current = 0;
   }, [martCode, martList]);
 
+  // First Render
   useLayoutEffect(() => {
-    setList(SampleList);
+    const getList = async () => {
+      const filter = sortOption === 1 ? "salePrice" : "productName";
+      const res = await dispatch(
+        getProductList(
+          martCode.current,
+          searchKeyword,
+          currentPage.current,
+          filter
+        )
+      );
+      const data = res.payload.data;
+      if (res.payload.status === 200) {
+        setList([...list, ...data.content]);
+        currentPage.current++;
+
+        if (currentPage.current >= lastPage) {
+          setIsLoadFinish(true);
+        }
+      }
+    };
+    getList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <ProductListPresenter list={list} listComponent={listComponent} />;
