@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import {
@@ -34,6 +35,20 @@ const MainPresenter = ({
   setMartList,
   handleLogoClick,
 }) => {
+  const history = useHistory();
+
+  const onClickSearch = () => {
+    if (searchKeyword)
+      history.push({ pathname: "/list", search: `?keyword=${searchKeyword}` });
+    else alert("검색어를 입력해주세요");
+  };
+
+  const onEnterPress = (e) => {
+    if (e.key === "Enter") {
+      onClickSearch();
+    }
+  };
+
   return (
     <div className="content-container">
       <div className="content-beer">
@@ -55,13 +70,14 @@ const MainPresenter = ({
         <TextField
           value={searchKeyword}
           onChange={handleChange}
+          onKeyPress={onEnterPress}
           label="검색어를 입력하세요"
           InputLabelProps={{
             shrink: true,
           }}
           variant="outlined"
         />
-        <span className="search-btn">
+        <span className="search-btn" onClick={onClickSearch}>
           <img
             className="search-icon"
             src={`/img/search_icon.png`}

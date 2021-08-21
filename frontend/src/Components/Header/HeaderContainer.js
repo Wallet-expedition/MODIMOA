@@ -2,12 +2,8 @@ import React from "react";
 
 import HeaderPresenter from "./HeaderPresenter";
 
-const HeaderContainer = ({ children, setFinalSearchKeyword }) => {
-  return (
-    <HeaderPresenter setFinalSearchKeyword={setFinalSearchKeyword}>
-      {children}
-    </HeaderPresenter>
-  );
+const HeaderContainer = ({ children }) => {
+  return <HeaderPresenter>{children}</HeaderPresenter>;
 };
 
 export default HeaderContainer;
