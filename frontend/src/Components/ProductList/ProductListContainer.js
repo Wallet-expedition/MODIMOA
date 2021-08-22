@@ -4,10 +4,23 @@ import ProductListPresenter from "./ProductListPresenter";
 import { getProductList } from "../../Store/Actions/productAction";
 import { throttle } from "../Util/Throttle";
 
+const getMartCode = (martList) => {
+  const tempMartCode = Object.values(martList)
+    .map((flag) => {
+      return flag === true ? "1" : "0";
+    })
+    .join("");
+  return tempMartCode;
+};
+
 const ProductListContainer = ({ martList, searchKeyword, sortOption }) => {
   const [list, setList] = useState([]);
   const [isLoadFinish, setIsLoadFinish] = useState(false);
+  const [isFirstRender, setIsFirstRender] = useState(true);
   const [lastPage, setLastPage] = useState(100);
+  const [finalKeyword, setFinalKeyword] = useState(searchKeyword) || "";
+  const [finalOption, setFinalOption] = useState(sortOption);
+  const [finalMartCode, setFinalMartCode] = useState("");
   const currentPage = useRef(0);
   const listComponent = useRef(0);
   const martCode = useRef("");
@@ -16,20 +29,21 @@ const ProductListContainer = ({ martList, searchKeyword, sortOption }) => {
   // Infinite Scroll
   useEffect(() => {
     const getList = async () => {
+      // 상품 마지막 페이지에 도착했을 경우
       if (currentPage.current >= lastPage) return;
-      if (isLoadFinish) return; // 상품 마지막 페이지에 도착했을 경우
-      const filter = sortOption === 1 ? "salePrice" : "productName";
+      if (isLoadFinish) return;
+      const filter = finalOption === 1 ? "salePrice" : "productName";
       const res = await dispatch(
         getProductList(
           martCode.current,
-          searchKeyword,
+          finalKeyword,
           currentPage.current,
           filter
         )
       );
       const data = res.payload.data;
       if (res.payload.status === 200) {
-        setList([...list, ...data.content]);
+        setList((prev) => [...prev, ...data.content]);
         currentPage.current++;
 
         if (currentPage.current >= lastPage) {
@@ -52,51 +66,54 @@ const ProductListContainer = ({ martList, searchKeyword, sortOption }) => {
     };
 
     const handleScroll = throttle(checkScroll, 500);
-
     listComponent.current.addEventListener("scroll", handleScroll);
+
+    // 마트코드/검색어/ 필터가 달라졌다면 스크롤과 상관 없이 상품을 가져온다.
+    if (
+      searchKeyword !== finalKeyword ||
+      finalOption !== sortOption ||
+      martCode.current !== finalMartCode
+    ) {
+      setFinalKeyword(() => searchKeyword);
+      setFinalOption(() => sortOption);
+      currentPage.current = 0;
+      setList(() => []);
+      setIsFirstRender(true);
+      setIsLoadFinish(false);
+      setFinalMartCode(martCode.current);
+    }
+
+    // 처음 렌더가 되는 거라면 스크롤과 상관 없이 상품을 가져온다.
+    if (isFirstRender) {
+      getList();
+      setIsFirstRender(false);
+    }
 
     return () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       listComponent?.current?.removeEventListener("scroll", handleScroll);
     };
-  }, [dispatch, isLoadFinish, lastPage, list, searchKeyword, sortOption]);
+  }, [
+    dispatch,
+    isFirstRender,
+    isLoadFinish,
+    lastPage,
+    list,
+    finalKeyword,
+    sortOption,
+    searchKeyword,
+    setFinalKeyword,
+    finalOption,
+    finalMartCode,
+    martList,
+  ]);
 
   // setMartCode before render
   useLayoutEffect(() => {
-    const tempMartCode = Object.values(martList)
-      .map((flag) => {
-        return flag === true ? "1" : "0";
-      })
-      .join("");
-    martCode.current = tempMartCode;
+    martCode.current = getMartCode(martList);
+    setFinalMartCode(martCode.current);
     currentPage.current = 0;
   }, [martCode, martList]);
-
-  // First Render
-  useLayoutEffect(() => {
-    const getList = async () => {
-      const filter = sortOption === 1 ? "salePrice" : "productName";
-      const res = await dispatch(
-        getProductList(
-          martCode.current,
-          searchKeyword,
-          currentPage.current,
-          filter
-        )
-      );
-      const data = res.payload.data;
-      if (res.payload.status === 200) {
-        setList([...list, ...data.content]);
-        currentPage.current++;
-
-        if (currentPage.current >= lastPage) {
-          setIsLoadFinish(true);
-        }
-      }
-    };
-    getList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return <ProductListPresenter list={list} listComponent={listComponent} />;
 };
