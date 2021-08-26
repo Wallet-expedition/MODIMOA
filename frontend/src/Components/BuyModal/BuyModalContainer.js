@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeMyBagState } from "../../Store/Actions/productAction";
 import BuyModalPresenter from "./BuyModalPresenter";
@@ -8,28 +8,37 @@ const BuyModalContainer = ({ setIsOpenModal, selectedId, buyProductName }) => {
   const [number, setNumber] = useState(1);
   const dispatch = useDispatch();
 
-  const handleCancelClick = (event) => {
-    event.preventDefault();
-    setIsOpenModal(false);
-  };
+  const handleCancelClick = useCallback(
+    (event) => {
+      event.preventDefault();
+      setIsOpenModal(false);
+    },
+    [setIsOpenModal]
+  );
 
-  const handleUpClick = (event) => {
-    event.preventDefault();
-    setNumber(number + 1);
-  };
+  const handleUpClick = useCallback(
+    (event) => {
+      event.preventDefault();
+      setNumber(number + 1);
+    },
+    [number]
+  );
 
-  const handleDownClick = (event) => {
-    event.preventDefault();
-    if (number === 0) return;
-    setNumber(number - 1);
-  };
+  const handleDownClick = useCallback(
+    (event) => {
+      event.preventDefault();
+      if (number === 0) return;
+      setNumber(number - 1);
+    },
+    [number]
+  );
 
-  const handleConfirmClick = async () => {
+  const handleConfirmClick = useCallback(async () => {
     const res = await dispatch(changeMyBagState(selectedId));
 
     console.log(res);
     setIsOpenModal(false);
-  };
+  }, [dispatch, selectedId, setIsOpenModal]);
 
   useEffect(() => {
     setProductName(buyProductName);

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -15,26 +15,29 @@ import { registerUser } from "../../../Store/Actions/userAction";
 const KaKaoRegisterButton = ({ history }) => {
   const dispatch = useDispatch();
 
-  const kakaoLoginSuccess = async (response) => {
-    console.log(response);
-    const account = response?.kakao_account;
-    const body = {
-      user_email: account.email,
-      user_image: account.profile.profile_image_url,
-    };
+  const kakaoLoginSuccess = useCallback(
+    async (response) => {
+      console.log(response);
+      const account = response?.kakao_account;
+      const body = {
+        user_email: account.email,
+        user_image: account.profile.profile_image_url,
+      };
 
-    const res = await dispatch(registerUser(body));
+      const res = await dispatch(registerUser(body));
 
-    if (res.payload.status === 200) {
-      history.push("/login");
-    } else {
-      alert("회원가입에 실패하였습니다.");
-    }
-  };
+      if (res.payload.status === 200) {
+        history.push("/login");
+      } else {
+        alert("회원가입에 실패하였습니다.");
+      }
+    },
+    [dispatch, history]
+  );
 
-  const kakaoLoginError = () => {
+  const kakaoLoginError = useCallback(() => {
     alert("fail Google Login");
-  };
+  }, []);
 
   const loadScript = () => {
     return new Promise((resolve, reject) => {

@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneProduct, wishProduct } from "../../Store/Actions/productAction";
@@ -13,18 +13,21 @@ const ProductDetailContainer = () => {
   const dispatch = useDispatch();
   const params = useParams();
 
-  const handleClick = (event) => {
-    event.preventDefault();
-    setIsToastActive(true);
-    const body = {
-      product_id: item.id,
-      product_name: item.name,
-      original_price: item.original_price,
-      sale_price: item.sale_price,
-    };
+  const handleClick = useCallback(
+    (event) => {
+      event.preventDefault();
+      setIsToastActive(true);
+      const body = {
+        product_id: item.id,
+        product_name: item.name,
+        original_price: item.original_price,
+        sale_price: item.sale_price,
+      };
 
-    dispatch(wishProduct(body, item.id));
-  };
+      dispatch(wishProduct(body, item.id));
+    },
+    [dispatch, item.id, item.name, item.original_price, item.sale_price]
+  );
 
   useLayoutEffect(() => {
     // toast 활성화

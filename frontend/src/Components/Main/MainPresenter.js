@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
@@ -28,29 +28,26 @@ const LogoIcon = ({ name, handleLogoClick }) => {
   );
 };
 
-const MainPresenter = ({
-  searchKeyword,
-  handleChange,
-  martList,
-  setMartList,
-  handleLogoClick,
-}) => {
+const MainPresenter = ({ searchKeyword, handleChange, handleLogoClick }) => {
   const history = useHistory();
 
-  const onClickSearch = () => {
+  const onClickSearch = useCallback(() => {
     if (searchKeyword)
       history.push({ pathname: "/list", search: `?keyword=${searchKeyword}` });
     else alert("검색어를 입력해주세요");
-  };
+  }, [history, searchKeyword]);
 
-  const onEnterPress = (e) => {
-    if (e.key === "Enter") {
-      onClickSearch();
-    }
-  };
+  const onEnterPress = useCallback(
+    (e) => {
+      if (e.key === "Enter") {
+        onClickSearch();
+      }
+    },
+    [onClickSearch]
+  );
 
   return (
-    <div className="content-container">
+    <main className="content-container">
       <div className="content-beer">
         <div className="content-description">
           <p> 맥주 마시기 좋은 시간 </p>
@@ -58,13 +55,13 @@ const MainPresenter = ({
         </div>
       </div>
 
-      <div className="content-logo">
+      <header className="content-logo">
         <img
           className="modimoa-logo"
           src={`/img/logo_512.png`}
           alt="modimoa-logo"
         ></img>
-      </div>
+      </header>
 
       <div className="content-search">
         <TextField
@@ -86,8 +83,8 @@ const MainPresenter = ({
         </span>
       </div>
 
-      <div className="content-foot">
-        <div className="mart">
+      <footer className="content-foot">
+        <article className="mart">
           <p> 대형 마트</p>
           <div className="logo-container">
             <LogoIcon name={EMART} handleLogoClick={handleLogoClick} />
@@ -95,9 +92,9 @@ const MainPresenter = ({
             <LogoIcon name={COSTCO} handleLogoClick={handleLogoClick} />
             <LogoIcon name={LOTTE_MART} handleLogoClick={handleLogoClick} />
           </div>
-        </div>
+        </article>
 
-        <div className="mart">
+        <article className="mart">
           <p> 편의점</p>
           <div className="logo-container">
             <LogoIcon name={CU} handleLogoClick={handleLogoClick} />
@@ -105,9 +102,9 @@ const MainPresenter = ({
             <LogoIcon name={GS25} handleLogoClick={handleLogoClick} />
             <LogoIcon name={EMART24} handleLogoClick={handleLogoClick} />
           </div>
-        </div>
-      </div>
-    </div>
+        </article>
+      </footer>
+    </main>
   );
 };
 

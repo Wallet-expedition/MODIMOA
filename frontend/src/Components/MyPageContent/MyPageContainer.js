@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useHistory } from "react-router";
 import { withDrawUser } from "../../Store/Actions/userAction";
 import MyPagePresenter from "./MyPagePresenter";
@@ -15,23 +15,23 @@ const MyPageContainer = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleLogout = async () => {
+  const handleLogout = useCallback(async () => {
     const tokenId = getCookie("accessToken");
     const res = await dispatch(logoutUser(tokenId));
 
     if (res.payload) {
       history.push("/main");
     }
-  };
+  }, [dispatch, history]);
 
-  const handleWithDraw = async () => {
+  const handleWithDraw = useCallback(async () => {
     const tokenId = getCookie("accessToken");
     const res = await dispatch(withDrawUser(tokenId));
 
     if (res.payload) {
       history.push("/main");
     }
-  };
+  }, [dispatch, history]);
 
   return (
     <MyPagePresenter
