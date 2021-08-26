@@ -13,8 +13,8 @@ const SideMenuPresenter = ({
     <>
       {!isToastActive ? (
         <div className="sidemenu-container">
-          <div className="logo"> MODIMOA </div>
-          <div className="sidemenu-nav">
+          <header className="logo"> MODIMOA </header>
+          <nav className="sidemenu-nav">
             <Link to="/main" onClick={handleLink}>
               홈
             </Link>
@@ -38,12 +38,12 @@ const SideMenuPresenter = ({
             <Link to="/mypage" onClick={handleLink}>
               마이페이지
             </Link>
-          </div>
+          </nav>
 
-          <div className="sidemenu-foot">
+          <footer className="sidemenu-foot">
             <p> About </p>
             <p> Contact Us </p>
-          </div>
+          </footer>
         </div>
       ) : (
         <LogoutToastMessage />
