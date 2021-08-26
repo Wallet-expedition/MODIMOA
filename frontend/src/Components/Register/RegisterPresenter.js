@@ -16,11 +16,11 @@ const RegisterPresenter = () => {
   return (
     <main className="login-container">
       <Logo />
-      <article className="login-btn-container">
+      <div className="login-btn-container">
         <RegisterButton name={GOOGLE} />
         <RegisterButton name={KAKAO} />
         <RegisterButton name={FACEBOOK} />
-      </article>
+      </div>
     </main>
   );
 };

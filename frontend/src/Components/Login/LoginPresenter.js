@@ -16,11 +16,11 @@ const LoginPresenter = () => {
   return (
     <main className="login-container">
       <Logo />
-      <article className="login-btn-container">
+      <div className="login-btn-container">
         <LoginButton name={GOOGLE} />
         <LoginButton name={KAKAO} />
         <LoginButton name={FACEBOOK} />
-      </article>
+      </div>
     </main>
   );
 };

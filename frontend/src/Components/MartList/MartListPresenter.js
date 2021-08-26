@@ -67,7 +67,7 @@ const LogoIcon = ({ name, martList, setTempMartList }) => {
 
 const MartListModal = ({ martList, setTempMartList }) => {
   return (
-    <article className="martlist-container">
+    <div className="martlist-container">
       <span> 보고 싶은 편의점의 제품만 골라서 보실 수 있습니다. </span>
       <div className="martlist-mart-container">
         <LogoIcon
@@ -91,7 +91,7 @@ const MartListModal = ({ martList, setTempMartList }) => {
           setTempMartList={setTempMartList}
         />
       </div>
-    </article>
+    </div>
   );
 };
 
