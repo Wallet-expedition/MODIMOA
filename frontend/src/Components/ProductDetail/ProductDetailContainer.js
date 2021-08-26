@@ -46,6 +46,7 @@ const ProductDetailContainer = () => {
         product_name: data.productName,
         sale_price: data.salePrice,
         original_price: data.originalPrice,
+        mart_name: data.martName,
       };
       setItem(newItem);
     };

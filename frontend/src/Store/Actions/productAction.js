@@ -26,7 +26,6 @@ export const wishProduct = async (body, id) => {
 };
 
 export const getProductList = async (mart, searchKeyword, page, sortFilter) => {
-  console.log(mart, searchKeyword, page, sortFilter);
   // 검색어가 없을 경우
   if (searchKeyword === "") {
     const res = await axios.get(

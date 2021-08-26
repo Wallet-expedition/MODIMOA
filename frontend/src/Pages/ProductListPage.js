@@ -56,9 +56,8 @@ const ProductListPage = () => {
           onChange={handleChange}
           aria-label="simple tabs example"
         >
+          <Tab label="이름순" />
           <Tab label="가격순" />
-          <Tab label="할인순" />
-          <Tab label="담은순" />
         </Tabs>
       </AppBar>
     );
