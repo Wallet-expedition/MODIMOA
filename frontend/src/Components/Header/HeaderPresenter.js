@@ -4,21 +4,21 @@ import { Link, useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 
-const HeaderPresenter = ({ children }) => {
-  const LogoLong = () => {
-    return (
-      <Link to="/main">
-        <div className="logo-long-text-container">
-          <img
-            className="logo-image"
-            src={`/img/logo_long_and_text_512.png`}
-            alt="logo"
-          />
-        </div>
-      </Link>
-    );
-  };
+export const LogoLong = () => {
+  return (
+    <Link to="/main">
+      <div className="logo-long-text-container">
+        <img
+          className="logo-image"
+          src={`/img/logo_long_and_text_512.png`}
+          alt="logo"
+        />
+      </div>
+    </Link>
+  );
+};
 
+const HeaderPresenter = ({ children }) => {
   const SearchBar = () => {
     const [searchKeyword, setSearchKeyword] = useState("");
     const history = useHistory();
