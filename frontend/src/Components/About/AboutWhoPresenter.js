@@ -74,7 +74,7 @@ const AboutWhoPresenter = () => {
           {authorList
             .filter((person) => person.role === "FE")
             .map((person) => (
-              <AuthorBox info={person} />
+              <AuthorBox key={person.github} info={person} />
             ))}
         </div>
       </section>
@@ -84,7 +84,7 @@ const AboutWhoPresenter = () => {
           {authorList
             .filter((person) => person.role === "BE")
             .map((person) => (
-              <AuthorBox info={person} />
+              <AuthorBox key={person.github} info={person} />
             ))}
         </div>
       </section>
