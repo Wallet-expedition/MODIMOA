@@ -13,6 +13,7 @@ import MartList from "../Components/MartList";
 
 import "../scss/ProductList.scss";
 import "../scss/MartList.scss";
+import HelmetComponent from "../Components/HelmetComponent";
 
 const ResultField = ({ searchKeyword }) => {
   let resultText = "";
@@ -64,6 +65,7 @@ const ProductListPage = () => {
   };
   return (
     <Layout>
+      <HelmetComponent subTitle={"상품 목록"} />
       <Header>
         <MartList martList={martList} />
         <ResultField searchKeyword={keyword} />

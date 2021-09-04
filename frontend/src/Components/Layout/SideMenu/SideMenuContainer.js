@@ -1,4 +1,9 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 import SideMenuPresenter from "./SideMenuPresenter";
 import { useHistory } from "react-router-dom";
 import { getCookie } from "../../Util/Cookie";
@@ -13,7 +18,7 @@ const SideMenuContainer = ({ setShowSideMenu }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleLogout = async () => {
+  const handleLogout = useCallback(async () => {
     const tokenId = getCookie("accessToken");
     const res = await dispatch(logoutUser(tokenId));
 
@@ -22,12 +27,11 @@ const SideMenuContainer = ({ setShowSideMenu }) => {
     if (res.payload && (path === "mypage" || path === "mybag")) {
       history.push("/main");
     }
-  };
+  }, [dispatch, history, path]);
 
-  const handleLink = () => {
-    // history.push(nextPage);
+  const handleLink = useCallback(() => {
     dispatch(closedSideMenu(false));
-  };
+  }, [dispatch]);
 
   // 로그인 되어있는지 파악.
   useLayoutEffect(() => {

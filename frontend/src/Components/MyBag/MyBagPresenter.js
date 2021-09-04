@@ -89,7 +89,7 @@ const MyBagPresenter = ({
   buyProductName,
 }) => {
   return (
-    <div className="my-bag-container">
+    <main className="my-bag-container">
       <BagDescription filterOption={filterOption} />
       <BagProductList
         list={list}
@@ -107,7 +107,7 @@ const MyBagPresenter = ({
       ) : (
         ""
       )}
-    </div>
+    </main>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import MainPresenter from "./MainPresenter";
 import { useHistory } from "react-router";
 import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
@@ -18,9 +18,9 @@ const MainContainer = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleChange = (event) => {
+  const handleChange = useCallback((event) => {
     setSearchKeyword(event.target.value);
-  };
+  }, []);
 
   const handleLogoClick = (event) => {
     const name = event.target.id;

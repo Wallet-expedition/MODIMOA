@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -16,27 +16,30 @@ const KakaoLoginButton = ({ history }) => {
   const dispatch = useDispatch();
   let token = ""; // not useState
 
-  const kakaoLoginSuccess = async (response) => {
-    console.log(response);
-    const account = response?.kakao_account;
-    const tokenId = token;
-    const body = {
-      user_email: account.email,
-      user_image: account.profile.profile_image_url,
-    };
+  const kakaoLoginSuccess = useCallback(
+    async (response) => {
+      console.log(response);
+      const account = response?.kakao_account;
+      const tokenId = token;
+      const body = {
+        user_email: account.email,
+        user_image: account.profile.profile_image_url,
+      };
 
-    const res = await dispatch(loginUser(tokenId, body));
+      const res = await dispatch(loginUser(tokenId, body));
 
-    if (res.payload.status === 200) {
-      history.push("/main");
-    } else {
-      alert("로그인에 실패하였습니다.");
-    }
-  };
+      if (res.payload.status === 200) {
+        history.push("/main");
+      } else {
+        alert("로그인에 실패하였습니다.");
+      }
+    },
+    [dispatch, history, token]
+  );
 
-  const kakaoLoginError = () => {
+  const kakaoLoginError = useCallback(() => {
     alert("fail Google Login");
-  };
+  }, []);
 
   const loadScript = () => {
     return new Promise((resolve, reject) => {

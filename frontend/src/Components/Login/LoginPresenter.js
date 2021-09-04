@@ -14,14 +14,14 @@ const LoginPresenter = () => {
   };
 
   return (
-    <div className="login-container">
+    <main className="login-container">
       <Logo />
       <div className="login-btn-container">
         <LoginButton name={GOOGLE} />
         <LoginButton name={KAKAO} />
         <LoginButton name={FACEBOOK} />
       </div>
-    </div>
+    </main>
   );
 };
 

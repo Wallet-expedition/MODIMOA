@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import { withRouter } from "react-router-dom";
 import FacebookLogin from "react-facebook-login";
@@ -18,21 +18,24 @@ import { loginUser } from "../../../Store/Actions/userAction";
  */
 const FacebookLoginButton = ({ history }) => {
   const dispatch = useDispatch();
-  const facebookLoginSuccess = async (response) => {
-    const tokenId = response.accessToken;
-    const body = {
-      user_email: response.email,
-      user_image: response.picture.data.url,
-    };
+  const facebookLoginSuccess = useCallback(
+    async (response) => {
+      const tokenId = response.accessToken;
+      const body = {
+        user_email: response.email,
+        user_image: response.picture.data.url,
+      };
 
-    const res = await dispatch(loginUser(tokenId, body));
+      const res = await dispatch(loginUser(tokenId, body));
 
-    if (res.payload.status === 200) {
-      history.push("/main");
-    } else {
-      alert("로그인에 실패하였습니다.");
-    }
-  };
+      if (res.payload.status === 200) {
+        history.push("/main");
+      } else {
+        alert("로그인에 실패하였습니다.");
+      }
+    },
+    [dispatch, history]
+  );
 
   return (
     <FacebookLogin

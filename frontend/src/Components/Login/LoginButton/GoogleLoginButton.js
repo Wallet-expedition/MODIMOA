@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import { withRouter } from "react-router-dom";
 import GoogleLogin from "react-google-login";
@@ -42,26 +42,29 @@ const GoogleICON = () => {
  */
 const GoogleLoginButton = ({ history }) => {
   const dispatch = useDispatch();
-  const googleLoginSuccess = async (response) => {
-    console.log(response);
-    const profile = response.profileObj;
-    const tokenId = response.tokenId;
-    const body = {
-      user_email: profile.email,
-      user_image: profile.imageUrl,
-    };
+  const googleLoginSuccess = useCallback(
+    async (response) => {
+      console.log(response);
+      const profile = response.profileObj;
+      const tokenId = response.tokenId;
+      const body = {
+        user_email: profile.email,
+        user_image: profile.imageUrl,
+      };
 
-    const res = await dispatch(loginUser(tokenId, body));
-    if (res.payload.status === 200) {
-      history.push("/main");
-    } else {
-      alert("로그인에 실패하였습니다.");
-    }
-  };
+      const res = await dispatch(loginUser(tokenId, body));
+      if (res.payload.status === 200) {
+        history.push("/main");
+      } else {
+        alert("로그인에 실패하였습니다.");
+      }
+    },
+    [dispatch, history]
+  );
 
-  const googleLoginError = () => {
+  const googleLoginError = useCallback(() => {
     alert("fail Google Login");
-  };
+  }, []);
 
   return (
     <GoogleLogin

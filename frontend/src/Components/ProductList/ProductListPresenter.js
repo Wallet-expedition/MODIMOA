@@ -3,7 +3,7 @@ import Product from "../Product";
 
 const ProductListPresenter = ({ list, listComponent }) => {
   return (
-    <div className="product-list-container" ref={listComponent}>
+    <main className="product-list-container" ref={listComponent}>
       {list.map((item) => {
         return (
           <Product
@@ -17,7 +17,7 @@ const ProductListPresenter = ({ list, listComponent }) => {
           />
         );
       })}
-    </div>
+    </main>
   );
 };
 

@@ -8,6 +8,7 @@ import MyBag from "../Components/MyBag";
 import Layout from "../Components/Layout";
 import "../scss/MyBagPage.scss";
 import { Link } from "react-router-dom";
+import HelmetComponent from "../Components/HelmetComponent";
 
 const ProductListPage = () => {
   const [filterOption, setFilterOption] = useState(0);
@@ -58,6 +59,7 @@ const ProductListPage = () => {
 
   return (
     <Layout>
+      <HelmetComponent subTitle={"장바구니"} />
       <LogoLong />
       <SortBar />
       <MyBag filterOption={filterOption} />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Grid, Button } from "@material-ui/core";
@@ -39,9 +39,10 @@ const ProductPresenter = ({
     default:
       break;
   }
-  const onClick = () => {
+  const onClick = useCallback(() => {
     dispatch(selectProduct(productInfo));
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
   return (
     <Grid className="product-container">
       <Grid className="product-image-container">

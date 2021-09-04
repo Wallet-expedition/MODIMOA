@@ -61,7 +61,7 @@ const ProductDetailPresenter = ({
 
   const BagButton = () => {
     return (
-      <div className="bag-button-container">
+      <footer className="bag-button-container">
         <span className="cart-icon">
           <img src={`/img/cart.png`} alt="modimoa-bag-cart-icon"></img>
         </span>
@@ -73,7 +73,7 @@ const ProductDetailPresenter = ({
         >
           장바구니에 담기
         </Button>
-      </div>
+      </footer>
     );
   };
 
@@ -84,11 +84,11 @@ const ProductDetailPresenter = ({
   };
 
   return (
-    <div className="product-detail-container">
+    <main className="product-detail-container">
       <ItemBox item={item} sale_percent={sale_percent} />
       <BagButton handleClick={handleClick} />
       {isToastActive ? <MyBagToastMessage /> : ""}
-    </div>
+    </main>
   );
 };
 

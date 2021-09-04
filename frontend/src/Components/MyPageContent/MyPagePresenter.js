@@ -46,10 +46,10 @@ const WithDrawButton = ({ handleWithDraw }) => {
 
 const MyPagePresenter = ({ handleLogout, handleWithDraw, User }) => {
   return (
-    <div className="my-info-container">
+    <main className="my-info-container">
       <UserProfile handleLogout={handleLogout} User={User} />
       <WithDrawButton handleWithDraw={handleWithDraw} />
-    </div>
+    </main>
   );
 };
 
