@@ -10,6 +10,7 @@ import {
   MyPage,
   MyBag,
   Register,
+  About,
 } from "../Pages";
 import Auth from "../Components/Util/Auth";
 
@@ -39,6 +40,7 @@ const Router = () => {
       <Route path="/mypage" component={Auth(MyPage, true)} />
       <Route path="/mybag" component={Auth(MyBag, true)} />
       <Route path="/register" component={Auth(Register, false)} />
+      <Route path="/about/:page" component={Auth(About, false)} />
     </Switch>
   );
 };

@@ -6,3 +6,4 @@ export { default as ProductDetail } from "./ProductDetailPage";
 export { default as MyPage } from "./MyPage";
 export { default as MyBag } from "./MyBagPage";
 export { default as Register } from "./RegisterPage";
+export { default as About } from "./AboutPage";
