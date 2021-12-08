@@ -13,7 +13,7 @@ const ProductPresenter = ({
   original_price,
   sale_price,
 }) => {
-  var martClass = "product-info-mart";
+  let martClass = "product-info-mart";
   const productInfo = {
     id: id,
     mart_name: mart_name,

@@ -4,8 +4,8 @@ import MartListBtn from "./MartListBtn";
 import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
 
 const LogoIcon = ({ name, martList, setTempMartList }) => {
-  var martClass = "martlist-mart-icon";
-  var active;
+  let martClass = "martlist-mart-icon";
+  let active;
   if (martList === undefined) return "1";
   switch (name) {
     case CU:
