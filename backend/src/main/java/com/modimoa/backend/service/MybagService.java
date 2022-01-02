@@ -22,93 +22,93 @@ import java.util.Optional;
 @Transactional
 public class MybagService {
 
-    @Autowired
-    private MybagRepository mybagRepository;
+	@Autowired
+	private MybagRepository mybagRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-    @Autowired
-    private ProductRepository productRepository;
+	@Autowired
+	private ProductRepository productRepository;
 
-    // 모든 물품을 가져와서 반환
-    public List<Mybag> findAll(String accessToken) {
-        Optional <User> user = userRepository.findByAccessToken(accessToken);
-        return mybagRepository.findByUser(user.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR)));
-    }
+	// 전체 물품 가져와서 반환
+	public List<Mybag> findAll(String accessToken) {
+		Optional<User> user = userRepository.findByAccessToken(accessToken);
+		return mybagRepository.findByUser(user.orElseThrow(() -> new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR)));
+	}
 
-    // 새 물품 추가
-    public void plusItemOrCreateCount(String accessToken, Long productId) {
-        Optional <User> user = userRepository.findByAccessToken(accessToken);
-        user.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
-        Mybag mybag = mybagRepository.findByUserAndProductId(user.get(), productId)
-                .orElseGet(() -> mybagRepository
-                        .save(new Mybag(user.get(), productId, 0, 1)));
-        mybag.updateCount(1);
-    }
+	// 새 물품 추가
+	public void plusItemOrCreateCount(String accessToken, Long productId) {
+		Optional<User> user = userRepository.findByAccessToken(accessToken);
+		user.orElseThrow(() -> new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
+		Mybag mybag = mybagRepository.findByUserAndProductId(user.get(), productId)
+				.orElseGet(() -> mybagRepository
+						.save(new Mybag(user.get(), productId, 0, 1)));
+		mybag.updateCount(1);
+	}
 
-    // 물품 삭제
-    public void deleteItem(String accessToken, Long productId) {
-        Optional <User> user = userRepository.findByAccessToken(accessToken);
-        user.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
-        mybagRepository.deleteByUserAndProductId(user.get(), productId);
-    }
+	// product id로 물품 삭제
+	public void deleteItem(String accessToken, Long productId) {
+		Optional<User> user = userRepository.findByAccessToken(accessToken);
+		user.orElseThrow(() -> new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
+		mybagRepository.deleteByUserAndProductId(user.get(), productId);
+	}
 
-    // 물품 개수 변경
-    public void changeItemCount(String accessToken, Long productId, int count) {
+	// 물품 개수 변경
+	public void changeItemCount(String accessToken, Long productId, int count) {
 
-        Optional <User> user = userRepository.findByAccessToken(accessToken);
-        user.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
-        Optional <Mybag> mybag = mybagRepository.findByUserAndProductId(user.get(), productId);
-        mybag.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
-        mybag.get().updateCount(count);
-        if (mybag.get().getCount() == 0) mybagRepository.deleteByUserAndProductId(user.get(), productId);
-    }
+		Optional<User> user = userRepository.findByAccessToken(accessToken);
+		user.orElseThrow(() -> new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
+		Optional<Mybag> mybag = mybagRepository.findByUserAndProductId(user.get(), productId);
+		mybag.orElseThrow(() -> new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
+		mybag.get().setCount(count);
+		if (mybag.get().getCount() == 0) mybagRepository.deleteByUserAndProductId(user.get(), productId);
+	}
 
-    // 물품 상태 변경
-    public void changeItemStatus(String accessToken, Long productId, int status) {
-        Optional <User> user = userRepository.findByAccessToken(accessToken);
-        user.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
-        Optional <Mybag> mybag = mybagRepository.findByUserAndProductId(user.get(), productId);
-        mybag.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
-        mybag.get().updateStatus(status);
-    }
+	// 물품 상태 변경
+	public void changeItemStatus(String accessToken, Long productId, int status) {
+		Optional<User> user = userRepository.findByAccessToken(accessToken);
+		user.orElseThrow(() -> new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
+		Optional<Mybag> mybag = mybagRepository.findByUserAndProductId(user.get(), productId);
+		mybag.orElseThrow(() -> new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
+		mybag.get().updateStatus(status);
+	}
 
 
-    //앞으로 절약할 가격 계산
-    public Map<String, Integer> getPrice(String accessToken) {
+	//앞으로 절약할 가격 계산
+	public Map<String, Integer> getPrice(String accessToken) {
 
-        Map<String, Integer> result = new HashMap<>();
+		Map<String, Integer> result = new HashMap<>();
 
-        Optional <User> user = userRepository.findByAccessToken(accessToken);
-        user.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
+		Optional<User> user = userRepository.findByAccessToken(accessToken);
+		user.orElseThrow(() -> new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
 
-        int originalPriceBeforeBuy = 0;
-        int salePriceBeforeBuy = 0;
-        int originalPriceAfterBuy = 0;
-        int salePriceAfterBuy = 0;
+		int originalPriceBeforeBuy = 0;
+		int salePriceBeforeBuy = 0;
+		int originalPriceAfterBuy = 0;
+		int salePriceAfterBuy = 0;
 
-        for (Mybag mb : mybagRepository.findByUser(user.get())) {
-            Optional<Product> product = productRepository.findById(mb.getProductId());
-            product.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
-            if (mb.getStatus() == 1) {
-                originalPriceBeforeBuy += product.get().getOriginalPrice()*mb.getCount();
-                salePriceBeforeBuy += product.get().getSalePrice()*mb.getCount();
-            } else if (mb.getStatus() == 2) {
-                originalPriceAfterBuy += product.get().getOriginalPrice()*mb.getCount();
-                salePriceAfterBuy += product.get().getSalePrice()*mb.getCount();
-            }
-        }
+		for (Mybag mb : mybagRepository.findByUser(user.get())) {
+			Optional<Product> product = productRepository.findById(mb.getProductId());
+			product.orElseThrow(() -> new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
+			if (mb.getStatus() == 1) {
+				originalPriceBeforeBuy += product.get().getOriginalPrice() * mb.getCount();
+				salePriceBeforeBuy += product.get().getSalePrice() * mb.getCount();
+			} else if (mb.getStatus() == 2) {
+				originalPriceAfterBuy += product.get().getOriginalPrice() * mb.getCount();
+				salePriceAfterBuy += product.get().getSalePrice() * mb.getCount();
+			}
+		}
 
-        result.put("originalPriceBeforeBuy", originalPriceBeforeBuy);
-        result.put("salePriceBeforeBuy", salePriceBeforeBuy);
-        result.put("paidPriceBeforeBuy", originalPriceBeforeBuy - salePriceAfterBuy);
+		result.put("originalPriceBeforeBuy", originalPriceBeforeBuy);
+		result.put("salePriceBeforeBuy", salePriceBeforeBuy);
+		result.put("paidPriceBeforeBuy", originalPriceBeforeBuy - salePriceAfterBuy);
 
-        result.put("originalPriceAfterBuy", originalPriceAfterBuy);
-        result.put("salePriceAfterBuy", salePriceAfterBuy);
-        result.put("paidPriceAfterBuy", originalPriceAfterBuy - salePriceAfterBuy);
+		result.put("originalPriceAfterBuy", originalPriceAfterBuy);
+		result.put("salePriceAfterBuy", salePriceAfterBuy);
+		result.put("paidPriceAfterBuy", originalPriceAfterBuy - salePriceAfterBuy);
 
-        return result;
-    }
+		return result;
+	}
 
 }
