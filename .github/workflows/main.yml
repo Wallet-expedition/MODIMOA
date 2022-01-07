@@ -32,6 +32,16 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@master 
 
+      - name: Install AWS CLI
+        run: pip3 install awscli --upgrade --user
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          mask-aws-account-id: true
+
       - name: Install Dependencies
         run: yarn
         working-directory: ${{ env.working-directory }}
@@ -49,5 +59,7 @@ jobs:
             --recursive \
             --region ap-northeast-2 \
             build s3://modimoa \
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
         working-directory: ${{ env.working-directory }}
+
+      - name: Invalidate CloudFront Cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
