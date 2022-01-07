@@ -41,7 +41,7 @@ const SideMenuPresenter = ({
           </nav>
 
           <footer className="sidemenu-foot">
-            <p> About </p>
+            <Link to="/about/what"> About </Link>
             <p> Contact Us </p>
           </footer>
         </div>

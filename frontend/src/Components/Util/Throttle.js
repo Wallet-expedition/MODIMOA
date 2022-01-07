@@ -6,10 +6,10 @@
  */
 
 export function throttle(fn, delay) {
-  var timer = null;
+  let timer = null;
   return function () {
-    var context = this;
-    var args = arguments;
+    const context = this;
+    const args = arguments;
     if (!timer) {
       timer = setTimeout(function () {
         fn.apply(context, args);

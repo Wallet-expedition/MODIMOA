@@ -11,9 +11,9 @@ import java.util.Optional;
 @Repository
 public interface MybagRepository extends JpaRepository<Mybag, Long> {
 
-    Optional<Mybag> findByUserAndProductId(User user, Long productId);
+	Optional<Mybag> findByUserAndProductId(User user, Long productId);
 
-    void deleteByUserAndProductId(User user, Long productId);
+	void deleteByUserAndProductId(User user, Long productId);
 
-    List<Mybag> findByUser(User user);
+	List<Mybag> findByUser(User user);
 }
