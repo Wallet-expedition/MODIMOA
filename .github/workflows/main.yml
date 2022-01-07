@@ -50,5 +50,5 @@ jobs:
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            dist s3://modimoa
+            build s3://modimoa
         working-directory: ${{ env.working-directory }}
