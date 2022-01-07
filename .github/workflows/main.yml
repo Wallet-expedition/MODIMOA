@@ -30,8 +30,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout source code
-        uses: actions/checkout@master
-        working-directory: ${{ env.working-directory }}
+        uses: actions/checkout@master 
 
       - name: Cache node modules  # node modules 캐싱
         uses: actions/cache@v1
@@ -41,7 +40,6 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
-        working-directory: ${{ env.working-directory }}
 
       - name: Install Dependencies
         run: yarn
