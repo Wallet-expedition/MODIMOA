@@ -32,15 +32,6 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@master 
 
-      - name: Cache node modules  # node modules 캐싱
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-master-build-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
-
       - name: Install Dependencies
         run: yarn
         working-directory: ${{ env.working-directory }}
@@ -54,6 +45,8 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
+          pwd \
+          ls -lah \
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
