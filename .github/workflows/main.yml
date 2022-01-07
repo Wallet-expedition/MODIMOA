@@ -31,6 +31,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout source code
         uses: actions/checkout@master
+        working-directory: ${{ env.working-directory }}
 
       - name: Cache node modules  # node modules 캐싱
         uses: actions/cache@v1
@@ -40,19 +41,24 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
+        working-directory: ${{ env.working-directory }}
 
       - name: Install Dependencies
         run: yarn
+        working-directory: ${{ env.working-directory }}
 
       - name: Build
         run: yarn build
+        working-directory: ${{ env.working-directory }}
 
       - name: Deploy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          SOURCE_DIR: 'frontend/build/'
         run: |
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
             dist s3://modimoa
+        working-directory: ${{ env.working-directory }}
