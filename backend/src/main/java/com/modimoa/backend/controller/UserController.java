@@ -51,10 +51,8 @@ public class UserController {
 
 	// 로그인 기능, HttpHeaders로 사용자 토큰 받음
 	@PostMapping("/login")
-	public void loginUserByToken(@RequestHeader HttpHeaders requestHeader, HttpServletResponse response, @RequestBody HashMap<String, String> map) throws NoSuchAlgorithmException {
+	public void loginUserByToken(HttpServletResponse response, @RequestBody HashMap<String, String> map) throws NoSuchAlgorithmException {
 		String userEmail = map.get("user_email");
-
-		String loginCookie = requestHeader.toSingleValueMap().get("authorization");
 
 		//쿠키 유저내 검색 있으면 토큰 만들어서 반환, 없으면 실패 반환
 		String accessToken = userService.login(userEmail);
