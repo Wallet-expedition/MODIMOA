@@ -69,7 +69,7 @@ public class UserController {
 	@DeleteMapping("/withdrawal")
 	public void withdrawal(@RequestHeader HttpHeaders requestHeader) {
 
-		String withdrawal = requestHeader.toSingleValueMap().get("authorizaion");
+		String withdrawal = requestHeader.toSingleValueMap().get("authorization");
 
 		userService.withdrawal(withdrawal);
 	}
@@ -79,7 +79,7 @@ public class UserController {
 	@PostMapping("/logout")
 	public void logoutUserByToken(@RequestHeader HttpHeaders requestHeader) {
 
-		String logoutCookie = requestHeader.toSingleValueMap().get("authorizaion");
+		String logoutCookie = requestHeader.toSingleValueMap().get("authorization");
 
 		userService.logout(logoutCookie);
 
