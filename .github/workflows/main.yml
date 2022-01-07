@@ -48,12 +48,6 @@ jobs:
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            build s3://modimoa
-        working-directory: ${{ env.working-directory }}
-
-      - name: Invalidate CloudFront Cache
-        env:
-          AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
-        run: |
-          aws configure list \
+            build s3://modimoa \
           aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+        working-directory: ${{ env.working-directory }}
