@@ -15,7 +15,7 @@ const LayoutContainer = ({ children }) => {
   };
 
   useEffect(() => {
-    const noBackBtnPage = ["/list", "/main", "list/", "about"];
+    const noBackBtnPage = ["/list", "/main", "list/", "about", "/"];
     noBackBtnPage.forEach((page, idx) => {
       if (isNowPage(page) && idx !== 2) setIsNotRequiredBackBtn(true);
       else if (isNowPage(page) && idx === 2) setIsNotRequiredBackBtn(false);
