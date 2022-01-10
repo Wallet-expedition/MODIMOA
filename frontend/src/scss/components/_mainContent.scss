@@ -1,19 +1,29 @@
 .content-container {
   height: 100%;
   @include desktop {
-    flex: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 5% 0 5% 0;
     background-color: rgba(0, 0, 0, 0.46);
   }
 
   @include mobile {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
     overflow-y: hidden;
   }
 
   .content-beer {
     @include desktop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
       background-image: url(https://www.icegif.com/wp-content/uploads/beer-icegif-3.gif);
       background-size: cover;
       text-align: center;
@@ -21,16 +31,13 @@
       color: snow;
 
       .content-description {
-        margin-top: 70px;
-        padding-top: 30px;
         p {
           font-size: 25px;
-          margin-bottom: 0px;
+          margin: 0;
         }
         p:last-child {
           font-size: 120px;
           font-weight: 500;
-          margin: 0px 0px;
           line-height: 1;
         }
       }
@@ -47,6 +54,7 @@
     }
 
     @include mobile {
+      margin-top: 20%;
       height: 30%;
       text-align: center;
       img {
@@ -55,32 +63,44 @@
     }
   }
 
-  .content-search {
-    height: 10%;
-  }
-
-  .content-footer {
+  .content-foot {
     width: 90%;
-    height: 80%;
     display: flex;
-    justify-content: space-evenly;
-  }
-
-  .content-search,
-  .mart {
-    width: 90%;
-    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @include desktop {
+      gap: 3rem;
+    }
+    @include mobile {
+      gap: 2rem;
+    }
   }
 
   .mart {
     text-align: center;
+
+    @include desktop {
+      width: calc(100% - 2rem);
+      border: 2px solid snow;
+      border-radius: 10px;
+      padding: 1rem;
+      p {
+        color: snow;
+      }
+    }
+
+    @include mobile {
+      width: 100%;
+    }
+
     p {
       @include font-default(700, 1rem);
-      margin: 1rem 0 1rem 0;
+      margin: 0 0 1.5rem 0;
       text-align: left;
-      padding-left: 0.5rem;
-      @include desktop {
-        color: snow;
+
+      @include mobile {
+        margin: 0 0 0.5rem 0;
       }
     }
 
@@ -88,16 +108,16 @@
       display: flex;
       justify-content: space-between;
 
+      .mart-container {
+        padding: 0;
+      }
+
       img {
         background-color: snow;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
         border-radius: 10px;
         max-width: 100%;
       }
-    }
-
-    &:last-child {
-      margin-bottom: 4rem;
     }
   }
 }
