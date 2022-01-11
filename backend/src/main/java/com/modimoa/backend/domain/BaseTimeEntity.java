@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public class BaseTimeEntity {
 
-    @CreatedDate
-    private LocalDateTime createdDate;
+	@CreatedDate
+	private LocalDateTime createdDate;
 
-    public LocalDateTime getCreatedDate(){
-        return createdDate;
-    }
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
 }

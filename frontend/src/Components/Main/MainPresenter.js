@@ -34,7 +34,7 @@ const MainPresenter = ({ searchKeyword, handleChange, handleLogoClick }) => {
   const onClickSearch = useCallback(() => {
     if (searchKeyword)
       history.push({ pathname: "/list", search: `?keyword=${searchKeyword}` });
-    else alert("검색어를 입력해주세요");
+    else alert("검색어를 입력해주세요.");
   }, [history, searchKeyword]);
 
   const onEnterPress = useCallback(
@@ -50,7 +50,7 @@ const MainPresenter = ({ searchKeyword, handleChange, handleLogoClick }) => {
     <main className="content-container">
       <div className="content-beer">
         <div className="content-description">
-          <p> 맥주 마시기 좋은 시간 </p>
+          <p> 맥주 마시기 좋은 시간입니다. </p>
           <p> 12:34 </p>
         </div>
       </div>

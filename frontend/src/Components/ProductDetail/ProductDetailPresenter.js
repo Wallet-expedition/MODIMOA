@@ -15,7 +15,7 @@ const ProductDetailPresenter = ({
   isToastActive,
   handleClick,
 }) => {
-  var martClass = "product-info-mart";
+  let martClass = "product-info-mart";
   switch (item.mart_name) {
     case "CU":
       martClass = `${martClass} product-info-mart-${CU}`;
