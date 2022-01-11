@@ -70,7 +70,7 @@
     align-items: center;
     justify-content: center;
     @include desktop {
-      gap: 3rem;
+      gap: 1.5rem;
     }
     @include mobile {
       gap: 2rem;
