@@ -1,11 +1,13 @@
 .content-search {
   width: 90%;
+  height: 10%;
   display: flex;
-  margin: 0 auto;
+  align-items: center;
+
   .MuiFormControl-root {
     height: 40px;
     width: 100%;
-    padding: 0.3rem;
+    padding: 0.3rem 0.3rem 0.3rem 0;
 
     .MuiInputBase-root {
       height: 100%;
@@ -13,24 +15,79 @@
     }
   }
 
-  .MuiOutlinedInput-root,
-  .MuiOutlinedInput-notchedOutline {
-    border: 2px solid gray;
-  }
-
   label {
-    padding-left: 0.4rem;
+    padding-left: 0;
   }
 
   .search-btn {
-    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 40px;
-
     img {
-      height: 35px;
+      height: 30px;
       cursor: pointer;
-      position: relative;
-      top: 11%;
+    }
+  }
+
+  @include desktop() {
+    gap: 10px;
+    .MuiOutlinedInput-root,
+    .MuiOutlinedInput-notchedOutline {
+      border: 2px solid #FAFAFA;
+    }
+    .MuiOutlinedInput-root:hover {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: #FAFAFA;
+      }
+    }
+    .MuiOutlinedInput-root.Mui-focused {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: #FAFAFA;
+      }
+    }
+    .MuiFormLabel-root {
+      color: #FAFAFA;
+    }
+    .MuiFormLabel-root.Mui-focused {
+      color: #FAFAFA;
+    }
+
+    .MuiInputLabel-formControl {
+      transform: translate(0, 24px) scale(1);
+    }
+
+    .search-btn {
+      background-color: #EDEDED;
+      border: 1px solid #FAFAFA;
+      border-radius: 10px;
+      width: 60px;
+      transition: all 0.1s ease-in-out;
+      img {
+        height: 25px;
+      }
+      &:hover {
+        background-color: #FAFAFA;
+      }
+    }
+  }
+
+  @include mobile() {
+
+    .MuiOutlinedInput-root,
+    .MuiOutlinedInput-notchedOutline {
+      border: 2px solid #808080;
+    }
+    .MuiOutlinedInput-root.Mui-focused {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: #666666;
+      }
+    }
+    .MuiFormLabel-root {
+      color: #808080;
+    }
+    .MuiFormLabel-root.Mui-focused {
+      color: #666666;
     }
   }
 }
