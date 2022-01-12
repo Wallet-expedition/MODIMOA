@@ -17,7 +17,6 @@ const KaKaoRegisterButton = ({ history }) => {
 
   const kakaoLoginSuccess = useCallback(
     async (response) => {
-      console.log(response);
       const account = response?.kakao_account;
       const body = {
         user_email: account.email,
