@@ -8,20 +8,20 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 
-const UserProfile = ({ handleLogout, User }) => {
+const UserProfile = ({ handleLogout, userInfo, profit }) => {
   return (
     <Card>
-      <CardHeader avatar={<Avatar alt="user-image" src={User.image} />} />
+      <CardHeader avatar={<Avatar alt="user-image" src={userInfo.image} />} />
       <CardContent>
         <Typography variant="body1" color="textPrimary" component="p">
-          {User.email}
+          {userInfo.email}
         </Typography>
         <Typography variant="body1" color="textPrimary" component="p">
-          얼마를 아꼈는가? <b>32,405원</b>
+          얼마를 아꼈는가? <b>{profit}원</b>
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="large" color="primary" href="/main">
+        <Button size="large" color="primary" href="/mybag">
           장바구니 바로가기
         </Button>
         <Button size="large" color="secondary" onClick={handleLogout}>
@@ -44,10 +44,19 @@ const WithDrawButton = ({ handleWithDraw }) => {
   );
 };
 
-const MyPagePresenter = ({ handleLogout, handleWithDraw, User }) => {
+const MyPagePresenter = ({
+  handleLogout,
+  handleWithDraw,
+  userInfo,
+  profit,
+}) => {
   return (
     <main className="my-info-container">
-      <UserProfile handleLogout={handleLogout} User={User} />
+      <UserProfile
+        handleLogout={handleLogout}
+        userInfo={userInfo}
+        profit={profit}
+      />
       <WithDrawButton handleWithDraw={handleWithDraw} />
     </main>
   );
