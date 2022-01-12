@@ -9,10 +9,8 @@ import {
 const productReducer = (state = {}, action) => {
   switch (action.type) {
     case SELECT_PRODUCT:
-      console.log(action.payload);
       return { ...state, product: action.payload };
     case WISH_PRODUCT:
-      console.log(action.payload);
       return { ...state, success: action.payload };
     case GET_PRODUT_LIST:
       return { ...state, productList: action.payload };
