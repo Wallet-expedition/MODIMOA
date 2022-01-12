@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin("https://modimoa.kro.kr")
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/api/mybag")
 public class MybagController {

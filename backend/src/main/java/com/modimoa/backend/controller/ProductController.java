@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@CrossOrigin("https://modimoa.kro.kr")
+@CrossOrigin
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {
