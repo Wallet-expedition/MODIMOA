@@ -37,7 +37,7 @@ const SideMenuContainer = ({ setShowSideMenu }) => {
   useLayoutEffect(() => {
     let token = getCookie("accessToken");
 
-    if (token !== "NO_HAVE") {
+    if (token) {
       setIsLogin(true);
     }
   }, [path]);

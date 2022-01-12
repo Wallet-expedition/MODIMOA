@@ -1,17 +1,19 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { withDrawUser } from "../../Store/Actions/userAction";
+import {
+  getUserInfo,
+  getUserProfit,
+  withDrawUser,
+} from "../../Store/Actions/userAction";
 import MyPagePresenter from "./MyPagePresenter";
 import { useDispatch } from "react-redux";
 import { getCookie } from "../Util/Cookie";
 import { logoutUser } from "../../Store/Actions/userAction";
 
-const User = {
-  email: "hongildong@naver.com",
-  image: "https://avatars.githubusercontent.com/u/43488305?v=4",
-};
-
 const MyPageContainer = () => {
+  const [userInfo, setUserInfo] = useState({});
+  const [profit, setProfit] = useState(0);
+
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -33,11 +35,27 @@ const MyPageContainer = () => {
     }
   }, [dispatch, history]);
 
+  useEffect(() => {
+    const tokenId = getCookie("accessToken");
+    const setUserInformation = async () => {
+      const res = await dispatch(getUserInfo(tokenId));
+      setUserInfo(res.payload);
+    };
+    const setUserProfit = async () => {
+      const res = await dispatch(getUserProfit(tokenId));
+      setProfit(res.payload);
+    };
+
+    setUserInformation();
+    setUserProfit();
+  }, [dispatch]);
+
   return (
     <MyPagePresenter
       handleLogout={handleLogout}
       handleWithDraw={handleWithDraw}
-      User={User}
+      userInfo={userInfo}
+      profit={profit}
     />
   );
 };
