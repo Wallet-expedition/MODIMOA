@@ -6,7 +6,7 @@ name: Frontend Deploy YML
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ draft ]
+    branches: [draft]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -14,19 +14,19 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-18.04
-    
+
     env:
       working-directory: ./frontend
 
     strategy:
       matrix:
-        node-version: [ 12.x ]
-    
+        node-version: [12.x]
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout source code
-        uses: actions/checkout@master 
+        uses: actions/checkout@master
 
       - name: Install AWS CLI
         run: pip3 install awscli --upgrade --user
@@ -43,13 +43,24 @@ jobs:
         run: yarn
         working-directory: ${{ env.working-directory }}
 
+      - name: Generate Environment Variables File
+        run: |
+          echo "REACT_APP_SERVER=$REACT_APP_SERVER" >> .env
+          echo "REACT_APP_GOOGLE_API_KEY=$REACT_APP_GOOGLE_API_KEY" >> .env
+          echo "REACT_APP_KAKAO_API_KEY=$REACT_APP_KAKAO_API_KEY" >> .env
+          echo "REACT_APP_FACEBOOK_API_KEY=$REACT_APP_FACEBOOK_API_KEY" >> .env
+        env:
+          REACT_APP_SERVER: ${{ secrets.REACT_APP_SERVER }}
+          REACT_APP_GOOGLE_API_KEY: ${{ secrets.REACT_APP_GOOGLE_API_KEY }}
+          REACT_APP_KAKAO_API_KEY: ${{ secrets.REACT_APP_KAKAO_API_KEY }}
+          REACT_APP_FACEBOOK_API_KEY: ${{ secrets.REACT_APP_FACEBOOK_API_KEY }}
+
       - name: Build
         run: yarn build
         working-directory: ${{ env.working-directory }}
 
       - name: Deploy
-        run: |
-          aws s3 sync ./build s3://modimoa 
+        run: aws s3 sync ./build s3://modimoa
         working-directory: ${{ env.working-directory }}
 
       - name: Invalidate CloudFront Cache
