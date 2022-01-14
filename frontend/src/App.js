@@ -2,8 +2,9 @@ import { BrowserRouter } from "react-router-dom";
 import Router from "./Routes/Router";
 import dotenv from "dotenv";
 
+dotenv.config();
+
 const App = () => {
-  dotenv.config();
   return (
     <BrowserRouter>
       <Router />
