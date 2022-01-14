@@ -48,20 +48,21 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void logout(String token) {
+    public String logout(String token) {
 
         Optional <User> user = userRepository.findByOauthToken(token);
         user.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
+        user.get().updateTokens("");
 
-        String accessToken="";
-        user.get().updateTokens(accessToken);
+        return user.get().getUserEmail();
     }
 
-    public void withdrawal(String token) {
+    public String withdrawal(String token) {
 
         Optional <User> user = userRepository.findByAccessToken(token);
         user.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
         userRepository.deleteByAccessToken(token);
+        return user.get().getUserEmail();
     }
 
     public Map<String, String> getUserInfo(String token) {
