@@ -28,6 +28,18 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@master
 
+      - name: Generate Environment Variables File
+        run: |
+          echo "REACT_APP_SERVER=$REACT_APP_SERVER" >> .env
+          echo "REACT_APP_GOOGLE_API_KEY=$REACT_APP_GOOGLE_API_KEY" >> .env
+          echo "REACT_APP_KAKAO_API_KEY=$REACT_APP_KAKAO_API_KEY" >> .env
+          echo "REACT_APP_FACEBOOK_API_KEY=$REACT_APP_FACEBOOK_API_KEY" >> .env
+        env:
+          REACT_APP_SERVER: ${{ secrets.REACT_APP_SERVER }}
+          REACT_APP_GOOGLE_API_KEY: ${{ secrets.REACT_APP_GOOGLE_API_KEY }}
+          REACT_APP_KAKAO_API_KEY: ${{ secrets.REACT_APP_KAKAO_API_KEY }}
+          REACT_APP_FACEBOOK_API_KEY: ${{ secrets.REACT_APP_FACEBOOK_API_KEY }}
+
       - name: Install AWS CLI
         run: pip3 install awscli --upgrade --user
 
@@ -42,18 +54,6 @@ jobs:
       - name: Install Dependencies
         run: yarn
         working-directory: ${{ env.working-directory }}
-
-      - name: Generate Environment Variables File
-        run: |
-          echo "REACT_APP_SERVER=$REACT_APP_SERVER" >> .env
-          echo "REACT_APP_GOOGLE_API_KEY=$REACT_APP_GOOGLE_API_KEY" >> .env
-          echo "REACT_APP_KAKAO_API_KEY=$REACT_APP_KAKAO_API_KEY" >> .env
-          echo "REACT_APP_FACEBOOK_API_KEY=$REACT_APP_FACEBOOK_API_KEY" >> .env
-        env:
-          REACT_APP_SERVER: ${{ secrets.REACT_APP_SERVER }}
-          REACT_APP_GOOGLE_API_KEY: ${{ secrets.REACT_APP_GOOGLE_API_KEY }}
-          REACT_APP_KAKAO_API_KEY: ${{ secrets.REACT_APP_KAKAO_API_KEY }}
-          REACT_APP_FACEBOOK_API_KEY: ${{ secrets.REACT_APP_FACEBOOK_API_KEY }}
 
       - name: Build
         run: yarn build
