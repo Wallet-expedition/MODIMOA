@@ -37,17 +37,17 @@ public class MybagController {
 	@PostMapping("/{productId}")
 	public ResponseEntity<String> addItem(@PathVariable Long productId, @RequestHeader HttpHeaders requestHeader) {
 		String accessToken = requestHeader.toSingleValueMap().get("authorization");
-		mybagService.plusItemOrCreateCount(accessToken, productId);
+		String userEmail = mybagService.plusItemOrCreateCount(accessToken, productId);
 
-		return new ResponseEntity<>("장바구니에 상품 추가됨", HttpStatus.CREATED);
+		return new ResponseEntity<>(userEmail + " 장바구니에 상품 추가됨", HttpStatus.CREATED);
 	}
 
 	// 장바구니 물건에서 물건 삭제하는 기능 (0으로 수량 변경하는 것과 동일)
 	@DeleteMapping("/delete/{productId}")
 	public ResponseEntity<String> deleteItem(@PathVariable Long productId, @RequestHeader HttpHeaders requestHeader) {
 		String accessToken = requestHeader.toSingleValueMap().get("authorization");
-		mybagService.deleteItem(accessToken, productId);
-		return new ResponseEntity<>("장바구니에서 상품 삭제됨", HttpStatus.OK);
+		String userEmail = mybagService.deleteItem(accessToken, productId);
+		return new ResponseEntity<>(userEmail + " 장바구니에서 상품 삭제됨", HttpStatus.OK);
 	}
 
 	// 장바구니 물건 수량 변경하는 기능, 단 0이면 삭제
@@ -56,9 +56,9 @@ public class MybagController {
 
 		String accessToken = requestHeader.toSingleValueMap().get("authorization");
 		int count = Integer.parseInt(requestHeader.toSingleValueMap().get("count"));
-		mybagService.changeItemCount(accessToken, productId, count);
+		String userEmail = mybagService.changeItemCount(accessToken, productId, count);
 
-		return new ResponseEntity<>("장바구니 상품 개수가 변경됨", HttpStatus.OK);
+		return new ResponseEntity<>(userEmail + " 장바구니 상품 개수가 변경됨", HttpStatus.OK);
 	}
 
 	// 장바구니에서 구매 여부 변경하는 기능
@@ -66,9 +66,9 @@ public class MybagController {
 	public ResponseEntity<String> changeItemStatus(@PathVariable Long productId, @RequestHeader HttpHeaders requestHeader) {
 		String accessToken = requestHeader.toSingleValueMap().get("authorization");
 		int status = Integer.parseInt(requestHeader.toSingleValueMap().get("status"));
-		mybagService.changeItemStatus(accessToken, productId, status);
+		String userEmail = mybagService.changeItemStatus(accessToken, productId, status);
 
-		return new ResponseEntity<>( "장바구니 상품 구매 상태가 변경됨", HttpStatus.OK);
+		return new ResponseEntity<>( userEmail + " 장바구니 상품 구매 상태가 변경됨", HttpStatus.OK);
 	}
 
 }
