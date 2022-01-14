@@ -1,6 +1,6 @@
 import React, { useCallback, useLayoutEffect } from "react";
 import { useDispatch } from "react-redux";
-import { auth } from "../../Store/Actions/userAction";
+import { getUserInfo } from "../../Store/Actions/userAction";
 import { getCookie } from "./Cookie";
 
 /**
@@ -16,19 +16,21 @@ const Auth = (SpecificPage, authority) => {
     const tokenId = getCookie("token");
 
     const loginCheck = useCallback(async () => {
-      const response = await dispatch(auth(tokenId));
-      // Login Check Fail
-      if (!response.payload.success) {
-        // can go with login
-        if (authority) {
-          props.history.push("/login");
+      if (tokenId) {
+        const response = await dispatch(getUserInfo(tokenId));
+        // Login Check Fail
+        if (!response.payload.success) {
+          // can go with login
+          if (authority) {
+            props.history.push("/login");
+          }
         }
-      }
-      // Login Check Success
-      else {
-        // can go with no login
-        if (authority === false) {
-          props.history.push("/main");
+        // Login Check Success
+        else {
+          // can go with no login
+          if (authority === false) {
+            props.history.push("/main");
+          }
         }
       }
     }, [dispatch, props.history, tokenId]);

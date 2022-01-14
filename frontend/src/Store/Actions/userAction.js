@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
-  AUTH_USER,
   GET_USER_INFO,
+  GET_USER_PROFIT,
   LOGIN_USER,
   LOGOUT_USER,
   WITHDRAW_USER,
@@ -22,9 +22,9 @@ export const loginUser = async (tokenId, body) => {
       headers: {
         authorization: tokenId,
       },
+      withCredentials: true,
     }
   );
-
   return {
     type: LOGIN_USER,
     payload: res,
@@ -41,7 +41,6 @@ export const registerUser = async (body, tokenId) => {
       },
     }
   );
-
   return {
     type: LOGIN_USER,
     payload: res,
@@ -62,26 +61,6 @@ export const logoutUser = async (tokenId) => {
   return {
     type: LOGOUT_USER,
     payload: res,
-  };
-};
-
-/**
- *
- * @param {string} tokenId from server
- *
- * isLogin method
- */
-export const auth = async (tokenId) => {
-  // const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/users/auth`, {
-  //   headers: {
-  //     authorization: tokenId,
-  //   },
-  // });
-  // console.log(res.data);
-  return {
-    type: AUTH_USER,
-    // payload: res.data,
-    payload: 1,
   };
 };
 
@@ -111,9 +90,24 @@ export const getUserInfo = async (tokenId) => {
       },
     }
   );
-
   return {
     type: GET_USER_INFO,
-    payload: res,
+    payload: res.data,
+  };
+};
+
+export const getUserProfit = async (tokenId) => {
+  const res = await axios.post(
+    `${process.env.REACT_APP_SERVER}/api/mybag/prices`,
+    {},
+    {
+      headers: {
+        authorization: tokenId,
+      },
+    }
+  );
+  return {
+    type: GET_USER_PROFIT,
+    payload: res.data,
   };
 };

@@ -44,7 +44,6 @@ const GoogleLoginButton = ({ history }) => {
   const dispatch = useDispatch();
   const googleLoginSuccess = useCallback(
     async (response) => {
-      console.log(response);
       const profile = response.profileObj;
       const tokenId = response.tokenId;
       const body = {

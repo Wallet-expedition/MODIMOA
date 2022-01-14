@@ -18,14 +18,12 @@ const KakaoLoginButton = ({ history }) => {
 
   const kakaoLoginSuccess = useCallback(
     async (response) => {
-      console.log(response);
       const account = response?.kakao_account;
       const tokenId = token;
       const body = {
         user_email: account.email,
         user_image: account.profile.profile_image_url,
       };
-
       const res = await dispatch(loginUser(tokenId, body));
 
       if (res.payload.status === 200) {

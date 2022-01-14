@@ -1,5 +1,5 @@
 export const getCookie = (key) => {
-  let value = "NO_HAVE";
+  let value = "";
   const cookies = document.cookie.split(";");
 
   for (let i in cookies) {
