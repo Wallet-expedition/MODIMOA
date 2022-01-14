@@ -5,8 +5,7 @@ public enum SaleCategory {
 	TwoPlusOne("2+1"),
 	ThreePlusOne("3+1"),
 	Gift("증정"),
-	Discount("가격"),
-	FlatPrice("균일가");
+	Discount("가격");
 
 	private String krname;
 
