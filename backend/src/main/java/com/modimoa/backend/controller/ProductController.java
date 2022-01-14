@@ -32,8 +32,8 @@ public class ProductController {
 	}
 
 	// 특정 마트 물건 가져오는 기능
-	@GetMapping("pickmart/{mart}/{q}")
-	public ResponseEntity<Page<Product>> getFilteredProduct(@PathVariable String mart, @PathVariable String q, Pageable pageable) {
+	@GetMapping("pickmart/{mart}")
+	public ResponseEntity<Page<Product>> getFilteredProduct(@PathVariable String mart, @RequestParam("q") String q, Pageable pageable) {
 		return new ResponseEntity<>(productService.getFilteredProduct(mart, q, pageable), HttpStatus.OK);
 	}
 }
