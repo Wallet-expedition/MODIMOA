@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin ("https://modimoa.kro.kr, http://110.34.75.163:3000")
+@CrossOrigin(origins = {"https://modimoa.kro.kr", "http://110.34.75.163:3000", "http://localhost:3000"})
 @RestController
 @RequestMapping(value = "/api/mybag")
 public class MybagController {
