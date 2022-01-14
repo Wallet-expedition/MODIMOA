@@ -18,9 +18,7 @@ import java.util.Map;
 @RequestMapping("/api/users")
 public class UserController {
 
-
-	@Autowired
-	private UserService userService = new UserService();
+	private static final UserService userService = new UserService();
 
 	// 테스트용 사용자 모두 가져오는 api
 	@GetMapping("")

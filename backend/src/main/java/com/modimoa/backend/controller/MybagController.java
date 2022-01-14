@@ -13,11 +13,7 @@ import java.util.Map;
 @RequestMapping(value = "/api/mybag")
 public class MybagController {
 
-	private final MybagService mybagService;
-
-	public MybagController(MybagService mybagService) {
-		this.mybagService = mybagService;
-	}
+	private static final MybagService mybagService = new MybagService();
 
 	// 장바구니에서 user의 물건 조회하는 기능
 	@GetMapping("")

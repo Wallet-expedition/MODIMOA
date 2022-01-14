@@ -14,8 +14,7 @@ import java.util.Optional;
 @RequestMapping("/api/product")
 public class ProductController {
 
-	@Autowired
-	private ProductService productService = new ProductService();
+	private static final ProductService productService = new ProductService();
 
 	// 전체 물품 가져오는 기능
 	@GetMapping("")
