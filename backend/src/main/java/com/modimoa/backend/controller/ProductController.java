@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@CrossOrigin
+@CrossOrigin ("https://modimoa.kro.kr, http://localhost:3000")
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {

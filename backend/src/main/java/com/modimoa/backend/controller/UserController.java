@@ -15,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin
+@CrossOrigin ("https://modimoa.kro.kr, http://localhost:3000")
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
