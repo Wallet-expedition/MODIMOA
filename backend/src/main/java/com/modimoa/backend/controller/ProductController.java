@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@CrossOrigin ("https://modimoa.kro.kr, http://localhost:3000")
+@CrossOrigin ("https://modimoa.kro.kr, http://110.34.75.163:3000")
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {
 
 	@Autowired
-	private ProductService productService = new ProductService();
+	private ProductService productService;
 
 	// 전체 물품 가져오는 기능
 	@GetMapping("")

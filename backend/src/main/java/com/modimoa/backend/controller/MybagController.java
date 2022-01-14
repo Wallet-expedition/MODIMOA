@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin ("https://modimoa.kro.kr, http://localhost:3000")
+@CrossOrigin ("https://modimoa.kro.kr, http://110.34.75.163:3000")
 @RestController
 @RequestMapping(value = "/api/mybag")
 public class MybagController {
 
 	@Autowired
-	private MybagService mybagService = new MybagService();
+	private MybagService mybagService;
 
 	// 장바구니에서 user의 물건 조회하는 기능
 	@GetMapping("")

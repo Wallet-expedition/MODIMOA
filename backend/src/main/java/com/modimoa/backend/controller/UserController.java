@@ -15,13 +15,13 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin ("https://modimoa.kro.kr, http://localhost:3000")
+@CrossOrigin ("https://modimoa.kro.kr, http://110.34.75.163:3000")
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
 
 	@Autowired
-	private UserService userService = new UserService();
+	private UserService userService;
 
 	// 테스트용 사용자 모두 가져오는 api
 	@GetMapping("")
