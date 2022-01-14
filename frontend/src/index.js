@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -7,6 +8,8 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { HelmetProvider } from "react-helmet-async";
 import store from "./Store/store";
+
+dotenv.config();
 
 ReactDOM.render(
   <React.StrictMode>
