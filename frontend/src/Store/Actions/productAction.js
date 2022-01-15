@@ -3,6 +3,7 @@ import {
   SELECT_PRODUCT,
   WISH_PRODUCT,
   GET_ONE_PRODUCT,
+  DELETE_PRODUCT,
 } from "./type";
 import request from "../../Components/Util/Request";
 
@@ -18,6 +19,15 @@ export const wishProduct = async (body, id) => {
 
   return {
     type: WISH_PRODUCT,
+    payload: res,
+  };
+};
+
+export const deleteWishProduct = async (id) => {
+  const res = await request.delete(`/api/mybag/delete/${id}`);
+
+  return {
+    type: DELETE_PRODUCT,
     payload: res,
   };
 };

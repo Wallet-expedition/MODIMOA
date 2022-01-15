@@ -1,5 +1,41 @@
 import { Grid } from "@material-ui/core";
 
+const WishDisplay = ({
+  id,
+  product_name,
+  handleBuyClick,
+  handleDeleteClick,
+}) => {
+  return (
+    <div className="wish-btn-container">
+      <div
+        id={"id=" + id + "&wish&name=" + product_name}
+        variant="contained"
+        onClick={handleBuyClick}
+        className="buy-btn wish-btn"
+      >
+        구매하기
+      </div>
+      <div
+        id={"id=" + id + "&delete&name=" + product_name}
+        variant="contained"
+        onClick={handleDeleteClick}
+        className="delete-btn wish-btn"
+      >
+        삭제하기
+      </div>
+    </div>
+  );
+};
+const PurchasedDisplay = ({ profit }) => {
+  return (
+    <Grid className="product-state-info-container">
+      <Grid className="product-state-info"> 구매 완료 </Grid>
+      <Grid className="product-state-price">{profit}원 이득</Grid>
+    </Grid>
+  );
+};
+
 const BagProduct = ({
   id,
   product_name,
@@ -7,8 +43,11 @@ const BagProduct = ({
   original_price,
   sale_price,
   handleBuyClick,
+  handleDeleteClick,
   filterOption,
 }) => {
+  const profit = parseInt(original_price) - parseInt(sale_price);
+
   return (
     <Grid className="product-container">
       <Grid className="product-image-container">
@@ -23,21 +62,14 @@ const BagProduct = ({
         </Grid>
       </Grid>
       {filterOption === 0 ? (
-        <button
-          id={"id=" + id + "&name=" + product_name}
-          variant="contained"
-          onClick={handleBuyClick}
-          className="buy-btn"
-        >
-          구매
-        </button>
+        <WishDisplay
+          id={id}
+          product_name={product_name}
+          handleBuyClick={handleBuyClick}
+          handleDeleteClick={handleDeleteClick}
+        />
       ) : (
-        <Grid className="product-state-info-container">
-          <Grid className="product-state-info"> 구매 완료 </Grid>
-          <Grid className="product-state-price">
-            {original_price - sale_price}원 이득
-          </Grid>
-        </Grid>
+        <PurchasedDisplay profit={profit} />
       )}
     </Grid>
   );

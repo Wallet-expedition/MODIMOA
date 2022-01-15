@@ -83,3 +83,25 @@
     @include font-default(400);
   }
 }
+
+.wish-btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 23%;
+
+  .wish-btn {
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid #a5a5a5;
+    border-radius: 2px;
+  }
+
+  .buy-btn {
+    color: #3973e6;
+  }
+
+  .delete-btn {
+    color: #F5626C;
+  }
+}

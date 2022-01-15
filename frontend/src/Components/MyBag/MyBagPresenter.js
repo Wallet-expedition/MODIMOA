@@ -11,6 +11,7 @@ const MyBagPresenter = ({
   setIsOpenModal,
   selectedId,
   buyProductName,
+  handleDeleteClick,
 }) => {
   return (
     <main className="my-bag-container">
@@ -18,6 +19,7 @@ const MyBagPresenter = ({
       <BagProductList
         list={list}
         handleBuyClick={handleBuyClick}
+        handleDeleteClick={handleDeleteClick}
         buyProductName={buyProductName}
         filterOption={filterOption}
       />

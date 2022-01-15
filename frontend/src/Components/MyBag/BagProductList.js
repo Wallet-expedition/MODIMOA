@@ -3,6 +3,7 @@ import BagProduct from "./BagProduct";
 const BagProductList = ({
   list,
   handleBuyClick,
+  handleDeleteClick,
   buyProductName,
   filterOption,
 }) => {
@@ -15,6 +16,7 @@ const BagProductList = ({
       original_price={item.originalPrice}
       sale_price={item.salePrice}
       handleBuyClick={handleBuyClick}
+      handleDeleteClick={handleDeleteClick}
       buyProductName={buyProductName}
       filterOption={filterOption}
     />
