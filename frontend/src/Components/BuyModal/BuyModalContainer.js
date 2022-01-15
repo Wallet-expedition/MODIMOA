@@ -34,9 +34,7 @@ const BuyModalContainer = ({ setIsOpenModal, selectedId, buyProductName }) => {
   );
 
   const handleConfirmClick = useCallback(async () => {
-    const res = await dispatch(changeMyBagState(selectedId));
-
-    console.log(res);
+    await dispatch(changeMyBagState(selectedId));
     setIsOpenModal(false);
   }, [dispatch, selectedId, setIsOpenModal]);
 
