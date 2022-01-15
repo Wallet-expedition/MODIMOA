@@ -26,27 +26,14 @@ export const wishProduct = async (body, id) => {
 };
 
 export const getProductList = async (mart, searchKeyword, page, sortFilter) => {
-  // 검색어가 없을 경우
-  if (searchKeyword === "") {
-    const res = await axios.get(
-      `${process.env.REACT_APP_SERVER}/api/products/${mart}?page=${page}&sort=${sortFilter}`
-    );
+  const res = await axios.get(
+    `${process.env.REACT_APP_SERVER}/api/product/pickmart/${mart}/q=${searchKeyword}&size=15&page=${page}&sort=${sortFilter}`
+  );
 
-    return {
-      type: GET_PRODUT_LIST,
-      payload: res,
-    };
-  }
-  // 검색어가 있을 경우
-  else {
-    const res = await axios.get(
-      `${process.env.REACT_APP_SERVER}/api/products/${mart}/${searchKeyword}?page=${page}&sort=${sortFilter}`
-    );
-    return {
-      type: GET_PRODUT_LIST,
-      payload: res,
-    };
-  }
+  return {
+    type: GET_PRODUT_LIST,
+    payload: res,
+  };
 };
 
 export const changeMyBagState = async (productId) => {
@@ -62,7 +49,7 @@ export const changeMyBagState = async (productId) => {
 
 export const getOneProduct = async (productId) => {
   const res = await axios.get(
-    `${process.env.REACT_APP_SERVER}/api/products/pid/${productId}`
+    `${process.env.REACT_APP_SERVER}/api/product/${productId}`
   );
 
   return {

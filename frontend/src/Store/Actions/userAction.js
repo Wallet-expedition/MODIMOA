@@ -16,13 +16,13 @@ import {
  */
 export const loginUser = async (tokenId, body) => {
   const res = await axios.post(
-    `${process.env.REACT_APP_SERVER}/api/users/login`,
+    `${process.env.REACT_APP_SERVER}/api/user/login`,
     body,
     {
       headers: {
         authorization: tokenId,
+        withCredentials: true,
       },
-      withCredentials: true,
     }
   );
   return {
@@ -33,7 +33,7 @@ export const loginUser = async (tokenId, body) => {
 
 export const registerUser = async (body, tokenId) => {
   const res = await axios.post(
-    `${process.env.REACT_APP_SERVER}/api/users/new`,
+    `${process.env.REACT_APP_SERVER}/api/user/new`,
     body,
     {
       headers: {
@@ -49,7 +49,7 @@ export const registerUser = async (body, tokenId) => {
 
 export const logoutUser = async (tokenId) => {
   const res = await axios.post(
-    `${process.env.REACT_APP_SERVER}/api/users/logout`,
+    `${process.env.REACT_APP_SERVER}/api/user/logout`,
     {},
     {
       headers: {
@@ -66,7 +66,7 @@ export const logoutUser = async (tokenId) => {
 
 export const withDrawUser = async (tokenId) => {
   const res = await axios.delete(
-    `${process.env.REACT_APP_SERVER}/api/users/withdrawal`,
+    `${process.env.REACT_APP_SERVER}/api/user/withdrawal`,
     {
       headers: {
         authorization: tokenId,
@@ -82,7 +82,7 @@ export const withDrawUser = async (tokenId) => {
 
 export const getUserInfo = async (tokenId) => {
   const res = await axios.post(
-    `${process.env.REACT_APP_SERVER}/api/users/info`,
+    `${process.env.REACT_APP_SERVER}/api/user/info`,
     {},
     {
       headers: {
