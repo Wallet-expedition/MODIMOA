@@ -31,11 +31,13 @@ jobs:
 
       - name: Generate Environment Variables File
         run: |
+          cd frontend
           touch .env
           echo REACT_APP_SERVER=${{ secrets.REACT_APP_SERVER }} >> .env
           echo REACT_APP_GOOGLE_API_KEY=${{ secrets.REACT_APP_GOOGLE_API_KEY }} >> .env
           echo REACT_APP_KAKAO_API_KEY=${{ secrets.REACT_APP_KAKAO_API_KEY }} >> .env
           echo REACT_APP_FACEBOOK_API_KEY=${{ secrets.REACT_APP_FACEBOOK_API_KEY }} >> .env
+          ls
 
       - name: Install AWS CLI
         run: pip3 install awscli --upgrade --user
