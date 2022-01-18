@@ -51,7 +51,6 @@
   
   ```bash
 .
-<<<<<<< HEAD
 ├── public
 │   ├── favicon.ico
 │   ├── img
@@ -94,7 +93,7 @@
     ├── Components
     │   ├── About
     │   ├── BuyModal
-    │   ├── Header
+   │   ├── Header
     │   ├── HelmetComponent
     │   ├── Intro
     │   ├── Layout
@@ -185,89 +184,6 @@
         │   ├── sideMenuReducer.js
         │   └── userReducer.js
         └── store.js
-=======
-├── App.js
-├── App.test.js
-├── Components
-│   ├── About
-│   ├── BuyModal
-│   ├── Header
-│   ├── HelmetComponent
-│   ├── Intro
-│   ├── Layout
-│   │   ├── BackButton
-│   │   ├── SideMenu
-│   │   └── SideMenuBtn
-│   ├── Login
-│   │   └── LoginButton
-│   ├── LogoutToastMessage
-│   ├── Main
-│   ├── MartList
-│   │   └── MartListBtn
-│   ├── MyBag
-│   ├── MyPageContent
-│   ├── Product
-│   ├── ProductDetail
-│   ├── ProductList
-│   ├── Register
-│   │   └── RegisterButton
-│   └── Util
-│       ├── Auth.js
-│       ├── Constant.js
-│       ├── Cookie.js
-│       ├── Request.js
-│       ├── SampleList.js
-│       └── Throttle.js
-├── index.css
-├── index.js
-├── logo.svg
-├── Pages
-│   ├── AboutPage.js
-│   ├── index.js
-│   ├── IntroPage.js
-│   ├── LoginPage.js
-│   ├── MainPage.js
-│   ├── MyBagPage.js
-│   ├── MyPage.js
-│   ├── ProductDetailPage.js
-│   ├── ProductListPage.js
-│   └── RegisterPage.js
-├── reportWebVitals.js
-├── Routes
-│   └── Router.js
-├── scss
-│   ├── About.scss
-│   ├── base
-│   │   ├── _base.scss
-│   │   ├── _mixin.scss
-│   │   └── _variable.scss
-│   ├── components
-│   │   └─ # scss of each components
-│   ├── Intro.scss
-│   ├── Layout.scss
-│   ├── Login.scss
-│   ├── MainPage.scss
-│   ├── MartList.scss
-│   ├── MyBagPage.scss
-│   ├── MyPage.scss
-│   ├── ProductDetail.scss
-│   └── ProductList.scss
-├── setupTests.js
-└── Store
-    ├── Actions
-    │   ├── martAction.js
-    │   ├── productAction.js
-    │   ├── sideMenuAction.js
-    │   ├── type.js
-    │   └── userAction.js
-    ├── Reducers
-    │   ├── index.js
-    │   ├── martReducer.js
-    │   ├── productReducer.js
-    │   ├── sideMenuReducer.js
-    │   └── userReducer.js
-    └── store.js
->>>>>>> edit-readme
 
   ```
 
