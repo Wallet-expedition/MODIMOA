@@ -55,102 +55,27 @@
 ├── App.test.js
 ├── Components
 │   ├── About
-│   │   ├── AboutContainer.js
-│   │   ├── AboutPresenter.js
-│   │   ├── AboutWhatPresenter.js
-│   │   ├── AboutWhoPresenter.js
-│   │   └── index.js
 │   ├── BuyModal
-│   │   ├── BuyModalContainer.js
-│   │   ├── BuyModalPresenter.js
-│   │   └── index.js
 │   ├── Header
-│   │   ├── HeaderContainer.js
-│   │   ├── HeaderPresenter.js
-│   │   └── index.js
 │   ├── HelmetComponent
-│   │   ├── HelmetContainer.js
-│   │   ├── HelmetPresenter.js
-│   │   └── index.js
 │   ├── Intro
-│   │   ├── index.js
-│   │   ├── IntroContainer.js
-│   │   └── IntroPresenter.js
 │   ├── Layout
 │   │   ├── BackButton
-│   │   │   ├── BackButtonContainer.js
-│   │   │   ├── BackButtonPresenter.js
-│   │   │   └── index.js
-│   │   ├── index.js
-│   │   ├── LayoutContainer.js
-│   │   ├── LayoutPresenter.js
 │   │   ├── SideMenu
-│   │   │   ├── index.js
-│   │   │   ├── SideMenuContainer.js
-│   │   │   └── SideMenuPresenter.js
 │   │   └── SideMenuBtn
-│   │       ├── index.js
-│   │       ├── SideMenuBtnContainer.js
-│   │       └── SideMenuBtnPresenter.js
 │   ├── Login
-│   │   ├── index.js
-│   │   ├── LoginButton
-│   │   │   ├── FacebookLoginButton.js
-│   │   │   ├── GoogleLoginButton.js
-│   │   │   ├── index.js
-│   │   │   ├── KaKaoLoginButton.js
-│   │   │   └── LoginButton.js
-│   │   ├── LoginContainer.js
-│   │   └── LoginPresenter.js
+│   │   └── LoginButton
 │   ├── LogoutToastMessage
-│   │   ├── Container.js
-│   │   ├── index.js
-│   │   └── Presenter.js
 │   ├── Main
-│   │   ├── index.js
-│   │   ├── MainContainer.js
-│   │   └── MainPresenter.js
 │   ├── MartList
-│   │   ├── index.js
-│   │   ├── MartListBtn
-│   │   │   ├── index.js
-│   │   │   ├── MartListBtnContainer.js
-│   │   │   └── MartListBtnPresenter.js
-│   │   ├── MartListContainer.js
-│   │   └── MartListPresenter.js
+│   │   └── MartListBtn
 │   ├── MyBag
-│   │   ├── BagDescription.js
-│   │   ├── BagProduct.js
-│   │   ├── BagProductList.js
-│   │   ├── index.js
-│   │   ├── MyBagContainer.js
-│   │   └── MyBagPresenter.js
 │   ├── MyPageContent
-│   │   ├── index.js
-│   │   ├── MyPageContainer.js
-│   │   └── MyPagePresenter.js
 │   ├── Product
-│   │   ├── index.js
-│   │   ├── ProductContainer.js
-│   │   └── ProductPresenter.js
 │   ├── ProductDetail
-│   │   ├── index.js
-│   │   ├── ProductDetailContainer.js
-│   │   └── ProductDetailPresenter.js
 │   ├── ProductList
-│   │   ├── index.js
-│   │   ├── ProductListContainer.js
-│   │   └── ProductListPresenter.js
 │   ├── Register
-│   │   ├── index.js
-│   │   ├── RegisterButton
-│   │   │   ├── FacebookRegisterButton.js
-│   │   │   ├── GoogleRegisterButton.js
-│   │   │   ├── index.js
-│   │   │   ├── KaKaoRegisterButton.js
-│   │   │   └── RegisterButton.js
-│   │   ├── RegisterContainer.js
-│   │   └── RegisterPresenter.js
+│   │   └── RegisterButton
 │   └── Util
 │       ├── Auth.js
 │       ├── Constant.js
