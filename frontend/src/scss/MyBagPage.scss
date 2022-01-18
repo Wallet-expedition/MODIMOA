@@ -7,24 +7,7 @@
 
 // components scss
 @import "./components/myBag";
-
-.tab-price-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  text-align: right;
-  padding-bottom: 0.3rem;
-
-  .tab-description {
-    @include font-default(400, 0.8rem);
-    color: gray;
-  }
-
-  .tab-price {
-    @include font-default(400, 1rem);
-    color: #f5626c;
-  }
-}
+@import "./components/sortbar";
 
 .MuiAppBar-root {
   z-index: 1;
@@ -39,9 +22,10 @@
   padding: 0.7rem 0;
   display: flex;
   justify-content: center;
+  align-items: center;
+  max-width: 100%;
 
-  img {
-    max-width: 5.5%;
+  .gear {
     padding-right: 0.5rem;
   }
 }

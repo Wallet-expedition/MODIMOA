@@ -14,6 +14,7 @@ import { registerUser } from "../../../Store/Actions/userAction";
  */
 const KaKaoRegisterButton = ({ history }) => {
   const dispatch = useDispatch();
+  let token = ""; // not useState
 
   const kakaoLoginSuccess = useCallback(
     async (response) => {
@@ -23,7 +24,7 @@ const KaKaoRegisterButton = ({ history }) => {
         user_image: account.profile.profile_image_url,
       };
 
-      const res = await dispatch(registerUser(body));
+      const res = await dispatch(registerUser(body, token));
 
       if (res.payload.status === 200) {
         history.push("/login");
@@ -31,7 +32,7 @@ const KaKaoRegisterButton = ({ history }) => {
         alert("회원가입에 실패하였습니다.");
       }
     },
-    [dispatch, history]
+    [dispatch, history, token]
   );
 
   const kakaoLoginError = useCallback(() => {
@@ -54,6 +55,7 @@ const KaKaoRegisterButton = ({ history }) => {
     window?.Kakao.Auth.login(
       {
         success: (authObj) => {
+          token = authObj.access_token;
           window?.Kakao.API.request({
             url: "/v2/user/me",
             success: kakaoLoginSuccess,

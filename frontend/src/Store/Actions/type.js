@@ -6,6 +6,7 @@ export const REGITER_USER = "Register_user";
 export const GET_USER_PROFIT = "Get_user_profit";
 export const SELECT_PRODUCT = "Select_product";
 export const WISH_PRODUCT = "Wish_product";
+export const DELETE_PRODUCT = "Delete_product";
 export const GET_PRODUT_LIST = "Get_product_list";
 export const CHANGE_STATE_PRODUCT = "Change_state_product";
 export const SELECT_MART = "Select_mart";

@@ -7,7 +7,6 @@ import {
 } from "../../Store/Actions/userAction";
 import MyPagePresenter from "./MyPagePresenter";
 import { useDispatch } from "react-redux";
-import { getCookie } from "../Util/Cookie";
 import { logoutUser } from "../../Store/Actions/userAction";
 
 const MyPageContainer = () => {
@@ -18,8 +17,7 @@ const MyPageContainer = () => {
   const dispatch = useDispatch();
 
   const handleLogout = useCallback(async () => {
-    const tokenId = getCookie("accessToken");
-    const res = await dispatch(logoutUser(tokenId));
+    const res = await dispatch(logoutUser());
 
     if (res.payload) {
       history.push("/main");
@@ -27,8 +25,7 @@ const MyPageContainer = () => {
   }, [dispatch, history]);
 
   const handleWithDraw = useCallback(async () => {
-    const tokenId = getCookie("accessToken");
-    const res = await dispatch(withDrawUser(tokenId));
+    const res = await dispatch(withDrawUser());
 
     if (res.payload) {
       history.push("/main");
@@ -36,14 +33,14 @@ const MyPageContainer = () => {
   }, [dispatch, history]);
 
   useEffect(() => {
-    const tokenId = getCookie("accessToken");
     const setUserInformation = async () => {
-      const res = await dispatch(getUserInfo(tokenId));
+      const res = await dispatch(getUserInfo());
       setUserInfo(res.payload);
     };
     const setUserProfit = async () => {
-      const res = await dispatch(getUserProfit(tokenId));
-      setProfit(res.payload);
+      const res = await dispatch(getUserProfit());
+      const savedPrice = parseInt(res.payload.savedPriceAfterBuy);
+      setProfit(savedPrice);
     };
 
     setUserInformation();

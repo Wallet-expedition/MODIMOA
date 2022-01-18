@@ -32,15 +32,17 @@ const ProductListPage = () => {
       setFilterOption(newOption);
     };
     return (
-      <AppBar position="static" className="mybag-filter-bar">
-        <Tabs
-          value={filterOption}
-          onChange={handleChange}
-          aria-label="simple tabs example"
-        >
-          <Tab label="구매예정" />
-          <Tab label="구매내역" />
-          <Tab label=" " disabled />
+      <div className="sort-bar-container">
+        <AppBar position="static" className="mybag-filter-bar">
+          <Tabs
+            value={filterOption}
+            onChange={handleChange}
+            aria-label="simple tabs example"
+          >
+            <Tab label="구매 예정"></Tab>
+            <Tab label="구매 내역"></Tab>
+            <Tab label=" " disabled></Tab>
+          </Tabs>
           {filterOption === 0 ? (
             <div className="tab-price-container">
               <div className="tab-description"> 얼마를 아낄까? </div>
@@ -52,8 +54,8 @@ const ProductListPage = () => {
               <div className="tab-price"> 23,501원 </div>
             </div>
           )}
-        </Tabs>
-      </AppBar>
+        </AppBar>
+      </div>
     );
   };
 
