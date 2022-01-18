@@ -19,8 +19,7 @@ const SideMenuContainer = ({ setShowSideMenu }) => {
   const dispatch = useDispatch();
 
   const handleLogout = useCallback(async () => {
-    const tokenId = getCookie("accessToken");
-    const res = await dispatch(logoutUser(tokenId));
+    const res = await dispatch(logoutUser());
 
     setIsToastActive(true);
     dispatch(closedSideMenu(false));
@@ -35,7 +34,7 @@ const SideMenuContainer = ({ setShowSideMenu }) => {
 
   // 로그인 되어있는지 파악.
   useLayoutEffect(() => {
-    let token = getCookie("accessToken");
+    const token = getCookie("accessToken");
 
     if (token) {
       setIsLogin(true);

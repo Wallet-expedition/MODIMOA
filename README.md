@@ -8,7 +8,10 @@
 <img src="https://img.shields.io/badge/-Redux-764ABC?logo=redux&style=flat" />
 <img src="https://img.shields.io/badge/-Sass-CC6699?logo=sass&logoColor=white&style=flat" />
 <img src="https://img.shields.io/badge/-MaterialUI-007FFF?logo=mui&logoColor=white&style=flat" />
-<img src="https://img.shields.io/badge/-Spring-6DB33F?logo=spring&logoColor=white&style=flat" />
+<img src="https://img.shields.io/badge/-SpringBoot-6DB33F?logo=springboot&logoColor=white&style=flat" />
+<img src="https://img.shields.io/badge/-MariaDB-003545?logo=mariadb&logoColor=white&style=flat" />
+<img src="https://img.shields.io/badge/-Java-007396?logo=java&logoColor=white&style=flat" />
+<img src="https://img.shields.io/badge/-AWS-232F3E?logo=amazonaws&logoColor=white&style=flat" />
 </div>
 
 ## 배포 주소 :computer:
@@ -35,6 +38,12 @@
   - 지난 구매 기록 확인
 - 알림
   - 할인 알림을 받고 싶은 물품을 등록
+
+## 프로젝트 관련 문서 :bookmark_tabs:
+
+- [API 명세](https://documenter.getpostman.com/view/16654619/UVRHiiCA#8f1ebfba-2b5c-4bb6-b49c-ca4ef425e708)
+- [ERD 이미지](https://user-images.githubusercontent.com/43488326/147884341-28af1ada-9d23-489b-9b1d-46ef02b77afb.png)
+- [폴더트리](https://user-images.githubusercontent.com/43488326/147884342-37642b88-018b-436c-856b-cdbc494bc2d1.png)
 
 ## Team. 지갑원정대 :money_with_wings:
 

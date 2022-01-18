@@ -18,15 +18,25 @@ jobs:
     env:
       working-directory: ./frontend
 
-    strategy:
-      matrix:
-        node-version: [12.x]
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout source code
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Generate Environment Variables File
+        run: |
+          cd frontend
+          touch .env
+          echo REACT_APP_SERVER=${{ secrets.REACT_APP_SERVER }} >> .env
+          echo REACT_APP_GOOGLE_API_KEY=${{ secrets.REACT_APP_GOOGLE_API_KEY }} >> .env
+          echo REACT_APP_KAKAO_API_KEY=${{ secrets.REACT_APP_KAKAO_API_KEY }} >> .env
+          echo REACT_APP_FACEBOOK_API_KEY=${{ secrets.REACT_APP_FACEBOOK_API_KEY }} >> .env
 
       - name: Install AWS CLI
         run: pip3 install awscli --upgrade --user
@@ -39,21 +49,21 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           mask-aws-account-id: true
 
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - name: Install Dependencies
         run: yarn
         working-directory: ${{ env.working-directory }}
-
-      - name: Generate Environment Variables File
-        run: |
-          echo "REACT_APP_SERVER=$REACT_APP_SERVER" >> .env
-          echo "REACT_APP_GOOGLE_API_KEY=$REACT_APP_GOOGLE_API_KEY" >> .env
-          echo "REACT_APP_KAKAO_API_KEY=$REACT_APP_KAKAO_API_KEY" >> .env
-          echo "REACT_APP_FACEBOOK_API_KEY=$REACT_APP_FACEBOOK_API_KEY" >> .env
-        env:
-          REACT_APP_SERVER: ${{ secrets.REACT_APP_SERVER }}
-          REACT_APP_GOOGLE_API_KEY: ${{ secrets.REACT_APP_GOOGLE_API_KEY }}
-          REACT_APP_KAKAO_API_KEY: ${{ secrets.REACT_APP_KAKAO_API_KEY }}
-          REACT_APP_FACEBOOK_API_KEY: ${{ secrets.REACT_APP_FACEBOOK_API_KEY }}
 
       - name: Build
         run: yarn build
