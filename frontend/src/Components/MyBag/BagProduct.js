@@ -30,7 +30,7 @@ const WishDisplay = ({
 const PurchasedDisplay = ({ profit }) => {
   return (
     <Grid className="product-state-info-container">
-      <Grid className="product-state-info"> 구매 완료 </Grid>
+      <Grid className="product-state-info">구매 완료</Grid>
       <Grid className="product-state-price">{profit}원 이득</Grid>
     </Grid>
   );
@@ -57,7 +57,7 @@ const BagProduct = ({
         <span className="product-info-text"> {product_name} </span>
         <Grid className="product-info-price-container">
           <span>
-            {`${sale_price}원 • `} <b> 1개 </b>
+            {`${sale_price}원 • `} <b>1개</b>
           </span>
         </Grid>
       </Grid>
