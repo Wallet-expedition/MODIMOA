@@ -1,9 +1,7 @@
 package com.modimoa.backend.service;
 
 import com.modimoa.backend.domain.User;
-import com.modimoa.backend.errorhandling.ErrorCode;
-import com.modimoa.backend.errorhandling.MemberConflictException;
-import com.modimoa.backend.errorhandling.ObjectNotFoundException;
+import com.modimoa.backend.errorhandling.CustomException;
 import com.modimoa.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +13,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.modimoa.backend.errorhandling.ErrorCode.MEMBER_CONFLICT_ERROR;
+import static com.modimoa.backend.errorhandling.ErrorCode.OBJECT_NOTFOUND_ERROR;
+
 @Transactional
 @Service
 public class UserService {
@@ -25,7 +26,7 @@ public class UserService {
     public void signUp(String userImage, String userEmail, String oauthCookie) {
         Optional <User> user = userRepository.findByUserEmail(userEmail);
          if(user.isPresent()){
-             throw new MemberConflictException("Member Conflict", ErrorCode.MEMBER_CONFLICT_ERROR);
+             throw new CustomException(MEMBER_CONFLICT_ERROR);
         }else{
             user.orElseGet(() ->userRepository.save(new User(userEmail,userImage,oauthCookie,"new")));
         }
@@ -35,7 +36,7 @@ public class UserService {
     public String login(String userEmail) throws NoSuchAlgorithmException {
 
         Optional <User> user = userRepository.findByUserEmail(userEmail);
-        user.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
+        user.orElseThrow(()->new CustomException(OBJECT_NOTFOUND_ERROR));
 
         String userId=user.get().getUserEmail();
         String accessToken = EncryptionUtils.encryptSHA256(userEmail+userId+"access");
@@ -48,27 +49,28 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void logout(String token) {
+    public String logout(String token) {
 
         Optional <User> user = userRepository.findByOauthToken(token);
-        user.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
+        user.orElseThrow(()->new CustomException(OBJECT_NOTFOUND_ERROR));
+        user.get().updateTokens("");
 
-        String accessToken="";
-        user.get().updateTokens(accessToken);
+        return user.get().getUserEmail();
     }
 
-    public void withdrawal(String token) {
+    public String withdrawal(String token) {
 
         Optional <User> user = userRepository.findByAccessToken(token);
-        user.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
+        user.orElseThrow(()->new CustomException(OBJECT_NOTFOUND_ERROR));
         userRepository.deleteByAccessToken(token);
+        return user.get().getUserEmail();
     }
 
     public Map<String, String> getUserInfo(String token) {
         Map<String, String> userInfo= new HashMap<>();
 
         Optional <User> user = userRepository.findByAccessToken(token);
-        user.orElseThrow(()->new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR));
+        user.orElseThrow(()->new CustomException(OBJECT_NOTFOUND_ERROR));
         userInfo.put("user_email", user.get().getUserEmail());
         userInfo.put("user_image", user.get().getUserImage());
         return userInfo;

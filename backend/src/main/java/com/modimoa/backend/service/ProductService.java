@@ -2,9 +2,7 @@ package com.modimoa.backend.service;
 
 import com.modimoa.backend.domain.Mart;
 import com.modimoa.backend.domain.Product;
-import com.modimoa.backend.errorhandling.ErrorCode;
-import com.modimoa.backend.errorhandling.InvalidQueryException;
-import com.modimoa.backend.errorhandling.ObjectNotFoundException;
+import com.modimoa.backend.errorhandling.CustomException;
 import com.modimoa.backend.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+
+import static com.modimoa.backend.errorhandling.ErrorCode.INVALID_QUERY_ERROR;
+import static com.modimoa.backend.errorhandling.ErrorCode.OBJECT_NOTFOUND_ERROR;
 
 @Service
 public class ProductService {
@@ -28,10 +29,10 @@ public class ProductService {
 	public Page<Product> getFilteredProduct(String mart, String q, Pageable pageable) {
 
 		if (mart.length() != 4) {
-			throw new InvalidQueryException("Invalid Query", ErrorCode.INVALID_QUERY_ERROR);
+			throw new CustomException(INVALID_QUERY_ERROR);
 		}
 		if (!pageable.getSort().toString().equals("salePrice: ASC") && !pageable.getSort().toString().equals("productName: ASC")) {
-			throw new InvalidQueryException("Invalid Query", ErrorCode.INVALID_QUERY_ERROR);
+			throw new CustomException(INVALID_QUERY_ERROR);
 		}
 
 		boolean[] martList = new boolean[4];
@@ -69,12 +70,8 @@ public class ProductService {
 	}
 
 	public Optional<Product> getProductById(Long id) {
-
-		Optional<Product> product = Optional.of(productRepository.findById(id).get());
-
-		if (!product.isPresent()) {
-			throw new ObjectNotFoundException("Object Not Found", ErrorCode.OBJECT_NOTFOUND_ERROR);
-		}
+		Optional<Product> product = productRepository.findById(id);
+		product.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
 
 		return product;
 	}
