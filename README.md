@@ -51,177 +51,139 @@
   
   ```bash
 .
-├── App.js
-├── App.test.js
-├── Components
-│   ├── About
-│   │   ├── AboutContainer.js
-│   │   ├── AboutPresenter.js
-│   │   ├── AboutWhatPresenter.js
-│   │   ├── AboutWhoPresenter.js
-│   │   └── index.js
-│   ├── BuyModal
-│   │   ├── BuyModalContainer.js
-│   │   ├── BuyModalPresenter.js
-│   │   └── index.js
-│   ├── Header
-│   │   ├── HeaderContainer.js
-│   │   ├── HeaderPresenter.js
-│   │   └── index.js
-│   ├── HelmetComponent
-│   │   ├── HelmetContainer.js
-│   │   ├── HelmetPresenter.js
-│   │   └── index.js
-│   ├── Intro
-│   │   ├── index.js
-│   │   ├── IntroContainer.js
-│   │   └── IntroPresenter.js
-│   ├── Layout
-│   │   ├── BackButton
-│   │   │   ├── BackButtonContainer.js
-│   │   │   ├── BackButtonPresenter.js
-│   │   │   └── index.js
-│   │   ├── index.js
-│   │   ├── LayoutContainer.js
-│   │   ├── LayoutPresenter.js
-│   │   ├── SideMenu
-│   │   │   ├── index.js
-│   │   │   ├── SideMenuContainer.js
-│   │   │   └── SideMenuPresenter.js
-│   │   └── SideMenuBtn
-│   │       ├── index.js
-│   │       ├── SideMenuBtnContainer.js
-│   │       └── SideMenuBtnPresenter.js
-│   ├── Login
-│   │   ├── index.js
-│   │   ├── LoginButton
-│   │   │   ├── FacebookLoginButton.js
-│   │   │   ├── GoogleLoginButton.js
-│   │   │   ├── index.js
-│   │   │   ├── KaKaoLoginButton.js
-│   │   │   └── LoginButton.js
-│   │   ├── LoginContainer.js
-│   │   └── LoginPresenter.js
-│   ├── LogoutToastMessage
-│   │   ├── Container.js
-│   │   ├── index.js
-│   │   └── Presenter.js
-│   ├── Main
-│   │   ├── index.js
-│   │   ├── MainContainer.js
-│   │   └── MainPresenter.js
-│   ├── MartList
-│   │   ├── index.js
-│   │   ├── MartListBtn
-│   │   │   ├── index.js
-│   │   │   ├── MartListBtnContainer.js
-│   │   │   └── MartListBtnPresenter.js
-│   │   ├── MartListContainer.js
-│   │   └── MartListPresenter.js
-│   ├── MyBag
-│   │   ├── BagDescription.js
-│   │   ├── BagProduct.js
-│   │   ├── BagProductList.js
-│   │   ├── index.js
-│   │   ├── MyBagContainer.js
-│   │   └── MyBagPresenter.js
-│   ├── MyPageContent
-│   │   ├── index.js
-│   │   ├── MyPageContainer.js
-│   │   └── MyPagePresenter.js
-│   ├── Product
-│   │   ├── index.js
-│   │   ├── ProductContainer.js
-│   │   └── ProductPresenter.js
-│   ├── ProductDetail
-│   │   ├── index.js
-│   │   ├── ProductDetailContainer.js
-│   │   └── ProductDetailPresenter.js
-│   ├── ProductList
-│   │   ├── index.js
-│   │   ├── ProductListContainer.js
-│   │   └── ProductListPresenter.js
-│   ├── Register
-│   │   ├── index.js
-│   │   ├── RegisterButton
-│   │   │   ├── FacebookRegisterButton.js
-│   │   │   ├── GoogleRegisterButton.js
-│   │   │   ├── index.js
-│   │   │   ├── KaKaoRegisterButton.js
-│   │   │   └── RegisterButton.js
-│   │   ├── RegisterContainer.js
-│   │   └── RegisterPresenter.js
-│   └── Util
-│       ├── Auth.js
-│       ├── Constant.js
-│       ├── Cookie.js
-│       ├── Request.js
-│       ├── SampleList.js
-│       └── Throttle.js
-├── index.css
-├── index.js
-├── logo.svg
-├── Pages
-│   ├── AboutPage.js
-│   ├── index.js
-│   ├── IntroPage.js
-│   ├── LoginPage.js
-│   ├── MainPage.js
-│   ├── MyBagPage.js
-│   ├── MyPage.js
-│   ├── ProductDetailPage.js
-│   ├── ProductListPage.js
-│   └── RegisterPage.js
-├── reportWebVitals.js
-├── Routes
-│   └── Router.js
-├── scss
-│   ├── About.scss
-│   ├── base
-│   │   ├── _base.scss
-│   │   ├── _mixin.scss
-│   │   └── _variable.scss
-│   ├── components
-│   │   ├── _about.scss
-│   │   ├── _detail.scss
-│   │   ├── _headerLogo.scss
-│   │   ├── _intro.scss
-│   │   ├── _login.scss
-│   │   ├── _logoutToast.scss
-│   │   ├── _mainContent.scss
-│   │   ├── _martLabel.scss
-│   │   ├── _martList.scss
-│   │   ├── _myBag.scss
-│   │   ├── _myPage.scss
-│   │   ├── _product.scss
-│   │   ├── _search.scss
-│   │   ├── _sideMenuBtn.scss
-│   │   ├── _sideMenu.scss
-│   │   └── _sortbar.scss
-│   ├── Intro.scss
-│   ├── Layout.scss
-│   ├── Login.scss
-│   ├── MainPage.scss
-│   ├── MartList.scss
-│   ├── MyBagPage.scss
-│   ├── MyPage.scss
-│   ├── ProductDetail.scss
-│   └── ProductList.scss
-├── setupTests.js
-└── Store
-    ├── Actions
-    │   ├── martAction.js
-    │   ├── productAction.js
-    │   ├── sideMenuAction.js
-    │   ├── type.js
-    │   └── userAction.js
-    ├── Reducers
-    │   ├── index.js
-    │   ├── martReducer.js
-    │   ├── productReducer.js
-    │   ├── sideMenuReducer.js
-    │   └── userReducer.js
-    └── store.js
+├── public
+│   ├── favicon.ico
+│   ├── img
+│   │   ├── back_button.png
+│   │   ├── beer_128.png
+│   │   ├── beer_512.png
+│   │   ├── cart.png
+│   │   ├── enter_icon_128.png
+│   │   ├── enter_icon_512.png
+│   │   ├── kakao_btn.png
+│   │   ├── logo_1024.png
+│   │   ├── logo_128.png
+│   │   ├── logo_256.png
+│   │   ├── logo_512.png
+│   │   ├── logo_beer_128.png
+│   │   ├── logo_beer_256.png
+│   │   ├── logo_beer_512.png
+│   │   ├── logo_long_1024.png
+│   │   ├── logo_long_512.png
+│   │   ├── logo_long_and_text_1024.png
+│   │   ├── logo_long_and_text_512.png
+│   │   ├── mart_costco.jpg
+│   │   ├── mart_cu.jpg
+│   │   ├── mart_emart24.jpg
+│   │   ├── mart_emart.jpg
+│   │   ├── mart_folder.png
+│   │   ├── mart_gs25.jpg
+│   │   ├── mart_homeplus.jpg
+│   │   ├── mart_lottemart.jpg
+│   │   ├── mart_seven11.jpg
+│   │   └── search_icon.png
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+└── src
+    ├── App.js
+    ├── App.test.js
+    ├── Components
+    │   ├── About
+    │   ├── BuyModal
+    │   ├── Header
+    │   ├── HelmetComponent
+    │   ├── Intro
+    │   ├── Layout
+    │   │   ├── BackButton
+    │   │   ├── SideMenu
+    │   │   └── SideMenuBtn
+    │   ├── Login
+    │   │   └── LoginButton
+    │   ├── LogoutToastMessage
+    │   ├── Main
+    │   ├── MartList
+    │   │   └── MartListBtn
+    │   ├── MyBag
+    │   ├── MyPageContent
+    │   ├── Product
+    │   ├── ProductDetail
+    │   ├── ProductList
+    │   ├── Register
+    │   │   └── RegisterButton
+    │   └── Util
+    │       ├── Auth.js
+    │       ├── Constant.js
+    │       ├── Cookie.js
+    │       ├── Request.js
+    │       ├── SampleList.js
+    │       └── Throttle.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    ├── Pages
+    │   ├── AboutPage.js
+    │   ├── index.js
+    │   ├── IntroPage.js
+    │   ├── LoginPage.js
+    │   ├── MainPage.js
+    │   ├── MyBagPage.js
+    │   ├── MyPage.js
+    │   ├── ProductDetailPage.js
+    │   ├── ProductListPage.js
+    │   └── RegisterPage.js
+    ├── reportWebVitals.js
+    ├── Routes
+    │   └── Router.js
+    ├── scss
+    │   ├── About.scss
+    │   ├── base
+    │   │   ├── _base.scss
+    │   │   ├── _mixin.scss
+    │   │   └── _variable.scss
+    │   ├── components
+    │   │   ├── _about.scss
+    │   │   ├── _detail.scss
+    │   │   ├── _headerLogo.scss
+    │   │   ├── _intro.scss
+    │   │   ├── _login.scss
+    │   │   ├── _logoutToast.scss
+    │   │   ├── _mainContent.scss
+    │   │   ├── _martLabel.scss
+    │   │   ├── _martList.scss
+    │   │   ├── _myBag.scss
+    │   │   ├── _myPage.scss
+    │   │   ├── _product.scss
+    │   │   ├── _search.scss
+    │   │   ├── _sideMenuBtn.scss
+    │   │   ├── _sideMenu.scss
+    │   │   └── _sortbar.scss
+    │   ├── Intro.scss
+    │   ├── Layout.scss
+    │   ├── Login.scss
+    │   ├── MainPage.scss
+    │   ├── MartList.scss
+    │   ├── MyBagPage.scss
+    │   ├── MyPage.scss
+    │   ├── ProductDetail.scss
+    │   └── ProductList.scss
+    ├── setupTests.js
+    └── Store
+        ├── Actions
+        │   ├── martAction.js
+        │   ├── productAction.js
+        │   ├── sideMenuAction.js
+        │   ├── type.js
+        │   └── userAction.js
+        ├── Reducers
+        │   ├── index.js
+        │   ├── martReducer.js
+        │   ├── productReducer.js
+        │   ├── sideMenuReducer.js
+        │   └── userReducer.js
+        └── store.js
 
   ```
 
