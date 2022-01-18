@@ -19,7 +19,7 @@ const request = {
   get: (url) => axios.get(`${baseUrl}${url}`),
   post: (url, body, tokenId) =>
     axios.post(`${baseUrl}${url}`, body, getHeader(tokenId)),
-  patch: (url) => axios.patch(`${baseUrl}${url}`),
+  patch: (url, body) => axios.patch(`${baseUrl}${url}`, body),
   delete: (url) => axios.delete(`${baseUrl}${url}`, getHeader()),
 };
 
