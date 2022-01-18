@@ -43,7 +43,235 @@
 
 - [API 명세](https://documenter.getpostman.com/view/16654619/UVRHiiCA#8f1ebfba-2b5c-4bb6-b49c-ca4ef425e708)
 - [ERD 이미지](https://user-images.githubusercontent.com/43488326/147884341-28af1ada-9d23-489b-9b1d-46ef02b77afb.png)
-- [폴더트리](https://user-images.githubusercontent.com/43488326/147884342-37642b88-018b-436c-856b-cdbc494bc2d1.png)
+
+## 폴더트리
+
+<details>
+  <summary>frontend</summary>
+  
+  ```bash
+.
+├── App.js
+├── App.test.js
+├── Components
+│   ├── About
+│   │   ├── AboutContainer.js
+│   │   ├── AboutPresenter.js
+│   │   ├── AboutWhatPresenter.js
+│   │   ├── AboutWhoPresenter.js
+│   │   └── index.js
+│   ├── BuyModal
+│   │   ├── BuyModalContainer.js
+│   │   ├── BuyModalPresenter.js
+│   │   └── index.js
+│   ├── Header
+│   │   ├── HeaderContainer.js
+│   │   ├── HeaderPresenter.js
+│   │   └── index.js
+│   ├── HelmetComponent
+│   │   ├── HelmetContainer.js
+│   │   ├── HelmetPresenter.js
+│   │   └── index.js
+│   ├── Intro
+│   │   ├── index.js
+│   │   ├── IntroContainer.js
+│   │   └── IntroPresenter.js
+│   ├── Layout
+│   │   ├── BackButton
+│   │   │   ├── BackButtonContainer.js
+│   │   │   ├── BackButtonPresenter.js
+│   │   │   └── index.js
+│   │   ├── index.js
+│   │   ├── LayoutContainer.js
+│   │   ├── LayoutPresenter.js
+│   │   ├── SideMenu
+│   │   │   ├── index.js
+│   │   │   ├── SideMenuContainer.js
+│   │   │   └── SideMenuPresenter.js
+│   │   └── SideMenuBtn
+│   │       ├── index.js
+│   │       ├── SideMenuBtnContainer.js
+│   │       └── SideMenuBtnPresenter.js
+│   ├── Login
+│   │   ├── index.js
+│   │   ├── LoginButton
+│   │   │   ├── FacebookLoginButton.js
+│   │   │   ├── GoogleLoginButton.js
+│   │   │   ├── index.js
+│   │   │   ├── KaKaoLoginButton.js
+│   │   │   └── LoginButton.js
+│   │   ├── LoginContainer.js
+│   │   └── LoginPresenter.js
+│   ├── LogoutToastMessage
+│   │   ├── Container.js
+│   │   ├── index.js
+│   │   └── Presenter.js
+│   ├── Main
+│   │   ├── index.js
+│   │   ├── MainContainer.js
+│   │   └── MainPresenter.js
+│   ├── MartList
+│   │   ├── index.js
+│   │   ├── MartListBtn
+│   │   │   ├── index.js
+│   │   │   ├── MartListBtnContainer.js
+│   │   │   └── MartListBtnPresenter.js
+│   │   ├── MartListContainer.js
+│   │   └── MartListPresenter.js
+│   ├── MyBag
+│   │   ├── BagDescription.js
+│   │   ├── BagProduct.js
+│   │   ├── BagProductList.js
+│   │   ├── index.js
+│   │   ├── MyBagContainer.js
+│   │   └── MyBagPresenter.js
+│   ├── MyPageContent
+│   │   ├── index.js
+│   │   ├── MyPageContainer.js
+│   │   └── MyPagePresenter.js
+│   ├── Product
+│   │   ├── index.js
+│   │   ├── ProductContainer.js
+│   │   └── ProductPresenter.js
+│   ├── ProductDetail
+│   │   ├── index.js
+│   │   ├── ProductDetailContainer.js
+│   │   └── ProductDetailPresenter.js
+│   ├── ProductList
+│   │   ├── index.js
+│   │   ├── ProductListContainer.js
+│   │   └── ProductListPresenter.js
+│   ├── Register
+│   │   ├── index.js
+│   │   ├── RegisterButton
+│   │   │   ├── FacebookRegisterButton.js
+│   │   │   ├── GoogleRegisterButton.js
+│   │   │   ├── index.js
+│   │   │   ├── KaKaoRegisterButton.js
+│   │   │   └── RegisterButton.js
+│   │   ├── RegisterContainer.js
+│   │   └── RegisterPresenter.js
+│   └── Util
+│       ├── Auth.js
+│       ├── Constant.js
+│       ├── Cookie.js
+│       ├── Request.js
+│       ├── SampleList.js
+│       └── Throttle.js
+├── index.css
+├── index.js
+├── logo.svg
+├── Pages
+│   ├── AboutPage.js
+│   ├── index.js
+│   ├── IntroPage.js
+│   ├── LoginPage.js
+│   ├── MainPage.js
+│   ├── MyBagPage.js
+│   ├── MyPage.js
+│   ├── ProductDetailPage.js
+│   ├── ProductListPage.js
+│   └── RegisterPage.js
+├── reportWebVitals.js
+├── Routes
+│   └── Router.js
+├── scss
+│   ├── About.scss
+│   ├── base
+│   │   ├── _base.scss
+│   │   ├── _mixin.scss
+│   │   └── _variable.scss
+│   ├── components
+│   │   ├── _about.scss
+│   │   ├── _detail.scss
+│   │   ├── _headerLogo.scss
+│   │   ├── _intro.scss
+│   │   ├── _login.scss
+│   │   ├── _logoutToast.scss
+│   │   ├── _mainContent.scss
+│   │   ├── _martLabel.scss
+│   │   ├── _martList.scss
+│   │   ├── _myBag.scss
+│   │   ├── _myPage.scss
+│   │   ├── _product.scss
+│   │   ├── _search.scss
+│   │   ├── _sideMenuBtn.scss
+│   │   ├── _sideMenu.scss
+│   │   └── _sortbar.scss
+│   ├── Intro.scss
+│   ├── Layout.scss
+│   ├── Login.scss
+│   ├── MainPage.scss
+│   ├── MartList.scss
+│   ├── MyBagPage.scss
+│   ├── MyPage.scss
+│   ├── ProductDetail.scss
+│   └── ProductList.scss
+├── setupTests.js
+└── Store
+    ├── Actions
+    │   ├── martAction.js
+    │   ├── productAction.js
+    │   ├── sideMenuAction.js
+    │   ├── type.js
+    │   └── userAction.js
+    ├── Reducers
+    │   ├── index.js
+    │   ├── martReducer.js
+    │   ├── productReducer.js
+    │   ├── sideMenuReducer.js
+    │   └── userReducer.js
+    └── store.js
+
+  ```
+
+</details>
+<details>
+  <summary>backend</summary>
+
+```bash
+.
+├── java
+│   └── com
+│       └── modimoa
+│           └── backend
+│               ├── BackendApplication.java
+│               ├── controller
+│               │   ├── MybagController.java
+│               │   ├── ProductController.java
+│               │   └── UserController.java
+│               ├── domain
+│               │   ├── BaseTimeEntity.java
+│               │   ├── Mart.java
+│               │   ├── Mybag.java
+│               │   ├── Product.java
+│               │   ├── SaleCategory.java
+│               │   └── User.java
+│               ├── dto
+│               │   └── MybagSaveReqDto.java
+│               ├── errorhandling
+│               │   ├── CustomException.java
+│               │   ├── ErrorCode.java
+│               │   ├── ErrorResponse.java
+│               │   └── GlobalExceptionHandler.java
+│               ├── repository
+│               │   ├── MybagRepository.java
+│               │   ├── ProductRepository.java
+│               │   └── UserRepository.java
+│               ├── service
+│               │   ├── EncryptionUtils.java
+│               │   ├── MybagService.java
+│               │   ├── ProductService.java
+│               │   └── UserService.java
+│               └── SwaggerConfig.java
+└── resources
+    ├── application.properties
+    └── static
+        └── index.html
+
+``` 
+
+  </details>
 
 ## Team. 지갑원정대 :money_with_wings:
 
