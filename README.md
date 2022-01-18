@@ -107,22 +107,7 @@
 │   │   ├── _mixin.scss
 │   │   └── _variable.scss
 │   ├── components
-│   │   ├── _about.scss
-│   │   ├── _detail.scss
-│   │   ├── _headerLogo.scss
-│   │   ├── _intro.scss
-│   │   ├── _login.scss
-│   │   ├── _logoutToast.scss
-│   │   ├── _mainContent.scss
-│   │   ├── _martLabel.scss
-│   │   ├── _martList.scss
-│   │   ├── _myBag.scss
-│   │   ├── _myPage.scss
-│   │   ├── _product.scss
-│   │   ├── _search.scss
-│   │   ├── _sideMenuBtn.scss
-│   │   ├── _sideMenu.scss
-│   │   └── _sortbar.scss
+│   │   └─ # scss of each components
 │   ├── Intro.scss
 │   ├── Layout.scss
 │   ├── Login.scss
