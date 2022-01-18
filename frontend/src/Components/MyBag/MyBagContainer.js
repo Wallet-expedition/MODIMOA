@@ -13,8 +13,9 @@ const MyBagContainer = ({ filterOption }) => {
 
   const handleBuyClick = useCallback(async (event) => {
     const targetId = event.target.id;
-    const productId = targetId.split("&")[0].split("=")[1];
-    const productName = targetId.split("&")[2].split("=")[1];
+    const words = targetId.split("&");
+    const productId = words[0].substr(words[0].indexOf("=") + 1);
+    const productName = words[2].substr(words[2].indexOf("=") + 1);
     setIsOpenModal(true);
     setSelectedId(productId);
     setBuyProductName(productName);
