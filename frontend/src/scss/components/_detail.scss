@@ -20,7 +20,7 @@
   .item-content {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 19px;
-    background-color: snow;
+    background-color: $white;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -63,13 +63,13 @@
 
 .bag-button-container {
   height: 10%;
-  border-top: 1px solid black;
+  border-top: 1px solid $black;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   button {
     background-color: #3973e6;
-    color: snow;
+    color: $white;
     height: 80%;
     width: 70%;
     @include font-default(500, 1.2rem);
@@ -95,7 +95,7 @@
   transform: translate(-50%, -50%);
   text-align: center;
   vertical-align: middle;
-  color: snow;
+  color: $white;
   @include font-default(500, 1rem);
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.7);

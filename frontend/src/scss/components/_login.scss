@@ -5,7 +5,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #ffed99;
+  background-color: $beer;
 
   .logo-container {
     display: flex;
@@ -20,7 +20,7 @@
 
     span {
       @include font-default(700m, 2rem);
-      color: #38558d;
+      color: $slogan;
       line-height: 3rem;
       text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       margin-bottom: 2rem;
@@ -42,7 +42,7 @@
   #kakao-login-btn {
     display: flex;
     justify-content: space-evenly;
-    background-color: #feea0d;
+    background-color: $kakao;
     align-self: center;
     vertical-align: middle;
     img {
@@ -58,7 +58,7 @@
   }
 
   .g-sign2 {
-    background-color: rgb(255, 255, 255);
+    background-color: $white;
     display: inline-flex;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px,

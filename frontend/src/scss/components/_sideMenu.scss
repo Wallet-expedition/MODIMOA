@@ -13,22 +13,22 @@
     margin-top: 1.5rem;
 
     @include mobile {
-      color: snow;
+      color: $white;
     }
 
     @include desktop {
-      color: black;
+      color: $black;
     }
   }
 
   @include mobile {
     position: absolute;
     z-index: 3;
-    background-color: black;
+    background-color: $black;
     width: calc(100% - 1rem); // 1rem: padding
     height: 100%;
     opacity: 0.8;
-    color: snow;
+    color: $white;
 
     .logo {
       display: none;

@@ -26,7 +26,7 @@ body {
   width: 100vw;
   height: 100vh;
   @include mobile {
-    background-color: #e7e7e7;
+    background-color: $background;
     height: calc(var(--vh, 1vh) * 100); // mobile 환경에서 하단 영역 크기 계산
   }
 }

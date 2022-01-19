@@ -5,7 +5,7 @@
   @include desktop {
     height: 10vh;
   }
-  border-bottom: 2px solid #cdcdcd;
+  border-bottom: 2px solid $line;
   a {
     text-decoration: none;
   }
@@ -65,12 +65,12 @@
     box-shadow: 0 -4px 0 0 #b0b0b0 inset;
   }
   .MuiAppBar-colorPrimary {
-    background-color: #e7e7e7;
-    color: #000;
+    background-color: $background;
+    color: $black;
   }
   .PrivateTabIndicator-colorSecondary-7 {
     height: 4px;
-    //background-color: #000;
+    //background-color: $black;
   }
   .MuiTabs-root {
     min-height: 2.5rem;
