@@ -43,7 +43,197 @@
 
 - [API 명세](https://documenter.getpostman.com/view/16654619/UVRHiiCA#8f1ebfba-2b5c-4bb6-b49c-ca4ef425e708)
 - [ERD 이미지](https://user-images.githubusercontent.com/43488326/147884341-28af1ada-9d23-489b-9b1d-46ef02b77afb.png)
-- [폴더트리](https://user-images.githubusercontent.com/43488326/147884342-37642b88-018b-436c-856b-cdbc494bc2d1.png)
+
+## 폴더트리
+
+<details>
+  <summary>frontend</summary>
+  
+  ```bash
+.
+├── public
+│   ├── favicon.ico
+│   ├── img
+│   │   ├── back_button.png
+│   │   ├── beer_128.png
+│   │   ├── beer_512.png
+│   │   ├── cart.png
+│   │   ├── enter_icon_128.png
+│   │   ├── enter_icon_512.png
+│   │   ├── kakao_btn.png
+│   │   ├── logo_1024.png
+│   │   ├── logo_128.png
+│   │   ├── logo_256.png
+│   │   ├── logo_512.png
+│   │   ├── logo_beer_128.png
+│   │   ├── logo_beer_256.png
+│   │   ├── logo_beer_512.png
+│   │   ├── logo_long_1024.png
+│   │   ├── logo_long_512.png
+│   │   ├── logo_long_and_text_1024.png
+│   │   ├── logo_long_and_text_512.png
+│   │   ├── mart_costco.jpg
+│   │   ├── mart_cu.jpg
+│   │   ├── mart_emart24.jpg
+│   │   ├── mart_emart.jpg
+│   │   ├── mart_folder.png
+│   │   ├── mart_gs25.jpg
+│   │   ├── mart_homeplus.jpg
+│   │   ├── mart_lottemart.jpg
+│   │   ├── mart_seven11.jpg
+│   │   └── search_icon.png
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+└── src
+    ├── App.js
+    ├── App.test.js
+    ├── Components
+    │   ├── About
+    │   ├── BuyModal
+   │   ├── Header
+    │   ├── HelmetComponent
+    │   ├── Intro
+    │   ├── Layout
+    │   │   ├── BackButton
+    │   │   ├── SideMenu
+    │   │   └── SideMenuBtn
+    │   ├── Login
+    │   │   └── LoginButton
+    │   ├── LogoutToastMessage
+    │   ├── Main
+    │   ├── MartList
+    │   │   └── MartListBtn
+    │   ├── MyBag
+    │   ├── MyPageContent
+    │   ├── Product
+    │   ├── ProductDetail
+    │   ├── ProductList
+    │   ├── Register
+    │   │   └── RegisterButton
+    │   └── Util
+    │       ├── Auth.js
+    │       ├── Constant.js
+    │       ├── Cookie.js
+    │       ├── Request.js
+    │       ├── SampleList.js
+    │       └── Throttle.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    ├── Pages
+    │   ├── AboutPage.js
+    │   ├── index.js
+    │   ├── IntroPage.js
+    │   ├── LoginPage.js
+    │   ├── MainPage.js
+    │   ├── MyBagPage.js
+    │   ├── MyPage.js
+    │   ├── ProductDetailPage.js
+    │   ├── ProductListPage.js
+    │   └── RegisterPage.js
+    ├── reportWebVitals.js
+    ├── Routes
+    │   └── Router.js
+    ├── scss
+    │   ├── About.scss
+    │   ├── base
+    │   │   ├── _base.scss
+    │   │   ├── _mixin.scss
+    │   │   └── _variable.scss
+    │   ├── components
+    │   │   ├── _about.scss
+    │   │   ├── _detail.scss
+    │   │   ├── _headerLogo.scss
+    │   │   ├── _intro.scss
+    │   │   ├── _login.scss
+    │   │   ├── _logoutToast.scss
+    │   │   ├── _mainContent.scss
+    │   │   ├── _martLabel.scss
+    │   │   ├── _martList.scss
+    │   │   ├── _myBag.scss
+    │   │   ├── _myPage.scss
+    │   │   ├── _product.scss
+    │   │   ├── _search.scss
+    │   │   ├── _sideMenuBtn.scss
+    │   │   ├── _sideMenu.scss
+    │   │   └── _sortbar.scss
+    │   ├── Intro.scss
+    │   ├── Layout.scss
+    │   ├── Login.scss
+    │   ├── MainPage.scss
+    │   ├── MartList.scss
+    │   ├── MyBagPage.scss
+    │   ├── MyPage.scss
+    │   ├── ProductDetail.scss
+    │   └── ProductList.scss
+    ├── setupTests.js
+    └── Store
+        ├── Actions
+        │   ├── martAction.js
+        │   ├── productAction.js
+        │   ├── sideMenuAction.js
+        │   ├── type.js
+        │   └── userAction.js
+        ├── Reducers
+        │   ├── index.js
+        │   ├── martReducer.js
+        │   ├── productReducer.js
+        │   ├── sideMenuReducer.js
+        │   └── userReducer.js
+        └── store.js
+
+  ```
+
+</details>
+<details>
+  <summary>backend</summary>
+
+```bash
+.
+├── java
+│   └── com
+│       └── modimoa
+│           └── backend
+│               ├── BackendApplication.java
+│               ├── controller
+│               │   ├── MybagController.java
+│               │   ├── ProductController.java
+│               │   └── UserController.java
+│               ├── domain
+│               │   ├── BaseTimeEntity.java
+│               │   ├── Mart.java
+│               │   ├── Mybag.java
+│               │   ├── Product.java
+│               │   ├── SaleCategory.java
+│               │   └── User.java
+│               ├── dto
+│               │   └── MybagSaveReqDto.java
+│               ├── errorhandling
+│               │   ├── CustomException.java
+│               │   ├── ErrorCode.java
+│               │   ├── ErrorResponse.java
+│               │   └── GlobalExceptionHandler.java
+│               ├── repository
+│               │   ├── MybagRepository.java
+│               │   ├── ProductRepository.java
+│               │   └── UserRepository.java
+│               ├── service
+│               │   ├── EncryptionUtils.java
+│               │   ├── MybagService.java
+│               │   ├── ProductService.java
+│               │   └── UserService.java
+│               └── SwaggerConfig.java
+└── resources
+    ├── application.properties
+    └── static
+        └── index.html
+
+``` 
+
+  </details>
 
 ## Team. 지갑원정대 :money_with_wings:
 

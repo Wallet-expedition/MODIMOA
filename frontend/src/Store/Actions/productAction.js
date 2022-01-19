@@ -1,10 +1,11 @@
-import axios from "axios";
 import {
   GET_PRODUT_LIST,
   SELECT_PRODUCT,
   WISH_PRODUCT,
   GET_ONE_PRODUCT,
+  DELETE_PRODUCT,
 } from "./type";
+import request from "../../Components/Util/Request";
 
 export const selectProduct = (product_info) => {
   return {
@@ -14,10 +15,7 @@ export const selectProduct = (product_info) => {
 };
 
 export const wishProduct = async (body, id) => {
-  const res = await axios.post(
-    `${process.env.REACT_APP_SERVER}/api/mybag/${id}`,
-    body
-  );
+  const res = await request.post(`/api/mybag/${id}`, body);
 
   return {
     type: WISH_PRODUCT,
@@ -25,33 +23,18 @@ export const wishProduct = async (body, id) => {
   };
 };
 
-export const getProductList = async (mart, searchKeyword, page, sortFilter) => {
-  // 검색어가 없을 경우
-  if (searchKeyword === "") {
-    const res = await axios.get(
-      `${process.env.REACT_APP_SERVER}/api/products/${mart}?page=${page}&sort=${sortFilter}`
-    );
+export const deleteWishProduct = async (id) => {
+  const res = await request.delete(`/api/mybag/delete/${id}`);
 
-    return {
-      type: GET_PRODUT_LIST,
-      payload: res,
-    };
-  }
-  // 검색어가 있을 경우
-  else {
-    const res = await axios.get(
-      `${process.env.REACT_APP_SERVER}/api/products/${mart}/${searchKeyword}?page=${page}&sort=${sortFilter}`
-    );
-    return {
-      type: GET_PRODUT_LIST,
-      payload: res,
-    };
-  }
+  return {
+    type: DELETE_PRODUCT,
+    payload: res,
+  };
 };
 
-export const changeMyBagState = async (productId) => {
-  const res = await axios.patch(
-    `${process.env.REACT_APP_SERVER}/api/mybag/changestat/${productId}`
+export const getProductList = async (mart, searchKeyword, page, sortFilter) => {
+  const res = await request.get(
+    `/api/product/pickmart/${mart}/q=${searchKeyword}&size=15&page=${page}&sort=${sortFilter}`
   );
 
   return {
@@ -60,10 +43,17 @@ export const changeMyBagState = async (productId) => {
   };
 };
 
+export const changeMyBagState = async (productId) => {
+  const res = await request.patch(`/api/mybag/changestat/${productId}`);
+
+  return {
+    type: GET_PRODUT_LIST,
+    payload: res,
+  };
+};
+
 export const getOneProduct = async (productId) => {
-  const res = await axios.get(
-    `${process.env.REACT_APP_SERVER}/api/products/pid/${productId}`
-  );
+  const res = await request.get(`/api/product/${productId}`);
 
   return {
     type: GET_ONE_PRODUCT,

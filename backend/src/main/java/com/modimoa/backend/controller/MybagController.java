@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = {"https://modimoa.kro.kr", "http://110.34.75.163:3000", "http://localhost:3000", "http://127.0.0.1:3000/"})
+@CrossOrigin(origins = {"https://modimoa.kro.kr", "http://110.34.75.163:3000", "http://localhost:3000", "http://127.0.0.1:3000/"}, allowCredentials = "true")
 @RestController
 @RequestMapping(value = "/api/mybag")
 public class MybagController {
@@ -52,10 +52,9 @@ public class MybagController {
 
 	// 장바구니 물건 수량 변경하는 기능, 단 0이면 삭제
 	@PostMapping("/changecnt/{productId}")
-	public ResponseEntity<String> changeItemCount(@PathVariable Long productId, @RequestHeader HttpHeaders requestHeader) {
-
+	public ResponseEntity<String> changeItemCount(@PathVariable Long productId, @RequestHeader HttpHeaders requestHeader, @RequestBody Map<String, Integer> body) {
 		String accessToken = requestHeader.toSingleValueMap().get("authorization");
-		int count = Integer.parseInt(requestHeader.toSingleValueMap().get("count"));
+		int count = body.get("count");
 		String userEmail = mybagService.changeItemCount(accessToken, productId, count);
 
 		return new ResponseEntity<>(userEmail + " 장바구니 상품 개수가 변경됨", HttpStatus.OK);
@@ -63,9 +62,9 @@ public class MybagController {
 
 	// 장바구니에서 구매 여부 변경하는 기능
 	@PatchMapping("/changestat/{productId}")
-	public ResponseEntity<String> changeItemStatus(@PathVariable Long productId, @RequestHeader HttpHeaders requestHeader) {
+	public ResponseEntity<String> changeItemStatus(@PathVariable Long productId, @RequestHeader HttpHeaders requestHeader, @RequestBody Map<String, Integer> body) {
 		String accessToken = requestHeader.toSingleValueMap().get("authorization");
-		int status = Integer.parseInt(requestHeader.toSingleValueMap().get("status"));
+		int status = body.get("status");
 		String userEmail = mybagService.changeItemStatus(accessToken, productId, status);
 
 		return new ResponseEntity<>( userEmail + " 장바구니 상품 구매 상태가 변경됨", HttpStatus.OK);

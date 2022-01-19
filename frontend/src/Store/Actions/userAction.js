@@ -1,4 +1,4 @@
-import axios from "axios";
+import request from "../../Components/Util/Request";
 import {
   GET_USER_INFO,
   GET_USER_PROFIT,
@@ -15,16 +15,8 @@ import {
  * @return user.response.data
  */
 export const loginUser = async (tokenId, body) => {
-  const res = await axios.post(
-    `${process.env.REACT_APP_SERVER}/api/users/login`,
-    body,
-    {
-      headers: {
-        authorization: tokenId,
-      },
-      withCredentials: true,
-    }
-  );
+  const res = await request.post(`/api/user/login`, body, tokenId);
+
   return {
     type: LOGIN_USER,
     payload: res,
@@ -32,31 +24,16 @@ export const loginUser = async (tokenId, body) => {
 };
 
 export const registerUser = async (body, tokenId) => {
-  const res = await axios.post(
-    `${process.env.REACT_APP_SERVER}/api/users/new`,
-    body,
-    {
-      headers: {
-        authorization: tokenId,
-      },
-    }
-  );
+  const res = await request.post(`/api/user/new`, body, tokenId);
+
   return {
     type: LOGIN_USER,
     payload: res,
   };
 };
 
-export const logoutUser = async (tokenId) => {
-  const res = await axios.post(
-    `${process.env.REACT_APP_SERVER}/api/users/logout`,
-    {},
-    {
-      headers: {
-        authorization: tokenId,
-      },
-    }
-  );
+export const logoutUser = async () => {
+  const res = await request.post(`/api/user/logout`, {});
 
   return {
     type: LOGOUT_USER,
@@ -64,15 +41,8 @@ export const logoutUser = async (tokenId) => {
   };
 };
 
-export const withDrawUser = async (tokenId) => {
-  const res = await axios.delete(
-    `${process.env.REACT_APP_SERVER}/api/users/withdrawal`,
-    {
-      headers: {
-        authorization: tokenId,
-      },
-    }
-  );
+export const withDrawUser = async () => {
+  const res = await request.delete(`/api/user/withdrawal`);
 
   return {
     type: WITHDRAW_USER,
@@ -80,32 +50,18 @@ export const withDrawUser = async (tokenId) => {
   };
 };
 
-export const getUserInfo = async (tokenId) => {
-  const res = await axios.post(
-    `${process.env.REACT_APP_SERVER}/api/users/info`,
-    {},
-    {
-      headers: {
-        authorization: tokenId,
-      },
-    }
-  );
+export const getUserInfo = async () => {
+  const res = await request.post(`/api/user/info`, {});
+
   return {
     type: GET_USER_INFO,
     payload: res.data,
   };
 };
 
-export const getUserProfit = async (tokenId) => {
-  const res = await axios.post(
-    `${process.env.REACT_APP_SERVER}/api/mybag/prices`,
-    {},
-    {
-      headers: {
-        authorization: tokenId,
-      },
-    }
-  );
+export const getUserProfit = async () => {
+  const res = await request.post(`/api/mybag/prices`, {});
+
   return {
     type: GET_USER_PROFIT,
     payload: res.data,
