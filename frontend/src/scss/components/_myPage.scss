@@ -43,7 +43,7 @@
   }
 
   .withdraw-btn {
-    background-color: #e63939;
+    background-color: $error;
     color: $white;
     @include font-default(500, 1.1rem);
   }

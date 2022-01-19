@@ -20,6 +20,6 @@
 
   .tab-price {
     @include font-default(400, 1rem);
-    color: #f5626c;
+    color: $error;
   }
 }

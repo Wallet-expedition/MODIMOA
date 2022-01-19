@@ -41,7 +41,7 @@
 
     .item-sale-price,
     .item-sale-percent {
-      color: #f5626c;
+      color: $error;
     }
 
     .item-info {
@@ -68,7 +68,7 @@
   align-items: center;
   justify-content: space-evenly;
   button {
-    background-color: #3973e6;
+    background-color: $success;
     color: $white;
     height: 80%;
     width: 70%;

@@ -48,7 +48,7 @@
 
 .buy-modal-container {
   z-index: 2;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 20%;
   bottom: 0;
@@ -64,8 +64,8 @@
   }
 
   .buy-modal-title {
-    padding: 0.5rem;
-    @include font-default(500, 1rem);
+    color: $off-white;
+    @include font-default(400, 1rem);
   }
 
   .buy-modal-state {
@@ -81,7 +81,8 @@
   }
 
   p {
-    @include font-default(300, 0.5rem);
+    @include font-default(100, 0.5rem);
+    color: $off-white;
   }
 
   .buy-modal-btn {
@@ -91,18 +92,18 @@
     height: 30%;
 
     div {
-      flex: 1;
-      border: 1px solid black;
+      width: 100%;
+      border: 1px solid $black;
       display: flex;
-      flex-direction: column;
       justify-content: center;
+      align-items: center;
     }
 
     .buy-modal-cancel {
-      background-color: #f5626c;
+      background-color: $error;
     }
     .buy-modal-confirm {
-      background-color: #5083e8;
+      background-color: $success;
     }
   }
 }

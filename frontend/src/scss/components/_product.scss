@@ -62,7 +62,7 @@
 }
 .MuiGrid-root {
   .MuiPaper-root {
-    box-shadow: 0 -4px 0 0 #b0b0b0 inset;
+    box-shadow: 0 -4px 0 0 $line inset;
   }
   .MuiAppBar-colorPrimary {
     background-color: $background;
@@ -93,15 +93,15 @@
   .wish-btn {
     text-align: center;
     box-sizing: border-box;
-    border: 1px solid #a5a5a5;
+    border: 1px solid $line;
     border-radius: 2px;
   }
 
   .buy-btn {
-    color: #3973e6;
+    color: $success;
   }
 
   .delete-btn {
-    color: #F5626C;
+    color: $error;
   }
 }
