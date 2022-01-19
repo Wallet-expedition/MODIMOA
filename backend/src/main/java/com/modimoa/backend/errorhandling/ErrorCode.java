@@ -10,7 +10,7 @@ public enum ErrorCode {
 	OBJECT_NOTFOUND_ERROR(403, "NOTFOUND-ERR-403", "OBJECT NOTFOUND ERROR"),
 	MEMBER_CONFLICT_ERROR(409, "MEMBER-ERR-400", "MEMBER CONFLICT ERROR");
 
-	private int status;
-	private String errorCode;
-	private String message;
+	private final int status;
+	private final String errorCode;
+	private final String message;
 }

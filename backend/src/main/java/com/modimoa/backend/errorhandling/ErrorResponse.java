@@ -1,38 +1,27 @@
 package com.modimoa.backend.errorhandling;
 
+import lombok.Builder;
+import lombok.Getter;
+import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDateTime;
+
+@Getter
+@Builder
 public class ErrorResponse {
-    private int status;
-    private String message;
-    private String code;
+    private final LocalDateTime timestamp = LocalDateTime.now();
+    private final int status;
+    private final String errorCode;
+    private final String message;
 
-    public ErrorResponse(ErrorCode errorCode){
-        this.status = errorCode.getStatus();
-        this.message = errorCode.getMessage();
-        this.code = errorCode.getErrorCode();
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+    public static ResponseEntity<ErrorResponse> toResponseEntity(ErrorCode errorCode) {
+        return ResponseEntity
+                .status(errorCode.getStatus())
+                .body(ErrorResponse.builder()
+                        .status(errorCode.getStatus())
+                        .errorCode(errorCode.getErrorCode())
+                        .message(errorCode.getMessage())
+                        .build()
+                );
     }
 }
