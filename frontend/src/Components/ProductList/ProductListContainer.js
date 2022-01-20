@@ -46,7 +46,7 @@ const ProductListContainer = ({ martList, searchKeyword, sortOption }) => {
         setList((prev) => [...prev, ...data.content]);
         currentPage.current++;
 
-        if (currentPage.current >= lastPage) {
+        if (currentPage.current > lastPage) {
           setIsLoadFinish(true);
         }
         setLastPage(data.totalPages);
