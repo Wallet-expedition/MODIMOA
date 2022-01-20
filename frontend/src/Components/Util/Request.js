@@ -10,8 +10,8 @@ const getHeader = (_tokenId) => {
   return {
     headers: {
       authorization: tokenId,
-      withCredentials: true,
     },
+    withCredentials: true,
   };
 };
 
