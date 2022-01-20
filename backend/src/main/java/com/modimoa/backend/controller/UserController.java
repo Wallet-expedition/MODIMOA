@@ -60,7 +60,6 @@ public class UserController {
 		ResponseCookie cookie = ResponseCookie.from("accessToken", accessToken)
 				.path("/")
 				.secure(true)
-				.sameSite("None")
 				.httpOnly(false)
 				.maxAge(60 * 60 * 24 * 15)
 				.domain("modimoa.kro.kr")
