@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@CrossOrigin(origins = {"https://modimoa.kro.kr", "http://110.34.75.163:3000", "http://localhost:3000", "http://127.0.0.1:3000/"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {

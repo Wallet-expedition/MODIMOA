@@ -65,6 +65,7 @@ public class UserController {
 				.maxAge(60 * 60 * 24 * 15)
 				.domain("modimoa.kro.kr")
 				.build();
+
 		response.setHeader("Set-Cookie", cookie.toString());
 
 		return new ResponseEntity<>(userEmail + " 로그인 되었습니다.", HttpStatus.OK);
