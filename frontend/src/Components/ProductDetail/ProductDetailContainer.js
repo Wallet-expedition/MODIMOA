@@ -65,7 +65,7 @@ const ProductDetailContainer = () => {
   // for SalePercent
   useLayoutEffect(() => {
     const newSalePercent = Math.round(
-      (item.sale_price * 100) / item.original_price
+      ((item.original_price - item.sale_price) * 100) / item.original_price
     );
     setSalePercent(newSalePercent);
   }, [item]);

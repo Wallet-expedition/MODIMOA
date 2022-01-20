@@ -1,5 +1,5 @@
 import React from "react";
-import BuyModal from "../BuyModal";
+import BuyModal from "./BuyModal";
 import BagProductList from "./BagProductList";
 import BagDescription from "./BagDescription";
 
@@ -26,6 +26,7 @@ const MyBagPresenter = ({
 
       {isOpenModal && (
         <BuyModal
+          isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
           selectedId={selectedId}
           buyProductName={buyProductName}

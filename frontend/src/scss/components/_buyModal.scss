@@ -1,0 +1,82 @@
+.buy-modal-container {
+  width: 100%;
+  min-height: 25%;
+  position: absolute;
+  bottom: 0;
+  background: #fff;
+  opacity: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  .buy-modal-product-name {
+    padding-top: 2%;
+    text-align: center;
+    @include font-default(500, 1.2rem);
+  }
+
+  .buy-modal-info, .buy-modal-btns, .buy-modal-quantity {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  .buy-modal-info {
+    .buy-modal-info-left, .buy-modal-info-right {
+      width: 50%;
+      display: flex;
+      justify-content: space-between;
+      padding: 1%;
+    }
+    .buy-modal-origin-price {
+      color: #a5a5a5;
+    }
+  
+    .buy-modal-sale-price {
+      @include font-default(500, 1rem);
+      color: #F5626C;
+    }
+  }
+
+  .buy-modal-quantity {
+    .buy-modal-quantity-left {
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+      align-items: center;
+      padding: 1%;
+
+      .buy-modal-quantity-box {
+        border: 1px solid #a5a5a5;
+        box-sizing: border-box;
+        width: 40%;
+        display: flex;
+        justify-content: space-between;
+        input {
+          text-align: center;
+          max-width: 30%;
+        }
+  
+        button {
+          background: #fff;
+          border: none;
+        }
+      }
+    }
+  
+    .buy-modal-profit {
+      align-self: center;
+      color: #5083E8;
+    }
+  }
+
+
+  .buy-modal-btns {
+    width: 100%;
+    padding: 2%;
+    border-top: 1px solid #a5a5a5;
+    justify-content: space-around;
+  }
+}

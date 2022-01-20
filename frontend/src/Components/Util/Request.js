@@ -16,10 +16,10 @@ const getHeader = (_tokenId) => {
 };
 
 const request = {
-  get: (url) => axios.get(`${baseUrl}${url}`),
+  get: (url) => axios.get(`${baseUrl}${url}`, getHeader()),
   post: (url, body, tokenId) =>
     axios.post(`${baseUrl}${url}`, body, getHeader(tokenId)),
-  patch: (url) => axios.patch(`${baseUrl}${url}`),
+  patch: (url, body) => axios.patch(`${baseUrl}${url}`, body, getHeader()),
   delete: (url) => axios.delete(`${baseUrl}${url}`, getHeader()),
 };
 
