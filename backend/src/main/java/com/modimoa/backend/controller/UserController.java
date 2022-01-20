@@ -57,12 +57,13 @@ public class UserController {
 		//쿠키 유저내 검색 있으면 토큰 만들어서 반환, 없으면 실패 반환
 		String accessToken = userService.login(userEmail);
 
-		ResponseCookie cookie = ResponseCookie.from("accessToken-token", accessToken)
+		ResponseCookie cookie = ResponseCookie.from("accessToken", accessToken)
 				.path("/")
 				.secure(true)
 				.sameSite("None")
 				.httpOnly(false)
 				.maxAge(60 * 60 * 24 * 15)
+				.domain("localhost")
 				.build();
 		response.setHeader("Set-Cookie", cookie.toString());
 
