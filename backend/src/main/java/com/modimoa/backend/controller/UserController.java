@@ -6,6 +6,7 @@ import com.modimoa.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,10 +57,14 @@ public class UserController {
 		//쿠키 유저내 검색 있으면 토큰 만들어서 반환, 없으면 실패 반환
 		String accessToken = userService.login(userEmail);
 
-		Cookie rCookie = new Cookie("accessToken", accessToken);
-		rCookie.setPath("/");
-		rCookie.setMaxAge(60 * 60 * 24 * 15);
-		response.addCookie(rCookie);
+		ResponseCookie cookie = ResponseCookie.from("accessToken-token", accessToken)
+				.path("/")
+				.secure(true)
+				.sameSite("None")
+				.httpOnly(false)
+				.maxAge(60 * 60 * 24 * 15)
+				.build();
+		response.setHeader("Set-Cookie", cookie.toString());
 
 		return new ResponseEntity<>(userEmail + " 로그인 되었습니다.", HttpStatus.OK);
 	}

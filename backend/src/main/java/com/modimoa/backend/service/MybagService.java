@@ -35,8 +35,7 @@ public class MybagService {
 		Optional<User> user = userRepository.findByAccessToken(accessToken);
 		List<Mybag> mybagList = mybagRepository.findByUser(user.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR)));
 		List<MybagProduct> productList = new ArrayList<>();
-		for (int i = 0; i < mybagList.size(); i++) {
-			Mybag mybag = mybagList.get(i);
+		for (Mybag mybag : mybagList) {
 			MybagProduct mybagProduct = MybagProduct.builder()
 					.product(productRepository.findById(mybag.getProductId()))
 					.count(mybag.getCount())
