@@ -2,10 +2,10 @@ package com.modimoa.backend.service;
 
 
 import com.modimoa.backend.domain.Mybag;
+import com.modimoa.backend.domain.MybagProduct;
 import com.modimoa.backend.domain.Product;
 import com.modimoa.backend.domain.User;
 import com.modimoa.backend.errorhandling.CustomException;
-import com.modimoa.backend.errorhandling.ErrorCode;
 import com.modimoa.backend.repository.MybagRepository;
 import com.modimoa.backend.repository.ProductRepository;
 import com.modimoa.backend.repository.UserRepository;
@@ -13,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static com.modimoa.backend.errorhandling.ErrorCode.OBJECT_NOTFOUND_ERROR;
 
@@ -34,9 +31,19 @@ public class MybagService {
 	private ProductRepository productRepository;
 
 	// 전체 물품 가져와서 반환
-	public List<Mybag> findAll(String accessToken) {
+	public List<MybagProduct> findAll(String accessToken) {
 		Optional<User> user = userRepository.findByAccessToken(accessToken);
-		return mybagRepository.findByUser(user.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR)));
+		List<Mybag> mybagList = mybagRepository.findByUser(user.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR)));
+		List<MybagProduct> productList = new ArrayList<>();
+		for (int i = 0; i < mybagList.size(); i++) {
+			Mybag mybag = mybagList.get(i);
+			MybagProduct mybagProduct = MybagProduct.builder()
+					.product(productRepository.findById(mybag.getProductId()))
+					.count(mybag.getCount())
+					.status(mybag.getStatus()).build();
+			productList.add(mybagProduct);
+		}
+		return productList;
 	}
 
 	// 새 물품 추가
