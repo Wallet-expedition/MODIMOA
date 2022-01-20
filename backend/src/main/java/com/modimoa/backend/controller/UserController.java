@@ -63,7 +63,7 @@ public class UserController {
 				.sameSite("None")
 				.httpOnly(false)
 				.maxAge(60 * 60 * 24 * 15)
-				.domain("localhost")
+				.domain("modimoa.kro.kr")
 				.build();
 
 		response.setHeader("Set-Cookie", cookie.toString());
