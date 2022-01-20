@@ -36,7 +36,7 @@ export const deleteWishProduct = async (id) => {
 
 export const getProductList = async (mart, searchKeyword, page, sortFilter) => {
   const res = await request.get(
-    `/api/product/pickmart/${mart}/q=${searchKeyword}&size=15&page=${page}&sort=${sortFilter}`
+    `/api/product/pickmart/${mart}?q=${searchKeyword}&size=15&page=${page}&sort=${sortFilter}`
   );
 
   return {
