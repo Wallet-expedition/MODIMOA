@@ -62,7 +62,7 @@ public class UserController {
 				.secure(true)
 				.httpOnly(false)
 				.maxAge(60 * 60 * 24 * 15)
-				.sameSite("Lax")
+				.sameSite("None")
 				.domain("modimoa.kro.kr")
 				.build();
 
