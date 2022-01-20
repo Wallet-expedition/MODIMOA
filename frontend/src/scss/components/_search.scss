@@ -34,23 +34,23 @@
     gap: 10px;
     .MuiOutlinedInput-root,
     .MuiOutlinedInput-notchedOutline {
-      border: 2px solid #FAFAFA;
+      border: 2px solid $off-white;
     }
     .MuiOutlinedInput-root:hover {
       .MuiOutlinedInput-notchedOutline {
-        border-color: #FAFAFA;
+        border-color: $off-white;
       }
     }
     .MuiOutlinedInput-root.Mui-focused {
       .MuiOutlinedInput-notchedOutline {
-        border-color: #FAFAFA;
+        border-color: $off-white;
       }
     }
     .MuiFormLabel-root {
-      color: #FAFAFA;
+      color: $off-white;
     }
     .MuiFormLabel-root.Mui-focused {
-      color: #FAFAFA;
+      color: $off-white;
     }
 
     .MuiInputLabel-formControl {
@@ -58,8 +58,8 @@
     }
 
     .search-btn {
-      background-color: #EDEDED;
-      border: 1px solid #FAFAFA;
+      background-color: $background;
+      border: 1px solid $off-white;
       border-radius: 10px;
       width: 60px;
       transition: all 0.1s ease-in-out;
@@ -67,27 +67,26 @@
         height: 25px;
       }
       &:hover {
-        background-color: #FAFAFA;
+        background-color: $off-white;
       }
     }
   }
 
   @include mobile() {
-
     .MuiOutlinedInput-root,
     .MuiOutlinedInput-notchedOutline {
-      border: 2px solid #808080;
+      border: 2px solid $grey;
     }
     .MuiOutlinedInput-root.Mui-focused {
       .MuiOutlinedInput-notchedOutline {
-        border-color: #666666;
+        border-color: $dark-grey;
       }
     }
     .MuiFormLabel-root {
-      color: #808080;
+      color: $grey;
     }
     .MuiFormLabel-root.Mui-focused {
-      color: #666666;
+      color: $dark-grey;
     }
   }
 }

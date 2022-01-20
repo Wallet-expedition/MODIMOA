@@ -5,7 +5,7 @@
   justify-content: space-evenly;
   width: 100vw;
   height: 100vh;
-  background-color: #ffed99;
+  background-color: $beer;
   .logo-container,
   .slogan-container,
   .enter-container {
@@ -18,12 +18,12 @@
     width: 75%;
     @include font-default(500, 1rem);
     span {
-      color: #38558d;
+      color: $slogan;
       line-height: 3rem;
       text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
-    border-top: 3px solid #38558d;
-    border-bottom: 3px solid #38558d;
+    border-top: 3px solid $slogan;
+    border-bottom: 3px solid $slogan;
   }
   .logo-container {
     width: 100%;
@@ -32,7 +32,7 @@
     }
     span {
       @include font-default(700, 1.5rem);
-      color: #cf7df5;
+      color: $slogan2;
       text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
   }
