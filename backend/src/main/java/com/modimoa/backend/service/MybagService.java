@@ -108,10 +108,10 @@ public class MybagService {
 		for (Mybag mb : mybagRepository.findByUser(user.get())) {
 			Optional<Product> product = productRepository.findById(mb.getProductId());
 			product.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
-			if (mb.getStatus() == 1) {
+			if (mb.getStatus() == 0) {
 				originalPriceBeforeBuy += product.get().getOriginalPrice() * mb.getCount();
 				salePriceBeforeBuy += product.get().getSalePrice() * mb.getCount();
-			} else if (mb.getStatus() == 2) {
+			} else if (mb.getStatus() == 1) {
 				originalPriceAfterBuy += product.get().getOriginalPrice() * mb.getCount();
 				salePriceAfterBuy += product.get().getSalePrice() * mb.getCount();
 			}
