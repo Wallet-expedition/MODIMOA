@@ -1,7 +1,9 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useLayoutEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteWishProduct } from "../../Store/Actions/productAction";
-import { SampleList } from "../Util/SampleList";
+import {
+  deleteWishProduct,
+  getMyBagList,
+} from "../../Store/Actions/productAction";
 import MyBagPresenter from "./MyBagPresenter";
 
 const MyBagContainer = ({ filterOption }) => {
@@ -10,6 +12,7 @@ const MyBagContainer = ({ filterOption }) => {
   const [buyProductName, setBuyProductName] = useState("");
   const [selectedId, setSelectedId] = useState(-1);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [myBagList, setMyBagList] = useState([]);
 
   const handleBuyClick = useCallback(async (event) => {
     const targetId = event.target.id;
@@ -46,9 +49,20 @@ const MyBagContainer = ({ filterOption }) => {
     [dispatch]
   );
 
+  useLayoutEffect(() => {
+    const getMyBagListFun = async () => {
+      const res = await dispatch(getMyBagList());
+
+      if (res.payload.success) {
+        setMyBagList(res.payload.data);
+      }
+    };
+    getMyBagListFun();
+  }, [dispatch]);
+
   return (
     <MyBagPresenter
-      list={SampleList}
+      list={myBagList}
       filterOption={filterOption}
       isOpenModal={isOpenModal}
       handleBuyClick={handleBuyClick}
