@@ -52,7 +52,7 @@ public class MybagService {
 		Optional<Product> product = Optional.ofNullable(productRepository.findById(productId).orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR)));
 		Mybag mybag = mybagRepository.findByUserAndProductId(user.get(), productId)
 				.orElseGet(() -> mybagRepository
-						.save(new Mybag(user.get(), productId, 0, 1)));
+						.save(new Mybag(user.get(), productId, 0, 0)));
 		mybag.updateCount(1);
 
 		return user.get().getUserEmail();
