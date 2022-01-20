@@ -47,7 +47,7 @@ const BuyModalContainer = ({
       count: number,
     };
     const changeCntRes = await dispatch(changeMyBagCnt(selectedId, cntBody));
-    if (changeCntRes.payload.success) {
+    if (changeCntRes.payload.status === 200) {
       const stateBody = {
         status: AFTER_PURCHASE,
       };
@@ -56,7 +56,7 @@ const BuyModalContainer = ({
        * TODO
        * React Toastify 적용
        */
-      if (res.payload.success) {
+      if (res.payload.status === 200) {
         alert("구매가 완료되었습니다.");
       }
     }
