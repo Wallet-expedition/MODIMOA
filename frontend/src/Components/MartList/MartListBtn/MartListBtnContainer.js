@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { selectMart } from "../../../Store/Actions/martAction";
+import detectMobile from "../../Util/DetectMobile";
 
 import MartListBtnPresenter from "./MartListBtnPresenter";
 
@@ -12,21 +13,6 @@ const MartListBtnContainer = ({
 }) => {
   const dispatch = useDispatch();
   const [isAllDeactivation, setIsAllDeActivation] = useState(false);
-
-  const detectMobile = () => {
-    const toMatch = [
-      /Android/i,
-      /webOS/i,
-      /iPhone/i,
-      /iPod/i,
-      /BlackBerry/i,
-      /Windows Phone/i,
-    ];
-
-    return toMatch.some((toMatchItem) => {
-      return navigator.userAgent.match(toMatchItem);
-    });
-  };
 
   const handleMartListBtnClick = useCallback(
     (event) => {
