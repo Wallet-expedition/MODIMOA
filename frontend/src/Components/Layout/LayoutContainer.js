@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import LayoutPresenter from "./LayoutPresenter";
 
 const LayoutContainer = ({ children }) => {
+  const pathname = window.location.pathname;
   const [showSideMenu, setShowSideMenu] = useState(false);
-  const [isNotRequiredBackBtn, setIsNotRequiredBackBtn] = useState(false);
+  const [isNotRequiredBackBtn, setIsNotRequiredBackBtn] = useState(true);
 
-  const isNowPage = (page) => {
-    const isNow = window.location.pathname.indexOf(page);
-    if (isNow !== -1) {
-      return true;
+  const isNowPageRequiredBackBtn = useCallback(() => {
+    const noBackBtnPage = ["list", "main"];
+    const params = pathname.split("/"); // 0: "", 1: "list", 2: ":id"
+    const isPageInlist = noBackBtnPage.includes(params[1]);
+    if (!isPageInlist) {
+      return false;
     }
-
-    return false;
-  };
+    if (pathname.includes("list") && params[2]) {
+      return false;
+    }
+    return true;
+  }, [pathname]);
 
   useEffect(() => {
-    const noBackBtnPage = ["/list", "/main", "list/", "about", "/"];
-    noBackBtnPage.forEach((page, idx) => {
-      if (isNowPage(page) && idx !== 2) setIsNotRequiredBackBtn(true);
-      else if (isNowPage(page) && idx === 2) setIsNotRequiredBackBtn(false);
-    });
-
+    setIsNotRequiredBackBtn(isNowPageRequiredBackBtn());
     return () => setIsNotRequiredBackBtn(false);
-  }, [children, isNotRequiredBackBtn]);
+  }, [isNowPageRequiredBackBtn]);
 
   return (
     <LayoutPresenter

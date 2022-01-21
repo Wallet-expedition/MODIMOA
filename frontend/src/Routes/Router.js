@@ -13,22 +13,9 @@ import {
   About,
 } from "../Pages";
 import Auth from "../Components/Util/Auth";
+import detectMobile from "../Components/Util/DetectMobile";
 
 const Router = () => {
-  const detectMobile = () => {
-    const toMatch = [
-      /Android/i,
-      /webOS/i,
-      /iPhone/i,
-      /iPod/i,
-      /BlackBerry/i,
-      /Windows Phone/i,
-    ];
-
-    return toMatch.some((toMatchItem) => {
-      return navigator.userAgent.match(toMatchItem);
-    });
-  };
   return (
     <Switch>
       {detectMobile() && <Route exact path="/" component={Auth(Intro, null)} />}
