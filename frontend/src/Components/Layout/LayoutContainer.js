@@ -1,24 +1,23 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useParams } from "react-router-dom";
 import LayoutPresenter from "./LayoutPresenter";
 
 const LayoutContainer = ({ children }) => {
   const pathname = window.location.pathname;
-  const params = useParams();
   const [showSideMenu, setShowSideMenu] = useState(false);
   const [isNotRequiredBackBtn, setIsNotRequiredBackBtn] = useState(true);
 
   const isNowPageRequiredBackBtn = useCallback(() => {
     const noBackBtnPage = ["list", "main"];
-    const isPageInlist = noBackBtnPage.includes(pathname.split("/")[1]); // 0: ""
+    const params = pathname.split("/"); // 0: "", 1: "list", 2: ":id"
+    const isPageInlist = noBackBtnPage.includes(params[1]);
     if (!isPageInlist) {
       return false;
     }
-    if (pathname.includes("list") && params.id) {
+    if (pathname.includes("list") && params[2]) {
       return false;
     }
     return true;
-  }, [pathname, params]);
+  }, [pathname]);
 
   useEffect(() => {
     setIsNotRequiredBackBtn(isNowPageRequiredBackBtn());
