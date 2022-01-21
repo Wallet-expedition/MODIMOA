@@ -23,7 +23,7 @@
 
   @include mobile {
     position: absolute;
-    z-index: 3;
+    z-index: 5;
     background-color: $black;
     width: calc(100% - 1rem); // 1rem: padding
     height: 100%;
