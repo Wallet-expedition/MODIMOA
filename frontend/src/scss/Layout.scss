@@ -60,4 +60,8 @@ body {
     transform: translateY(50%);
     max-width: 50%;
   }
+
+  @include desktop {
+    display: none;
+  }
 }
