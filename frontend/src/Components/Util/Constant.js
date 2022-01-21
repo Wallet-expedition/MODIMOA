@@ -13,3 +13,7 @@ export const EMART24 = "emart24";
 export const KAKAO = "kakao";
 export const GOOGLE = "google";
 export const FACEBOOK = "facebook";
+
+export const BEFORE_PURCHASE = 0;
+export const AFTER_PURCHASE = 1;
+export const TIMEOVER_PURCHASE = 2;
