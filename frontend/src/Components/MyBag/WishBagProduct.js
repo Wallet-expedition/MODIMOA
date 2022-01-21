@@ -1,4 +1,5 @@
 import { Grid } from "@material-ui/core";
+import AddComma from "../Util/AddComma";
 
 const WishDisplay = ({
   id,
@@ -27,27 +28,16 @@ const WishDisplay = ({
     </div>
   );
 };
-const PurchasedDisplay = ({ profit }) => {
-  return (
-    <Grid className="product-state-info-container">
-      <Grid className="product-state-info">구매 완료</Grid>
-      <Grid className="product-state-price">{profit}원 이득</Grid>
-    </Grid>
-  );
-};
 
-const BagProduct = ({
+const WishBagProduct = ({
   id,
   product_name,
   product_image,
-  original_price,
   sale_price,
+  product_count,
   handleBuyClick,
   handleDeleteClick,
-  filterOption,
 }) => {
-  const profit = parseInt(original_price) - parseInt(sale_price);
-
   return (
     <Grid className="product-container">
       <Grid className="product-image-container">
@@ -57,22 +47,18 @@ const BagProduct = ({
         <span className="product-info-text"> {product_name} </span>
         <Grid className="product-info-price-container">
           <span>
-            {`${sale_price}원 • `} <b>1개</b>
+            {`${AddComma(sale_price)}원 • `} <b>{product_count}개</b>
           </span>
         </Grid>
       </Grid>
-      {filterOption === 0 ? (
-        <WishDisplay
-          id={id}
-          product_name={product_name}
-          handleBuyClick={handleBuyClick}
-          handleDeleteClick={handleDeleteClick}
-        />
-      ) : (
-        <PurchasedDisplay profit={profit} />
-      )}
+      <WishDisplay
+        id={id}
+        product_name={product_name}
+        handleBuyClick={handleBuyClick}
+        handleDeleteClick={handleDeleteClick}
+      />
     </Grid>
   );
 };
 
-export default BagProduct;
+export default WishBagProduct;

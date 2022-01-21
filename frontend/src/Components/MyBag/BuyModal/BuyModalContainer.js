@@ -5,10 +5,7 @@ import {
   changeMyBagState,
 } from "../../../Store/Actions/productAction";
 import BuyModalPresenter from "./BuyModalPresenter";
-
-// const BEFORE_PURCHASE = 0;
-const AFTER_PURCHASE = 1;
-// const TIMEOVER_PURCHASE = 2;
+import { AFTER_PURCHASE } from "../../Util/Constant";
 
 const BuyModalContainer = ({
   isOpenModal,

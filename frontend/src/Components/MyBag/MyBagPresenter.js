@@ -4,7 +4,8 @@ import BagProductList from "./BagProductList";
 import BagDescription from "./BagDescription";
 
 const MyBagPresenter = ({
-  list,
+  wishList,
+  purchasedList,
   filterOption,
   handleBuyClick,
   isOpenModal,
@@ -17,7 +18,8 @@ const MyBagPresenter = ({
     <main className="my-bag-container">
       {!filterOption && <BagDescription />}
       <BagProductList
-        list={list}
+        wishList={wishList}
+        purchasedList={purchasedList}
         handleBuyClick={handleBuyClick}
         handleDeleteClick={handleDeleteClick}
         buyProductName={buyProductName}
