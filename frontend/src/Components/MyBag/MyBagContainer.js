@@ -1,27 +1,20 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  deleteWishProduct,
-  getMyBagList,
-} from "../../Store/Actions/productAction";
+import { deleteWishProduct } from "../../Store/Actions/productAction";
 import MyBagPresenter from "./MyBagPresenter";
-import { PURCHASE_OPTION } from "../Util/Constant";
 
-const MyBagContainer = ({ filterOption }) => {
+const MyBagContainer = ({
+  filterOption,
+  wishList,
+  purchasedList,
+  setNextList,
+}) => {
   const dispatch = useDispatch();
 
   const [buyProductName, setBuyProductName] = useState("");
   const [selectedId, setSelectedId] = useState(-1);
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [, setMyBagList] = useState([]);
-  const [wishList, setWishList] = useState([]);
-  const [purchasedList, setPurchasedList] = useState([]);
 
-  /**
-   * TODO
-   * 구매 완료, 삭제 후 리스트 업데이트
-   * 상품 구매 개수 비동기처리
-   */
   const handleBuyClick = useCallback(async (event) => {
     const targetId = event.target.id;
     const words = targetId.split("&");
@@ -50,55 +43,20 @@ const MyBagContainer = ({ filterOption }) => {
       if (ans) {
         const res = await dispatch(deleteWishProduct(productId));
         if (res.payload.status === 200) {
-          setMyBagList((prevState) =>
-            prevState.filter((item) => item.productId !== productId)
-          );
-          setWishList((prevState) =>
-            prevState.filter((item) => item.productId !== productId)
-          );
+          const nextList = [...wishList, ...purchasedList];
+          setNextList(nextList, parseInt(productId));
           alert("삭제가 완료되었습니다.");
         }
       }
     },
-    [dispatch]
+    [dispatch, purchasedList, setNextList, wishList]
   );
-
-  useEffect(() => {
-    const getMyBagListFun = async () => {
-      const res = await dispatch(getMyBagList());
-      if (res.payload.status === 200) {
-        const itemNumberList = res.payload.data;
-        const nextMyBagList = itemNumberList.map((item) => {
-          return {
-            productId: item.product.productId,
-            productName: item.product.productName,
-            productImage: item.product.productImage,
-            originalPrice: item.product.originalPrice,
-            salePrice: item.product.salePrice,
-            productCnt: item.count,
-            status: item.status,
-          };
-        });
-        setMyBagList(nextMyBagList);
-        setPurchasedList(
-          nextMyBagList.filter(
-            (item) => item.status === PURCHASE_OPTION.AFTER_PURCHASE
-          )
-        );
-        setWishList(
-          nextMyBagList.filter(
-            (item) => item.status === PURCHASE_OPTION.BEFORE_PURCHASE
-          )
-        );
-      }
-    };
-    getMyBagListFun();
-  }, [dispatch]);
 
   return (
     <MyBagPresenter
       wishList={wishList}
       purchasedList={purchasedList}
+      setNextList={setNextList}
       filterOption={filterOption}
       isOpenModal={isOpenModal}
       handleBuyClick={handleBuyClick}

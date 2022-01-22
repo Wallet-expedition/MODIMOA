@@ -12,6 +12,9 @@ const BuyModalContainer = ({
   setIsOpenModal,
   selectedId,
   buyProductName,
+  wishList,
+  purchasedList,
+  setNextList,
 }) => {
   const [productName, setProductName] = useState("");
   const [number, setNumber] = useState(1);
@@ -54,11 +57,21 @@ const BuyModalContainer = ({
        * React Toastify 적용
        */
       if (res.payload.status === 200) {
+        const nextList = [...wishList, ...purchasedList];
+        setNextList(nextList, parseInt(selectedId));
         alert("구매가 완료되었습니다.");
       }
     }
     setIsOpenModal(false);
-  }, [dispatch, number, selectedId, setIsOpenModal]);
+  }, [
+    dispatch,
+    number,
+    purchasedList,
+    selectedId,
+    setIsOpenModal,
+    setNextList,
+    wishList,
+  ]);
 
   useEffect(() => {
     setProductName(buyProductName);

@@ -6,6 +6,7 @@ import BagDescription from "./BagDescription";
 const MyBagPresenter = ({
   wishList,
   purchasedList,
+  setNextList,
   filterOption,
   handleBuyClick,
   isOpenModal,
@@ -32,6 +33,9 @@ const MyBagPresenter = ({
           setIsOpenModal={setIsOpenModal}
           selectedId={selectedId}
           buyProductName={buyProductName}
+          wishList={wishList}
+          purchasedList={purchasedList}
+          setNextList={setNextList}
         />
       )}
     </main>
