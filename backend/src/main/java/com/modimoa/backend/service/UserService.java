@@ -51,7 +51,7 @@ public class UserService {
 
     public String logout(String token) {
 
-        Optional <User> user = userRepository.findByOauthToken(token);
+        Optional <User> user = userRepository.findByAccessToken(token);
         user.orElseThrow(()->new CustomException(OBJECT_NOTFOUND_ERROR));
         user.get().updateTokens("");
 

@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: space-evenly;
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   background-color: $beer;
   .logo-container,
   .slogan-container,

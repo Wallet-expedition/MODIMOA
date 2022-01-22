@@ -6,6 +6,7 @@ import com.modimoa.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin(origins = {"https://modimoa.kro.kr", "http://110.34.75.163:3000", "http://localhost:3000", "http://127.0.0.1:3000/"}, allowCredentials = "true")
+
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -56,10 +57,16 @@ public class UserController {
 		//쿠키 유저내 검색 있으면 토큰 만들어서 반환, 없으면 실패 반환
 		String accessToken = userService.login(userEmail);
 
-		Cookie rCookie = new Cookie("accessToken", accessToken);
-		rCookie.setPath("/");
-		rCookie.setMaxAge(60 * 60 * 24 * 15);
-		response.addCookie(rCookie);
+		ResponseCookie cookie = ResponseCookie.from("accessToken", accessToken)
+				.path("/")
+				.secure(true)
+				.httpOnly(false)
+				.maxAge(60 * 60 * 24 * 15)
+				.sameSite("None")
+				.domain("modimoa.kro.kr")
+				.build();
+
+		response.setHeader("Set-Cookie", cookie.toString());
 
 		return new ResponseEntity<>(userEmail + " 로그인 되었습니다.", HttpStatus.OK);
 	}

@@ -1,6 +1,8 @@
 package com.modimoa.backend.controller;
 
 import com.modimoa.backend.domain.Mybag;
+import com.modimoa.backend.domain.MybagProduct;
+import com.modimoa.backend.domain.Product;
 import com.modimoa.backend.service.MybagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -10,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
-@CrossOrigin(origins = {"https://modimoa.kro.kr", "http://110.34.75.163:3000", "http://localhost:3000", "http://127.0.0.1:3000/"}, allowCredentials = "true")
 @RestController
 @RequestMapping(value = "/api/mybag")
 public class MybagController {
@@ -21,7 +23,7 @@ public class MybagController {
 
 	// 장바구니에서 user의 물건 조회하는 기능
 	@GetMapping("")
-	public ResponseEntity<List<Mybag>> findAll(@RequestHeader HttpHeaders requestHeader) {
+	public ResponseEntity<List<MybagProduct>> findAll(@RequestHeader HttpHeaders requestHeader) {
 		String accessToken = requestHeader.toSingleValueMap().get("authorization");
 		return new ResponseEntity<>(mybagService.findAll(accessToken), HttpStatus.OK);
 	}

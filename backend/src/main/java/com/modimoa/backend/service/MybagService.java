@@ -2,10 +2,10 @@ package com.modimoa.backend.service;
 
 
 import com.modimoa.backend.domain.Mybag;
+import com.modimoa.backend.domain.MybagProduct;
 import com.modimoa.backend.domain.Product;
 import com.modimoa.backend.domain.User;
 import com.modimoa.backend.errorhandling.CustomException;
-import com.modimoa.backend.errorhandling.ErrorCode;
 import com.modimoa.backend.repository.MybagRepository;
 import com.modimoa.backend.repository.ProductRepository;
 import com.modimoa.backend.repository.UserRepository;
@@ -13,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static com.modimoa.backend.errorhandling.ErrorCode.OBJECT_NOTFOUND_ERROR;
 
@@ -34,9 +31,18 @@ public class MybagService {
 	private ProductRepository productRepository;
 
 	// 전체 물품 가져와서 반환
-	public List<Mybag> findAll(String accessToken) {
+	public List<MybagProduct> findAll(String accessToken) {
 		Optional<User> user = userRepository.findByAccessToken(accessToken);
-		return mybagRepository.findByUser(user.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR)));
+		List<Mybag> mybagList = mybagRepository.findByUser(user.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR)));
+		List<MybagProduct> productList = new ArrayList<>();
+		for (Mybag mybag : mybagList) {
+			MybagProduct mybagProduct = MybagProduct.builder()
+					.product(productRepository.findById(mybag.getProductId()))
+					.count(mybag.getCount())
+					.status(mybag.getStatus()).build();
+			productList.add(mybagProduct);
+		}
+		return productList;
 	}
 
 	// 새 물품 추가
@@ -46,7 +52,7 @@ public class MybagService {
 		Optional<Product> product = Optional.ofNullable(productRepository.findById(productId).orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR)));
 		Mybag mybag = mybagRepository.findByUserAndProductId(user.get(), productId)
 				.orElseGet(() -> mybagRepository
-						.save(new Mybag(user.get(), productId, 0, 1)));
+						.save(new Mybag(user.get(), productId, 0, 0)));
 		mybag.updateCount(1);
 
 		return user.get().getUserEmail();
@@ -102,10 +108,10 @@ public class MybagService {
 		for (Mybag mb : mybagRepository.findByUser(user.get())) {
 			Optional<Product> product = productRepository.findById(mb.getProductId());
 			product.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
-			if (mb.getStatus() == 1) {
+			if (mb.getStatus() == 0) {
 				originalPriceBeforeBuy += product.get().getOriginalPrice() * mb.getCount();
 				salePriceBeforeBuy += product.get().getSalePrice() * mb.getCount();
-			} else if (mb.getStatus() == 2) {
+			} else if (mb.getStatus() == 1) {
 				originalPriceAfterBuy += product.get().getOriginalPrice() * mb.getCount();
 				salePriceAfterBuy += product.get().getSalePrice() * mb.getCount();
 			}
