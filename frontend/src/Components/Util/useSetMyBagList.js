@@ -21,8 +21,8 @@ const useSetMyBagList = () => {
         }
         // 새로운 list반환
         return item.status === PURCHASE_OPTION.BEFORE_PURCHASE
-          ? [[item, ...wish], purchased]
-          : [wish, [item, ...purchased]];
+          ? [[...wish, item], purchased]
+          : [wish, [...purchased, item]];
       },
       [[], []]
     );
