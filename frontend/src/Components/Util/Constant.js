@@ -14,6 +14,8 @@ export const KAKAO = "kakao";
 export const GOOGLE = "google";
 export const FACEBOOK = "facebook";
 
-export const BEFORE_PURCHASE = 0;
-export const AFTER_PURCHASE = 1;
-export const TIMEOVER_PURCHASE = 2;
+export const PURCHASE_OPTION = Object.freeze({
+  BEFORE_PURCHASE: 0,
+  AFTER_PURCHASE: 1,
+  TIMEOVER_PURCHASE: 2,
+});

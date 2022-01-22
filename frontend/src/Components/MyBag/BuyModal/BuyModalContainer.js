@@ -5,7 +5,7 @@ import {
   changeMyBagState,
 } from "../../../Store/Actions/productAction";
 import BuyModalPresenter from "./BuyModalPresenter";
-import { AFTER_PURCHASE } from "../../Util/Constant";
+import { PURCHASE_OPTION } from "../../Util/Constant";
 
 const BuyModalContainer = ({
   isOpenModal,
@@ -46,7 +46,7 @@ const BuyModalContainer = ({
     const changeCntRes = await dispatch(changeMyBagCnt(selectedId, cntBody));
     if (changeCntRes.payload.status === 200) {
       const stateBody = {
-        status: AFTER_PURCHASE,
+        status: PURCHASE_OPTION.AFTER_PURCHASE,
       };
       const res = await dispatch(changeMyBagState(selectedId, stateBody));
       /**

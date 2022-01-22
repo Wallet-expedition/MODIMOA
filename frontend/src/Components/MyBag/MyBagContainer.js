@@ -5,7 +5,7 @@ import {
   getMyBagList,
 } from "../../Store/Actions/productAction";
 import MyBagPresenter from "./MyBagPresenter";
-import { AFTER_PURCHASE, BEFORE_PURCHASE } from "../Util/Constant";
+import { PURCHASE_OPTION } from "../Util/Constant";
 
 const MyBagContainer = ({ filterOption }) => {
   const dispatch = useDispatch();
@@ -81,10 +81,14 @@ const MyBagContainer = ({ filterOption }) => {
         });
         setMyBagList(nextMyBagList);
         setPurchasedList(
-          nextMyBagList.filter((item) => item.status === AFTER_PURCHASE)
+          nextMyBagList.filter(
+            (item) => item.status === PURCHASE_OPTION.AFTER_PURCHASE
+          )
         );
         setWishList(
-          nextMyBagList.filter((item) => item.status === BEFORE_PURCHASE)
+          nextMyBagList.filter(
+            (item) => item.status === PURCHASE_OPTION.BEFORE_PURCHASE
+          )
         );
       }
     };
