@@ -1,11 +1,11 @@
 import { Grid } from "@material-ui/core";
-import AddComma from "../Util/AddComma";
+import addComma from "../Util/AddComma";
 
 const PurchasedDisplay = ({ profit }) => {
   return (
     <Grid className="product-state-info-container">
       <Grid className="product-state-info">구매 완료</Grid>
-      <Grid className="product-state-price">{AddComma(profit)}원 이득</Grid>
+      <Grid className="product-state-price">{addComma(profit)}원 이득</Grid>
     </Grid>
   );
 };
@@ -28,7 +28,7 @@ const PurchasedBagProduct = ({
         <span className="product-info-text">{product_name}</span>
         <Grid className="product-info-price-container">
           <span>
-            {AddComma(sale_price)}원 • <b>{AddComma(product_count)}개</b>
+            {addComma(sale_price)}원 • <b>{addComma(product_count)}개</b>
           </span>
         </Grid>
       </Grid>

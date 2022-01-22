@@ -1,5 +1,5 @@
 import { Grid } from "@material-ui/core";
-import AddComma from "../Util/AddComma";
+import addComma from "../Util/AddComma";
 
 const WishDisplay = ({
   id,
@@ -47,7 +47,7 @@ const WishBagProduct = ({
         <span className="product-info-text"> {product_name} </span>
         <Grid className="product-info-price-container">
           <span>
-            {`${AddComma(sale_price)}원 • `} <b>{product_count}개</b>
+            {`${addComma(sale_price)}원 • `} <b>{product_count}개</b>
           </span>
         </Grid>
       </Grid>

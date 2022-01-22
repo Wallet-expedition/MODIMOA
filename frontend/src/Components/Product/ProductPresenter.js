@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Grid, Button } from "@material-ui/core";
 import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
 import { selectProduct } from "../../Store/Actions/productAction";
-import AddComma from '../Util/AddComma';
+import addComma from "../Util/AddComma";
 
 const ProductPresenter = ({
   id,
@@ -52,8 +52,8 @@ const ProductPresenter = ({
       <Grid className="product-info-container">
         <Grid className="product-info-price-container">
           <span>
-            {`${AddComma(sale_price)}`}
-            <del>{AddComma(original_price)}</del>
+            {`${addComma(sale_price)}`}
+            <del>{addComma(original_price)}</del>
           </span>
         </Grid>
         <span className="product-info-text"> {product_name} </span>

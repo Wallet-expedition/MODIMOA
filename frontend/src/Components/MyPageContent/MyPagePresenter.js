@@ -7,7 +7,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
-import AddComma from "../Util/AddComma";
+import addComma from "../Util/AddComma";
 
 const UserProfile = ({ handleLogout, userInfo, profit }) => {
   return (
@@ -20,7 +20,7 @@ const UserProfile = ({ handleLogout, userInfo, profit }) => {
           {userInfo.user_email}
         </Typography>
         <Typography variant="body1" color="textPrimary" component="p">
-          얼마를 아꼈는가? <b>{AddComma(profit)}원</b>
+          얼마를 아꼈는가? <b>{addComma(profit)}원</b>
         </Typography>
       </CardContent>
       <CardActions>

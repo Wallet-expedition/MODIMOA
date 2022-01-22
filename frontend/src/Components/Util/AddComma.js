@@ -1,6 +1,6 @@
-const AddComma = (number) => {
+const addComma = (number) => {
   if (!number) return "";
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return number.toLocaleString();
 };
 
-export default AddComma;
+export default addComma;
