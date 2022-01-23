@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import detectMobile from "../Util/DetectMobile";
 import MartListPresenter from "./MartListPresenter";
 
 const MartListContainer = ({ martList }) => {
   const [showMartList, setShowMartList] = useState(false);
   const [tempMartList, setTempMartList] = useState(martList);
+
+  useEffect(() => {
+    if (!detectMobile()) {
+      setShowMartList(true);
+    }
+  }, []);
 
   return (
     <MartListPresenter
