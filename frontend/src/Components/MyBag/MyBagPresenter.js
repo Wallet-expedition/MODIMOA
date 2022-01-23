@@ -2,6 +2,7 @@ import React from "react";
 import BuyModal from "./BuyModal";
 import BagProductList from "./BagProductList";
 import BagDescription from "./BagDescription";
+import { PURCHASE_OPTION } from "../Util/Constant";
 
 const MyBagPresenter = ({
   wishList,
@@ -17,7 +18,7 @@ const MyBagPresenter = ({
 }) => {
   return (
     <main className="my-bag-container">
-      {!filterOption && <BagDescription />}
+      {filterOption === PURCHASE_OPTION.BEFORE_PURCHASE && <BagDescription />}
       <BagProductList
         wishList={wishList}
         purchasedList={purchasedList}

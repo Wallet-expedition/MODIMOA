@@ -1,3 +1,4 @@
+import { PURCHASE_OPTION } from "../Util/Constant";
 import PurchasedBagProduct from "./PurchasedBagProduct";
 import WishBagProduct from "./WishBagProduct";
 
@@ -8,7 +9,7 @@ const BagProductList = ({
   handleDeleteClick,
   filterOption,
 }) => {
-  return filterOption === 0
+  return filterOption === PURCHASE_OPTION.BEFORE_PURCHASE
     ? wishList.map((item) => (
         <WishBagProduct
           key={item.productId}
