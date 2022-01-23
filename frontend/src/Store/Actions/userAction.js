@@ -60,7 +60,7 @@ export const getUserInfo = async () => {
 };
 
 export const getUserProfit = async () => {
-  const res = await request.post(`/api/mybag/prices`, {});
+  const res = await request.get(`/api/mybag/prices`);
 
   return {
     type: GET_USER_PROFIT,

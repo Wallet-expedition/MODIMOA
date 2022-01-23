@@ -64,7 +64,8 @@ export const getMyBagList = async () => {
 };
 
 export const changeMyBagCnt = async (prodcutId, body) => {
-  const res = await request.post(`/api/mybag/${prodcutId}`, body);
+  const res = await request.post(`/api/mybag/changecnt/${prodcutId}`, body);
+
   return {
     type: CHANGE_MY_BAG_PRODUCT_CNT,
     payload: res,

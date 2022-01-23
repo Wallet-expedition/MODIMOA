@@ -13,3 +13,9 @@ export const EMART24 = "emart24";
 export const KAKAO = "kakao";
 export const GOOGLE = "google";
 export const FACEBOOK = "facebook";
+
+export const PURCHASE_OPTION = Object.freeze({
+  BEFORE_PURCHASE: 0,
+  AFTER_PURCHASE: 1,
+  TIMEOVER_PURCHASE: 2,
+});

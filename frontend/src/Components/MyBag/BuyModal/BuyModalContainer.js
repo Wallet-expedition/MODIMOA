@@ -5,16 +5,16 @@ import {
   changeMyBagState,
 } from "../../../Store/Actions/productAction";
 import BuyModalPresenter from "./BuyModalPresenter";
-
-// const BEFORE_PURCHASE = 0;
-const AFTER_PURCHASE = 1;
-// const TIMEOVER_PURCHASE = 2;
+import { PURCHASE_OPTION } from "../../Util/Constant";
 
 const BuyModalContainer = ({
   isOpenModal,
   setIsOpenModal,
   selectedId,
   buyProductName,
+  wishList,
+  purchasedList,
+  setNextList,
 }) => {
   const [productName, setProductName] = useState("");
   const [number, setNumber] = useState(1);
@@ -47,21 +47,31 @@ const BuyModalContainer = ({
       count: number,
     };
     const changeCntRes = await dispatch(changeMyBagCnt(selectedId, cntBody));
-    if (changeCntRes.payload.success) {
+    if (changeCntRes.payload.status === 200) {
       const stateBody = {
-        status: AFTER_PURCHASE,
+        status: PURCHASE_OPTION.AFTER_PURCHASE,
       };
       const res = await dispatch(changeMyBagState(selectedId, stateBody));
       /**
        * TODO
        * React Toastify 적용
        */
-      if (res.payload.success) {
+      if (res.payload.status === 200) {
+        const nextList = [...wishList, ...purchasedList];
+        setNextList(nextList, parseInt(selectedId));
         alert("구매가 완료되었습니다.");
       }
     }
     setIsOpenModal(false);
-  }, [dispatch, number, selectedId, setIsOpenModal]);
+  }, [
+    dispatch,
+    number,
+    purchasedList,
+    selectedId,
+    setIsOpenModal,
+    setNextList,
+    wishList,
+  ]);
 
   useEffect(() => {
     setProductName(buyProductName);

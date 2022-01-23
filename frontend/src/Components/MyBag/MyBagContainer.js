@@ -1,18 +1,19 @@
-import React, { useCallback, useLayoutEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  deleteWishProduct,
-  getMyBagList,
-} from "../../Store/Actions/productAction";
+import { deleteWishProduct } from "../../Store/Actions/productAction";
 import MyBagPresenter from "./MyBagPresenter";
 
-const MyBagContainer = ({ filterOption }) => {
+const MyBagContainer = ({
+  filterOption,
+  wishList,
+  purchasedList,
+  setNextList,
+}) => {
   const dispatch = useDispatch();
 
   const [buyProductName, setBuyProductName] = useState("");
   const [selectedId, setSelectedId] = useState(-1);
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [myBagList, setMyBagList] = useState([]);
 
   const handleBuyClick = useCallback(async (event) => {
     const targetId = event.target.id;
@@ -40,29 +41,22 @@ const MyBagContainer = ({ filterOption }) => {
       // eslint-disable-next-line no-restricted-globals
       const ans = confirm("정말로 삭제하시겠습니까?");
       if (ans) {
-        const res = dispatch(deleteWishProduct(productId));
-        if (res.payload.success) {
+        const res = await dispatch(deleteWishProduct(productId));
+        if (res.payload.status === 200) {
+          const nextList = [...wishList, ...purchasedList];
+          setNextList(nextList, parseInt(productId));
           alert("삭제가 완료되었습니다.");
         }
       }
     },
-    [dispatch]
+    [dispatch, purchasedList, setNextList, wishList]
   );
-
-  useLayoutEffect(() => {
-    const getMyBagListFun = async () => {
-      const res = await dispatch(getMyBagList());
-
-      if (res.payload.success) {
-        setMyBagList(res.payload.data);
-      }
-    };
-    getMyBagListFun();
-  }, [dispatch]);
 
   return (
     <MyBagPresenter
-      list={myBagList}
+      wishList={wishList}
+      purchasedList={purchasedList}
+      setNextList={setNextList}
       filterOption={filterOption}
       isOpenModal={isOpenModal}
       handleBuyClick={handleBuyClick}

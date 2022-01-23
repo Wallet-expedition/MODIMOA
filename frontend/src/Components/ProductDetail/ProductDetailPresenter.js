@@ -2,6 +2,7 @@ import React from "react";
 
 import { Grid, Button } from "@material-ui/core";
 import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
+import addComma from "../Util/AddComma";
 
 // id={id}
 // mart_name={mart_name}
@@ -44,14 +45,14 @@ const ProductDetailPresenter = ({
           <div className="item-info">
             <div className="item-price">
               <div className="item-original-price">
-                기존가: {item.original_price}원
+                기존가: {addComma(item.original_price)}원
               </div>
-              <div className="item-sale-price">할인가: {item.sale_price}원</div>
+              <div className="item-sale-price">
+                할인가: {addComma(item.sale_price)}원
+              </div>
             </div>
-            {sale_percent !== Infinity ? (
+            {sale_percent !== Infinity && (
               <div className="item-sale-percent">{sale_percent}% 할인!</div>
-            ) : (
-              ""
             )}
           </div>
         </Grid>
