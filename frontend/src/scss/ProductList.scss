@@ -11,7 +11,13 @@
 
 .product-list-container {
     display: flex;
-    overflow: scroll;
+    overflow-y: scroll;
     width: 100%;
     flex-direction: column;
+    @include desktop {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+    }
 }
