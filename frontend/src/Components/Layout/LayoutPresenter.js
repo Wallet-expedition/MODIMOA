@@ -10,16 +10,19 @@ const LayoutPresenter = ({
   children,
   showSideMenu,
   setShowSideMenu,
-  isNotRequiredBackBtn,
+  isRequiredBackBtn,
+  isRequiredSideMenuBtn,
 }) => {
   return (
     <div className="layout-container">
-      <SideMenuBtn
-        showSideMenu={showSideMenu}
-        setShowSideMenu={setShowSideMenu}
-      />
-      {showSideMenu ? <SideMenu setShowSideMenu={setShowSideMenu} /> : null}
-      {isNotRequiredBackBtn ? null : <BackButton />}
+      {isRequiredSideMenuBtn && (
+        <SideMenuBtn
+          showSideMenu={showSideMenu}
+          setShowSideMenu={setShowSideMenu}
+        />
+      )}
+      {showSideMenu && <SideMenu setShowSideMenu={setShowSideMenu} />}
+      {isRequiredBackBtn && <BackButton />}
       <Grid id="wrap"> {children} </Grid>
     </div>
   );

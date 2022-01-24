@@ -19,11 +19,11 @@ const SideMenuBtnContainer = ({ showSideMenu, setShowSideMenu }) => {
    */
   useLayoutEffect(() => {
     const isMobile = detectMobile();
-
     if (!isMobile) {
       setShowSideMenu(true);
+      dispatch(openedSideMenu(true));
     }
-  }, [setShowSideMenu]);
+  }, [dispatch, setShowSideMenu]);
 
   return (
     <SideMenuBtnPresenter
