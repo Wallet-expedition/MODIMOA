@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBeforeRounded";
+import NavigateNextIcon from "@material-ui/icons/NavigateNextRounded";
 
 import AboutWhoPresenter from "./AboutWhoPresenter";
 import AboutWhatPresenter from "./AboutWhatPresenter";
