@@ -10,6 +10,7 @@ const MartListBtnContainer = ({
   showMartList,
   setShowMartList,
   tempMartList,
+  openedSideMenu,
 }) => {
   const dispatch = useDispatch();
   const [isAllDeactivation, setIsAllDeActivation] = useState(false);
@@ -54,6 +55,7 @@ const MartListBtnContainer = ({
     <MartListBtnPresenter
       handleMartListBtnClick={handleMartListBtnClick}
       showMartList={showMartList}
+      openedSideMenu={openedSideMenu}
     />
   );
 };

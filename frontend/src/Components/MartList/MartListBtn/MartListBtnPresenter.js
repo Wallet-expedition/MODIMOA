@@ -1,10 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
-const MartListBtnPresenter = ({ handleMartListBtnClick, showMartList }) => {
-  const openedSideMenu = useSelector(
-    (state) => state.sideMenuReducer.openedSideMenu
-  );
+const MartListBtnPresenter = ({
+  handleMartListBtnClick,
+  showMartList,
+  openedSideMenu,
+}) => {
   const className = openedSideMenu
     ? `martlist-modal-btn martlist-modal-btn-hide`
     : `martlist-modal-btn`;
