@@ -50,7 +50,7 @@ const MainPresenter = ({ searchKeyword, handleChange, handleLogoClick }) => {
     <main className="content-container">
       <div className="content-beer">
         <div className="content-description">
-          <p> 맥주 마시기 좋은 시간 </p>
+          <p> 맥주 마시기 좋은 시간! </p>
           <p> 12:34 </p>
         </div>
       </div>
