@@ -1,7 +1,7 @@
 // Login page scss
 
 // default scss
-@import './base/base';
+@import "./base/base";
 @import "./base/variable";
 @import "./base/mixin";
 
@@ -10,14 +10,14 @@
 @import "./components/martLabel";
 
 .product-list-container {
-    display: flex;
-    overflow-y: scroll;
-    width: 100%;
-    flex-direction: column;
-    @include desktop {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 1rem;
-        justify-content: center;
-    }
+  display: flex;
+  overflow-y: scroll;
+  width: 100%;
+  flex-direction: column;
+  @include desktop {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    gap: 1rem;
+  }
 }
