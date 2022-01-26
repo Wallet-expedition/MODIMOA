@@ -9,7 +9,7 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addCorsMappings(CorsRegistry registry){
 		registry.addMapping("/**")
-				.allowedOrigins("https://modimoa.kro.kr", "http://local.modimoa.kro.kr:3000")
+				.allowedOrigins("https://modimoa.ga", "http://local.modimoa.ga:3000")
 				.allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE", "HEAD", "PATCH")
 				.allowedHeaders("*")
 				.exposedHeaders("Set-Cookie")
