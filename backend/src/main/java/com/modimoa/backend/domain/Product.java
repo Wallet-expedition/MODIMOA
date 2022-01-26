@@ -1,6 +1,7 @@
 package com.modimoa.backend.domain;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 
 @Entity
 @Getter
+@RequiredArgsConstructor
 public class Product extends BaseTimeEntity implements Serializable {
 
 	public static final long serialVersionUID = -6184044926029805156L;
@@ -52,10 +54,14 @@ public class Product extends BaseTimeEntity implements Serializable {
 	@Column(name = "gift_price")
 	private Integer giftPrice;
 
-	public Product() {
+	public Product(long productId, String productName) {
+		this.productId = productId;
+		this.productName = productName;
 	}
 
-	public Product(Mart martName, String productName, Integer originalPrice, SaleCategory saleCategory) {
+
+	public void Product(long productId, Mart martName, String productName, Integer originalPrice, SaleCategory saleCategory) {
+		this.productId = productId;
 		this.martName = martName;
 		this.productName = productName;
 		this.originalPrice = originalPrice;
@@ -64,7 +70,7 @@ public class Product extends BaseTimeEntity implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.format("%d번 %s 할인: %s에서 %s을 %d원에 팝니다", productId, saleCategory.getKrname(), martName, productName, originalPrice);
+		return String.format("%d번 %s 할인: %s에서 %s을 %d원에 팝니다", productId, saleCategory, martName, productName, originalPrice);
 	}
 
 	public long getProductId() {
