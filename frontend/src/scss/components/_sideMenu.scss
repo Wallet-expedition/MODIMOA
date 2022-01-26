@@ -1,10 +1,9 @@
 .sidemenu-container {
   display: flex;
+  height: 100%;
   flex-direction: column;
-  flex-grow: 1;
   padding-left: 1rem;
   box-shadow: 5px 0px 4px rgba(0, 0, 0, 0.25);
-  min-width: 300px;
   a,
   div {
     display: flex;
@@ -42,6 +41,10 @@
     .sidemenu-foot {
       padding-left: 0rem;
     }
+  }
+
+  @include desktop {
+    min-width: 20vw;
   }
 
   .logo {
