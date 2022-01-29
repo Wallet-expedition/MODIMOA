@@ -67,7 +67,7 @@ public class UserService {
 
         Optional <User> user = userRepository.findByAccessToken(token);
         user.orElseThrow(()->new CustomException(OBJECT_NOTFOUND_ERROR));
-        mybagRepository.deleteAllById((user.get().getId());
+        mybagRepository.deleteByUser(user.get());
         userRepository.deleteByAccessToken(token);
         return user.get().getUserEmail();
     }
