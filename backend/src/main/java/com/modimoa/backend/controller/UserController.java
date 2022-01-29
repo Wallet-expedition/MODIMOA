@@ -89,9 +89,12 @@ public class UserController {
 		String logoutCookie = requestHeader.toSingleValueMap().get("authorization");
 		String userEmail = userService.logout(logoutCookie);
 
-		Cookie cookie = new Cookie("accessToken", null); cookie.setPath("/");
-		cookie.setMaxAge(-1);
-		response.addCookie(cookie);
+		ResponseCookie cookie = ResponseCookie.from("accessToken", "")
+				.path("/")
+				.maxAge(-1)
+				.build();
+
+		response.setHeader("Set-Cookie", cookie.toString());
 
 		return new ResponseEntity<>(userEmail+" 로그아웃 되었습니다.", HttpStatus.OK);
 	}
