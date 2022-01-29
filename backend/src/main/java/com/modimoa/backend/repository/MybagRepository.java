@@ -16,4 +16,6 @@ public interface MybagRepository extends JpaRepository<Mybag, Long> {
 	void deleteByUserAndProductId(User user, Long productId);
 
 	List<Mybag> findByUser(User user);
+
+	void deleteByUser(User user);
 }

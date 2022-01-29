@@ -49,7 +49,6 @@ public class MybagService {
 	public String plusItemOrCreateCount(String accessToken, Long productId) {
 		Optional<User> user = userRepository.findByAccessToken(accessToken);
 		user.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
-		Optional<Product> product = Optional.ofNullable(productRepository.findById(productId).orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR)));
 		Mybag mybag = mybagRepository.findByUserAndProductId(user.get(), productId)
 				.orElseGet(() -> mybagRepository
 						.save(new Mybag(user.get(), productId, 0, 0)));
