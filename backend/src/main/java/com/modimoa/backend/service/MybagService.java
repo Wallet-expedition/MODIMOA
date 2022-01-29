@@ -38,6 +38,7 @@ public class MybagService {
 		for (Mybag mybag : mybagList) {
 			MybagProduct mybagProduct = MybagProduct.builder()
 					.product(productRepository.findById(mybag.getProductId()))
+					.id(mybag.getMybagId())
 					.count(mybag.getCount())
 					.status(mybag.getStatus()).build();
 			productList.add(mybagProduct);
@@ -47,51 +48,53 @@ public class MybagService {
 
 	// 새 물품 추가
 	public String plusItemOrCreateCount(String accessToken, Long productId) {
-		Optional<User> user = userRepository.findByAccessToken(accessToken);
-		user.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
-		Mybag mybag = mybagRepository.findByUserAndProductId(user.get(), productId)
+		User user = userRepository.findByAccessToken(accessToken)
+			.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
+
+		Mybag mybag = mybagRepository.findByUserAndProductIdAndStatus(user, productId, 0)
 				.orElseGet(() -> mybagRepository
-						.save(new Mybag(user.get(), productId, 0, 0)));
+						.save(new Mybag(user, productId, 0, 0)));
+
 		mybag.updateCount(1);
 
-		return user.get().getUserEmail();
+		return user.getUserEmail();
 	}
 
-	// product id로 물품 삭제
-	public String deleteItem(String accessToken, Long productId) {
-		Optional<User> user = userRepository.findByAccessToken(accessToken);
-		user.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
-		mybagRepository.deleteByUserAndProductId(user.get(), productId);
+	// TODO: [front] mybag id로 물품 삭제
+	public String deleteItem(String accessToken, Long mybagId) {
+		User user = userRepository.findByAccessToken(accessToken)
+			.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
+		mybagRepository.deleteByMybagId(mybagId);
 
-		return user.get().getUserEmail();
+		return user.getUserEmail();
 	}
 
-	// 물품 개수 변경
-	public String changeItemCount(String accessToken, Long productId, int count) {
+	// TODO: [front] mybag id로 물품 개수 변경
+	public String changeItemCount(String accessToken, Long mybagId, int count) {
+		User user = userRepository.findByAccessToken(accessToken)
+			.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
+		Mybag mybag = mybagRepository.findByMybagId(mybagId)
+			.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
 
-		Optional<User> user = userRepository.findByAccessToken(accessToken);
-		user.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
-		Optional<Mybag> mybag = mybagRepository.findByUserAndProductId(user.get(), productId);
-		mybag.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
-		mybag.get().setCount(count);
-		if (mybag.get().getCount() == 0) mybagRepository.deleteByUserAndProductId(user.get(), productId);
+		mybag.setCount(count);
+		if (mybag.getCount() == 0) mybagRepository.deleteByMybagId(mybagId);
 
-		return user.get().getUserEmail();
+		return user.getUserEmail();
 	}
 
-	// 물품 상태 변경
-	public String changeItemStatus(String accessToken, Long productId, int status) {
-		Optional<User> user = userRepository.findByAccessToken(accessToken);
-		user.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
-		Optional<Mybag> mybag = mybagRepository.findByUserAndProductId(user.get(), productId);
-		mybag.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
-		mybag.get().updateStatus(status);
+	// TODO: [front] mybag id로 물품 상태 변경
+	public String changeItemStatus(String accessToken, Long mybagId, int status) {
+		User user = userRepository.findByAccessToken(accessToken)
+			.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
+		Mybag mybag = mybagRepository.findByMybagId(mybagId)
+			.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
+		mybag.updateStatus(status);
 
-		return user.get().getUserEmail();
+		return user.getUserEmail();
 	}
 
 
-	//앞으로 절약할 가격 계산
+	// 앞으로 절약할 가격 계산
 	public Map<String, Integer> getPrice(String accessToken) {
 
 		Map<String, Integer> result = new HashMap<>();
