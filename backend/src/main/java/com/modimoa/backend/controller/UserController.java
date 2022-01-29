@@ -89,9 +89,13 @@ public class UserController {
 		String logoutCookie = requestHeader.toSingleValueMap().get("authorization");
 		String userEmail = userService.logout(logoutCookie);
 
-		ResponseCookie cookie = ResponseCookie.from("accessToken", "")
+		ResponseCookie cookie = ResponseCookie.from("accessToken", null)
 				.path("/")
+				.secure(true)
+				.httpOnly(false)
 				.maxAge(-1)
+				.sameSite("None")
+				.domain(".modimoa.ga")
 				.build();
 
 		response.setHeader("Set-Cookie", cookie.toString());
