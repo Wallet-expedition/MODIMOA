@@ -5,6 +5,7 @@ import com.modimoa.backend.domain.User;
 import com.modimoa.backend.errorhandling.CustomException;
 import com.modimoa.backend.repository.MybagRepository;
 import com.modimoa.backend.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -24,19 +25,14 @@ import static com.modimoa.backend.errorhandling.ErrorCode.OBJECT_NOTFOUND_ERROR;
 public class UserService {
 
     private final UserRepository userRepository;
-<<<<<<< HEAD
 
     @Autowired
     private MybagRepository mybagRepository;
-=======
-  
-    @Autowired
-    private MybagRepository mybagRepository;
 
 
->>>>>>> Backend-unitTest
     public UserService(UserRepository userRepository) {this.userRepository = userRepository;
     }
+
     public String signUp(String userImage, String userEmail, String oauthCookie) {
         Optional <User> user = userRepository.findByUserEmail(userEmail);
          if(user.isPresent()){

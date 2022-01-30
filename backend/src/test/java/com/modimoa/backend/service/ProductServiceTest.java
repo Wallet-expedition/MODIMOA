@@ -53,7 +53,7 @@ public class ProductServiceTest {
 
 
     @Test
-    public void getAllProductTest존재_할때(){
+    public void getAllProductTest(){
         //setUp
         ProductRepository repo = Mockito.mock(ProductRepository.class);
         Pageable pageable = PageRequest.of(0, 15, Sort.by("productName").ascending());
@@ -71,5 +71,69 @@ public class ProductServiceTest {
         //then
         assertEquals(2, actualProduct.getTotalElements());
     }
+
+    @Test(expected = CustomException.class)
+    public void getFilteredProductTest마트_쿼리_에러(){
+        //setUp
+        ProductRepository repo = Mockito.mock(ProductRepository.class);
+        Pageable pageable = PageRequest.of(0, 15, Sort.by("productName").ascending());
+        List<Product> productList = new ArrayList<>();
+        productList.add(new Product(11L, Mart.CU, "productName1", 4000, SaleCategory.OnePlusOne));
+        productList.add(new Product(11L, Mart.CU, "productName2", 3000, SaleCategory.ThreePlusOne));
+        String q ="소시지";
+        String mart = "111";
+        Mockito.when(repo.findByMartNameAndProductNameContaining(Mart.CU,q))
+                .thenReturn(productList);
+        ProductService productService = new ProductService(repo);
+
+        //when
+        Page<Product> actualProduct = productService.getFilteredProduct(mart, q,pageable);
+
+        //then
+        assertEquals(2, actualProduct.getTotalElements());
+    }
+
+    @Test(expected = CustomException.class)
+    public void getFilteredProductTestSort_쿼리_에러(){
+        //setUp
+        ProductRepository repo = Mockito.mock(ProductRepository.class);
+        Pageable pageable = PageRequest.of(0, 15, Sort.by("productImage").ascending());
+        List<Product> productList = new ArrayList<>();
+        productList.add(new Product(11L, Mart.CU, "productName1", 4000, SaleCategory.OnePlusOne));
+        productList.add(new Product(11L, Mart.CU, "productName2", 3000, SaleCategory.ThreePlusOne));
+        String q = "소시지";
+        String mart = "1111";
+        Mockito.when(repo.findByMartNameAndProductNameContaining(Mart.CU,q))
+                .thenReturn(productList);
+        ProductService productService = new ProductService(repo);
+
+        //when
+        Page<Product> actualProduct = productService.getFilteredProduct(mart, q,pageable);
+
+        //then
+        assertEquals(2, actualProduct.getTotalElements());
+    }
+
+    @Test
+    public void getFilteredProductTest정상(){
+        //setUp
+        ProductRepository repo = Mockito.mock(ProductRepository.class);
+        Pageable pageable = PageRequest.of(0, 15, Sort.by("productName").ascending());
+        List<Product> productList = new ArrayList<>();
+        productList.add(new Product(11L, Mart.CU, "productName1", 4000, SaleCategory.OnePlusOne));
+        productList.add(new Product(11L, Mart.CU, "productName2", 3000, SaleCategory.ThreePlusOne));
+        String q = "소시지";
+        String mart = "1111";
+        Mockito.when(repo.findByMartNameAndProductNameContaining(Mart.CU,q))
+                .thenReturn(productList);
+        ProductService productService = new ProductService(repo);
+
+        //when
+        Page<Product> actualProduct = productService.getFilteredProduct(mart, q,pageable);
+
+        //then
+        assertEquals(2, actualProduct.getTotalElements());
+    }
+
 
 }
