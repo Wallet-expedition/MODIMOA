@@ -19,72 +19,79 @@ import static junit.framework.TestCase.*;
 
 public class UserServiceTest {
 
-    @Test(expected = CustomException.class)
-    public void signUpTest존재_할때(){
-        //setUp
-        UserRepository repo = Mockito.mock(UserRepository.class);
-        Mockito.when(repo.findByUserEmail("userEmail"))
-                .thenReturn(Optional.of((new User("userEmail", "userImage", "oauthToken", "accessToken"))));
-        UserService userService = new UserService(repo);
 
-        //when
-        String activeSignUp = userService.signUp("userImage","userEmail","oauthCookie");
+        @Test(expected = CustomException.class)
+        public void signUpTest존재_할때(){
+            //setUp
+            UserRepository repo = Mockito.mock(UserRepository.class);
+            Mockito.when(repo.findByUserEmail("userEmail"))
+                    .thenReturn(Optional.of((new User("userEmail", "userImage", "oauthToken", "accessToken"))));
+            UserService userService = new UserService(repo);
 
-        //then
-        assertEquals("이미 존재하는 유저입니다.",activeSignUp);
-    }
-    @Test
-    public void signUpTest존재_안할때(){
-        //setUp
-        UserRepository repo = Mockito.mock(UserRepository.class);
-        Mockito.when(repo.findByUserEmail("UserEamil"))
-                .thenReturn(null);
-        UserService userService = new UserService(repo);
+            //when
+            String activeSignUp = userService.signUp("userImage","userEmail","oauthCookie");
 
-        //when
-        String activeSignUp = userService.signUp("userImage","userEmail","oauthCookie");
+            //then
+            assertEquals("이미 존재하는 유저입니다.",activeSignUp);
+        }
+        @Test
+        public void signUpTest존재_안할때(){
+            //setUp
+            UserRepository repo = Mockito.mock(UserRepository.class);
+            Mockito.when(repo.findByUserEmail("UserEamil"))
+                    .thenReturn(null);
+            UserService userService = new UserService(repo);
 
-        //then
-        assertEquals("새로운 유저 생성",activeSignUp);
-    }
+            //when
+            String activeSignUp = userService.signUp("userImage","userEmail","oauthCookie");
 
-    @Test(expected = CustomException.class)
-    public void loginTest존재_안할때() throws NoSuchAlgorithmException {
-        //setUp
-        UserRepository repo = Mockito.mock(UserRepository.class);
-        Mockito.when(repo.findByUserEmail("userEmail"))
-                .thenReturn(Optional.empty());
-        UserService userService = new UserService(repo);
+            //then
+            assertEquals("새로운 유저 생성",activeSignUp);
+        }
 
-        //when
-        String activateLogin = userService.login("userEmail");
 
-        LocalTime time = LocalTime.now();
-        String hourPlusMinute = String.valueOf(time.getHour()+ time.getMinute());
-        String expectAccessToken = EncryptionUtils.encryptSHA256("userEmail"+hourPlusMinute+"access");
 
-        //then
-        assertEquals(expectAccessToken,activateLogin);
-    }
 
-    @Test
-    public void loginTest존재_할때() throws NoSuchAlgorithmException {
-        //setUp
-        UserRepository repo = Mockito.mock(UserRepository.class);
-        Mockito.when(repo.findByUserEmail("userEmail"))
-                .thenReturn(Optional.of((new User("userEmail", "userImage", "oauthToken", "accessToken"))));
-        UserService userService = new UserService(repo);
 
-        //when
-        String activateLogin = userService.login("userEmail");
+        @Test(expected = CustomException.class)
+        public void loginTest존재_안할때() throws NoSuchAlgorithmException {
+            //setUp
+            UserRepository repo = Mockito.mock(UserRepository.class);
+            Mockito.when(repo.findByUserEmail("userEmail"))
+                    .thenReturn(Optional.empty());
+            UserService userService = new UserService(repo);
 
-        LocalTime time = LocalTime.now();
-        String hourPlusMinute = String.valueOf(time.getHour()+ time.getMinute());
-        String expectAccessToken = EncryptionUtils.encryptSHA256("userEmail"+hourPlusMinute+"access");
+            //when
+            String activateLogin = userService.login("userEmail");
 
-        //then
-        assertEquals(expectAccessToken,activateLogin);
-    }
+            LocalTime time = LocalTime.now();
+            String hourPlusMinute = String.valueOf(time.getHour()+ time.getMinute());
+            String expectAccessToken = EncryptionUtils.encryptSHA256("userEmail"+hourPlusMinute+"access");
+
+            //then
+            assertEquals(expectAccessToken,activateLogin);
+        }
+
+        @Test
+        public void loginTest존재_할때() throws NoSuchAlgorithmException {
+            //setUp
+            UserRepository repo = Mockito.mock(UserRepository.class);
+            Mockito.when(repo.findByUserEmail("userEmail"))
+                    .thenReturn(Optional.of((new User("userEmail", "userImage", "oauthToken", "accessToken"))));
+            UserService userService = new UserService(repo);
+
+            //when
+            String activateLogin = userService.login("userEmail");
+
+            LocalTime time = LocalTime.now();
+            String hourPlusMinute = String.valueOf(time.getHour()+ time.getMinute());
+            String expectAccessToken = EncryptionUtils.encryptSHA256("userEmail"+hourPlusMinute+"access");
+
+            //then
+            assertEquals(expectAccessToken,activateLogin);
+        }
+
+
 
     @Test
     public void getAllUsersTest(){
@@ -100,110 +107,106 @@ public class UserServiceTest {
         assertEquals("userEmail",userList.get(0).getUserEmail());
     }
 
-    @Test(expected = CustomException.class)
-    public void logoutTest존재_안할때(){
-        //setUp
-        UserRepository repo = Mockito.mock(UserRepository.class);
-        Mockito.when(repo.findByAccessToken("accessToken"))
-                .thenReturn(Optional.empty());
-        UserService userService = new UserService(repo);
 
-        //when
-        String activateLogin = userService.logout("accessToken");
+        @Test(expected = CustomException.class)
+        public void logoutTest존재_안할때() {
+            //setUp
+            UserRepository repo = Mockito.mock(UserRepository.class);
+            Mockito.when(repo.findByAccessToken("accessToken"))
+                    .thenReturn(Optional.empty());
+            UserService userService = new UserService(repo);
 
-
-        //then
-        assertEquals(Optional.empty(),activateLogin);
-    }
-
-    @Test
-    public void logoutTest존재_할때(){
-        //setUp
-        UserRepository repo = Mockito.mock(UserRepository.class);
-        Mockito.when(repo.findByAccessToken("accessToken"))
-                .thenReturn(Optional.of((new User("userEmail", "userImage", "oauthToken", "accessToken"))));
-        UserService userService = new UserService(repo);
-
-        //when
-        String activateLogin = userService.logout("accessToken");
+            //when
+            String activateLogin = userService.logout("accessToken");
 
 
-        //then
-        assertEquals("userEmail",activateLogin);
-    }
+            //then
+            assertEquals(Optional.empty(), activateLogin);
+        }
 
-    @Test(expected = CustomException.class)
-    public void withdrawalTest존재_안할때(){
-        //setUp
-        UserRepository repo = Mockito.mock(UserRepository.class);
-        Mockito.when(repo.findByAccessToken("accessToken"))
-                .thenReturn(Optional.empty());
-        UserService userService = new UserService(repo);
+        @Test
+        public void logoutTest존재_할때(){
+            //setUp
+            UserRepository repo = Mockito.mock(UserRepository.class);
+            Mockito.when(repo.findByAccessToken("accessToken"))
+                    .thenReturn(Optional.of((new User("userEmail", "userImage", "oauthToken", "accessToken"))));
+            UserService userService = new UserService(repo);
 
-        //when
-        String activateLogin = userService.withdrawal("accessToken");
-
-
-        //then
-        assertEquals(Optional.empty(),activateLogin);
-    }
-
-    @Test
-    public void withdrawal존재_할때() throws NoSuchAlgorithmException {
-        //setUp
-        UserRepository repo = Mockito.mock(UserRepository.class);
-        Mockito.when(repo.findByAccessToken("accessToken"))
-                .thenReturn(Optional.of((new User("userEmail", "userImage", "oauthToken", "accessToken"))));
-        UserService userService = new UserService(repo);
-
-        //when
-        String activateLogin = userService.withdrawal("accessToken");
+            //when
+            String activateLogin = userService.logout("accessToken");
 
 
-        //then
-        assertEquals("userEmail",activateLogin);
-    }
-
-    @Test(expected = CustomException.class)
-    public void getUserInfoTest존재_안할때(){
-        //setUp
-        UserRepository repo = Mockito.mock(UserRepository.class);
-        Mockito.when(repo.findByAccessToken("accessToken"))
-                .thenReturn(Optional.empty());
-        UserService userService = new UserService(repo);
-
-        //when
-        Map<String, String> activateLogin = userService.getUserInfo("accessToken");
+            //then
+            assertEquals("userEmail",activateLogin);
+        }
 
 
-        //then
-        assertEquals("userEmail",activateLogin.get("user_email"));
-        assertEquals("userImage",activateLogin.get("user_image"));
+        @Test(expected = CustomException.class)
+        public void withdrawalTest존재_안할때(){
+            //setUp
+            UserRepository repo = Mockito.mock(UserRepository.class);
+            Mockito.when(repo.findByAccessToken("accessToken"))
+                    .thenReturn(Optional.empty());
+            UserService userService = new UserService(repo);
 
-    }
-
-    @Test
-    public void getUserInfo존재_할때() throws NoSuchAlgorithmException {
-        //setUp
-        UserRepository repo = Mockito.mock(UserRepository.class);
-        Mockito.when(repo.findByAccessToken("accessToken"))
-                .thenReturn(Optional.of((new User("userEmail", "userImage", "oauthToken", "accessToken"))));
-        UserService userService = new UserService(repo);
-
-        //when
-        Map<String, String> activateLogin = userService.getUserInfo("accessToken");
+            //when
+            String activateLogin = userService.withdrawal("accessToken");
 
 
-        //then
-        assertEquals("userEmail",activateLogin.get("user_email"));
-        assertEquals("userImage",activateLogin.get("user_image"));
+            //then
+            assertEquals(Optional.empty(),activateLogin);
+        }
 
-    }
+        @Test
+        public void withdrawal존재_할때() throws NoSuchAlgorithmException {
+            //setUp
+            UserRepository repo = Mockito.mock(UserRepository.class);
+            Mockito.when(repo.findByAccessToken("accessToken"))
+                    .thenReturn(Optional.of((new User("userEmail", "userImage", "oauthToken", "accessToken"))));
+            UserService userService = new UserService(repo);
+
+            //when
+            String activateLogin = userService.withdrawal("accessToken");
 
 
+            //then
+            assertEquals("userEmail",activateLogin);
+        }
+
+        @Test(expected = CustomException.class)
+        public void getUserInfoTest존재_안할때(){
+            //setUp
+            UserRepository repo = Mockito.mock(UserRepository.class);
+            Mockito.when(repo.findByAccessToken("accessToken"))
+                    .thenReturn(Optional.empty());
+            UserService userService = new UserService(repo);
+
+            //when
+            Map<String, String> activateLogin = userService.getUserInfo("accessToken");
 
 
+            //then
+            assertEquals("userEmail",activateLogin.get("user_email"));
+            assertEquals("userImage",activateLogin.get("user_image"));
+
+        }
+
+        @Test
+        public void getUserInfo존재_할때() throws NoSuchAlgorithmException {
+            //setUp
+            UserRepository repo = Mockito.mock(UserRepository.class);
+            Mockito.when(repo.findByAccessToken("accessToken"))
+                    .thenReturn(Optional.of((new User("userEmail", "userImage", "oauthToken", "accessToken"))));
+            UserService userService = new UserService(repo);
+
+            //when
+            Map<String, String> activateLogin = userService.getUserInfo("accessToken");
 
 
+            //then
+            assertEquals("userEmail",activateLogin.get("user_email"));
+            assertEquals("userImage",activateLogin.get("user_image"));
+
+        }
 
 }

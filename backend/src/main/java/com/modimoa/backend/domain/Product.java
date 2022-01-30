@@ -54,13 +54,8 @@ public class Product extends BaseTimeEntity implements Serializable {
 	@Column(name = "gift_price")
 	private Integer giftPrice;
 
-	public Product(long productId, String productName) {
-		this.productId = productId;
-		this.productName = productName;
-	}
 
-
-	public void Product(long productId, Mart martName, String productName, Integer originalPrice, SaleCategory saleCategory) {
+	public Product(long productId, Mart martName, String productName, Integer originalPrice, SaleCategory saleCategory) {
 		this.productId = productId;
 		this.martName = martName;
 		this.productName = productName;
