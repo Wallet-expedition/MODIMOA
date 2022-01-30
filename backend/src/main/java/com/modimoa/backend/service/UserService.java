@@ -24,9 +24,17 @@ import static com.modimoa.backend.errorhandling.ErrorCode.OBJECT_NOTFOUND_ERROR;
 public class UserService {
 
     private final UserRepository userRepository;
+<<<<<<< HEAD
 
     @Autowired
     private MybagRepository mybagRepository;
+=======
+  
+    @Autowired
+    private MybagRepository mybagRepository;
+
+
+>>>>>>> Backend-unitTest
     public UserService(UserRepository userRepository) {this.userRepository = userRepository;
     }
     public String signUp(String userImage, String userEmail, String oauthCookie) {
