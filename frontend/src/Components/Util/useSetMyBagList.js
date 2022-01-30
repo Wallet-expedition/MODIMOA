@@ -9,11 +9,11 @@ const useSetMyBagList = () => {
   const [wishList, setWishList] = useState([]);
   const [purchasedList, setPurchasedList] = useState([]);
 
-  const setNextList = (nextList, willUpdateStatusProductId) => {
+  const setNextList = (nextList, willUpdateStatusMybagId) => {
     const [nextWishList, nextPurchasedList] = nextList.reduce(
       ([wish, purchased], item) => {
         // 상태를 바꿔야 하는 품목만 상태 변경
-        if (item.productId === willUpdateStatusProductId) {
+        if (item.mybagId === willUpdateStatusMybagId) {
           item.status =
             item.status === PURCHASE_OPTION.BEFORE_PURCHASE
               ? PURCHASE_OPTION.AFTER_PURCHASE
@@ -37,6 +37,7 @@ const useSetMyBagList = () => {
         const itemNumberList = res.payload.data;
         const nextMyBagList = itemNumberList.map((item) => {
           return {
+            mybagId: item.id,
             productId: item.product.productId,
             productName: item.product.productName,
             productImage: item.product.productImage,

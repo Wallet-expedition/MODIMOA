@@ -25,8 +25,8 @@ export const wishProduct = async (body, id) => {
   };
 };
 
-export const deleteWishProduct = async (id) => {
-  const res = await request.delete(`/api/mybag/delete/${id}`);
+export const deleteWishProduct = async (mybagId) => {
+  const res = await request.delete(`/api/mybag/delete/${mybagId}`);
 
   return {
     type: DELETE_PRODUCT,
@@ -45,8 +45,8 @@ export const getProductList = async (mart, searchKeyword, page, sortFilter) => {
   };
 };
 
-export const changeMyBagState = async (productId, body) => {
-  const res = await request.patch(`/api/mybag/changestat/${productId}`, body);
+export const changeMyBagState = async (mybagId, body) => {
+  const res = await request.patch(`/api/mybag/changestat/${mybagId}`, body);
 
   return {
     type: GET_PRODUT_LIST,
@@ -63,8 +63,8 @@ export const getMyBagList = async () => {
   };
 };
 
-export const changeMyBagCnt = async (prodcutId, body) => {
-  const res = await request.post(`/api/mybag/changecnt/${prodcutId}`, body);
+export const changeMyBagCnt = async (mybagId, body) => {
+  const res = await request.post(`/api/mybag/changecnt/${mybagId}`, body);
 
   return {
     type: CHANGE_MY_BAG_PRODUCT_CNT,
