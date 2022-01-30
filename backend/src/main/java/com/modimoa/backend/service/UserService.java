@@ -1,7 +1,9 @@
 package com.modimoa.backend.service;
 
+import com.modimoa.backend.domain.Mybag;
 import com.modimoa.backend.domain.User;
 import com.modimoa.backend.errorhandling.CustomException;
+import com.modimoa.backend.repository.MybagRepository;
 import com.modimoa.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,10 @@ import static com.modimoa.backend.errorhandling.ErrorCode.OBJECT_NOTFOUND_ERROR;
 public class UserService {
 
     private final UserRepository userRepository;
+  
+    @Autowired
+    private MybagRepository mybagRepository;
+
 
     public UserService(UserRepository userRepository) {this.userRepository = userRepository;
     }
@@ -68,6 +74,7 @@ public class UserService {
 
         Optional <User> user = userRepository.findByAccessToken(token);
         user.orElseThrow(()->new CustomException(OBJECT_NOTFOUND_ERROR));
+        mybagRepository.deleteByUser(user.get());
         userRepository.deleteByAccessToken(token);
         return user.get().getUserEmail();
     }
