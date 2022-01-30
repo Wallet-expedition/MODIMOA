@@ -15,7 +15,7 @@ import static junit.framework.TestCase.assertEquals;
 public class ProductServiceTest {
 
     @Test
-    public void 조회(){
+    public void getProductByIdTest(){
         //setUp
         ProductRepository repo = Mockito.mock(ProductRepository.class);
         Mockito.when(repo.findById(11L))
