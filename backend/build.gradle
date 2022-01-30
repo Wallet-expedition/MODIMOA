@@ -29,6 +29,7 @@ dependencies {
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
     implementation 'io.springfox:springfox-swagger2:2.9.2'
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+    implementation 'junit:junit:4.13.1'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
     annotationProcessor 'org.projectlombok:lombok'
