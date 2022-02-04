@@ -55,12 +55,13 @@ public class Product extends BaseTimeEntity implements Serializable {
 	private Integer giftPrice;
 
 
-	public Product(long productId, Mart martName, String productName, Integer originalPrice, SaleCategory saleCategory) {
+	public Product(long productId, Mart martName, String productName, Integer originalPrice, SaleCategory saleCategory, Integer salePrice) {
 		this.productId = productId;
 		this.martName = martName;
 		this.productName = productName;
 		this.originalPrice = originalPrice;
 		this.saleCategory = saleCategory;
+		this.salePrice = salePrice;
 	}
 
 	@Override

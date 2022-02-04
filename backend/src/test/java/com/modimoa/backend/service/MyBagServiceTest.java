@@ -5,12 +5,11 @@ import com.modimoa.backend.errorhandling.CustomException;
 import com.modimoa.backend.repository.MybagRepository;
 import com.modimoa.backend.repository.ProductRepository;
 import com.modimoa.backend.repository.UserRepository;
+import org.apache.ibatis.jdbc.Null;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -305,4 +304,117 @@ public class MyBagServiceTest {
     }
 
 
+    @Test
+    public void getPrice_정상(){
+        //setUp
+        MybagRepository mybagRepository = Mockito.mock(MybagRepository.class);
+        UserRepository userRepository = Mockito.mock(UserRepository.class);
+        ProductRepository productRepository = Mockito.mock(ProductRepository.class);
+
+        User user = new User("userEmail","userImage","oauthToken","accessToken");
+        Product product = new Product(11L,Mart.EMART24,"testtest",3000,SaleCategory.OnePlusOne,3000);
+        Mybag mybag = new Mybag(user, 11L, 1, 0);
+
+        Mockito.when(userRepository.findByAccessToken("accessToken"))
+                .thenReturn(java.util.Optional.of(user));
+        Mockito.when(mybagRepository.findByUser(user))
+                .thenReturn(Collections.singletonList(mybag));
+        Mockito.when(productRepository.findById(11L))
+                .thenReturn(Optional.of(product));
+
+        MybagService mybagService = new MybagService(mybagRepository,userRepository,productRepository);
+
+        //when
+        Map<String, Integer> actualMybag = mybagService.getPrice("accessToken");
+
+        //then
+        Integer price = 3000;
+        assertEquals(price,actualMybag.get("salePriceBeforeBuy"));
+    }
+
+    @Test(expected = CustomException.class)
+    public void getPrice_User_없을때(){
+        //setUp
+        MybagRepository mybagRepository = Mockito.mock(MybagRepository.class);
+        UserRepository userRepository = Mockito.mock(UserRepository.class);
+        ProductRepository productRepository = Mockito.mock(ProductRepository.class);
+
+        User user = new User("userEmail","userImage","oauthToken","accessToken");
+        Product product = new Product(11L,Mart.EMART24,"testtest",3000,SaleCategory.OnePlusOne,3000);
+        Mybag mybag = new Mybag(user, 11L, 1, 0);
+
+        Mockito.when(userRepository.findByAccessToken("accessToken"))
+                .thenReturn(Optional.empty());
+        Mockito.when(mybagRepository.findByUser(user))
+                .thenReturn(Collections.singletonList(mybag));
+        Mockito.when(productRepository.findById(11L))
+                .thenReturn(Optional.of(product));
+
+        MybagService mybagService = new MybagService(mybagRepository,userRepository,productRepository);
+
+        //when
+        Map<String, Integer> actualMybag = mybagService.getPrice("accessToken");
+
+        //then
+        Integer price = 3000;
+        assertEquals(price,actualMybag.get("salePriceBeforeBuy"));
+    }
+
+    @Test(expected = CustomException.class)
+    public void getPrice_mybag이_없을때() {
+        //setUp
+        MybagRepository mybagRepository = Mockito.mock(MybagRepository.class);
+        UserRepository userRepository = Mockito.mock(UserRepository.class);
+        ProductRepository productRepository = Mockito.mock(ProductRepository.class);
+
+        User user = new User("userEmail", "userImage", "oauthToken", "accessToken");
+        Product product = new Product(11L, Mart.EMART24, "testtest", 3000, SaleCategory.OnePlusOne, 3000);
+        Mybag mybag = new Mybag(user, 11L, 1, 0);
+
+        Mockito.when(userRepository.findByAccessToken("accessToken"))
+                .thenReturn(java.util.Optional.of(user));
+        Mockito.when(mybagRepository.findByUser(user))
+                .thenReturn(null);
+        Mockito.when(productRepository.findById(11L))
+                .thenReturn(Optional.of(product));
+
+        MybagService mybagService = new MybagService(mybagRepository, userRepository, productRepository);
+
+        //when
+        Map<String, Integer> actualMybag = mybagService.getPrice("accessToken");
+
+        //then
+        Integer price = 3000;
+        assertEquals(price, actualMybag.get("salePriceBeforeBuy"));
+
+    }
+
+    @Test(expected = CustomException.class)
+    public void getPrice_product가_없을때() {
+        //setUp
+        MybagRepository mybagRepository = Mockito.mock(MybagRepository.class);
+        UserRepository userRepository = Mockito.mock(UserRepository.class);
+        ProductRepository productRepository = Mockito.mock(ProductRepository.class);
+
+        User user = new User("userEmail", "userImage", "oauthToken", "accessToken");
+        Product product = new Product(11L, Mart.EMART24, "testtest", 3000, SaleCategory.OnePlusOne, 3000);
+        Mybag mybag = new Mybag(user, 11L, 1, 0);
+
+        Mockito.when(userRepository.findByAccessToken("accessToken"))
+                .thenReturn(java.util.Optional.of(user));
+        Mockito.when(mybagRepository.findByUser(user))
+                .thenReturn(Collections.singletonList(mybag));
+        Mockito.when(productRepository.findById(11L))
+                .thenReturn(Optional.empty());
+
+        MybagService mybagService = new MybagService(mybagRepository, userRepository, productRepository);
+
+        //when
+        Map<String, Integer> actualMybag = mybagService.getPrice("accessToken");
+
+        //then
+        Integer price = 3000;
+        assertEquals(price, actualMybag.get("salePriceBeforeBuy"));
+
+    }
 }

@@ -9,7 +9,6 @@ import com.modimoa.backend.errorhandling.CustomException;
 import com.modimoa.backend.repository.MybagRepository;
 import com.modimoa.backend.repository.ProductRepository;
 import com.modimoa.backend.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -104,6 +103,7 @@ public class MybagService {
 
 		Optional<User> user = userRepository.findByAccessToken(accessToken);
 		user.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
+
 
 		int originalPriceBeforeBuy = 0;
 		int salePriceBeforeBuy = 0;

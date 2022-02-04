@@ -24,4 +24,5 @@ public interface MybagRepository extends JpaRepository<Mybag, Long> {
 	Object findaByUser(User user);
 
 	Object deleteByMybagId(String accessToken, long l);
+
 }
