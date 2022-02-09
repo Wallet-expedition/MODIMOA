@@ -63,7 +63,7 @@ public class UserController {
 				.httpOnly(false)
 				.maxAge(60 * 60 * 24 * 15)
 				.sameSite("None")
-				.domain("modimoa.kro.kr")
+				.domain(".modimoa.ga")
 				.build();
 
 		response.setHeader("Set-Cookie", cookie.toString());
@@ -84,10 +84,21 @@ public class UserController {
 
 	// 로그아웃 기능
 	@PostMapping("/logout")
-	public ResponseEntity<String> logoutUserByToken(@RequestHeader HttpHeaders requestHeader) {
+	public ResponseEntity<String> logoutUserByToken(HttpServletResponse response, @RequestHeader HttpHeaders requestHeader) {
 
 		String logoutCookie = requestHeader.toSingleValueMap().get("authorization");
 		String userEmail = userService.logout(logoutCookie);
+
+		ResponseCookie cookie = ResponseCookie.from("accessToken", null)
+				.path("/")
+				.secure(true)
+				.httpOnly(false)
+				.maxAge(-1)
+				.sameSite("None")
+				.domain(".modimoa.ga")
+				.build();
+
+		response.setHeader("Set-Cookie", cookie.toString());
 
 		return new ResponseEntity<>(userEmail+" 로그아웃 되었습니다.", HttpStatus.OK);
 	}

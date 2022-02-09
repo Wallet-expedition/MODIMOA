@@ -1,52 +1,94 @@
 .product-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  width: 100%;
   height: 5rem;
+  border-bottom: 1px solid $line;
   @include desktop {
-    height: 10vh;
-  }
-  border-bottom: 2px solid $line;
-  a {
-    text-decoration: none;
+    flex-direction: column;
+    width: 12rem;
+    height: 18rem;
+    border: 2px solid $line;
   }
 }
+
 .product-image-container {
-  display: flex;
-  width: 20%;
-  height: 100%;
-  overflow: hidden;
-  img {
-    width: 100%;
-    height: 5rem;
-  }
-}
-.product-info-container {
-  display: flex;
-  justify-content: space-evenly;
-  width: 60%;
-  flex-direction: column;
-  padding-left: 0.5rem;
-  .product-info-text {
-    height: 1rem;
+  @include mobile {
+    display: flex;
+    width: 20%;
+    height: 100%;
     overflow: hidden;
-    line-height: 1;
+    img {
+      width: 100%;
+      height: 5rem;
+    }
+  }
+  @include desktop {
+    width: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    border-bottom: 2px solid $line;
   }
 }
-.product-info-price-container {
-  display: flex;
-  flex-direction: row;
-  span {
-    @include font-default(400, 1rem);
-    del {
-      @include font-default(400, 0.8rem);
+
+.product-info-container {
+  @include mobile {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 80%;
+    padding: 0 0.5rem;
+
+    .product-info-price-name-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 80%;
+      height: 100%;
+    }
+
+    .product-info-name {
+      height: 1rem;
+      overflow: hidden;
+      line-height: 1;
+    }
+  }
+  @include desktop {
+    width: calc(100% - 0.8rem);
+    height: calc(100% - 0.8rem);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0.4rem;
+
+    .product-info-price-name-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 100%;
+      height: 100%;
     }
   }
 }
-.product-button {
-  display: flex;
-  width: 20%;
-  .MuiButton-label {
-    font-size: 0.8rem;
+
+.product-info-price-container {
+  span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
+    color: $error;
+    @include font-default(400, 1rem);
+    del {
+      @include font-default(400, 0.8rem);
+      color: $success;
+      @include desktop {
+        margin-left: 0.2rem;
+      }
+    }
   }
 }
 .product-search-result-container {

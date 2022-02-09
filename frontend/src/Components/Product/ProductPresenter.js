@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Grid, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
 import { selectProduct } from "../../Store/Actions/productAction";
 import addComma from "../Util/AddComma";
@@ -40,31 +40,30 @@ const ProductPresenter = ({
     default:
       break;
   }
+
   const onClick = useCallback(() => {
     dispatch(selectProduct(productInfo));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
+
   return (
-    <Grid className="product-container">
+    <Link className="product-container" to={`/list/${id}`} onClick={onClick}>
       <Grid className="product-image-container">
         <img src={product_image} alt={product_name} />
       </Grid>
       <Grid className="product-info-container">
-        <Grid className="product-info-price-container">
-          <span>
-            {`${addComma(sale_price)}`}
-            <del>{addComma(original_price)}</del>
-          </span>
+        <Grid className="product-info-price-name-container">
+          <Grid className="product-info-price-container">
+            <span>
+              {`${addComma(sale_price)}원`}
+              <del>{addComma(original_price)}</del>
+            </span>
+          </Grid>
+          <span className="product-info-text"> {product_name} </span>
         </Grid>
-        <span className="product-info-text"> {product_name} </span>
         <span className={martClass}> {mart_name} </span>
       </Grid>
-      <Link className="product-button" to={`/list/${id}`}>
-        <Button onClick={onClick} variant="contained">
-          자세히
-        </Button>
-      </Link>
-    </Grid>
+    </Link>
   );
 };
 

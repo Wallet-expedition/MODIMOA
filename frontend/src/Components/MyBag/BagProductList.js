@@ -12,8 +12,8 @@ const BagProductList = ({
   return filterOption === PURCHASE_OPTION.BEFORE_PURCHASE
     ? wishList.map((item) => (
         <WishBagProduct
-          key={item.productId}
-          id={item.productId}
+          key={item.myBagId}
+          id={item.myBagId}
           product_name={item.productName}
           product_image={item.productImage}
           product_count={item.productCnt}
@@ -24,7 +24,7 @@ const BagProductList = ({
       ))
     : purchasedList.map((item) => (
         <PurchasedBagProduct
-          key={item.productId}
+          key={item.myBagId}
           product_name={item.productName}
           product_image={item.productImage}
           product_count={item.productCnt}

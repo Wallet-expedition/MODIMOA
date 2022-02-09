@@ -17,9 +17,15 @@ import static com.modimoa.backend.errorhandling.ErrorCode.OBJECT_NOTFOUND_ERROR;
 
 @Service
 public class ProductService {
-	@Autowired
-	ProductRepository productRepository;
+//	@Autowired
+//	ProductRepository productRepository;
 
+	private final ProductRepository productRepository;
+
+	public ProductService(ProductRepository productRepository){
+		this.productRepository = productRepository;
+	}
+	
 	// Dao를 통해 모든 물품을 가져와서 반환하는 page형 함수
 	public Page<Product> getAllProducts(Pageable pageable) {
 		return productRepository.findAll(pageable);

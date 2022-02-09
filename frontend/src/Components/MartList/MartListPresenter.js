@@ -65,9 +65,13 @@ const LogoIcon = ({ name, martList, setTempMartList }) => {
   );
 };
 
-const MartListModal = ({ martList, setTempMartList }) => {
+const MartListModal = ({ martList, setTempMartList, openedSideMenu }) => {
   return (
-    <div className="martlist-container">
+    <div
+      className={`martlist-container ${
+        openedSideMenu ? "martlist-container-right" : ""
+      }`}
+    >
       <span> 보고 싶은 편의점의 제품만 골라서 보실 수 있습니다. </span>
       <div className="martlist-mart-container">
         <LogoIcon
@@ -100,6 +104,7 @@ const MartListPresenter = ({
   setShowMartList,
   tempMartList,
   setTempMartList,
+  openedSideMenu,
 }) => {
   return (
     <>
@@ -108,11 +113,13 @@ const MartListPresenter = ({
         showMartList={showMartList}
         setShowMartList={setShowMartList}
         setTempMartList={setTempMartList}
+        openedSideMenu={openedSideMenu}
       />
       {showMartList ? (
         <MartListModal
           martList={tempMartList}
           setTempMartList={setTempMartList}
+          openedSideMenu={openedSideMenu}
         />
       ) : null}
     </>
