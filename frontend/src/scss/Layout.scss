@@ -11,6 +11,11 @@
 @import "./components/sideMenuBtn";
 @import "./components/logoutToast";
 
+a {
+  text-decoration: none;
+  color: $black;
+}
+
 body {
   font-family: "Noto Sans KR", sans-serif;
 }
@@ -35,6 +40,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
 
   .MuiGrid-root {
