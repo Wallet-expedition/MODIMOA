@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import ProductPresenter from "./ProductPresenter";
 
 const ProductContainer = ({
@@ -9,6 +9,11 @@ const ProductContainer = ({
   original_price,
   sale_price,
 }) => {
+  const handleImageError = useCallback((e) => {
+    e.currentTarget.onerror = null;
+    e.currentTarget.src = "/img/logo_beer_256.png";
+  }, []);
+
   return (
     <ProductPresenter
       id={id}
@@ -17,6 +22,7 @@ const ProductContainer = ({
       product_image={product_image}
       original_price={original_price}
       sale_price={sale_price}
+      handleImageError={handleImageError}
     />
   );
 };

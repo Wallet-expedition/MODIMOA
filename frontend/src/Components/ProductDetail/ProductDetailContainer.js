@@ -14,9 +14,8 @@ const ProductDetailContainer = () => {
   const params = useParams();
 
   const handleClick = useCallback(
-    (event) => {
+    async (event) => {
       event.preventDefault();
-      setIsToastActive(true);
       const body = {
         product_id: item.id,
         product_name: item.name,
@@ -24,7 +23,10 @@ const ProductDetailContainer = () => {
         sale_price: item.sale_price,
       };
 
-      dispatch(wishProduct(body, item.id));
+      const res = await dispatch(wishProduct(body, item.id));
+      if (res.payload.status === 201) {
+        setIsToastActive(true);
+      }
     },
     [dispatch, item.id, item.name, item.original_price, item.sale_price]
   );
@@ -70,12 +72,18 @@ const ProductDetailContainer = () => {
     setSalePercent(newSalePercent);
   }, [item]);
 
+  const handleImageError = useCallback((e) => {
+    e.currentTarget.onerror = null;
+    e.currentTarget.src = "/img/logo_beer_256.png";
+  }, []);
+
   return (
     <ProductDetailPresenter
       item={item}
       sale_percent={salePercent}
       isToastActive={isToastActive}
       handleClick={handleClick}
+      handleImageError={handleImageError}
     />
   );
 };

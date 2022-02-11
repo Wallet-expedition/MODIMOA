@@ -1,20 +1,33 @@
 import React from "react";
 
 import { Grid, Button } from "@material-ui/core";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
 import addComma from "../Util/AddComma";
 
-// id={id}
-// mart_name={mart_name}
-// product_name={product_name}
-// product_image={product_image}
-// original_price={original_price}
-// sale_price={sale_price}
+const BagButton = ({ handleClick }) => {
+  return (
+    <footer className="bag-button-container">
+      <span className="cart-icon">
+        <AddShoppingCartIcon fontSize="large" />
+      </span>
+      <Button variant="contained" size="large" onClick={handleClick}>
+        장바구니에 담기
+      </Button>
+    </footer>
+  );
+};
+
+const MyBagToastMessage = () => {
+  return <div className="mybag-toast"> 장바구니에 성공적으로 담겼습니다. </div>;
+};
+
 const ProductDetailPresenter = ({
   item,
   sale_percent,
   isToastActive,
   handleClick,
+  handleImageError,
 }) => {
   let martClass = "product-info-mart";
   switch (item.mart_name) {
@@ -37,7 +50,11 @@ const ProductDetailPresenter = ({
     return (
       <Grid className="item-container">
         <div className="item-image">
-          <img src={item.product_image} alt={`${item.product_name}`}></img>
+          <img
+            onError={handleImageError}
+            src={item.product_image}
+            alt={`${item.product_name}`}
+          ></img>
         </div>
         <Grid className="item-content">
           <div className={`${martClass} item-label`}>{item.mart_name}</div>
@@ -60,35 +77,11 @@ const ProductDetailPresenter = ({
     );
   };
 
-  const BagButton = () => {
-    return (
-      <footer className="bag-button-container">
-        <span className="cart-icon">
-          <img src={`/img/cart.png`} alt="modimoa-bag-cart-icon"></img>
-        </span>
-        <Button
-          variant="contained"
-          size="large"
-          onClick={handleClick}
-          // startIcon={}
-        >
-          장바구니에 담기
-        </Button>
-      </footer>
-    );
-  };
-
-  const MyBagToastMessage = () => {
-    return (
-      <div className="mybag-toast"> 장바구니에 성공적으로 담겼습니다. </div>
-    );
-  };
-
   return (
     <main className="product-detail-container">
       <ItemBox item={item} sale_percent={sale_percent} />
       <BagButton handleClick={handleClick} />
-      {isToastActive ? <MyBagToastMessage /> : ""}
+      {isToastActive && <MyBagToastMessage />}
     </main>
   );
 };
