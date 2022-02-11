@@ -42,7 +42,12 @@ body {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-
+  @include desktop {
+    height: 25%;
+  }
+  @include mobile {
+    height: 30%;
+  }
   .MuiGrid-root {
     width: 100%;
   }
