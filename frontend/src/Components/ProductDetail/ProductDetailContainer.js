@@ -72,12 +72,18 @@ const ProductDetailContainer = () => {
     setSalePercent(newSalePercent);
   }, [item]);
 
+  const handleImageError = useCallback((e) => {
+    e.currentTarget.onerror = null;
+    e.currentTarget.src = "/img/logo_beer_256.png";
+  }, []);
+
   return (
     <ProductDetailPresenter
       item={item}
       sale_percent={salePercent}
       isToastActive={isToastActive}
       handleClick={handleClick}
+      handleImageError={handleImageError}
     />
   );
 };

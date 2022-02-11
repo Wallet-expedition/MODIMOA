@@ -27,6 +27,7 @@ const ProductDetailPresenter = ({
   sale_percent,
   isToastActive,
   handleClick,
+  handleImageError,
 }) => {
   let martClass = "product-info-mart";
   switch (item.mart_name) {
@@ -49,7 +50,11 @@ const ProductDetailPresenter = ({
     return (
       <Grid className="item-container">
         <div className="item-image">
-          <img src={item.product_image} alt={`${item.product_name}`}></img>
+          <img
+            onError={handleImageError}
+            src={item.product_image}
+            alt={`${item.product_name}`}
+          ></img>
         </div>
         <Grid className="item-content">
           <div className={`${martClass} item-label`}>{item.mart_name}</div>

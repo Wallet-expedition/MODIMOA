@@ -13,6 +13,7 @@ const ProductPresenter = ({
   product_image,
   original_price,
   sale_price,
+  handleImageError,
 }) => {
   let martClass = "product-info-mart";
   const productInfo = {
@@ -49,7 +50,11 @@ const ProductPresenter = ({
   return (
     <Link className="product-container" to={`/list/${id}`} onClick={onClick}>
       <Grid className="product-image-container">
-        <img src={product_image} alt={product_name} />
+        <img
+          onError={handleImageError}
+          src={product_image}
+          alt={product_name}
+        />
       </Grid>
       <Grid className="product-info-container">
         <Grid className="product-info-price-name-container">
