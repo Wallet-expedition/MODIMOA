@@ -31,13 +31,13 @@
       color: $white;
 
       .content-description {
-        p {
+        span {
           font-size: 25px;
           margin: 0;
         }
-        p:last-child {
-          font-size: 120px;
-          font-weight: 500;
+        .clock-container span {
+          font-size: 100px;
+          font-weight: 200;
           line-height: 1;
         }
       }

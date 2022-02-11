@@ -51,7 +51,7 @@ const MainPresenter = ({ searchKeyword, handleChange, handleLogoClick }) => {
     <main className="content-container">
       <div className="content-beer">
         <div className="content-description">
-          <p> 지갑원정대 선정 제일 맥주 마시기 좋은 시간 </p>
+          <span> 지갑원정대 선정 맥주 마시기 가장 좋은 시간 TOP 1 </span>
           <Clock />
         </div>
       </div>
