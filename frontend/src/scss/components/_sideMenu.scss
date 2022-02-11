@@ -1,8 +1,7 @@
 .sidemenu-container {
   display: flex;
-  height: 100%;
+  height: calc(100% - 5rem);
   flex-direction: column;
-  padding-left: 1rem;
   box-shadow: 5px 0px 4px rgba(0, 0, 0, 0.25);
   a,
   div {
@@ -26,6 +25,7 @@
     width: calc(100% - 1rem); // 1rem: padding
     height: 100%;
     opacity: 0.8;
+    padding: 0 0 0 1rem;
     color: $white;
 
     .logo {
@@ -44,12 +44,14 @@
 
   @include desktop {
     min-width: 20vw;
+    padding: 5rem 0 0 2rem;
   }
 
   .logo {
-    font-size: 2.4em;
-    flex: 1;
-    padding-top: 2rem;
+    margin-bottom: 2rem;
+    img {
+      width: 12rem;
+    }
   }
 
   .sidemenu-nav {

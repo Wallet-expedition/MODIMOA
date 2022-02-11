@@ -1,5 +1,4 @@
 import React from "react";
-
 import LogoutToastMessage from "../../LogoutToastMessage";
 import { Link } from "react-router-dom";
 
@@ -13,7 +12,9 @@ const SideMenuPresenter = ({
     <>
       {!isToastActive ? (
         <div className="sidemenu-container">
-          <header className="logo"> MODIMOA </header>
+          <header className="logo">
+            <img alt="logo" src="/img/logo_long_no_empty.png" />
+          </header>
           <nav className="sidemenu-nav">
             <Link to="/main" onClick={handleLink}>
               홈

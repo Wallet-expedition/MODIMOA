@@ -49,7 +49,7 @@ const ProductListContainer = ({ martList, searchKeyword, sortOption }) => {
         if (currentPage.current > lastPage) {
           setIsLoadFinish(true);
         }
-        setLastPage(data.totalPages);
+        setLastPage(data.totalPages > 0 ? data.totalPages : 100);
       }
     };
 
