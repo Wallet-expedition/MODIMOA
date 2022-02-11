@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
+import Clock from "../Clock";
 import { Button } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import {
@@ -50,8 +51,8 @@ const MainPresenter = ({ searchKeyword, handleChange, handleLogoClick }) => {
     <main className="content-container">
       <div className="content-beer">
         <div className="content-description">
-          <p> 맥주 마시기 좋은 시간! </p>
-          <p> 12:34 </p>
+          <p> 지갑원정대 선정 제일 맥주 마시기 좋은 시간 </p>
+          <Clock />
         </div>
       </div>
 
