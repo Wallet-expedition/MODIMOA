@@ -34,6 +34,7 @@ const LogoIcon = ({ name, martList, setTempMartList }) => {
       martClass = "martlist-mart-icon";
       break;
   }
+
   const onClick = () => {
     switch (name) {
       case CU:
@@ -104,6 +105,7 @@ const MartListPresenter = ({
   setShowMartList,
   tempMartList,
   setTempMartList,
+  setSelectMartList,
   openedSideMenu,
 }) => {
   return (
@@ -112,7 +114,7 @@ const MartListPresenter = ({
         tempMartList={tempMartList}
         showMartList={showMartList}
         setShowMartList={setShowMartList}
-        setTempMartList={setTempMartList}
+        setSelectMartList={setSelectMartList}
         openedSideMenu={openedSideMenu}
       />
       {showMartList ? (
