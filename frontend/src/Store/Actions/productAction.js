@@ -8,6 +8,7 @@ import {
   CHANGE_MY_BAG_PRODUCT_CNT,
 } from "./type";
 import request from "../../Components/Util/Request";
+import detectMobile from "../../Components/Util/DetectMobile";
 
 export const selectProduct = (product_info) => {
   return {
@@ -36,7 +37,9 @@ export const deleteWishProduct = async (myBagId) => {
 
 export const getProductList = async (mart, searchKeyword, page, sortFilter) => {
   const res = await request.get(
-    `/api/product/pickmart/${mart}?q=${searchKeyword}&size=15&page=${page}&sort=${sortFilter}`
+    `/api/product/pickmart/${mart}?q=${searchKeyword}&size=${
+      detectMobile() ? 15 : 50
+    }&page=${page}&sort=${sortFilter}`
   );
 
   return {
