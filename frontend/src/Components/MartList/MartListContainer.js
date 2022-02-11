@@ -1,14 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectMart } from "../../Store/Actions/martAction";
 import detectMobile from "../Util/DetectMobile";
 import MartListPresenter from "./MartListPresenter";
 
 const MartListContainer = ({ martList }) => {
+  const dispatch = useDispatch();
   const [showMartList, setShowMartList] = useState(false);
   const [tempMartList, setTempMartList] = useState(martList);
   const openedSideMenu = useSelector(
     (state) => state.sideMenuReducer.openedSideMenu
   );
+
+  const setSelectMartList = useCallback(() => {
+    dispatch(selectMart(tempMartList));
+  }, [dispatch, tempMartList]);
+
+  useEffect(() => {
+    if (!detectMobile()) {
+      setSelectMartList();
+    }
+  }, [setSelectMartList, tempMartList]);
 
   useEffect(() => {
     if (!detectMobile()) {
@@ -23,6 +35,7 @@ const MartListContainer = ({ martList }) => {
       martList={martList}
       tempMartList={tempMartList}
       setTempMartList={setTempMartList}
+      setSelectMartList={setSelectMartList}
       openedSideMenu={openedSideMenu}
     />
   );

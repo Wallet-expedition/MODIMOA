@@ -1,7 +1,4 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-
-import { selectMart } from "../../../Store/Actions/martAction";
 import detectMobile from "../../Util/DetectMobile";
 
 import MartListBtnPresenter from "./MartListBtnPresenter";
@@ -10,9 +7,9 @@ const MartListBtnContainer = ({
   showMartList,
   setShowMartList,
   tempMartList,
+  setSelectMartList,
   openedSideMenu,
 }) => {
-  const dispatch = useDispatch();
   const [isAllDeactivation, setIsAllDeActivation] = useState(false);
 
   const handleMartListBtnClick = useCallback(
@@ -25,11 +22,11 @@ const MartListBtnContainer = ({
           alert("적어도 한 개의 마트를 선택해주세요.");
           setShowMartList(true); // 마트리스트가 꺼지지 않게
         } else {
-          dispatch(selectMart(tempMartList));
+          setSelectMartList();
         }
       }
     },
-    [dispatch, isAllDeactivation, setShowMartList, showMartList, tempMartList]
+    [setSelectMartList, isAllDeactivation, setShowMartList, showMartList]
   );
   /**
    *  if User uses mobile, side menu is toggle with default no showing.
