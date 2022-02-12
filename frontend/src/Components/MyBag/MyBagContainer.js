@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteWishProduct } from "../../Store/Actions/productAction";
+import { SampleList } from "../Util/SampleList";
 import MyBagPresenter from "./MyBagPresenter";
 
 const MyBagContainer = ({
@@ -13,14 +14,18 @@ const MyBagContainer = ({
 
   const [buyProductName, setBuyProductName] = useState("");
   const [selectedId, setSelectedId] = useState(-1);
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
+  const [isCntChange, setIsCntChange] = useState(false);
 
   const handleBuyClick = useCallback(async (event) => {
-    const targetId = event.target.id;
+    const targetId = event.currentTarget.id;
     const words = targetId.split("&");
     const myBagId = words[0].substr(words[0].indexOf("=") + 1);
+    const mode = words[1];
     const productName = words[2].substr(words[2].indexOf("=") + 1);
-    setIsOpenModal(true);
+    if (mode === "count") setIsCntChange(true);
+    else setIsCntChange(false);
+    setIsBuyModalOpen(true);
     setSelectedId(myBagId);
     setBuyProductName(productName);
   }, []);
@@ -54,16 +59,17 @@ const MyBagContainer = ({
 
   return (
     <MyBagPresenter
-      wishList={wishList}
-      purchasedList={purchasedList}
+      wishList={SampleList}
+      purchasedList={SampleList}
       setNextList={setNextList}
       filterOption={filterOption}
-      isOpenModal={isOpenModal}
+      isBuyModalOpen={isBuyModalOpen}
       handleBuyClick={handleBuyClick}
       handleDeleteClick={handleDeleteClick}
-      setIsOpenModal={setIsOpenModal}
+      setIsBuyModalOpen={setIsBuyModalOpen}
       selectedId={selectedId}
       buyProductName={buyProductName}
+      isCntChange={isCntChange}
     />
   );
 };

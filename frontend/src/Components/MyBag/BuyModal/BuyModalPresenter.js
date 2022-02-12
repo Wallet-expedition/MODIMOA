@@ -3,18 +3,18 @@ import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 
 const BuyModalPresenter = ({
-  isOpenModal,
+  isBuyModalOpen,
   handleCancelClick,
   handleConfirmClick,
   handleUpClick,
   handleDownClick,
   productName,
   number,
-  snackBarOpen,
+  isCntChange,
 }) => {
   return (
     <Modal
-      open={isOpenModal}
+      open={isBuyModalOpen}
       onClose={handleCancelClick}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -61,7 +61,7 @@ const BuyModalPresenter = ({
             color="primary"
             onClick={handleConfirmClick}
           >
-            구매하기
+            {isCntChange ? "수량변경" : "구매하기"}
           </Button>
         </div>
       </div>

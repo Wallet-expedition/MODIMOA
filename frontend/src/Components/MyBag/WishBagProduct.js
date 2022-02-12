@@ -1,4 +1,5 @@
 import { Grid } from "@material-ui/core";
+import SettingsIcon from "@material-ui/icons/Settings";
 import addComma from "../Util/AddComma";
 
 const WishDisplay = ({
@@ -8,9 +9,9 @@ const WishDisplay = ({
   handleDeleteClick,
 }) => {
   return (
-    <div className="wish-btn-container">
+    <div className="mybag-btn-container">
       <div
-        id={"id=" + id + "&wish&name=" + product_name}
+        id={`id=${id}&wish&name=${product_name}`}
         variant="contained"
         onClick={handleBuyClick}
         className="buy-btn wish-btn"
@@ -18,7 +19,7 @@ const WishDisplay = ({
         구매하기
       </div>
       <div
-        id={"id=" + id + "&delete&name=" + product_name}
+        id={`id=${id}&delete&name=${product_name}`}
         variant="contained"
         onClick={handleDeleteClick}
         className="delete-btn wish-btn"
@@ -39,16 +40,22 @@ const WishBagProduct = ({
   handleDeleteClick,
 }) => {
   return (
-    <Grid className="product-container">
-      <Grid className="product-image-container">
+    <Grid className="mybag-product-container">
+      <Grid className="mybag-product-image-container">
         <img src={product_image} alt={product_name} />
       </Grid>
-      <Grid className="product-info-container">
-        <span className="product-info-text"> {product_name} </span>
-        <Grid className="product-info-price-container">
+      <Grid className="mybag-product-info-container">
+        <span className="mybag-product-info-text"> {product_name} </span>
+        <Grid className="mybag-product-info-price-container">
           <span>
             {`${addComma(sale_price)}원 • `} <b>{product_count}개</b>
           </span>
+          <SettingsIcon
+            id={`id=${id}&count&name=${product_name}`}
+            onClick={handleBuyClick}
+            className="mybag-gear"
+            color="disabled"
+          />
         </Grid>
       </Grid>
       <WishDisplay
