@@ -16,8 +16,22 @@
   flex-direction: column;
   @include desktop {
     display: grid;
+    height: 100%;
     grid-template-columns: repeat(5, 1fr);
     justify-items: center;
     gap: 1rem;
+  }
+}
+
+.product-list-container-container {
+  @include desktop {
+    width: 100%;
+    height: 75%;
+  }
+  @include mobile {
+    display: flex;
+    overflow-y: scroll;
+    width: 100%;
+    flex-direction: column;
   }
 }

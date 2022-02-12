@@ -16,6 +16,7 @@ const getMartCode = (martList) => {
 const ProductListContainer = ({ martList, searchKeyword, sortOption }) => {
   const [list, setList] = useState([]);
   const [isLoadFinish, setIsLoadFinish] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isFirstRender, setIsFirstRender] = useState(true);
   const [lastPage, setLastPage] = useState(100);
   const [finalKeyword, setFinalKeyword] = useState(searchKeyword) || "";
@@ -33,6 +34,7 @@ const ProductListContainer = ({ martList, searchKeyword, sortOption }) => {
       if (currentPage.current >= lastPage) return;
       if (isLoadFinish) return;
       const filter = finalOption === 1 ? "salePrice" : "productName";
+      setIsLoading(true); // 스피너 On
       const res = await dispatch(
         getProductList(
           martCode.current,
@@ -51,6 +53,7 @@ const ProductListContainer = ({ martList, searchKeyword, sortOption }) => {
         }
         setLastPage(data.totalPages > 0 ? data.totalPages : 100);
       }
+      setIsLoading(false); // 스피너 Off
     };
 
     const checkScroll = () => {
@@ -115,7 +118,13 @@ const ProductListContainer = ({ martList, searchKeyword, sortOption }) => {
     currentPage.current = 0;
   }, [martCode, martList]);
 
-  return <ProductListPresenter list={list} listComponent={listComponent} />;
+  return (
+    <ProductListPresenter
+      list={list}
+      listComponent={listComponent}
+      isLoading={isLoading}
+    />
+  );
 };
 
 export default ProductListContainer;
