@@ -45,9 +45,6 @@ body {
   @include desktop {
     height: 25%;
   }
-  @include mobile {
-    height: 30%;
-  }
   .MuiGrid-root {
     width: 100%;
   }

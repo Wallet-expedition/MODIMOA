@@ -24,6 +24,7 @@
 }
 
 .product-list-container-container {
+  position: relative;
   @include desktop {
     width: 100%;
     height: 75%;
