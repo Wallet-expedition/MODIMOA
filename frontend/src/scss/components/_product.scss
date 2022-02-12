@@ -125,25 +125,3 @@
     @include font-default(400);
   }
 }
-
-.wish-btn-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 23%;
-
-  .wish-btn {
-    text-align: center;
-    box-sizing: border-box;
-    border: 1px solid $line;
-    border-radius: 2px;
-  }
-
-  .buy-btn {
-    color: $success;
-  }
-
-  .delete-btn {
-    color: $error;
-  }
-}

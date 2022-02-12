@@ -1,0 +1,130 @@
+.mybag-product-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+  border-bottom: 1px solid $line;
+
+  @include desktop {
+    text-align: center;
+    flex-direction: column;
+    width: 70%;
+    height: 20em;
+    border: 1px solid $line;
+    padding: 2%;
+    margin: 5% auto;
+    
+  }
+  .mybag-product-image-container {
+    min-width: 20%;
+    width: 20%;
+    img {
+      width: 100%;
+      height: 5rem;
+    }
+    @include mobile {
+      display: flex;
+      overflow: hidden;
+    }
+
+    @include desktop {
+      width: 100%;
+      border: 1px solid $line;
+
+      img {
+        height: 10em;
+      }
+    }
+  }
+
+  .mybag-product-info-container {
+    flex-grow: 1;
+    height: 100%;
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      margin-left: 3%;
+    }
+
+    @include desktop {
+      height: 7em;
+      margin-top: 10%;
+    }
+
+    .mybag-product-info-price-container {
+      display: flex;
+      align-items: center;
+      @include font-default(400, 0.8rem);
+      width: 100%;
+      .mybag-gear {
+        margin-left: 4%;
+        height: 80%;
+      }
+
+      @include desktop {
+        margin-top: 5%;
+      }
+    }
+  }
+}
+
+.mybag-btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 20%;
+  min-width: 20%;
+  height: 100%;
+  margin-right: 2%;
+  margin-left: auto;
+  white-space: nowrap;
+
+  @include desktop {
+    width: 100%;
+    height: auto;
+    align-items: center;
+    flex-direction: row;
+    margin-top: auto;
+    margin: 0 auto;
+  }
+
+  .wish-btn {
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid $line;
+    border-radius: 2px;
+    cursor: pointer;
+    @include desktop {
+      padding: 5%;
+    }
+  }
+
+  .buy-btn {
+    color: $success;
+  }
+
+  .delete-btn {
+    color: $error;
+  }
+}
+
+.product-state-info-container {
+  height: 70%;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-right: 2%;
+
+  @include desktop {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .product-state-info {
+    color: $success;
+  }
+}
