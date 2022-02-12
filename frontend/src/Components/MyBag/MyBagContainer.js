@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteWishProduct } from "../../Store/Actions/productAction";
-import { SampleList } from "../Util/SampleList";
 import MyBagPresenter from "./MyBagPresenter";
 
 const MyBagContainer = ({
@@ -59,8 +58,8 @@ const MyBagContainer = ({
 
   return (
     <MyBagPresenter
-      wishList={SampleList}
-      purchasedList={SampleList}
+      wishList={wishList}
+      purchasedList={purchasedList}
       setNextList={setNextList}
       filterOption={filterOption}
       isBuyModalOpen={isBuyModalOpen}
