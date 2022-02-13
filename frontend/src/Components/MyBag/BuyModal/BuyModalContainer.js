@@ -8,13 +8,14 @@ import BuyModalPresenter from "./BuyModalPresenter";
 import { PURCHASE_OPTION } from "../../Util/Constant";
 
 const BuyModalContainer = ({
-  isOpenModal,
-  setIsOpenModal,
+  isBuyModalOpen,
+  setIsBuyModalOpen,
   selectedId,
   buyProductName,
   wishList,
   purchasedList,
   setNextList,
+  isCntChange,
 }) => {
   const [productName, setProductName] = useState("");
   const [number, setNumber] = useState(1);
@@ -23,9 +24,9 @@ const BuyModalContainer = ({
   const handleCancelClick = useCallback(
     (event) => {
       event.preventDefault();
-      setIsOpenModal(false);
+      setIsBuyModalOpen(false);
     },
-    [setIsOpenModal]
+    [setIsBuyModalOpen]
   );
 
   const handleUpClick = useCallback((event) => {
@@ -47,7 +48,7 @@ const BuyModalContainer = ({
       count: number,
     };
     const changeCntRes = await dispatch(changeMyBagCnt(selectedId, cntBody));
-    if (changeCntRes.payload.status === 200) {
+    if (!isCntChange && changeCntRes.payload.status === 200) {
       const stateBody = {
         status: PURCHASE_OPTION.AFTER_PURCHASE,
       };
@@ -62,13 +63,14 @@ const BuyModalContainer = ({
         alert("구매가 완료되었습니다.");
       }
     }
-    setIsOpenModal(false);
+    setIsBuyModalOpen(false);
   }, [
     dispatch,
+    isCntChange,
     number,
     purchasedList,
     selectedId,
-    setIsOpenModal,
+    setIsBuyModalOpen,
     setNextList,
     wishList,
   ]);
@@ -79,13 +81,14 @@ const BuyModalContainer = ({
 
   return (
     <BuyModalPresenter
-      isOpenModal={isOpenModal}
+      isBuyModalOpen={isBuyModalOpen}
       handleCancelClick={handleCancelClick}
       handleUpClick={handleUpClick}
       handleDownClick={handleDownClick}
       handleConfirmClick={handleConfirmClick}
       number={number}
       productName={productName}
+      isCntChange={isCntChange}
     />
   );
 };

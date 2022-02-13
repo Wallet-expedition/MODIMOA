@@ -13,6 +13,10 @@
   text-align: right;
   z-index: 1;
 
+  @include desktop {
+    bottom: 5%;
+  }
+
   .tab-description {
     @include font-default(400, 0.8rem);
     color: gray;

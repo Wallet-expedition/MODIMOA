@@ -9,6 +9,7 @@
 @import "./components/myBag";
 @import "./components/sortbar";
 @import "./components/buyModal";
+@import "./components/myBagProduct";
 
 .MuiAppBar-root {
   z-index: 1;
@@ -28,5 +29,9 @@
 
   .gear {
     padding-right: 0.5rem;
+  }
+
+  @include desktop {
+    display: none;
   }
 }

@@ -20,13 +20,13 @@ const PurchasedBagProduct = ({
   const profit = (original_price - sale_price) * product_count;
 
   return (
-    <Grid className="product-container">
-      <Grid className="product-image-container">
+    <Grid className="mybag-product-container">
+      <Grid className="mybag-product-image-container">
         <img src={product_image} alt={product_name} />
       </Grid>
-      <Grid className="product-info-container">
-        <span className="product-info-text">{product_name}</span>
-        <Grid className="product-info-price-container">
+      <Grid className="mybag-product-info-container">
+        <span className="mybag-product-info-text">{product_name}</span>
+        <Grid className="mybag-product-info-price-container">
           <span>
             {addComma(sale_price)}원 • <b>{addComma(product_count)}개</b>
           </span>
