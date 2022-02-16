@@ -6,6 +6,7 @@ import {
 } from "../../Store/Actions/productAction";
 import MyBagPresenter from "./MyBagPresenter";
 import getUpdatedNextList from "../Util/GetUpdatedNextList";
+import { PURCHASE_OPTION } from "../Util/Constant";
 
 const MyBagContainer = ({
   filterOption,
@@ -54,7 +55,8 @@ const MyBagContainer = ({
           const nextList = getUpdatedNextList(
             wishList,
             purchasedList,
-            item.myBagId
+            item.myBagId,
+            PURCHASE_OPTION.DELETE_PURCHASE
           );
           setNextList(nextList);
           alert(`${item.productName} 삭제가 완료되었습니다.`);
