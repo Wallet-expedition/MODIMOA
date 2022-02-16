@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
+import addComma from "../../Util/AddComma";
 
 const BuyModalPresenter = ({
   isBuyModalOpen,
@@ -8,10 +9,10 @@ const BuyModalPresenter = ({
   handleConfirmClick,
   handleUpClick,
   handleDownClick,
-  productName,
-  number,
+  item,
   isCntChange,
 }) => {
+  const profit = (item.originalPrice - item.salePrice) * item.productCnt;
   return (
     <Modal
       open={isBuyModalOpen}
@@ -20,15 +21,19 @@ const BuyModalPresenter = ({
       aria-describedby="modal-modal-description"
     >
       <div className="buy-modal-container">
-        <header className="buy-modal-product-name">{productName}</header>
+        <header className="buy-modal-product-name">{item.productName}</header>
         <div className="buy-modal-info">
           <div className="buy-modal-info-left">
             <div className="buy-modal-label">원가</div>
-            <del className="buy-modal-origin-price">7,543원</del>
+            <del className="buy-modal-origin-price">
+              {addComma(item.originalPrice)}원
+            </del>
           </div>
           <div className="buy-modal-info-right">
             <div className="buy-modal-label">할인가</div>
-            <div className="buy-modal-sale-price">5,000원</div>
+            <div className="buy-modal-sale-price">
+              {addComma(item.salePrice)}원
+            </div>
           </div>
         </div>
         <div className="buy-modal-quantity">
@@ -38,13 +43,13 @@ const BuyModalPresenter = ({
               <button className="buy-modal-plusminus" onClick={handleDownClick}>
                 -
               </button>
-              <span className="buy-modal-cnt">{number}</span>
+              <span className="buy-modal-cnt">{item.productCnt}</span>
               <button className="buy-modal-plusminus" onClick={handleUpClick}>
                 +
               </button>
             </div>
           </div>
-          <div className="buy-modal-profit">2,543원 이득</div>
+          <div className="buy-modal-profit">{addComma(profit)}원 이득</div>
         </div>
         <div className="buy-modal-btns">
           <Button

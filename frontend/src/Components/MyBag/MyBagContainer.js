@@ -1,7 +1,11 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteWishProduct } from "../../Store/Actions/productAction";
+import {
+  deleteWishProduct,
+  selectProduct,
+} from "../../Store/Actions/productAction";
 import MyBagPresenter from "./MyBagPresenter";
+import getUpdatedNextList from "../Util/GetUpdatedNextList";
 
 const MyBagContainer = ({
   filterOption,
@@ -11,28 +15,28 @@ const MyBagContainer = ({
 }) => {
   const dispatch = useDispatch();
 
-  const [buyProductName, setBuyProductName] = useState("");
-  const [selectedId, setSelectedId] = useState(-1);
   const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
   const [isCntChange, setIsCntChange] = useState(false);
 
-  const handleBuyClick = useCallback(async (event) => {
-    const targetId = event.currentTarget.id;
-    const words = targetId.split("&");
-    const myBagId = words[0].substr(words[0].indexOf("=") + 1);
-    const mode = words[1];
-    const productName = words[2].substr(words[2].indexOf("=") + 1);
-    if (mode === "count") setIsCntChange(true);
-    else setIsCntChange(false);
-    setIsBuyModalOpen(true);
-    setSelectedId(myBagId);
-    setBuyProductName(productName);
-  }, []);
+  const handleBuyClick = useCallback(
+    async (event) => {
+      const targetId = event.currentTarget.id;
+      const item = wishList.find((v) => v.myBagId === Number(targetId));
+
+      // if SettingsIcon Clicked
+      const nextIsCntChange = event.currentTarget.tagName === "svg";
+      setIsCntChange(nextIsCntChange);
+
+      setIsBuyModalOpen(true);
+      dispatch(selectProduct(item));
+    },
+    [dispatch, wishList]
+  );
 
   const handleDeleteClick = useCallback(
     async (event) => {
       const targetId = event.target.id;
-      const myBagId = targetId.split("&")[0].split("=")[1];
+      const item = purchasedList.find((v) => v.myBagId === Number(targetId));
       /**
        * TODO #1
        * 정말로 삭제하시겠습니까?(React Toastify)
@@ -43,13 +47,17 @@ const MyBagContainer = ({
        * 삭제가 완료되었습니다.(React Toastify)
        * */
       // eslint-disable-next-line no-restricted-globals
-      const ans = confirm("정말로 삭제하시겠습니까?");
+      const ans = confirm(`${item.productName} 정말로 삭제하시겠습니까?`);
       if (ans) {
-        const res = await dispatch(deleteWishProduct(myBagId));
+        const res = await dispatch(deleteWishProduct(item.myBagId));
         if (res.payload.status === 200) {
-          const nextList = [...wishList, ...purchasedList];
-          setNextList(nextList, parseInt(myBagId));
-          alert("삭제가 완료되었습니다.");
+          const nextList = getUpdatedNextList(
+            wishList,
+            purchasedList,
+            item.myBagId
+          );
+          setNextList(nextList);
+          alert(`${item.productName} 삭제가 완료되었습니다.`);
         }
       }
     },
@@ -66,8 +74,6 @@ const MyBagContainer = ({
       handleBuyClick={handleBuyClick}
       handleDeleteClick={handleDeleteClick}
       setIsBuyModalOpen={setIsBuyModalOpen}
-      selectedId={selectedId}
-      buyProductName={buyProductName}
       isCntChange={isCntChange}
     />
   );

@@ -2,6 +2,7 @@ import React from "react";
 import BuyModal from "./BuyModal";
 import BagProductList from "./BagProductList";
 import BagDescription from "./BagDescription";
+import { PURCHASE_OPTION } from "../Util/Constant";
 
 const MyBagPresenter = ({
   wishList,
@@ -11,20 +12,18 @@ const MyBagPresenter = ({
   handleBuyClick,
   isBuyModalOpen,
   setIsBuyModalOpen,
-  selectedId,
-  buyProductName,
   handleDeleteClick,
   isCntChange,
 }) => {
+  const list =
+    filterOption === PURCHASE_OPTION.BEFORE_PURCHASE ? wishList : purchasedList;
   return (
     <main className="my-bag-container">
       <BagDescription filterOption={filterOption} />
       <BagProductList
-        wishList={wishList}
-        purchasedList={purchasedList}
+        list={list}
         handleBuyClick={handleBuyClick}
         handleDeleteClick={handleDeleteClick}
-        buyProductName={buyProductName}
         filterOption={filterOption}
       />
 
@@ -32,8 +31,6 @@ const MyBagPresenter = ({
         <BuyModal
           isBuyModalOpen={isBuyModalOpen}
           setIsBuyModalOpen={setIsBuyModalOpen}
-          selectedId={selectedId}
-          buyProductName={buyProductName}
           wishList={wishList}
           purchasedList={purchasedList}
           setNextList={setNextList}
