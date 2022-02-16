@@ -2,6 +2,8 @@
 export const SampleList = [
   {
     productId: 1,
+    myBagId: 1,
+    productCnt: 1,
     martName: "SEVEN11",
     productName: "르구르망)오레오밀크스낵30g",
     productImage:
@@ -18,6 +20,8 @@ export const SampleList = [
   },
   {
     productId: 2,
+    myBagId: 2,
+    productCnt: 1,
     martName: "CU",
     productName: "제니코)스모크스트링치즈24g",
     productImage:
@@ -34,6 +38,8 @@ export const SampleList = [
   },
   {
     productId: 3,
+    myBagId: 3,
+    productCnt: 1,
     martName: "EMART24",
     productName: "롯데푸드)요구하이145ml",
     productImage:
@@ -50,6 +56,8 @@ export const SampleList = [
   },
   {
     productId: 4,
+    myBagId: 4,
+    productCnt: 1,
     martName: "GS25",
     productName: "빙그레)닥터캡슐플레인130ml",
     productImage:
@@ -66,6 +74,8 @@ export const SampleList = [
   },
   {
     productId: 5,
+    myBagId: 5,
+    productCnt: 1,
     martName: "SEVEN11",
     productName: "프룻프룻)자몽에이드300ml",
     productImage:
@@ -82,6 +92,8 @@ export const SampleList = [
   },
   {
     productId: 6,
+    myBagId: 6,
+    productCnt: 1,
     martName: "SEVEN11",
     productName: "프룻프룻)망고에이드300ml",
     productImage:
@@ -98,6 +110,8 @@ export const SampleList = [
   },
   {
     productId: 7,
+    myBagId: 7,
+    productCnt: 1,
     martName: "SEVEN11",
     productName: "커피그루브)아메리카노오리지널2",
     productImage:
@@ -114,6 +128,8 @@ export const SampleList = [
   },
   {
     productId: 8,
+    myBagId: 8,
+    productCnt: 1,
     martName: "SEVEN11",
     productName: "커피그루브)아메리카노마일드280",
     productImage:
@@ -130,6 +146,8 @@ export const SampleList = [
   },
   {
     productId: 9,
+    myBagId: 9,
+    productCnt: 1,
     martName: "SEVEN11",
     productName: "빙그레)닥터캡슐사과130ml",
     productImage:
@@ -146,6 +164,8 @@ export const SampleList = [
   },
   {
     productId: 10,
+    myBagId: 10,
+    productCnt: 1,
     martName: "SEVEN11",
     productName: "남양)채움오렌지210ml",
     productImage:
