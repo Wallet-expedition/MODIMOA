@@ -22,7 +22,7 @@ const MyBagContainer = ({
   const handleBuyClick = useCallback(
     async (event) => {
       const targetId = event.currentTarget.id;
-      const item = wishList.find((v) => v.myBagId === Number(targetId));
+      const item = wishList.find((item) => item.myBagId === Number(targetId));
 
       // if SettingsIcon Clicked
       const nextIsCntChange = event.currentTarget.tagName === "svg";
@@ -37,7 +37,9 @@ const MyBagContainer = ({
   const handleDeleteClick = useCallback(
     async (event) => {
       const targetId = event.target.id;
-      const item = purchasedList.find((v) => v.myBagId === Number(targetId));
+      const item = [...wishList, ...purchasedList].find(
+        (item) => item.myBagId === Number(targetId)
+      );
       /**
        * TODO #1
        * 정말로 삭제하시겠습니까?(React Toastify)
