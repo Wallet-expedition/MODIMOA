@@ -1,5 +1,5 @@
 const addComma = (number) => {
-  if (!number) return "";
+  if (!number) return "0";
   return number.toLocaleString();
 };
 

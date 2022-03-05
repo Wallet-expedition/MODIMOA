@@ -1,25 +1,24 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   changeMyBagCnt,
   changeMyBagState,
+  selectProduct,
 } from "../../../Store/Actions/productAction";
 import BuyModalPresenter from "./BuyModalPresenter";
 import { PURCHASE_OPTION } from "../../Util/Constant";
+import getUpdatedNextList from "../../Util/GetUpdatedNextList";
 
 const BuyModalContainer = ({
   isBuyModalOpen,
   setIsBuyModalOpen,
-  selectedId,
-  buyProductName,
   wishList,
   purchasedList,
   setNextList,
   isCntChange,
 }) => {
-  const [productName, setProductName] = useState("");
-  const [number, setNumber] = useState(1);
   const dispatch = useDispatch();
+  const item = useSelector((state) => state.productReducer.product);
 
   const handleCancelClick = useCallback(
     (event) => {
@@ -29,55 +28,67 @@ const BuyModalContainer = ({
     [setIsBuyModalOpen]
   );
 
-  const handleUpClick = useCallback((event) => {
-    event.preventDefault();
-    setNumber((v) => v + 1);
-  }, []);
+  const handleUpClick = useCallback(
+    (event) => {
+      event.preventDefault();
+      const nextProduct = { ...item, productCnt: item.productCnt + 1 };
+      dispatch(selectProduct(nextProduct));
+    },
+    [dispatch, item]
+  );
 
   const handleDownClick = useCallback(
     (event) => {
       event.preventDefault();
-      if (number === 0) return;
-      setNumber((v) => v - 1);
+      if (item.productCnt === 0) return;
+      const nextProduct = { ...item, productCnt: item.productCnt - 1 };
+      dispatch(selectProduct(nextProduct));
     },
-    [number]
+    [dispatch, item]
   );
 
   const handleConfirmClick = useCallback(async () => {
+    const { myBagId } = item;
     const cntBody = {
-      count: number,
+      count: item.productCnt,
     };
-    const changeCntRes = await dispatch(changeMyBagCnt(selectedId, cntBody));
+    const changeCntRes = await dispatch(changeMyBagCnt(myBagId, cntBody));
     if (!isCntChange && changeCntRes.payload.status === 200) {
       const stateBody = {
         status: PURCHASE_OPTION.AFTER_PURCHASE,
       };
-      const res = await dispatch(changeMyBagState(selectedId, stateBody));
+      const res = await dispatch(changeMyBagState(myBagId, stateBody));
       /**
        * TODO
        * React Toastify 적용
        */
       if (res.payload.status === 200) {
-        const nextList = [...wishList, ...purchasedList];
-        setNextList(nextList, parseInt(selectedId));
         alert("구매가 완료되었습니다.");
       }
     }
+
+    // update entire list
+    const nextStatus = isCntChange
+      ? PURCHASE_OPTION.BEFORE_PURCHASE
+      : PURCHASE_OPTION.AFTER_PURCHASE;
+    const nextList = getUpdatedNextList(
+      wishList,
+      purchasedList,
+      myBagId,
+      nextStatus,
+      item.productCnt
+    );
+    setNextList(nextList);
     setIsBuyModalOpen(false);
   }, [
     dispatch,
     isCntChange,
-    number,
+    item,
     purchasedList,
-    selectedId,
     setIsBuyModalOpen,
     setNextList,
     wishList,
   ]);
-
-  useEffect(() => {
-    setProductName(buyProductName);
-  }, [buyProductName]);
 
   return (
     <BuyModalPresenter
@@ -86,8 +97,7 @@ const BuyModalContainer = ({
       handleUpClick={handleUpClick}
       handleDownClick={handleDownClick}
       handleConfirmClick={handleConfirmClick}
-      number={number}
-      productName={productName}
+      item={item}
       isCntChange={isCntChange}
     />
   );

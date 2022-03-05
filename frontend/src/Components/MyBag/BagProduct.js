@@ -2,24 +2,26 @@ import { Grid } from "@material-ui/core";
 import SettingsIcon from "@material-ui/icons/Settings";
 import addComma from "../Util/AddComma";
 
-const WishDisplay = ({
+const BagBtnContainer = ({
   id,
-  product_name,
   handleBuyClick,
   handleDeleteClick,
+  isWishDisplay,
 }) => {
   return (
     <div className="mybag-btn-container">
+      {isWishDisplay && (
+        <div
+          id={id}
+          variant="contained"
+          onClick={handleBuyClick}
+          className="buy-btn wish-btn"
+        >
+          구매하기
+        </div>
+      )}
       <div
-        id={`id=${id}&wish&name=${product_name}`}
-        variant="contained"
-        onClick={handleBuyClick}
-        className="buy-btn wish-btn"
-      >
-        구매하기
-      </div>
-      <div
-        id={`id=${id}&delete&name=${product_name}`}
+        id={id}
         variant="contained"
         onClick={handleDeleteClick}
         className="delete-btn wish-btn"
@@ -30,42 +32,43 @@ const WishDisplay = ({
   );
 };
 
-const WishBagProduct = ({
+const BagProduct = ({
   id,
-  product_name,
-  product_image,
-  sale_price,
-  product_count,
+  item,
   handleBuyClick,
   handleDeleteClick,
+  isWishDisplay,
 }) => {
   return (
     <Grid className="mybag-product-container">
       <Grid className="mybag-product-image-container">
-        <img src={product_image} alt={product_name} />
+        <img src={item.productImage} alt={item.productName} />
       </Grid>
       <Grid className="mybag-product-info-container">
-        <span className="mybag-product-info-text"> {product_name} </span>
+        <span className="mybag-product-info-text"> {item.productName} </span>
         <Grid className="mybag-product-info-price-container">
           <span>
-            {`${addComma(sale_price)}원 • `} <b>{product_count}개</b>
+            {`${addComma(item.salePrice)}원 • `} <b>{item.productCnt}개</b>
           </span>
-          <SettingsIcon
-            id={`id=${id}&count&name=${product_name}`}
-            onClick={handleBuyClick}
-            className="mybag-gear"
-            color="disabled"
-          />
+          {isWishDisplay && (
+            <SettingsIcon
+              id={id}
+              onClick={handleBuyClick}
+              className="mybag-gear"
+              color="disabled"
+            />
+          )}
         </Grid>
       </Grid>
-      <WishDisplay
+      <BagBtnContainer
         id={id}
-        product_name={product_name}
+        productName={item.productName}
         handleBuyClick={handleBuyClick}
         handleDeleteClick={handleDeleteClick}
+        isWishDisplay={isWishDisplay}
       />
     </Grid>
   );
 };
 
-export default WishBagProduct;
+export default BagProduct;

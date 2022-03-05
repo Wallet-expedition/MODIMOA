@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { getMyBagList } from "../../Store/Actions/productAction";
 import { PURCHASE_OPTION } from "./Constant";
@@ -8,17 +8,29 @@ const useSetMyBagList = () => {
 
   const [wishList, setWishList] = useState([]);
   const [purchasedList, setPurchasedList] = useState([]);
+  const [wishSaveMoney, setWishSaveMoney] = useState(0);
+  const [savedMoney, setSavedMoney] = useState(0);
 
-  const setNextList = (nextList, willUpdateStatusMyBagId) => {
+  const setMoney = (nextWishList, nextPurchasedList) => {
+    const nextWishSaveMoney = nextWishList.reduce(
+      (willSaved, item) =>
+        willSaved +
+        Number((item.originalPrice - item.salePrice) * item.productCnt),
+      0
+    );
+    const nextSavedMoney = nextPurchasedList.reduce(
+      (willSaved, item) =>
+        willSaved +
+        Number((item.originalPrice - item.salePrice) * item.productCnt),
+      0
+    );
+    setWishSaveMoney(nextWishSaveMoney);
+    setSavedMoney(nextSavedMoney);
+  };
+
+  const setNextList = useCallback((nextList) => {
     const [nextWishList, nextPurchasedList] = nextList.reduce(
       ([wish, purchased], item) => {
-        // 상태를 바꿔야 하는 품목만 상태 변경
-        if (item.myBagId === willUpdateStatusMyBagId) {
-          item.status =
-            item.status === PURCHASE_OPTION.BEFORE_PURCHASE
-              ? PURCHASE_OPTION.AFTER_PURCHASE
-              : PURCHASE_OPTION.BEFORE_PURCHASE;
-        }
         // 새로운 list반환
         return item.status === PURCHASE_OPTION.BEFORE_PURCHASE
           ? [[...wish, item], purchased]
@@ -28,7 +40,8 @@ const useSetMyBagList = () => {
     );
     setWishList(nextWishList);
     setPurchasedList(nextPurchasedList);
-  };
+    setMoney(nextWishList, nextPurchasedList);
+  }, []);
 
   useEffect(() => {
     const getMyBagListFun = async () => {
@@ -51,9 +64,9 @@ const useSetMyBagList = () => {
       }
     };
     getMyBagListFun();
-  }, [dispatch]);
+  }, [dispatch, setNextList]);
 
-  return [wishList, purchasedList, setNextList];
+  return { wishList, purchasedList, setNextList, wishSaveMoney, savedMoney };
 };
 
 export default useSetMyBagList;

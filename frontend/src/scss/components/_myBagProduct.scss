@@ -14,7 +14,6 @@
     border: 1px solid $line;
     padding: 2%;
     margin: 5% auto;
-    
   }
   .mybag-product-image-container {
     min-width: 20%;
@@ -61,6 +60,7 @@
       .mybag-gear {
         margin-left: 4%;
         height: 80%;
+        cursor: pointer;
       }
 
       @include desktop {
