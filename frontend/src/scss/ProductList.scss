@@ -20,6 +20,20 @@
     grid-template-columns: repeat(5, 1fr);
     justify-items: center;
     gap: 1rem;
+
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $grey;
+      border-radius: 0.5rem;
+      &:hover {
+        background-color: $dark-grey;
+      }
+    }
+    &::-webkit-scrollbar-track {
+      background: none;
+    }
   }
 }
 
