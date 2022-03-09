@@ -71,7 +71,7 @@
     }
   }
 
-  @include mobile() {
+  @include mobile {
     .MuiOutlinedInput-root,
     .MuiOutlinedInput-notchedOutline {
       border: 2px solid $grey;
