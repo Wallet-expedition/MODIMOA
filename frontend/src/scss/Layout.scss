@@ -43,7 +43,7 @@ body {
   justify-content: space-between;
   width: 100%;
   @include desktop {
-    height: 25%;
+    min-height: 25%;
   }
   .MuiGrid-root {
     width: 100%;
