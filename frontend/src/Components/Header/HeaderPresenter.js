@@ -39,7 +39,7 @@ const HeaderPresenter = ({ children }) => {
       }
     };
     return (
-      <div className="content-search">
+      <div className="content-search content-search-border-grey">
         <TextField
           value={searchKeyword}
           onChange={handleChange}

@@ -29,7 +29,7 @@
     }
   }
 
-  @include desktop() {
+  @include desktop {
     gap: 10px;
     .MuiOutlinedInput-root,
     .MuiOutlinedInput-notchedOutline {
@@ -86,6 +86,45 @@
     }
     .MuiFormLabel-root.Mui-focused {
       color: $dark-grey;
+    }
+  }
+}
+
+.content-search-border-grey {
+  @include desktop {
+    .MuiOutlinedInput-root,
+    .MuiOutlinedInput-notchedOutline {
+      border: 2px solid $line;
+    }
+    .MuiOutlinedInput-root:hover {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: $line;
+      }
+    }
+    .MuiOutlinedInput-root.Mui-focused {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: $line;
+      }
+    }
+    .MuiFormLabel-root {
+      color: $line;
+    }
+    .MuiFormLabel-root.Mui-focused {
+      color: $line;
+    }
+
+    .search-btn {
+      background-color: $background;
+      border: 1px solid $line;
+      border-radius: 10px;
+      width: 60px;
+      transition: all 0.1s ease-in-out;
+      img {
+        height: 25px;
+      }
+      &:hover {
+        background-color: $line;
+      }
     }
   }
 }
