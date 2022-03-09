@@ -3,8 +3,13 @@
     display: none;
   }
   @include desktop {
-    transform: translateX(-100%);
+    transform: translateX(-20vw);
     min-width: 0;
+    width: 0;
+    padding-left: 0;
+    * {
+      display: none;
+    }
   }
 }
 
