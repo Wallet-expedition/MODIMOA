@@ -7,11 +7,16 @@ const SideMenuPresenter = ({
   handleLogout,
   isToastActive,
   handleLink,
+  showSideMenu,
 }) => {
   return (
     <>
       {!isToastActive ? (
-        <div className="sidemenu-container">
+        <div
+          className={`sidemenu-container ${
+            showSideMenu ? "" : "sidemenu-hide"
+          }`}
+        >
           <header className="logo">
             <img alt="logo" src="/img/logo_long_no_empty.png" />
           </header>
