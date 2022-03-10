@@ -19,7 +19,7 @@
   @include desktop {
     position: fixed;
     top: 50%;
-    left: calc(1rem + 100px + 1rem + 1rem);
+    left: calc(2.25rem);
     transform: translate(-50%, -50%);
     width: 4.5rem;
     height: 4.5rem;
@@ -36,6 +36,16 @@
     svg.MuiSvgIcon-root {
       width: 100%;
       height: 100%;
+      filter: invert(46%) sepia(3%) saturate(0%) hue-rotate(282deg)
+        brightness(83%) contrast(86%); // $dark-grey
+      transition: filter 0.2s ease-in-out;
+    }
+
+    &:hover {
+      svg.MuiSvgIcon-root {
+        filter: invert(0%) sepia(2%) saturate(5%) hue-rotate(105deg)
+          brightness(105%) contrast(100%); // $black
+      }
     }
   }
 }

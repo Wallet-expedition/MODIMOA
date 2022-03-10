@@ -92,36 +92,86 @@
     }
   }
 }
+
 .product-search-result-container {
   display: flex;
   width: 100%;
   height: 2rem;
   align-items: center;
+
+  @include desktop {
+    width: calc(100% - 2rem);
+    padding: 1rem;
+  }
 }
+
 .product-search-result {
   margin: 0 0 0 1rem;
   @include font-default(400, 1.1rem);
 }
+
 .MuiGrid-root {
-  .MuiPaper-root {
-    box-shadow: 0 -4px 0 0 $line inset;
+  @include desktop {
+    .product-sort-bar {
+      background: none;
+      box-shadow: none;
+      color: $black;
+      margin-bottom: 2rem;
+
+      .MuiTabs-scroller {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .MuiTabs-flexContainer {
+        justify-content: center;
+        gap: 2rem;
+        .MuiButtonBase-root {
+          // 정렬 버튼
+          max-width: 6rem;
+          min-width: 6rem;
+          min-height: 1rem;
+          padding: 0.25rem 1rem;
+          line-height: 1;
+          border: 2px solid $line;
+          border-radius: 1rem;
+        }
+        .MuiTab-textColorInherit.Mui-selected {
+          opacity: 1;
+        }
+        .MuiTab-textColorInherit {
+          opacity: 0.4;
+        }
+      }
+
+      .PrivateTabIndicator-colorSecondary-7 {
+        // 빨간 밑줄
+        display: none;
+      }
+    }
   }
-  .MuiAppBar-colorPrimary {
-    background-color: $background;
-    color: $black;
-  }
-  .PrivateTabIndicator-colorSecondary-7 {
-    height: 4px;
-    //background-color: $black;
-  }
-  .MuiTabs-root {
-    min-height: 2.5rem;
-  }
-  .MuiTab-root {
-    min-width: 3rem;
-    min-height: 2.5rem;
-    line-height: 0;
-    padding: 0 0.5rem 0 0.5rem;
-    @include font-default(400);
+  @include mobile {
+    .product-sort-bar {
+      box-shadow: 0 -4px 0 0 $line inset;
+    }
+    .MuiAppBar-colorPrimary {
+      background-color: $background;
+      color: $black;
+    }
+    .PrivateTabIndicator-colorSecondary-7 {
+      height: 4px;
+      //background-color: $black;
+    }
+    .MuiTabs-root {
+      min-height: 2.5rem;
+    }
+    .MuiTab-root {
+      min-width: 3rem;
+      min-height: 2.5rem;
+      line-height: 0;
+      padding: 0 0.5rem 0 0.5rem;
+      @include font-default(400);
+    }
   }
 }

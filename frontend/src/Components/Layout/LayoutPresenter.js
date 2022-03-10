@@ -21,7 +21,7 @@ const LayoutPresenter = ({
           setShowSideMenu={setShowSideMenu}
         />
       )}
-      {showSideMenu && <SideMenu setShowSideMenu={setShowSideMenu} />}
+      <SideMenu showSideMenu={showSideMenu} setShowSideMenu={setShowSideMenu} />
       {isRequiredBackBtn && <BackButton />}
       <Grid id="wrap"> {children} </Grid>
     </div>

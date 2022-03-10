@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { logoutUser } from "../../../Store/Actions/userAction";
 import { closedSideMenu } from "../../../Store/Actions/sideMenuAction";
 
-const SideMenuContainer = ({ setShowSideMenu }) => {
+const SideMenuContainer = ({ showSideMenu, setShowSideMenu }) => {
   const [isToastActive, setIsToastActive] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [path, setPath] = useState("main");
@@ -62,6 +62,7 @@ const SideMenuContainer = ({ setShowSideMenu }) => {
       handleLogout={handleLogout}
       isToastActive={isToastActive}
       handleLink={handleLink}
+      showSideMenu={showSideMenu}
     />
   );
 };

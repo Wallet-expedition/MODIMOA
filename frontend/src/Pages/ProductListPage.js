@@ -68,7 +68,7 @@ const ProductListPage = () => {
       <HelmetComponent subTitle={"상품 목록"} />
       <Header>
         <MartList martList={martList} />
-        <ResultField searchKeyword={keyword} />
+        {keyword && <ResultField searchKeyword={keyword} />}
         <SortBar />
       </Header>
       <ProductList

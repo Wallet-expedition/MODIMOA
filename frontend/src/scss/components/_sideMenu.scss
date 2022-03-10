@@ -1,3 +1,18 @@
+.sidemenu-container.sidemenu-hide {
+  @include mobile {
+    display: none;
+  }
+  @include desktop {
+    transform: translateX(-20vw);
+    min-width: 0;
+    width: 0;
+    padding-left: 0;
+    * {
+      display: none;
+    }
+  }
+}
+
 .sidemenu-container {
   display: flex;
   height: calc(100% - 5rem);
@@ -45,6 +60,7 @@
   @include desktop {
     min-width: 20vw;
     padding: 5rem 0 0 2rem;
+    transition: all 0.5s ease-out;
   }
 
   .logo {
