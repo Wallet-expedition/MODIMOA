@@ -9,7 +9,7 @@ import HelmetComponent from "../Components/HelmetComponent";
 const MainPage = () => {
   return (
     <Layout className="main-container">
-      <HelmetComponent subTitle={"메인"} />
+      <HelmetComponent subTitle="메인" />
       <Main />
     </Layout>
   );

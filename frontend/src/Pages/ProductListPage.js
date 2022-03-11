@@ -65,7 +65,7 @@ const ProductListPage = () => {
   };
   return (
     <Layout>
-      <HelmetComponent subTitle={"상품 목록"} />
+      <HelmetComponent subTitle="상품 목록" />
       <Header>
         <MartList martList={martList} />
         {keyword && <ResultField searchKeyword={keyword} />}

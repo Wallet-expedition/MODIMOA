@@ -16,7 +16,7 @@ import addComma from "../Components/Util/AddComma";
 const LogoLong = () => {
   return (
     <Link to="/main">
-      <div className="logo-long-text-container">
+      <div className="logo-long-text-container small-logo">
         <img
           className="logo-image"
           src={`/img/logo_long_and_text_512.png`}
@@ -79,7 +79,7 @@ const ProductListPage = () => {
 
   return (
     <Layout>
-      <HelmetComponent subTitle={"장바구니"} />
+      <HelmetComponent subTitle="장바구니" />
       <LogoLong />
       <SortBar
         savedMoney={savedMoney}

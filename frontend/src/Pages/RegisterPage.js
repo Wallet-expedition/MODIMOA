@@ -8,7 +8,7 @@ import HelmetComponent from "../Components/HelmetComponent";
 const LoginPage = () => {
   return (
     <Layout>
-      <HelmetComponent subTitle={"회원가입"} />
+      <HelmetComponent subTitle="회원가입" />
       <Register />
     </Layout>
   );
