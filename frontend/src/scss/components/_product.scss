@@ -144,8 +144,7 @@
           opacity: 0.4;
         }
       }
-
-      .PrivateTabIndicator-colorSecondary-7 {
+      .MuiTabs-indicator {
         // 빨간 밑줄
         display: none;
       }
@@ -159,9 +158,8 @@
       background-color: $background;
       color: $black;
     }
-    .PrivateTabIndicator-colorSecondary-7 {
+    .MuiTabs-indicator {
       height: 4px;
-      //background-color: $black;
     }
     .MuiTabs-root {
       min-height: 2.5rem;
