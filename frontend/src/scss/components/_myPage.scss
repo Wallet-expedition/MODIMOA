@@ -7,6 +7,10 @@
   justify-content: space-around;
   text-align: center;
 
+  @include desktop {
+    width: 50%;
+  }
+
   .MuiCard-root {
     height: 75%;
     display: flex;
