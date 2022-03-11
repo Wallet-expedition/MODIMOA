@@ -62,13 +62,8 @@ const SortBar = ({
 };
 
 const ProductListPage = () => {
-  const {
-    wishList,
-    purchasedList,
-    getMyBagListFun,
-    wishSaveMoney,
-    savedMoney,
-  } = useSetMyBagList();
+  const { wishList, purchasedList, setNextList, wishSaveMoney, savedMoney } =
+    useSetMyBagList();
   const [filterOption, setFilterOption] = useState(
     PURCHASE_OPTION.BEFORE_PURCHASE
   );
@@ -91,7 +86,7 @@ const ProductListPage = () => {
         filterOption={filterOption}
         wishList={wishList}
         purchasedList={purchasedList}
-        getMyBagListFun={getMyBagListFun}
+        setNextList={setNextList}
       />
     </Layout>
   );
