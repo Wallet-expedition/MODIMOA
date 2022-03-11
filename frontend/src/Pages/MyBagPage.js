@@ -16,10 +16,10 @@ import addComma from "../Components/Util/AddComma";
 const LogoLong = () => {
   return (
     <Link to="/main">
-      <div className="logo-long-text-container">
+      <div className="logo-long-text-container small-logo">
         <img
           className="logo-image"
-          src={`/img/logo_long_and_text_512.png`}
+          src="/img/logo_long_and_text_512.png"
           alt="logo"
         />
       </div>
@@ -62,13 +62,8 @@ const SortBar = ({
 };
 
 const ProductListPage = () => {
-  const {
-    wishList,
-    purchasedList,
-    getMyBagListFun,
-    wishSaveMoney,
-    savedMoney,
-  } = useSetMyBagList();
+  const { wishList, purchasedList, setNextList, wishSaveMoney, savedMoney } =
+    useSetMyBagList();
   const [filterOption, setFilterOption] = useState(
     PURCHASE_OPTION.BEFORE_PURCHASE
   );
@@ -79,7 +74,7 @@ const ProductListPage = () => {
 
   return (
     <Layout>
-      <HelmetComponent subTitle={"장바구니"} />
+      <HelmetComponent subTitle="장바구니" />
       <LogoLong />
       <SortBar
         savedMoney={savedMoney}
@@ -91,7 +86,7 @@ const ProductListPage = () => {
         filterOption={filterOption}
         wishList={wishList}
         purchasedList={purchasedList}
-        getMyBagListFun={getMyBagListFun}
+        setNextList={setNextList}
       />
     </Layout>
   );

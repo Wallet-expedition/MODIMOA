@@ -54,6 +54,7 @@
 
     .mybag-product-info-price-container {
       display: flex;
+      justify-content: center;
       align-items: center;
       @include font-default(400, 0.8rem);
       width: 100%;
@@ -61,6 +62,10 @@
         margin-left: 4%;
         height: 80%;
         cursor: pointer;
+      }
+
+      @include mobile {
+        justify-content: flex-start;
       }
 
       @include desktop {

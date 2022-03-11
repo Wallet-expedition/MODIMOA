@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
-
 import { withRouter } from "react-router-dom";
 import GoogleLogin from "react-google-login";
 import { useDispatch } from "react-redux";
+
 import { registerUser } from "../../../Store/Actions/userAction";
 
 const GoogleICON = () => {
@@ -83,7 +83,7 @@ const GoogleRegisterButton = ({ history }) => {
       onSuccess={googleLoginSuccess}
       onFailure={googleLoginError}
       buttonText="GOOGLE계정으로 회원가입"
-      cookiePolicy={"single_host_origin"}
+      cookiePolicy="single_host_origin"
     />
   );
 };

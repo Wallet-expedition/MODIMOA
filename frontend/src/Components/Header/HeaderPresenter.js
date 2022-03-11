@@ -10,7 +10,7 @@ export const LogoLong = () => {
       <div className="logo-long-text-container">
         <img
           className="logo-image"
-          src={`/img/logo_long_and_text_512.png`}
+          src="/img/logo_long_and_text_512.png"
           alt="logo"
         />
       </div>
@@ -53,7 +53,7 @@ const HeaderPresenter = ({ children }) => {
         <span className="search-btn" onClick={onClickSearch}>
           <img
             className="search-icon"
-            src={`/img/search_icon.png`}
+            src="/img/search_icon.png"
             alt="search-icon"
           ></img>
         </span>
@@ -65,7 +65,7 @@ const HeaderPresenter = ({ children }) => {
     <div className="header-container">
       <LogoLong />
       <SearchBar />
-      <Grid> {children} </Grid>
+      <Grid>{children}</Grid>
     </div>
   );
 };

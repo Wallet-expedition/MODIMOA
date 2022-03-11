@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import AboutPresenter from "./AboutPresenter";
 import { useParams } from "react-router-dom";
+
+import AboutPresenter from "./AboutPresenter";
 
 const AboutContainer = () => {
   const params = useParams();

@@ -9,7 +9,7 @@ import "../scss/About.scss";
 const AboutPage = () => {
   return (
     <Layout className="main-container">
-      <HelmetComponent subTitle={"ABOUT"} />
+      <HelmetComponent subTitle="ABOUT" />
       <AboutContainer />
     </Layout>
   );

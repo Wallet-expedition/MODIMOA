@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 
 import { openedSideMenu } from "../../../Store/Actions/sideMenuAction";
 import detectMobile from "../../Util/DetectMobile";
-
 import SideMenuBtnPresenter from "./SideMenuBtnPresenter";
 
 const SideMenuBtnContainer = ({ showSideMenu, setShowSideMenu }) => {

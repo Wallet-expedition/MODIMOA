@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
 import { useDispatch } from "react-redux";
+
 import ProductListPresenter from "./ProductListPresenter";
 import { getProductList } from "../../Store/Actions/productAction";
 import { throttle } from "../Util/Throttle";

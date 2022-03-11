@@ -8,7 +8,7 @@ import "../scss/Login.scss";
 const LoginPage = () => {
   return (
     <Layout>
-      <HelmetComponent subTitle={"로그인"} />
+      <HelmetComponent subTitle="로그인" />
       <Login />
     </Layout>
   );

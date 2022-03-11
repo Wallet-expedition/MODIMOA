@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
-
 import { withRouter } from "react-router-dom";
 import FacebookLogin from "react-facebook-login";
 import { useDispatch } from "react-redux";
+
 import { loginUser } from "../../../Store/Actions/userAction";
 
 /**
@@ -44,7 +44,7 @@ const FacebookLoginButton = ({ history }) => {
       fields="name,email,picture"
       callback={facebookLoginSuccess}
       icon="fa-facebook-square"
-      textButton={"페이스북으로 로그인"}
+      textButton="페이스북으로 로그인"
     />
   );
 };

@@ -10,10 +10,10 @@ import ProductList from "../Components/ProductList";
 import Layout from "../Components/Layout";
 import Header from "../Components/Header";
 import MartList from "../Components/MartList";
+import HelmetComponent from "../Components/HelmetComponent";
 
 import "../scss/ProductList.scss";
 import "../scss/MartList.scss";
-import HelmetComponent from "../Components/HelmetComponent";
 
 const ResultField = ({ searchKeyword }) => {
   let resultText = "";
@@ -40,11 +40,9 @@ const ProductListPage = () => {
     useSelector((state) => state.martReducer.martList) || initialState;
 
   const location = useLocation();
-  const keyword = location.search
-    ? decodeURI(
-        location.search.match(/\?keyword=(?<keyword>.+)/).groups.keyword
-      )
-    : "";
+  const keyword =
+    location.search &&
+    decodeURI(location.search.match(/\?keyword=(?<keyword>.+)/).groups.keyword);
 
   const SortBar = () => {
     const handleChange = (event, newOption) => {
@@ -65,7 +63,7 @@ const ProductListPage = () => {
   };
   return (
     <Layout>
-      <HelmetComponent subTitle={"상품 목록"} />
+      <HelmetComponent subTitle="상품 목록" />
       <Header>
         <MartList martList={martList} />
         {keyword && <ResultField searchKeyword={keyword} />}

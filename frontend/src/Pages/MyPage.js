@@ -1,15 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import MyPageContent from "../Components/MyPageContent";
 import Layout from "../Components/Layout";
-import { Link } from "react-router-dom";
 import "../scss/MyPage.scss";
 import HelmetComponent from "../Components/HelmetComponent";
 
 const LogoLong = () => {
   return (
     <Link to="/main">
-      <div className="logo-long-text-container">
+      <div className="logo-long-text-container small-logo">
         <img
           className="logo-image"
           src="/img/logo_long_and_text_512.png"
@@ -23,7 +23,7 @@ const LogoLong = () => {
 const MyPage = () => {
   return (
     <Layout className="main-container">
-      <HelmetComponent subTitle={"내 정보"} />
+      <HelmetComponent subTitle="내 정보" />
       <LogoLong />
       <MyPageContent />
     </Layout>

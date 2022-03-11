@@ -9,7 +9,7 @@ import HelmetComponent from "../Components/HelmetComponent";
 const ProductDetailPage = () => {
   return (
     <Layout>
-      <HelmetComponent subTitle={"상품 상세"} />
+      <HelmetComponent subTitle="상품 상세" />
       <Header />
       <ProductDetail />
     </Layout>

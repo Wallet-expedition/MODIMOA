@@ -1,4 +1,5 @@
 import React from "react";
+
 import BuyModal from "./BuyModal";
 import BagProductList from "./BagProductList";
 import BagDescription from "./BagDescription";

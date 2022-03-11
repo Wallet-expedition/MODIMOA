@@ -4,10 +4,11 @@ import React, {
   useLayoutEffect,
   useState,
 } from "react";
-import SideMenuPresenter from "./SideMenuPresenter";
 import { useHistory } from "react-router-dom";
-import { getCookie } from "../../Util/Cookie";
 import { useDispatch } from "react-redux";
+
+import SideMenuPresenter from "./SideMenuPresenter";
+import { getCookie } from "../../Util/Cookie";
 import { logoutUser } from "../../../Store/Actions/userAction";
 import { closedSideMenu } from "../../../Store/Actions/sideMenuAction";
 

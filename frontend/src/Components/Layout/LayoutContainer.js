@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
+
 import detectMobile from "../Util/DetectMobile";
 import LayoutPresenter from "./LayoutPresenter";
 
@@ -28,6 +29,7 @@ const LayoutContainer = ({ children }) => {
       (pathname !== "/" && pathname !== "/main" && !pathname.includes("about")),
     [pathname]
   );
+
   useEffect(() => {
     setIsRequiredBackBtn(isNowPageRequiredBackBtn());
     setIsRequiredSideMenuBtn(isNowPageRequiredSideMenuBtn());

@@ -1,7 +1,8 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
+
 import Intro from "../Components/Intro";
 import "../scss/Intro.scss";
-import { Helmet } from "react-helmet-async";
 
 const IntroPage = () => {
   return (

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
-
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
 import { registerUser } from "../../../Store/Actions/userAction";
 
 /**
@@ -84,7 +84,7 @@ const KaKaoRegisterButton = ({ history }) => {
         alt="kakao-register"
         src="img/kakao_btn.png"
       ></img>
-      <span> 카카오계정으로 회원가입 </span>
+      <span>카카오계정으로 회원가입</span>
     </div>
   );
 };
