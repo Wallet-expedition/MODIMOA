@@ -4,3 +4,11 @@
     max-width: 40%;
   }
 }
+
+.small-logo {
+  @include desktop {
+    img {
+      max-width: 20%;
+    }
+  }
+}
