@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@material-ui/core";
+
 import MartListBtn from "./MartListBtn";
 import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
 
@@ -70,7 +71,7 @@ const MartListModal = ({ martList, setTempMartList, openedSideMenu }) => {
   return (
     <div
       className={`martlist-container ${
-        openedSideMenu ? "martlist-container-right" : ""
+        openedSideMenu && "martlist-container-right"
       }`}
     >
       <span> 보고 싶은 편의점의 제품만 골라서 보실 수 있습니다. </span>

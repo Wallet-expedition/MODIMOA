@@ -1,7 +1,7 @@
 import React from "react";
-
 import { Grid, Button } from "@material-ui/core";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+
 import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
 import addComma from "../Util/AddComma";
 
@@ -19,7 +19,7 @@ const BagButton = ({ handleClick }) => {
 };
 
 const MyBagToastMessage = () => {
-  return <div className="mybag-toast"> 장바구니에 성공적으로 담겼습니다. </div>;
+  return <div className="mybag-toast">장바구니에 성공적으로 담겼습니다.</div>;
 };
 
 const ProductDetailPresenter = ({

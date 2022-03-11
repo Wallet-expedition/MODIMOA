@@ -19,7 +19,7 @@ const LogoLong = () => {
       <div className="logo-long-text-container small-logo">
         <img
           className="logo-image"
-          src={`/img/logo_long_and_text_512.png`}
+          src="/img/logo_long_and_text_512.png"
           alt="logo"
         />
       </div>

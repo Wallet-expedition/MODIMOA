@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Grid } from "@material-ui/core";
+
 import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
 import { selectProduct } from "../../Store/Actions/productAction";
 import addComma from "../Util/AddComma";
@@ -64,9 +65,9 @@ const ProductPresenter = ({
               <del>{addComma(original_price)}</del>
             </span>
           </Grid>
-          <span className="product-info-text"> {product_name} </span>
+          <span className="product-info-text">{product_name}</span>
         </Grid>
-        <span className={martClass}> {mart_name} </span>
+        <span className={martClass}>{mart_name}</span>
       </Grid>
     </Link>
   );

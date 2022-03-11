@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
+
 import {
   getUserInfo,
   getUserProfit,
   withDrawUser,
 } from "../../Store/Actions/userAction";
 import MyPagePresenter from "./MyPagePresenter";
-import { useDispatch } from "react-redux";
 import { logoutUser } from "../../Store/Actions/userAction";
 
 const MyPageContainer = () => {

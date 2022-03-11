@@ -1,5 +1,6 @@
 import { Grid } from "@material-ui/core";
 import SettingsIcon from "@material-ui/icons/Settings";
+
 import addComma from "../Util/AddComma";
 
 const BagBtnContainer = ({
@@ -45,7 +46,7 @@ const BagProduct = ({
         <img src={item.productImage} alt={item.productName} />
       </Grid>
       <Grid className="mybag-product-info-container">
-        <span className="mybag-product-info-text"> {item.productName} </span>
+        <span className="mybag-product-info-text">{item.productName}</span>
         <Grid className="mybag-product-info-price-container">
           <span>
             {`${addComma(item.salePrice)}원 • `} <b>{item.productCnt}개</b>

@@ -1,6 +1,7 @@
 import React, { useState, useLayoutEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import { getOneProduct, wishProduct } from "../../Store/Actions/productAction";
 import ProductDetailPresenter from "./ProductDetailPresenter";
 
@@ -9,7 +10,7 @@ const ProductDetailContainer = () => {
   const [salePercent, setSalePercent] = useState(0);
   const itemFromRedux = useSelector((state) => state.productReducer.product);
   const [item, setItem] = useState({});
-  /* TODO : store와 url끝의 martid가 일치하지 않을 경우, API 호출해서 갱신 */
+
   const dispatch = useDispatch();
   const params = useParams();
 

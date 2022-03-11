@@ -1,8 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import MyPageContent from "../Components/MyPageContent";
 import Layout from "../Components/Layout";
-import { Link } from "react-router-dom";
 import "../scss/MyPage.scss";
 import HelmetComponent from "../Components/HelmetComponent";
 

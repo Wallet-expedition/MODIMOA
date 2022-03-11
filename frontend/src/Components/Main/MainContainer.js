@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
-import MainPresenter from "./MainPresenter";
 import { useHistory } from "react-router";
-import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
 import { useDispatch, useSelector } from "react-redux";
+
+import MainPresenter from "./MainPresenter";
+import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
 import { selectMart } from "../../Store/Actions/martAction";
 
 const initialState = {

@@ -1,8 +1,9 @@
 import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
-import Clock from "../Clock";
 import { Button } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
+
+import Clock from "../Clock";
 import {
   EMART,
   HOMEPLUS,
@@ -78,7 +79,7 @@ const MainPresenter = ({ searchKeyword, handleChange, handleLogoClick }) => {
         <span className="search-btn" onClick={onClickSearch}>
           <img
             className="search-icon"
-            src={`/img/search_icon.png`}
+            src="/img/search_icon.png"
             alt="search-icon"
           ></img>
         </span>
@@ -96,7 +97,7 @@ const MainPresenter = ({ searchKeyword, handleChange, handleLogoClick }) => {
         </article>
 
         <article className="mart">
-          <p> 편의점</p>
+          <p>편의점</p>
           <div className="logo-container">
             <LogoIcon name={CU} handleLogoClick={handleLogoClick} />
             <LogoIcon name={SEVEN_ELEVEN} handleLogoClick={handleLogoClick} />
