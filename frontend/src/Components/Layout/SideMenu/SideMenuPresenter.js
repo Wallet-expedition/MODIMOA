@@ -13,9 +13,11 @@ const SideMenuPresenter = ({
   return (
     <>
       <div className={`sidemenu-container ${showSideMenu || "sidemenu-hide"}`}>
-        <header className="logo">
-          <img alt="logo" src="/img/logo_long_no_empty.png" />
-        </header>
+        <Link to="/main" onClick={handleLink}>
+          <header className="logo">
+            <img alt="logo" src="/img/logo_long_no_empty.png" />
+          </header>
+        </Link>
         <nav className="sidemenu-nav">
           <Link to="/main" onClick={handleLink}>
             홈
