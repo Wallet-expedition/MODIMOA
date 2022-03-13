@@ -10,6 +10,12 @@
     width: 12rem;
     height: 18rem;
     border: 2px solid $line;
+    border-radius: 10px;
+    overflow: hidden;
+    &:hover {
+      transform: scale(1.05);
+    }
+    transition: all 0.3s ease-in-out;
   }
 }
 
