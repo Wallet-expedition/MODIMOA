@@ -45,6 +45,7 @@ body {
   @include desktop {
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.25);
     margin-bottom: 1rem;
+    z-index: 5;
   }
   .MuiGrid-root {
     width: 100%;

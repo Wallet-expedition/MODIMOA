@@ -1,4 +1,4 @@
-// Login page scss
+// Product List page scss
 
 // default scss
 @import "./base/base";
@@ -9,18 +9,25 @@
 @import "./components/product";
 @import "./components/martLabel";
 
-.product-list-container {
+.product-list {
   display: flex;
-  overflow-y: scroll;
   width: 100%;
   flex-direction: column;
   @include desktop {
-    display: grid;
-    height: 100%;
-    grid-template-columns: repeat(5, 1fr);
-    justify-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: calc(100% - 2rem);
+    justify-content: space-evenly;
     gap: 1rem;
+    padding: 1rem;
+  }
+}
 
+.product-list-container {
+  @include desktop {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
     &::-webkit-scrollbar {
       width: 0.5rem;
     }
@@ -35,17 +42,21 @@
       background: none;
     }
   }
+  @include mobile {
+    overflow-y: scroll;
+  }
 }
 
 .product-list-container-container {
-  position: relative;
   @include desktop {
-    width: 100%;
-    overflow-y: hidden;
+    position: relative;
+    overflow: hidden;
+    margin-top: -1rem; // negative margin
   }
   @include mobile {
+    position: relative;
     display: flex;
-    overflow-y: scroll;
+    overflow-y: hidden;
     width: 100%;
     flex-direction: column;
   }
