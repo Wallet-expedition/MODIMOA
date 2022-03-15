@@ -20,3 +20,8 @@ export const PURCHASE_OPTION = Object.freeze({
   TIMEOVER_PURCHASE: 2,
   DELETE_PURCHASE: 100,
 });
+
+export const SORT_OPTION = Object.freeze({
+  PRODUCT_NAME: 0,
+  SALE_PRICE: 1,
+});
