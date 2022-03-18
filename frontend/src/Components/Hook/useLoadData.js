@@ -19,7 +19,7 @@ const getMartCode = (martList) => {
  * @param martList 유저가 선택한 mart
  * @returns [list, getList, isLoadFinish, isSpinnerActive]
  *
- * list: 아이템을 담은 배열입니다. <br />
+ * list: 아이템을 담은 배열입니다.
  *
  * getList: 아이템을 받는 함수입니다. (useInfiniteScroll에서 사용됩니다.)
  *
@@ -28,10 +28,10 @@ const getMartCode = (martList) => {
  * isSpinnerActive: getList를 하는 중인지 알려줍니다. (loading이 되고 있는지)
  */
 const useLoadData = ({ searchKeyword, sortOption, martList }) => {
-  const [list, setList] = useState([]); // 반환될 리스트
-  const [isLoadFinish, setIsLoadFinish] = useState(false); // 전체 리스트를 모두 가져왔는지
-  const [isSpinnerActive, setIsSpinnerActive] = useState(false); // 스피너
-  const [isFirstRender, setIsFirstRender] = useState(true); //
+  const [list, setList] = useState([]);
+  const [isLoadFinish, setIsLoadFinish] = useState(false);
+  const [isSpinnerActive, setIsSpinnerActive] = useState(false);
+  const [isFirstRender, setIsFirstRender] = useState(true);
   const [lastPage, setLastPage] = useState(100);
   const [finalKeyword, setFinalKeyword] = useState(searchKeyword) || "";
   const [finalOption, setFinalOption] = useState(sortOption);
@@ -88,7 +88,6 @@ const useLoadData = ({ searchKeyword, sortOption, martList }) => {
     );
   }, [finalKeyword, finalMartCode, finalOption, searchKeyword, sortOption]);
 
-  // Infinite Scroll
   useLayoutEffect(() => {
     // 마트코드/검색어/필터가 달라졌다면 스크롤과 상관없이 상품을 가져온다.
     // 처음으로 리스트에 접근했다면 스크롤과 상관없이 상품을 가져온다.
