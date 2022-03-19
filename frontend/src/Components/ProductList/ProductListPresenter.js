@@ -3,15 +3,15 @@ import React from "react";
 import Product from "../Product";
 import Loading from "../Loading";
 
-const ProductListPresenter = ({ list, listComponent, isLoading }) => {
+const ProductListPresenter = ({ list, listComponent, isSpinnerActive }) => {
   return (
     <main className="product-list-container-container">
       <div className="product-list-container" ref={listComponent}>
         <div className="product-list">
-          {list.map((item) => {
+          {list.map((item, idx) => {
             return (
               <Product
-                key={item.productId}
+                key={idx}
                 id={item.productId}
                 mart_name={item.martName}
                 product_name={item.productName}
@@ -23,7 +23,7 @@ const ProductListPresenter = ({ list, listComponent, isLoading }) => {
           })}
         </div>
       </div>
-      {isLoading && <Loading />}
+      {isSpinnerActive && <Loading />}
     </main>
   );
 };

@@ -69,8 +69,12 @@ const BuyModalContainer = ({
     }
 
     // update entire list
+    // status : isCntChange -> BEFORE_PURCHASE, !isCntChange -> AFTER_PURCHASE
+    // isCntChange -> item.productCnt == 0 -> DELETE_PURCHASE
     const nextStatus = isCntChange
-      ? PURCHASE_OPTION.BEFORE_PURCHASE
+      ? item.productCnt === 0
+        ? PURCHASE_OPTION.DELETE_PURCHASE
+        : PURCHASE_OPTION.BEFORE_PURCHASE
       : PURCHASE_OPTION.AFTER_PURCHASE;
     const nextList = getUpdatedNextList(
       wishList,

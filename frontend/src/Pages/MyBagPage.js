@@ -10,7 +10,7 @@ import Layout from "../Components/Layout";
 import "../scss/MyBagPage.scss";
 import HelmetComponent from "../Components/HelmetComponent";
 import { PURCHASE_OPTION } from "../Components/Util/Constant";
-import useSetMyBagList from "../Components/Util/useSetMyBagList";
+import useSetMyBagList from "../Components/Hook/useSetMyBagList";
 import addComma from "../Components/Util/AddComma";
 
 const LogoLong = () => {

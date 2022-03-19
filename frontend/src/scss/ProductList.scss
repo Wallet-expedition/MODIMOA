@@ -52,6 +52,7 @@
     position: relative;
     overflow: hidden;
     margin-top: -1rem; // negative margin
+    height: 100%;
   }
   @include mobile {
     position: relative;
