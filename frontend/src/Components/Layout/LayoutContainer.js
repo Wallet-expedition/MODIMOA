@@ -6,7 +6,7 @@ import LayoutPresenter from "./LayoutPresenter";
 
 const LayoutContainer = ({ children }) => {
   const pathname = useLocation().pathname;
-  const [showSideMenu, setShowSideMenu] = useState(false);
+  const [showSideMenu, setShowSideMenu] = useState(!detectMobile());
   const [isRequiredBackBtn, setIsRequiredBackBtn] = useState(true);
   const [isRequiredSideMenuBtn, setIsRequiredSideMenuBtn] = useState(true);
 
