@@ -36,7 +36,6 @@ const useLoadData = ({ searchKeyword, sortOption, martList }) => {
   const [finalKeyword, setFinalKeyword] = useState(searchKeyword) || "";
   const [finalOption, setFinalOption] = useState(sortOption);
   const [finalMartCode, setFinalMartCode] = useState("");
-  const [isOptionChanged, setIsOptionChaged] = useState(false);
   const currentPage = useRef(0);
   const martCode = useRef(getMartCode(martList));
   const dispatch = useDispatch();
@@ -69,50 +68,43 @@ const useLoadData = ({ searchKeyword, sortOption, martList }) => {
     setIsSpinnerActive(false); // 스피너 Off
   }, [dispatch, finalKeyword, finalOption, isLoadFinish, lastPage]);
 
-  const setInitialValue = useCallback(() => {
-    setFinalKeyword(() => searchKeyword);
-    setFinalOption(() => sortOption);
-    currentPage.current = 0;
-    setList(() => []);
-    setIsFirstRender(true);
-    setIsLoadFinish(false);
-    martCode.current = getMartCode(martList);
-    setFinalMartCode(martCode.current);
-  }, [martList, searchKeyword, setFinalKeyword, sortOption]);
-
-  const getIsOptionChanged = useCallback(() => {
-    return (
+  // Page Load Data 연결
+  useLayoutEffect(() => {
+    if (
       searchKeyword !== finalKeyword ||
       finalOption !== sortOption ||
-      martCode.current !== finalMartCode
-    );
-  }, [finalKeyword, finalMartCode, finalOption, searchKeyword, sortOption]);
+      getMartCode(martList) !== martCode.current
+    ) {
+      setFinalKeyword(() => searchKeyword);
+      setFinalOption(() => sortOption);
+      currentPage.current = 0;
+      martCode.current = getMartCode(martList);
+      setList(() => []);
+      setIsFirstRender(true);
+      setIsLoadFinish(false);
+      setFinalMartCode(martCode.current);
+    }
 
-  useLayoutEffect(() => {
-    // 마트코드/검색어/필터가 달라졌다면 스크롤과 상관없이 상품을 가져온다.
-    // 처음으로 리스트에 접근했다면 스크롤과 상관없이 상품을 가져온다.
-    if (isOptionChanged || isFirstRender) {
-      setInitialValue();
-      setIsFirstRender(false);
+    // 처음 렌더가 되는 거라면 스크롤과 상관 없이 상품을 가져온다.
+    if (isFirstRender) {
       getList();
+      setIsFirstRender(false);
     }
   }, [
-    searchKeyword,
-    finalOption,
-    martCode,
-    getList,
+    dispatch,
     isFirstRender,
-    isOptionChanged,
-    setInitialValue,
+    isLoadFinish,
+    lastPage,
+    list,
+    finalKeyword,
+    sortOption,
+    searchKeyword,
+    setFinalKeyword,
+    finalOption,
+    finalMartCode,
+    martList,
+    getList,
   ]);
-
-  // setMartCode before render
-  useLayoutEffect(() => {
-    martCode.current = getMartCode(martList);
-    currentPage.current = 0;
-    setFinalMartCode(martCode.current);
-    setIsOptionChaged(() => getIsOptionChanged());
-  }, [getIsOptionChanged, martCode, martList]);
 
   return [list, getList, isSpinnerActive, isLoadFinish];
 };
