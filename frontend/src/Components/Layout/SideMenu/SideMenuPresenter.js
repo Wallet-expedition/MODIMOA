@@ -32,16 +32,22 @@ const SideMenuPresenter = ({
               </Link>
             </>
           ) : (
-            <Link className="side-logout-btn" onClick={handleLogout}>
-              로그아웃
-            </Link>
+            <>
+              <Link
+                to="/main"
+                className="side-logout-btn"
+                onClick={handleLogout}
+              >
+                로그아웃
+              </Link>
+              <Link to="/mybag" onClick={handleLink}>
+                장바구니
+              </Link>
+              <Link to="/mypage" onClick={handleLink}>
+                마이페이지
+              </Link>
+            </>
           )}
-          <Link to="/mybag" onClick={handleLink}>
-            장바구니
-          </Link>
-          <Link to="/mypage" onClick={handleLink}>
-            마이페이지
-          </Link>
         </nav>
 
         <footer className="sidemenu-foot">
