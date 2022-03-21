@@ -55,7 +55,7 @@ export const getUserInfo = async () => {
 
   return {
     type: GET_USER_INFO,
-    payload: res.data,
+    payload: res,
   };
 };
 

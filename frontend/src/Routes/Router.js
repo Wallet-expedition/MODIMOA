@@ -21,13 +21,13 @@ const Router = () => {
       {detectMobile() && <Route exact path="/" component={Auth(Intro, null)} />}
       {!detectMobile() && <Route exact path="/" component={Auth(Main, null)} />}
       <Route path="/main" component={Auth(Main, null)} />
-      <Route exact path="/list" component={Auth(ProductList, null)} />
-      <Route path="/login" component={Auth(Login, false)} />
-      <Route path="/list/:id" component={Auth(ProductDetail, null)} />
-      <Route path="/mypage" component={Auth(MyPage, true)} />
       <Route path="/mybag" component={Auth(MyBag, true)} />
+      <Route path="/login" component={Auth(Login, false)} />
+      <Route path="/mypage" component={Auth(MyPage, true)} />
+      <Route path="/about/:page" component={Auth(About, null)} />
       <Route path="/register" component={Auth(Register, false)} />
-      <Route path="/about/:page" component={Auth(About, false)} />
+      <Route exact path="/list" component={Auth(ProductList, null)} />
+      <Route path="/list/:id" component={Auth(ProductDetail, null)} />
     </Switch>
   );
 };

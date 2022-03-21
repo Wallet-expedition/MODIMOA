@@ -36,7 +36,7 @@ const MyPageContainer = () => {
   useEffect(() => {
     const setUserInformation = async () => {
       const res = await dispatch(getUserInfo());
-      setUserInfo(res.payload);
+      setUserInfo(res.payload.data);
     };
     const setUserProfit = async () => {
       const res = await dispatch(getUserProfit());
