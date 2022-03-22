@@ -1,25 +1,22 @@
 .my-bag-container {
   display: flex;
-  overflow: scroll;
-  width: 100%;
   flex-direction: column;
+  overflow-y: scroll;
+  width: 100%;
 
   @include desktop {
     display: grid;
     margin: 0 auto;
     height: 100%;
-    grid-template-columns: repeat(4, 1fr);
-    justify-items: center;
+    grid-template-columns: repeat(auto-fill, 12rem);
+    justify-content: space-evenly;
+    width: calc(100% - 2rem);
     gap: 1rem;
-  }
-
-  .product-info-container {
-    width: 55%;
+    padding: 1rem;
   }
 
   &,
-  span,
-  .product-state-info-container {
+  span {
     @include font-default(400, 0.8rem);
   }
 }
