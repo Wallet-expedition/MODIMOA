@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 
-import { getMyBagList } from "../../Store/Actions/productAction";
+import { getMyBagList } from "../Store/Actions/productAction";
 import { PURCHASE_OPTION } from "../Util/Constant";
 
 const useSetMyBagList = () => {

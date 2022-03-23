@@ -1,4 +1,4 @@
-import request from "../../Components/Util/Request";
+import request from "../../Util/Request";
 import {
   GET_USER_INFO,
   GET_USER_PROFIT,

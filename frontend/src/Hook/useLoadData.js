@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback, useLayoutEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { getProductList } from "../../Store/Actions/productAction";
+import { getProductList } from "../Store/Actions/productAction";
 import { SORT_OPTION } from "../Util/Constant";
 
 const getMartCode = (martList) => {

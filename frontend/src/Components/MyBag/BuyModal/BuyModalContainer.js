@@ -7,8 +7,8 @@ import {
   selectProduct,
 } from "../../../Store/Actions/productAction";
 import BuyModalPresenter from "./BuyModalPresenter";
-import { PURCHASE_OPTION } from "../../Util/Constant";
-import getUpdatedNextList from "../../Util/GetUpdatedNextList";
+import { PURCHASE_OPTION } from "../../../Util/Constant";
+import getUpdatedNextList from "../../../Util/GetUpdatedNextList";
 
 const BuyModalContainer = ({
   isBuyModalOpen,

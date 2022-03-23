@@ -13,7 +13,7 @@ import {
   SEVEN_ELEVEN,
   GS25,
   EMART24,
-} from "../Util/Constant";
+} from "../../Util/Constant";
 
 const LogoIcon = ({ name, handleLogoClick }) => {
   return (

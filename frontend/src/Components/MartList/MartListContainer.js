@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { selectMart } from "../../Store/Actions/martAction";
-import detectMobile from "../Util/DetectMobile";
+import detectMobile from "../../Util/DetectMobile";
 import MartListPresenter from "./MartListPresenter";
 
 const MartListContainer = ({ martList }) => {

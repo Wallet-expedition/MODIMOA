@@ -1,6 +1,6 @@
 import SettingsIcon from "@material-ui/icons/Settings";
 
-import { PURCHASE_OPTION } from "../Util/Constant";
+import { PURCHASE_OPTION } from "../../Util/Constant";
 
 const WISH_DESCRIPTION =
   "각 톱니바퀴를 누르면 상품의 수량을 변경하실 수 있습니다.";

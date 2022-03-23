@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-import detectMobile from "../../Util/DetectMobile";
+import detectMobile from "../../../Util/DetectMobile";
 import MartListBtnPresenter from "./MartListBtnPresenter";
 
 const MartListBtnContainer = ({

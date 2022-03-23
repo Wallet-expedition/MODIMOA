@@ -7,8 +7,8 @@ import {
   GET_MY_BAG_LIST,
   CHANGE_MY_BAG_PRODUCT_CNT,
 } from "./type";
-import request from "../../Components/Util/Request";
-import detectMobile from "../../Components/Util/DetectMobile";
+import request from "../../Util/Request";
+import detectMobile from "../../Util/DetectMobile";
 
 export const selectProduct = (product_info) => {
   return {

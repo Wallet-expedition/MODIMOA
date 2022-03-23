@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Grid } from "@material-ui/core";
 
-import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
+import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../../Util/Constant";
 import { selectProduct } from "../../Store/Actions/productAction";
-import addComma from "../Util/AddComma";
+import addComma from "../../Util/AddComma";
 
 const ProductPresenter = ({
   id,

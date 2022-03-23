@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { Grid } from "@material-ui/core";
 import SettingsIcon from "@material-ui/icons/Settings";
 
-import addComma from "../Util/AddComma";
+import addComma from "../../Util/AddComma";
 
 const BagBtnContainer = ({
   id,

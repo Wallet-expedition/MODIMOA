@@ -1,6 +1,6 @@
 import NoData from "../NoData";
 import BagProduct from "./BagProduct";
-import { PURCHASE_OPTION } from "../Util/Constant";
+import { PURCHASE_OPTION } from "../../Util/Constant";
 
 const MyBagProductList = ({
   list,

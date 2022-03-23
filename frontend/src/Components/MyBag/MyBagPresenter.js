@@ -3,7 +3,7 @@ import React from "react";
 import BuyModal from "./BuyModal";
 import BagProductList from "./BagProductList";
 import BagDescription from "./BagDescription";
-import { PURCHASE_OPTION } from "../Util/Constant";
+import { PURCHASE_OPTION } from "../../Util/Constant";
 
 const MyBagPresenter = ({
   wishList,
