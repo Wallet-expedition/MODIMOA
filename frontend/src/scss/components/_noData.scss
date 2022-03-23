@@ -1,0 +1,16 @@
+.no-data-image-container {
+  width: 100%;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+
+    @include mobile {
+      width: auto;
+    }
+  }
+
+  .no-data-desc {
+    @include font-default(500, 1rem);
+  }
+}
