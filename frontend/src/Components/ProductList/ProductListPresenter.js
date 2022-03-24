@@ -2,10 +2,13 @@ import React from "react";
 
 import Product from "../Product";
 import Loading from "../Loading";
+import NoData from "../NoData";
 
 const ProductListPresenter = ({ list, listComponent, isSpinnerActive }) => {
   return (
     <main className="product-list-container-container">
+      {isSpinnerActive && <Loading />}
+      {list.length === 0 && !isSpinnerActive && <NoData />}
       <div className="product-list-container" ref={listComponent}>
         <div className="product-list">
           {list.map((item, idx) => {
@@ -23,7 +26,6 @@ const ProductListPresenter = ({ list, listComponent, isSpinnerActive }) => {
           })}
         </div>
       </div>
-      {isSpinnerActive && <Loading />}
     </main>
   );
 };

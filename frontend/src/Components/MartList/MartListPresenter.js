@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@material-ui/core";
 
 import MartListBtn from "./MartListBtn";
-import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
+import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../../Util/Constant";
 
 const LogoIcon = ({ name, martList, setTempMartList }) => {
   let martClass = "martlist-mart-icon";

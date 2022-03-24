@@ -1,4 +1,4 @@
-import detectMobile from "../../Components/Util/DetectMobile";
+import detectMobile from "../../Util/DetectMobile";
 import { CLOSED_SIDE_MENU, OPENED_SIDE_MENU } from "../Actions/type";
 
 const initialState = {

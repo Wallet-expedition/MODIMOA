@@ -4,7 +4,7 @@ import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBeforeRounded";
 import NavigateNextIcon from "@material-ui/icons/NavigateNextRounded";
 
-import detectMobile from "../../Util/DetectMobile";
+import detectMobile from "../../../Util/DetectMobile";
 
 const BtnIcon = ({ showSideMenu }) => {
   const isMobile = detectMobile();

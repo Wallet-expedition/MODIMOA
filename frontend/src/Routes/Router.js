@@ -12,8 +12,8 @@ import {
   Register,
   About,
 } from "../Pages";
-import Auth from "../Components/Util/Auth";
-import detectMobile from "../Components/Util/DetectMobile";
+import Auth from "../Util/Auth";
+import detectMobile from "../Util/DetectMobile";
 
 const Router = () => {
   return (

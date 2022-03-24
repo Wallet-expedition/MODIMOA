@@ -5,13 +5,13 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { Link } from "react-router-dom";
 
+import "../scss/MyBagPage.scss";
+import addComma from "../Util/AddComma";
 import MyBag from "../Components/MyBag";
 import Layout from "../Components/Layout";
-import "../scss/MyBagPage.scss";
+import { PURCHASE_OPTION } from "../Util/Constant";
+import useSetMyBagList from "../Hook/useSetMyBagList";
 import HelmetComponent from "../Components/HelmetComponent";
-import { PURCHASE_OPTION } from "../Components/Util/Constant";
-import useSetMyBagList from "../Components/Hook/useSetMyBagList";
-import addComma from "../Components/Util/AddComma";
 
 const LogoLong = () => {
   return (

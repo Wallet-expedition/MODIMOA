@@ -2,8 +2,8 @@ import React from "react";
 import { Grid, Button } from "@material-ui/core";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
-import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../Util/Constant";
-import addComma from "../Util/AddComma";
+import { CU, SEVEN_ELEVEN, GS25, EMART24 } from "../../Util/Constant";
+import addComma from "../../Util/AddComma";
 
 const BagButton = ({ handleClick }) => {
   return (

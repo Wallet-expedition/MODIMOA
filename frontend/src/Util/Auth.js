@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import React, { useCallback, useLayoutEffect } from "react";
 
 import { getCookie } from "./Cookie";
-import { getUserInfo } from "../../Store/Actions/userAction";
+import { getUserInfo } from "../Store/Actions/userAction";
 
 /**
  *

@@ -6,9 +6,9 @@ import {
   getUserInfo,
   getUserProfit,
   withDrawUser,
+  logoutUser,
 } from "../../Store/Actions/userAction";
 import MyPagePresenter from "./MyPagePresenter";
-import { logoutUser } from "../../Store/Actions/userAction";
 
 const MyPageContainer = () => {
   const [userInfo, setUserInfo] = useState({});

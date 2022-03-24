@@ -1,6 +1,6 @@
 import ProductListPresenter from "./ProductListPresenter";
-import useInfiniteScroll from "../Hook/useInfiniteScroll";
-import useLoadData from "../Hook/useLoadData";
+import useInfiniteScroll from "../../Hook/useInfiniteScroll";
+import useLoadData from "../../Hook/useLoadData";
 
 const ProductListContainer = ({ martList, searchKeyword, sortOption }) => {
   const [list, getList, isSpinnerActive, isLoadFinish] = useLoadData({

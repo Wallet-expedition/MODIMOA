@@ -1,7 +1,8 @@
+import { useCallback } from "react";
 import { Grid } from "@material-ui/core";
 import SettingsIcon from "@material-ui/icons/Settings";
 
-import addComma from "../Util/AddComma";
+import addComma from "../../Util/AddComma";
 
 const BagBtnContainer = ({
   id,
@@ -40,10 +41,19 @@ const BagProduct = ({
   handleDeleteClick,
   isWishDisplay,
 }) => {
+  const handleImageError = useCallback((e) => {
+    e.currentTarget.onerror = null;
+    e.currentTarget.src = "/img/logo_beer_256.png";
+  }, []);
+
   return (
     <Grid className="mybag-product-container">
       <Grid className="mybag-product-image-container">
-        <img src={item.productImage} alt={item.productName} />
+        <img
+          src={item.productImage}
+          alt={item.productName}
+          onError={handleImageError}
+        />
       </Grid>
       <Grid className="mybag-product-info-container">
         <span className="mybag-product-info-text">{item.productName}</span>

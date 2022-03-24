@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import SideMenuPresenter from "./SideMenuPresenter";
-import { getCookie } from "../../Util/Cookie";
+import { getCookie } from "../../../Util/Cookie";
 import { logoutUser } from "../../../Store/Actions/userAction";
 import { closedSideMenu } from "../../../Store/Actions/sideMenuAction";
 
