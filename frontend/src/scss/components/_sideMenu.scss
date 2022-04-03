@@ -3,7 +3,7 @@
     display: none;
   }
   @include desktop {
-    transform: translateX(-20vw);
+    transform: translateX(calc(-20vw - 2rem));
     width: 0;
     padding-left: 0;
   }
@@ -54,9 +54,7 @@
   }
 
   @include desktop {
-    position: relative;
     width: 20vw;
-    min-width: 0;
     padding: 5rem 0 0 2rem;
     transform: translateX(0);
     transition: all 0.5s ease-out;
