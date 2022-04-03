@@ -3,13 +3,9 @@
     display: none;
   }
   @include desktop {
-    transform: translateX(-20vw);
-    min-width: 0;
+    transform: translateX(calc(-20vw - 2rem));
     width: 0;
     padding-left: 0;
-    * {
-      display: none;
-    }
   }
 }
 
@@ -58,8 +54,9 @@
   }
 
   @include desktop {
-    min-width: 20vw;
+    width: 20vw;
     padding: 5rem 0 0 2rem;
+    transform: translateX(0);
     transition: all 0.5s ease-out;
   }
 
