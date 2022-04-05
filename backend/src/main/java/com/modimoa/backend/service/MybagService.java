@@ -9,7 +9,6 @@ import com.modimoa.backend.errorhandling.CustomException;
 import com.modimoa.backend.repository.MybagRepository;
 import com.modimoa.backend.repository.ProductRepository;
 import com.modimoa.backend.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,14 +20,16 @@ import static com.modimoa.backend.errorhandling.ErrorCode.OBJECT_NOTFOUND_ERROR;
 @Transactional
 public class MybagService {
 
-	@Autowired
-	private MybagRepository mybagRepository;
 
-	@Autowired
-	private UserRepository userRepository;
+	private final MybagRepository mybagRepository;
+	private final UserRepository userRepository;
+	private final ProductRepository productRepository;
 
-	@Autowired
-	private ProductRepository productRepository;
+	public MybagService(MybagRepository mybagRepository, UserRepository userRepository, ProductRepository productRepository){
+		this.mybagRepository = mybagRepository;
+		this.userRepository = userRepository;
+		this.productRepository = productRepository;
+	}
 
 	// 전체 물품 가져와서 반환
 	public List<MybagProduct> findAll(String accessToken) {
@@ -41,6 +42,7 @@ public class MybagService {
 					.id(mybag.getMybagId())
 					.count(mybag.getCount())
 					.status(mybag.getStatus()).build();
+
 			productList.add(mybagProduct);
 		}
 		return productList;
@@ -101,6 +103,7 @@ public class MybagService {
 
 		Optional<User> user = userRepository.findByAccessToken(accessToken);
 		user.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
+
 
 		int originalPriceBeforeBuy = 0;
 		int salePriceBeforeBuy = 0;

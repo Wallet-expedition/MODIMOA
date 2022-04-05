@@ -25,7 +25,7 @@ import static com.modimoa.backend.errorhandling.ErrorCode.OBJECT_NOTFOUND_ERROR;
 public class UserService {
 
     private final UserRepository userRepository;
-  
+
     @Autowired
     private MybagRepository mybagRepository;
 
