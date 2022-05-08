@@ -3,6 +3,7 @@ package com.modimoa.backend.controller;
 
 import com.modimoa.backend.domain.User;
 import com.modimoa.backend.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,11 +19,11 @@ import java.util.Map;
 
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/user")
 public class UserController {
 
-	@Autowired
-	private UserService userService;
+	private final UserService userService;
 
 	// 테스트용 사용자 모두 가져오는 api
 	@GetMapping("")

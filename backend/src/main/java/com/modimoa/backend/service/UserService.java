@@ -5,6 +5,7 @@ import com.modimoa.backend.domain.User;
 import com.modimoa.backend.errorhandling.CustomException;
 import com.modimoa.backend.repository.MybagRepository;
 import com.modimoa.backend.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,18 +21,13 @@ import java.util.Optional;
 import static com.modimoa.backend.errorhandling.ErrorCode.MEMBER_CONFLICT_ERROR;
 import static com.modimoa.backend.errorhandling.ErrorCode.OBJECT_NOTFOUND_ERROR;
 
-@Transactional
 @Service
+@AllArgsConstructor
+@Transactional
 public class UserService {
 
     private final UserRepository userRepository;
-  
-    @Autowired
-    private MybagRepository mybagRepository;
-
-
-    public UserService(UserRepository userRepository) {this.userRepository = userRepository;
-    }
+    private final MybagRepository mybagRepository;
 
     public String signUp(String userImage, String userEmail, String oauthCookie) {
         Optional <User> user = userRepository.findByUserEmail(userEmail);

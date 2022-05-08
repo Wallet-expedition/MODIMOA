@@ -2,6 +2,7 @@ package com.modimoa.backend.controller;
 
 import com.modimoa.backend.domain.Product;
 import com.modimoa.backend.service.ProductService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,11 +13,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/product")
 public class ProductController {
 
-	@Autowired
-	private ProductService productService;
+	private final ProductService productService;
 
 	// 전체 물품 가져오는 기능
 	@GetMapping("")

@@ -4,6 +4,7 @@ import com.modimoa.backend.domain.Mart;
 import com.modimoa.backend.domain.Product;
 import com.modimoa.backend.errorhandling.CustomException;
 import com.modimoa.backend.repository.ProductRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -16,16 +17,10 @@ import static com.modimoa.backend.errorhandling.ErrorCode.INVALID_QUERY_ERROR;
 import static com.modimoa.backend.errorhandling.ErrorCode.OBJECT_NOTFOUND_ERROR;
 
 @Service
+@AllArgsConstructor
 public class ProductService {
-//	@Autowired
-//	ProductRepository productRepository;
-
 	private final ProductRepository productRepository;
 
-	public ProductService(ProductRepository productRepository){
-		this.productRepository = productRepository;
-	}
-	
 	// Dao를 통해 모든 물품을 가져와서 반환하는 page형 함수
 	public Page<Product> getAllProducts(Pageable pageable) {
 		return productRepository.findAll(pageable);

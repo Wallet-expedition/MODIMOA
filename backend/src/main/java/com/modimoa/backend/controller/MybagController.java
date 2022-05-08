@@ -2,7 +2,7 @@ package com.modimoa.backend.controller;
 
 import com.modimoa.backend.domain.MybagProduct;
 import com.modimoa.backend.service.MybagService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping(value = "/api/mybag")
 public class MybagController {
 
-	@Autowired
-	private MybagService mybagService;
+	private final MybagService mybagService;
 
 	// 장바구니에서 user의 물건 조회하는 기능
 	@GetMapping("")

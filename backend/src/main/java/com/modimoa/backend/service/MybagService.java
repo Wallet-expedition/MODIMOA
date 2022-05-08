@@ -9,6 +9,7 @@ import com.modimoa.backend.errorhandling.CustomException;
 import com.modimoa.backend.repository.MybagRepository;
 import com.modimoa.backend.repository.ProductRepository;
 import com.modimoa.backend.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,17 +19,13 @@ import java.util.*;
 import static com.modimoa.backend.errorhandling.ErrorCode.OBJECT_NOTFOUND_ERROR;
 
 @Service
+@AllArgsConstructor
 @Transactional
 public class MybagService {
 
-	@Autowired
-	private MybagRepository mybagRepository;
-
-	@Autowired
-	private UserRepository userRepository;
-
-	@Autowired
-	private ProductRepository productRepository;
+	private final MybagRepository mybagRepository;
+	private final UserRepository userRepository;
+	private final ProductRepository productRepository;
 
 	// 전체 물품 가져와서 반환
 	public List<MybagProduct> findAll(String accessToken) {
