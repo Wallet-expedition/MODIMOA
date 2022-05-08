@@ -15,46 +15,43 @@ import java.util.List;
 @Entity
 @Getter
 public class User extends BaseTimeEntity {
+    @Id
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	public static final long serialVersionUID = -6184044926029805156L;
+    @Column(name = "user_email")
+    private String userEmail;
 
-	@Id //primary key
-	@Column(name = "user_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+    @Column(name = "user_image")
+    private String userImage;
 
-	@Column(name = "user_email")
-	private String userEmail;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Mybag> mybags = new ArrayList<>();
 
-	@Column(name = "user_image")
-	private String userImage;
+    @Column(name = "oauth_token")
+    private String oauthToken;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "user")
-	private List<Mybag> mybags = new ArrayList<>();
+    @Column(name = "access_token")
+    private String accessToken;
 
-	@Column(name = "oauth_token")
-	private String oauthToken;
+    @Builder
+    public User(String userEmail, String userImage, String oauthToken, String accessToken) {
+        this.userEmail = userEmail;
+        this.userImage = userImage;
+        this.oauthToken = oauthToken;
+        this.accessToken = accessToken;
+    }
 
-	@Column(name = "access_token")
-	private String accessToken;
+    public void updateTokens(String accessToken) {
+        this.accessToken = accessToken;
+    }
 
-	@Builder
-	public User(String userEmail, String userImage, String oauthToken, String accessToken) {
-		this.userEmail = userEmail;
-		this.userImage = userImage;
-		this.oauthToken = oauthToken;
-		this.accessToken = accessToken;
-	}
+    @Override
+    public String toString() {
+        return String.format("User[user_id=%d, user_email='%s', user_image='%s',oauth_token = '%s',access_token ='%s'," +
+                "refresh_token =]", id, userEmail, userImage, oauthToken, accessToken);
 
-	public void updateTokens(String accessToken) {
-		this.accessToken = accessToken;
-	}
-
-	@Override
-	public String toString() {
-		return String.format("User[user_id=%d, user_email='%s', user_image='%s',oauth_token = '%s',access_token ='%s'," +
-				"refresh_token =]", id, userEmail, userImage, oauthToken, accessToken);
-
-	}
+    }
 }

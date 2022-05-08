@@ -10,14 +10,13 @@ import java.util.Optional;
 
 @Repository
 public interface MybagRepository extends JpaRepository<Mybag, Long> {
+    List<Mybag> findByUser(User user);
 
-	List<Mybag> findByUser(User user);
+    void deleteByUser(User user);
 
-	void deleteByUser(User user);
+    void deleteByMybagId(Long mybagId);
 
-	void deleteByMybagId(Long mybagId);
+    Optional<Mybag> findByMybagId(Long mybagId);
 
-	Optional<Mybag> findByMybagId(Long mybagId);
-
-	Optional<Mybag> findByUserAndProductIdAndStatus(User user, Long productId, int i);
+    Optional<Mybag> findByUserAndProductIdAndStatus(User user, Long productId, int i);
 }
