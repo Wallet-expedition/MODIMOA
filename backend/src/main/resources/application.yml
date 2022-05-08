@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/modimoa
+    username: root
+    passowrd: 2835
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
