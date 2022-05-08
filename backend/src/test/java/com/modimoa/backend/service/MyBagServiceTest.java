@@ -1,4 +1,4 @@
-package com.modimoa.backend.service;
-
-public class MyBagServiceTest {
-}
+//package com.modimoa.backend.service;
+//
+//public class MyBagServiceTest {
+//}
