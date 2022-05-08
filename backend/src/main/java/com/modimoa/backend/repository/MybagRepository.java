@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface MybagRepository extends JpaRepository<Mybag, Long> {
-
 	List<Mybag> findByUser(User user);
 
 	void deleteByUser(User user);

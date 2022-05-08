@@ -1,8 +1,6 @@
 package com.modimoa.backend.controller;
 
-import com.modimoa.backend.domain.Mybag;
 import com.modimoa.backend.domain.MybagProduct;
-import com.modimoa.backend.domain.Product;
 import com.modimoa.backend.service.MybagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/mybag")

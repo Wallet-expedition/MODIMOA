@@ -14,7 +14,7 @@ public class Product extends BaseTimeEntity implements Serializable {
 
 	public static final long serialVersionUID = -6184044926029805156L;
 
-	@Id//primary key
+	@Id
 	@Column(name = "product_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public long productId;
