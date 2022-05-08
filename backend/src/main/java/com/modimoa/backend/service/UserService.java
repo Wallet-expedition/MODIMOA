@@ -30,7 +30,9 @@ public class UserService {
     private final MybagRepository mybagRepository;
 
     public void signUp(String userImage, String userEmail, String oauthCookie) {
-        userRepository.findByUserEmail(userEmail).orElseThrow(() -> new CustomException(MEMBER_CONFLICT_ERROR));
+        if (userRepository.findByUserEmail(userEmail).isPresent()) {
+            throw new CustomException(MEMBER_CONFLICT_ERROR);
+        }
         userRepository.save(new User(userEmail,userImage,oauthCookie,"new"));
     }
 
