@@ -33,20 +33,20 @@ public class UserService {
         if (userRepository.findByUserEmail(userEmail).isPresent()) {
             throw new CustomException(MEMBER_CONFLICT_ERROR);
         }
-        userRepository.save(new User(userEmail,userImage,oauthCookie,"new"));
+        userRepository.save(new User(userEmail, userImage, oauthCookie, "new"));
     }
 
-    public String login(String userEmail){
+    public String login(String userEmail) {
         User user = userRepository.findByUserEmail(userEmail).orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
         LocalTime time = LocalTime.now();
-        String hourPlusMinute = String.valueOf(time.getHour()+ time.getMinute());
-        String accessToken = EncryptionUtils.encryptSHA256(userEmail+hourPlusMinute+"access");
+        String hourPlusMinute = String.valueOf(time.getHour() + time.getMinute());
+        String accessToken = EncryptionUtils.encryptSHA256(userEmail + hourPlusMinute + "access");
         user.updateTokens(accessToken);
 
         return accessToken;
     }
 
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
@@ -65,7 +65,7 @@ public class UserService {
     }
 
     public Map<String, String> getUserInfo(String token) {
-        Map<String, String> userInfo= new HashMap<>();
+        Map<String, String> userInfo = new HashMap<>();
         User user = userRepository.findByAccessToken(token).orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
         userInfo.put("user_email", user.getUserEmail());
         userInfo.put("user_image", user.getUserImage());

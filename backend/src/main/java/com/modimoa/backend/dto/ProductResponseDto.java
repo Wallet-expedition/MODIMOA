@@ -39,6 +39,4 @@ public class ProductResponseDto extends BaseResponseDto {
         dto.setBaseResponse(entity);
         return dto;
     }
-
-
 }

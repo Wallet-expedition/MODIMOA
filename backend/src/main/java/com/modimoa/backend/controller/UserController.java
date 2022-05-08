@@ -23,86 +23,82 @@ import java.util.Map;
 @RequestMapping("/api/user")
 public class UserController {
 
-	private final UserService userService;
+    private final UserService userService;
 
-	// 테스트용 사용자 모두 가져오는 api
-	@GetMapping("")
-	public ResponseEntity<String> getAllUsers(@RequestHeader HttpHeaders requestHeader) {
+    // 테스트용 사용자 모두 가져오는 api
+    @GetMapping("")
+    public ResponseEntity<String> getAllUsers(@RequestHeader HttpHeaders requestHeader) {
+        String cookie = requestHeader.toSingleValueMap().get("authorization");
+        String result = "";
+        for (User u : userService.getAllUsers()) {
+            result += u + "</br>";
+        }
+        return new ResponseEntity<>(result + cookie, HttpStatus.OK);
+    }
 
-		String cookie = requestHeader.toSingleValueMap().get("authorization");
-		String result = "";
+    // 회원가입 기능
+    @PostMapping("/new")
+    public ResponseEntity<String> addUserByToken(@RequestHeader HttpHeaders requestHeader, @RequestBody HashMap<String, String> map) {
+        String userImage = map.get("user_image");
+        String userEmail = map.get("user_email");
+        String oauthCookie = requestHeader.toSingleValueMap().get("authorization");
+        userService.signUp(userImage, userEmail, oauthCookie);
 
-		for (User u : userService.getAllUsers()) {
-			result += u + "</br>";
-		}
-		return new ResponseEntity<>(result + cookie, HttpStatus.OK);
-	}
+        return new ResponseEntity<>(userEmail + " 회원가입 되었습니다.", HttpStatus.CREATED);
+    }
 
-	// 회원가입 기능
-	@PostMapping("/new")
-	public ResponseEntity<String> addUserByToken(@RequestHeader HttpHeaders requestHeader, @RequestBody HashMap<String, String> map) {
-		String userImage = map.get("user_image");
-		String userEmail = map.get("user_email");
+    // 로그인 기능, HttpHeaders로 사용자 토큰 받음
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUserByToken(HttpServletResponse response, @RequestBody HashMap<String, String> map) {
+        String userEmail = map.get("user_email");
+        String accessToken = userService.login(userEmail);
+        ResponseCookie cookie = ResponseCookie.from("accessToken", accessToken)
+                .path("/")
+                .secure(true)
+                .httpOnly(false)
+                .maxAge(60 * 60 * 24 * 15)
+                .sameSite("None")
+                .domain(".modimoa.ga")
+                .build();
+        response.setHeader("Set-Cookie", cookie.toString());
 
-		String oauthCookie = requestHeader.toSingleValueMap().get("authorization");
-		userService.signUp(userImage, userEmail, oauthCookie);
+        return new ResponseEntity<>(userEmail + " 로그인 되었습니다.", HttpStatus.OK);
+    }
 
-		return new ResponseEntity<>(userEmail + " 회원가입 되었습니다.", HttpStatus.CREATED);
-	}
+    // 회원탈퇴 기능
+    @DeleteMapping("/withdrawal")
+    public ResponseEntity<String> withdrawal(@RequestHeader HttpHeaders requestHeader) {
+        String withdrawal = requestHeader.toSingleValueMap().get("authorization");
+        String userEmail = userService.withdrawal(withdrawal);
 
-	// 로그인 기능, HttpHeaders로 사용자 토큰 받음
-	@PostMapping("/login")
-	public ResponseEntity<String> loginUserByToken(HttpServletResponse response, @RequestBody HashMap<String, String> map) {
-		String userEmail = map.get("user_email");
-		String accessToken = userService.login(userEmail);
-		ResponseCookie cookie = ResponseCookie.from("accessToken", accessToken)
-				.path("/")
-				.secure(true)
-				.httpOnly(false)
-				.maxAge(60 * 60 * 24 * 15)
-				.sameSite("None")
-				.domain(".modimoa.ga")
-				.build();
-		response.setHeader("Set-Cookie", cookie.toString());
-
-		return new ResponseEntity<>(userEmail + " 로그인 되었습니다.", HttpStatus.OK);
-	}
-
-	// 회원탈퇴 기능
-	@DeleteMapping("/withdrawal")
-	public ResponseEntity<String> withdrawal(@RequestHeader HttpHeaders requestHeader) {
-
-		String withdrawal = requestHeader.toSingleValueMap().get("authorization");
-		String userEmail = userService.withdrawal(withdrawal);
-
-		return new ResponseEntity<>(userEmail + " 회원 탈퇴 되었습니다.", HttpStatus.OK);
-	}
+        return new ResponseEntity<>(userEmail + " 회원 탈퇴 되었습니다.", HttpStatus.OK);
+    }
 
 
-	// 로그아웃 기능
-	@PostMapping("/logout")
-	public ResponseEntity<String> logoutUserByToken(HttpServletResponse response, @RequestHeader HttpHeaders requestHeader) {
-		String logoutCookie = requestHeader.toSingleValueMap().get("authorization");
-		String userEmail = userService.logout(logoutCookie);
-		ResponseCookie cookie = ResponseCookie.from("accessToken", null)
-				.path("/")
-				.secure(true)
-				.httpOnly(false)
-				.maxAge(-1)
-				.sameSite("None")
-				.domain(".modimoa.ga")
-				.build();
-		response.setHeader("Set-Cookie", cookie.toString());
+    // 로그아웃 기능
+    @PostMapping("/logout")
+    public ResponseEntity<String> logoutUserByToken(HttpServletResponse response, @RequestHeader HttpHeaders requestHeader) {
+        String logoutCookie = requestHeader.toSingleValueMap().get("authorization");
+        String userEmail = userService.logout(logoutCookie);
+        ResponseCookie cookie = ResponseCookie.from("accessToken", null)
+                .path("/")
+                .secure(true)
+                .httpOnly(false)
+                .maxAge(-1)
+                .sameSite("None")
+                .domain(".modimoa.ga")
+                .build();
+        response.setHeader("Set-Cookie", cookie.toString());
 
-		return new ResponseEntity<>(userEmail+" 로그아웃 되었습니다.", HttpStatus.OK);
-	}
+        return new ResponseEntity<>(userEmail + " 로그아웃 되었습니다.", HttpStatus.OK);
+    }
 
-	// 로그인 상태인지 확인 및 유저 정보 반환
-	@PostMapping("/info")
-	public ResponseEntity<Map> getUserInfo(@RequestHeader HttpHeaders requestHeader) {
-		String infoCookie = requestHeader.toSingleValueMap().get("authorization");
-		Map result = userService.getUserInfo(infoCookie);
+    // 로그인 상태인지 확인 및 유저 정보 반환
+    @PostMapping("/info")
+    public ResponseEntity<Map> getUserInfo(@RequestHeader HttpHeaders requestHeader) {
+        String infoCookie = requestHeader.toSingleValueMap().get("authorization");
+        Map result = userService.getUserInfo(infoCookie);
 
-		return new ResponseEntity<>(result, HttpStatus.OK);
-	}
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }
