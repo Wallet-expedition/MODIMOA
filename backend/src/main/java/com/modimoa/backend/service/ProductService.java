@@ -70,10 +70,8 @@ public class ProductService {
 		return pageList;
 	}
 
-	public Optional<Product> getProductById(Long id) {
-		Optional<Product> product = productRepository.findById(id);
-		product.orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
-
+	public Product getProductById(Long id) {
+		Product product = productRepository.findById(id).orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
 		return product;
 	}
 

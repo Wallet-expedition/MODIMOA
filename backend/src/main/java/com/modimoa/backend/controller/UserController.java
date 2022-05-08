@@ -52,12 +52,9 @@ public class UserController {
 
 	// 로그인 기능, HttpHeaders로 사용자 토큰 받음
 	@PostMapping("/login")
-	public ResponseEntity<String> loginUserByToken(HttpServletResponse response, @RequestBody HashMap<String, String> map) throws NoSuchAlgorithmException {
+	public ResponseEntity<String> loginUserByToken(HttpServletResponse response, @RequestBody HashMap<String, String> map) {
 		String userEmail = map.get("user_email");
-
-		//쿠키 유저내 검색 있으면 토큰 만들어서 반환, 없으면 실패 반환
 		String accessToken = userService.login(userEmail);
-
 		ResponseCookie cookie = ResponseCookie.from("accessToken", accessToken)
 				.path("/")
 				.secure(true)
@@ -66,7 +63,6 @@ public class UserController {
 				.sameSite("None")
 				.domain(".modimoa.ga")
 				.build();
-
 		response.setHeader("Set-Cookie", cookie.toString());
 
 		return new ResponseEntity<>(userEmail + " 로그인 되었습니다.", HttpStatus.OK);
@@ -86,10 +82,8 @@ public class UserController {
 	// 로그아웃 기능
 	@PostMapping("/logout")
 	public ResponseEntity<String> logoutUserByToken(HttpServletResponse response, @RequestHeader HttpHeaders requestHeader) {
-
 		String logoutCookie = requestHeader.toSingleValueMap().get("authorization");
 		String userEmail = userService.logout(logoutCookie);
-
 		ResponseCookie cookie = ResponseCookie.from("accessToken", null)
 				.path("/")
 				.secure(true)
@@ -98,7 +92,6 @@ public class UserController {
 				.sameSite("None")
 				.domain(".modimoa.ga")
 				.build();
-
 		response.setHeader("Set-Cookie", cookie.toString());
 
 		return new ResponseEntity<>(userEmail+" 로그아웃 되었습니다.", HttpStatus.OK);
@@ -107,12 +100,9 @@ public class UserController {
 	// 로그인 상태인지 확인 및 유저 정보 반환
 	@PostMapping("/info")
 	public ResponseEntity<Map> getUserInfo(@RequestHeader HttpHeaders requestHeader) {
-
 		String infoCookie = requestHeader.toSingleValueMap().get("authorization");
 		Map result = userService.getUserInfo(infoCookie);
 
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
-
-
 }

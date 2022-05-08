@@ -3,14 +3,11 @@ package com.modimoa.backend.controller;
 import com.modimoa.backend.domain.Product;
 import com.modimoa.backend.service.ProductService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -27,7 +24,7 @@ public class ProductController {
 
 	// 특정 id 물건 가져오는 기능
 	@GetMapping("/{id}")
-	public ResponseEntity<Optional<Product>> getFilteredProduct(@PathVariable Long id) {
+	public ResponseEntity<Product> getFilteredProduct(@PathVariable Long id) {
 		return new ResponseEntity<>(productService.getProductById(id), HttpStatus.OK);
 	}
 
