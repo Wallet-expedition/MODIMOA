@@ -12,10 +12,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 public class Mybag extends BaseTimeEntity {
-
-	public static final long serialVersionUID = -6184044926029805156L;
-
-	@Id//primary key
+	@Id
 	@Column(name = "mybag_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public long mybagId;

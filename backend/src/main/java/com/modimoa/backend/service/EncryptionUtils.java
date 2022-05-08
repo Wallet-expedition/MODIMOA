@@ -8,10 +8,6 @@ public class EncryptionUtils {
         return encrypt(s, "SHA-256");
     }
 
-    public static String encryptMD5(String s) {
-        return encrypt(s, "MD5");
-    }
-
     public static String encrypt(String s, String messageDigest) {
         try {
             MessageDigest md = MessageDigest.getInstance(messageDigest);

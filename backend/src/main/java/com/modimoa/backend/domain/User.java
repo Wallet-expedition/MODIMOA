@@ -15,10 +15,7 @@ import java.util.List;
 @Entity
 @Getter
 public class User extends BaseTimeEntity {
-
-	public static final long serialVersionUID = -6184044926029805156L;
-
-	@Id //primary key
+	@Id
 	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;

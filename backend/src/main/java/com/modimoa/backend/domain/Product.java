@@ -10,9 +10,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @RequiredArgsConstructor
-public class Product extends BaseTimeEntity implements Serializable {
-
-	public static final long serialVersionUID = -6184044926029805156L;
+public class Product extends BaseTimeEntity {
 
 	@Id
 	@Column(name = "product_id")
