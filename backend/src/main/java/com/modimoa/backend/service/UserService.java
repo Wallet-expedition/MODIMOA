@@ -29,27 +29,17 @@ public class UserService {
     private final UserRepository userRepository;
     private final MybagRepository mybagRepository;
 
-    public String signUp(String userImage, String userEmail, String oauthCookie) {
-        Optional <User> user = userRepository.findByUserEmail(userEmail);
-         if(user.isPresent()){
-             throw new CustomException(MEMBER_CONFLICT_ERROR);
-         }else{
-            user.orElseGet(() ->userRepository.save(new User(userEmail,userImage,oauthCookie,"new")));
-            return "새로운 유저 생성";
-        }
-
+    public void signUp(String userImage, String userEmail, String oauthCookie) {
+        userRepository.findByUserEmail(userEmail).orElseThrow(() -> new CustomException(MEMBER_CONFLICT_ERROR));
+        userRepository.save(new User(userEmail,userImage,oauthCookie,"new"));
     }
 
-
     public String login(String userEmail){
-
-        Optional <User> user = userRepository.findByUserEmail(userEmail);
-        user.orElseThrow(()->new CustomException(OBJECT_NOTFOUND_ERROR));
-
+        User user = userRepository.findByUserEmail(userEmail).orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
         LocalTime time = LocalTime.now();
         String hourPlusMinute = String.valueOf(time.getHour()+ time.getMinute());
         String accessToken = EncryptionUtils.encryptSHA256(userEmail+hourPlusMinute+"access");
-        user.get().updateTokens(accessToken);
+        user.updateTokens(accessToken);
 
         return accessToken;
     }
@@ -59,32 +49,24 @@ public class UserService {
     }
 
     public String logout(String token) {
+        User user = userRepository.findByAccessToken(token).orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
+        user.updateTokens("");
 
-        Optional <User> user = userRepository.findByAccessToken(token);
-        user.orElseThrow(()->new CustomException(OBJECT_NOTFOUND_ERROR));
-        user.get().updateTokens("");
-
-        return user.get().getUserEmail();
+        return user.getUserEmail();
     }
 
     public String withdrawal(String token) {
-
-        Optional <User> user = userRepository.findByAccessToken(token);
-        user.orElseThrow(()->new CustomException(OBJECT_NOTFOUND_ERROR));
-        mybagRepository.deleteByUser(user.get());
+        User user = userRepository.findByAccessToken(token).orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
+        mybagRepository.deleteByUser(user);
         userRepository.deleteByAccessToken(token);
-        return user.get().getUserEmail();
+        return user.getUserEmail();
     }
 
     public Map<String, String> getUserInfo(String token) {
         Map<String, String> userInfo= new HashMap<>();
-
-        Optional <User> user = userRepository.findByAccessToken(token);
-        user.orElseThrow(()->new CustomException(OBJECT_NOTFOUND_ERROR));
-        userInfo.put("user_email", user.get().getUserEmail());
-        userInfo.put("user_image", user.get().getUserImage());
+        User user = userRepository.findByAccessToken(token).orElseThrow(() -> new CustomException(OBJECT_NOTFOUND_ERROR));
+        userInfo.put("user_email", user.getUserEmail());
+        userInfo.put("user_image", user.getUserImage());
         return userInfo;
-
     }
-
 }

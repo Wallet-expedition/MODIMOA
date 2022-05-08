@@ -16,7 +16,7 @@ public class ProductController {
 
 	private final ProductService productService;
 
-	// 전체 물품 가져오는 기능
+	// 전체 물품 가져오는 기능 
 	@GetMapping("")
 	public ResponseEntity<Page<Product>> getAllProducts(Pageable pageable) {
 		return new ResponseEntity<>(productService.getAllProducts(pageable), HttpStatus.OK);
